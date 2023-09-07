@@ -45,7 +45,6 @@ const RootLayout = async ({
             </head>
             <body className={"group/body"}>
                 {children}
-
                 <Toaster />
             </body>
         </html>
