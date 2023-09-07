@@ -1,7 +1,12 @@
-const { withSuperjson } = require('next-superjson')
+// const { withSuperjson } = require('next-superjson')
 
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+    poweredByHeader: false,
+    experimental: {
+        serverActions: true,
+    },
+}
 
-module.exports = withSuperjson(nextConfig)
+module.exports = nextConfig
