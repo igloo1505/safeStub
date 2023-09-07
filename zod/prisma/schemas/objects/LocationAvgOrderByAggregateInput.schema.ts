@@ -1,0 +1,17 @@
+import { z } from 'zod';
+import { SortOrderSchema } from '../enums/SortOrder.schema';
+
+import type { Prisma } from '@prisma/client';
+
+const Schema: z.ZodType<Prisma.LocationAvgOrderByAggregateInput> = z
+  .object({
+    id: z.lazy(() => SortOrderSchema).optional(),
+    zip: z.lazy(() => SortOrderSchema).optional(),
+    cityId: z.lazy(() => SortOrderSchema).optional(),
+    lat: z.lazy(() => SortOrderSchema).optional(),
+    long: z.lazy(() => SortOrderSchema).optional(),
+    userId: z.lazy(() => SortOrderSchema).optional(),
+  })
+  .strict();
+
+export const LocationAvgOrderByAggregateInputObjectSchema = Schema;

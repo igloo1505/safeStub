@@ -1,0 +1,33 @@
+import { z } from 'zod';
+import { PaymentAccountDetailsArgsObjectSchema } from './PaymentAccountDetailsArgs.schema';
+import { PurchaseHistoryArgsObjectSchema } from './PurchaseHistoryArgs.schema';
+import { PersonalDetailsArgsObjectSchema } from './PersonalDetailsArgs.schema';
+import { SettingsArgsObjectSchema } from './SettingsArgs.schema';
+
+import type { Prisma } from '@prisma/client';
+
+const Schema: z.ZodType<Prisma.UserSelect> = z
+  .object({
+    id: z.boolean().optional(),
+    email: z.boolean().optional(),
+    password: z.boolean().optional(),
+    role: z.boolean().optional(),
+    createdAt: z.boolean().optional(),
+    paymentAccount: z
+      .union([z.boolean(), z.lazy(() => PaymentAccountDetailsArgsObjectSchema)])
+      .optional(),
+    paymentAccountDetailsId: z.boolean().optional(),
+    purchaseHistory: z
+      .union([z.boolean(), z.lazy(() => PurchaseHistoryArgsObjectSchema)])
+      .optional(),
+    personalDetails: z
+      .union([z.boolean(), z.lazy(() => PersonalDetailsArgsObjectSchema)])
+      .optional(),
+    verified: z.boolean().optional(),
+    settings: z
+      .union([z.boolean(), z.lazy(() => SettingsArgsObjectSchema)])
+      .optional(),
+  })
+  .strict();
+
+export const UserSelectObjectSchema = Schema;

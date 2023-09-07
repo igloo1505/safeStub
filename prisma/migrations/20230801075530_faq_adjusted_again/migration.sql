@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Faq" ALTER COLUMN "domId" DROP NOT NULL;

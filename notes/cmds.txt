@@ -1,0 +1,7 @@
+move into project | cd /Users/bigsexy/Desktop/currentProjects/paidWork/ticket_chaser
+open database UI | npx dotenv -e .env.local -- prisma studio 
+reset terminal | source $HOME/.zshrc
+edit terminal config | code $HOME/.zshrc
+Pull app from Github | cdLegit && git pull
+Reset app to state on github | cdLegit && git reset --hard
+iForget | glow $HOME/.config/legit/iforget.md -s dark

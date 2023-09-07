@@ -1,0 +1,13 @@
+import { z } from 'zod';
+
+import type { Prisma } from '@prisma/client';
+
+const Schema: z.ZodType<Prisma.TicketCreateManyEventInput> = z
+  .object({
+    id: z.number().optional(),
+    ticketGroupId: z.number().optional().nullable(),
+    arenaSectionId: z.number(),
+  })
+  .strict();
+
+export const TicketCreateManyEventInputObjectSchema = Schema;
