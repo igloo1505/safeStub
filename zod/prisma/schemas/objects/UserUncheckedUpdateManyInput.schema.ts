@@ -7,6 +7,7 @@ import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldU
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
 import { EnumVERIFICATIONSTATUSFieldUpdateOperationsInputObjectSchema } from './EnumVERIFICATIONSTATUSFieldUpdateOperationsInput.schema';
+import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -49,7 +50,7 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateManyInput> = z
       ])
       .optional()
       .nullable(),
-    verified: z
+    IdVerified: z
       .union([
         z.lazy(() => VERIFICATIONSTATUSSchema),
         z.lazy(
@@ -57,6 +58,13 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateManyInput> = z
         ),
       ])
       .optional(),
+    emailVerified: z
+      .union([
+        z.coerce.date(),
+        z.lazy(() => NullableDateTimeFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional()
+      .nullable(),
   })
   .strict();
 

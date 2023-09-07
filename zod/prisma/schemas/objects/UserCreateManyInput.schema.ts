@@ -12,7 +12,8 @@ const Schema: z.ZodType<Prisma.UserCreateManyInput> = z
     role: z.lazy(() => ROLESchema).optional(),
     createdAt: z.coerce.date().optional(),
     paymentAccountDetailsId: z.number().optional().nullable(),
-    verified: z.lazy(() => VERIFICATIONSTATUSSchema).optional(),
+    IdVerified: z.lazy(() => VERIFICATIONSTATUSSchema).optional(),
+    emailVerified: z.coerce.date().optional().nullable(),
   })
   .strict();
 

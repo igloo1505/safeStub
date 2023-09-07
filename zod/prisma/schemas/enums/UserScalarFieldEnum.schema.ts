@@ -7,5 +7,6 @@ export const UserScalarFieldEnumSchema = z.enum([
   'role',
   'createdAt',
   'paymentAccountDetailsId',
-  'verified',
+  'IdVerified',
+  'emailVerified',
 ]);

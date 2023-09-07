@@ -5,9 +5,12 @@ import { EnumROLEFieldUpdateOperationsInputObjectSchema } from './EnumROLEFieldU
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
 import { EnumVERIFICATIONSTATUSFieldUpdateOperationsInputObjectSchema } from './EnumVERIFICATIONSTATUSFieldUpdateOperationsInput.schema';
+import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { PaymentAccountDetailsUpdateOneWithoutUserNestedInputObjectSchema } from './PaymentAccountDetailsUpdateOneWithoutUserNestedInput.schema';
 import { PurchaseHistoryUpdateOneWithoutUserNestedInputObjectSchema } from './PurchaseHistoryUpdateOneWithoutUserNestedInput.schema';
 import { SettingsUpdateOneWithoutUserNestedInputObjectSchema } from './SettingsUpdateOneWithoutUserNestedInput.schema';
+import { AccountUpdateManyWithoutUserNestedInputObjectSchema } from './AccountUpdateManyWithoutUserNestedInput.schema';
+import { SessionUpdateManyWithoutUserNestedInputObjectSchema } from './SessionUpdateManyWithoutUserNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -37,7 +40,7 @@ const Schema: z.ZodType<Prisma.UserUpdateWithoutPersonalDetailsInput> = z
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    verified: z
+    IdVerified: z
       .union([
         z.lazy(() => VERIFICATIONSTATUSSchema),
         z.lazy(
@@ -45,6 +48,13 @@ const Schema: z.ZodType<Prisma.UserUpdateWithoutPersonalDetailsInput> = z
         ),
       ])
       .optional(),
+    emailVerified: z
+      .union([
+        z.coerce.date(),
+        z.lazy(() => NullableDateTimeFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional()
+      .nullable(),
     paymentAccount: z
       .lazy(
         () => PaymentAccountDetailsUpdateOneWithoutUserNestedInputObjectSchema,
@@ -55,6 +65,12 @@ const Schema: z.ZodType<Prisma.UserUpdateWithoutPersonalDetailsInput> = z
       .optional(),
     settings: z
       .lazy(() => SettingsUpdateOneWithoutUserNestedInputObjectSchema)
+      .optional(),
+    accounts: z
+      .lazy(() => AccountUpdateManyWithoutUserNestedInputObjectSchema)
+      .optional(),
+    sessions: z
+      .lazy(() => SessionUpdateManyWithoutUserNestedInputObjectSchema)
       .optional(),
   })
   .strict();

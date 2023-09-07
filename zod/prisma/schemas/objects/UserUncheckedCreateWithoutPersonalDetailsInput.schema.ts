@@ -3,6 +3,8 @@ import { ROLESchema } from '../enums/ROLE.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
 import { PurchaseHistoryUncheckedCreateNestedOneWithoutUserInputObjectSchema } from './PurchaseHistoryUncheckedCreateNestedOneWithoutUserInput.schema';
 import { SettingsUncheckedCreateNestedOneWithoutUserInputObjectSchema } from './SettingsUncheckedCreateNestedOneWithoutUserInput.schema';
+import { AccountUncheckedCreateNestedManyWithoutUserInputObjectSchema } from './AccountUncheckedCreateNestedManyWithoutUserInput.schema';
+import { SessionUncheckedCreateNestedManyWithoutUserInputObjectSchema } from './SessionUncheckedCreateNestedManyWithoutUserInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -15,7 +17,8 @@ const Schema: z.ZodType<Prisma.UserUncheckedCreateWithoutPersonalDetailsInput> =
       role: z.lazy(() => ROLESchema).optional(),
       createdAt: z.coerce.date().optional(),
       paymentAccountDetailsId: z.number().optional().nullable(),
-      verified: z.lazy(() => VERIFICATIONSTATUSSchema).optional(),
+      IdVerified: z.lazy(() => VERIFICATIONSTATUSSchema).optional(),
+      emailVerified: z.coerce.date().optional().nullable(),
       purchaseHistory: z
         .lazy(
           () =>
@@ -25,6 +28,16 @@ const Schema: z.ZodType<Prisma.UserUncheckedCreateWithoutPersonalDetailsInput> =
       settings: z
         .lazy(
           () => SettingsUncheckedCreateNestedOneWithoutUserInputObjectSchema,
+        )
+        .optional(),
+      accounts: z
+        .lazy(
+          () => AccountUncheckedCreateNestedManyWithoutUserInputObjectSchema,
+        )
+        .optional(),
+      sessions: z
+        .lazy(
+          () => SessionUncheckedCreateNestedManyWithoutUserInputObjectSchema,
         )
         .optional(),
     })

@@ -7,6 +7,7 @@ import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema';
 import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
 import { EnumVERIFICATIONSTATUSFilterObjectSchema } from './EnumVERIFICATIONSTATUSFilter.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
+import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 import { PaymentAccountDetailsRelationFilterObjectSchema } from './PaymentAccountDetailsRelationFilter.schema';
 import { PaymentAccountDetailsWhereInputObjectSchema } from './PaymentAccountDetailsWhereInput.schema';
 import { PurchaseHistoryRelationFilterObjectSchema } from './PurchaseHistoryRelationFilter.schema';
@@ -15,6 +16,8 @@ import { PersonalDetailsRelationFilterObjectSchema } from './PersonalDetailsRela
 import { PersonalDetailsWhereInputObjectSchema } from './PersonalDetailsWhereInput.schema';
 import { SettingsRelationFilterObjectSchema } from './SettingsRelationFilter.schema';
 import { SettingsWhereInputObjectSchema } from './SettingsWhereInput.schema';
+import { AccountListRelationFilterObjectSchema } from './AccountListRelationFilter.schema';
+import { SessionListRelationFilterObjectSchema } from './SessionListRelationFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -56,12 +59,19 @@ const Schema: z.ZodType<Prisma.UserWhereInput> = z
       .union([z.lazy(() => IntNullableFilterObjectSchema), z.number()])
       .optional()
       .nullable(),
-    verified: z
+    IdVerified: z
       .union([
         z.lazy(() => EnumVERIFICATIONSTATUSFilterObjectSchema),
         z.lazy(() => VERIFICATIONSTATUSSchema),
       ])
       .optional(),
+    emailVerified: z
+      .union([
+        z.lazy(() => DateTimeNullableFilterObjectSchema),
+        z.coerce.date(),
+      ])
+      .optional()
+      .nullable(),
     paymentAccount: z
       .union([
         z.lazy(() => PaymentAccountDetailsRelationFilterObjectSchema),
@@ -90,6 +100,8 @@ const Schema: z.ZodType<Prisma.UserWhereInput> = z
       ])
       .optional()
       .nullable(),
+    accounts: z.lazy(() => AccountListRelationFilterObjectSchema).optional(),
+    sessions: z.lazy(() => SessionListRelationFilterObjectSchema).optional(),
   })
   .strict();
 

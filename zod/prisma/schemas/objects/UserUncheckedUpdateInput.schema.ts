@@ -7,9 +7,12 @@ import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldU
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
 import { EnumVERIFICATIONSTATUSFieldUpdateOperationsInputObjectSchema } from './EnumVERIFICATIONSTATUSFieldUpdateOperationsInput.schema';
+import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { PurchaseHistoryUncheckedUpdateOneWithoutUserNestedInputObjectSchema } from './PurchaseHistoryUncheckedUpdateOneWithoutUserNestedInput.schema';
 import { PersonalDetailsUncheckedUpdateOneWithoutUserNestedInputObjectSchema } from './PersonalDetailsUncheckedUpdateOneWithoutUserNestedInput.schema';
 import { SettingsUncheckedUpdateOneWithoutUserNestedInputObjectSchema } from './SettingsUncheckedUpdateOneWithoutUserNestedInput.schema';
+import { AccountUncheckedUpdateManyWithoutUserNestedInputObjectSchema } from './AccountUncheckedUpdateManyWithoutUserNestedInput.schema';
+import { SessionUncheckedUpdateManyWithoutUserNestedInputObjectSchema } from './SessionUncheckedUpdateManyWithoutUserNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -52,7 +55,7 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateInput> = z
       ])
       .optional()
       .nullable(),
-    verified: z
+    IdVerified: z
       .union([
         z.lazy(() => VERIFICATIONSTATUSSchema),
         z.lazy(
@@ -60,6 +63,13 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateInput> = z
         ),
       ])
       .optional(),
+    emailVerified: z
+      .union([
+        z.coerce.date(),
+        z.lazy(() => NullableDateTimeFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional()
+      .nullable(),
     purchaseHistory: z
       .lazy(
         () =>
@@ -74,6 +84,12 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateInput> = z
       .optional(),
     settings: z
       .lazy(() => SettingsUncheckedUpdateOneWithoutUserNestedInputObjectSchema)
+      .optional(),
+    accounts: z
+      .lazy(() => AccountUncheckedUpdateManyWithoutUserNestedInputObjectSchema)
+      .optional(),
+    sessions: z
+      .lazy(() => SessionUncheckedUpdateManyWithoutUserNestedInputObjectSchema)
       .optional(),
   })
   .strict();

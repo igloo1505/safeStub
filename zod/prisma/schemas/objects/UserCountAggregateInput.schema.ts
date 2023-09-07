@@ -10,7 +10,8 @@ const Schema: z.ZodType<Prisma.UserCountAggregateInputType> = z
     role: z.literal(true).optional(),
     createdAt: z.literal(true).optional(),
     paymentAccountDetailsId: z.literal(true).optional(),
-    verified: z.literal(true).optional(),
+    IdVerified: z.literal(true).optional(),
+    emailVerified: z.literal(true).optional(),
     _all: z.literal(true).optional(),
   })
   .strict();

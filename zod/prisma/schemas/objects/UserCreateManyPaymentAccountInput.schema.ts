@@ -11,7 +11,8 @@ const Schema: z.ZodType<Prisma.UserCreateManyPaymentAccountInput> = z
     password: z.string(),
     role: z.lazy(() => ROLESchema).optional(),
     createdAt: z.coerce.date().optional(),
-    verified: z.lazy(() => VERIFICATIONSTATUSSchema).optional(),
+    IdVerified: z.lazy(() => VERIFICATIONSTATUSSchema).optional(),
+    emailVerified: z.coerce.date().optional().nullable(),
   })
   .strict();
 

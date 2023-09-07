@@ -5,6 +5,8 @@ import { PaymentAccountDetailsOrderByWithRelationAndSearchRelevanceInputObjectSc
 import { PurchaseHistoryOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './PurchaseHistoryOrderByWithRelationAndSearchRelevanceInput.schema';
 import { PersonalDetailsOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './PersonalDetailsOrderByWithRelationAndSearchRelevanceInput.schema';
 import { SettingsOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './SettingsOrderByWithRelationAndSearchRelevanceInput.schema';
+import { AccountOrderByRelationAggregateInputObjectSchema } from './AccountOrderByRelationAggregateInput.schema';
+import { SessionOrderByRelationAggregateInputObjectSchema } from './SessionOrderByRelationAggregateInput.schema';
 import { UserOrderByRelevanceInputObjectSchema } from './UserOrderByRelevanceInput.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -23,7 +25,13 @@ const Schema: z.ZodType<Prisma.UserOrderByWithRelationAndSearchRelevanceInput> =
           z.lazy(() => SortOrderInputObjectSchema),
         ])
         .optional(),
-      verified: z.lazy(() => SortOrderSchema).optional(),
+      IdVerified: z.lazy(() => SortOrderSchema).optional(),
+      emailVerified: z
+        .union([
+          z.lazy(() => SortOrderSchema),
+          z.lazy(() => SortOrderInputObjectSchema),
+        ])
+        .optional(),
       paymentAccount: z
         .lazy(
           () =>
@@ -46,6 +54,12 @@ const Schema: z.ZodType<Prisma.UserOrderByWithRelationAndSearchRelevanceInput> =
         .lazy(
           () => SettingsOrderByWithRelationAndSearchRelevanceInputObjectSchema,
         )
+        .optional(),
+      accounts: z
+        .lazy(() => AccountOrderByRelationAggregateInputObjectSchema)
+        .optional(),
+      sessions: z
+        .lazy(() => SessionOrderByRelationAggregateInputObjectSchema)
         .optional(),
       _relevance: z
         .lazy(() => UserOrderByRelevanceInputObjectSchema)

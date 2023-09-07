@@ -22,7 +22,13 @@ const Schema: z.ZodType<Prisma.UserOrderByWithAggregationInput> = z
         z.lazy(() => SortOrderInputObjectSchema),
       ])
       .optional(),
-    verified: z.lazy(() => SortOrderSchema).optional(),
+    IdVerified: z.lazy(() => SortOrderSchema).optional(),
+    emailVerified: z
+      .union([
+        z.lazy(() => SortOrderSchema),
+        z.lazy(() => SortOrderInputObjectSchema),
+      ])
+      .optional(),
     _count: z.lazy(() => UserCountOrderByAggregateInputObjectSchema).optional(),
     _avg: z.lazy(() => UserAvgOrderByAggregateInputObjectSchema).optional(),
     _max: z.lazy(() => UserMaxOrderByAggregateInputObjectSchema).optional(),

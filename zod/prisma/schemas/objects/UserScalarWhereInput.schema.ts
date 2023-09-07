@@ -7,6 +7,7 @@ import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema';
 import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
 import { EnumVERIFICATIONSTATUSFilterObjectSchema } from './EnumVERIFICATIONSTATUSFilter.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
+import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -48,12 +49,19 @@ const Schema: z.ZodType<Prisma.UserScalarWhereInput> = z
       .union([z.lazy(() => IntNullableFilterObjectSchema), z.number()])
       .optional()
       .nullable(),
-    verified: z
+    IdVerified: z
       .union([
         z.lazy(() => EnumVERIFICATIONSTATUSFilterObjectSchema),
         z.lazy(() => VERIFICATIONSTATUSSchema),
       ])
       .optional(),
+    emailVerified: z
+      .union([
+        z.lazy(() => DateTimeNullableFilterObjectSchema),
+        z.coerce.date(),
+      ])
+      .optional()
+      .nullable(),
   })
   .strict();
 

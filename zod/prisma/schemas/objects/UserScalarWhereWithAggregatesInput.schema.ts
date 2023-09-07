@@ -7,6 +7,7 @@ import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregat
 import { IntNullableWithAggregatesFilterObjectSchema } from './IntNullableWithAggregatesFilter.schema';
 import { EnumVERIFICATIONSTATUSWithAggregatesFilterObjectSchema } from './EnumVERIFICATIONSTATUSWithAggregatesFilter.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
+import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNullableWithAggregatesFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -56,12 +57,19 @@ const Schema: z.ZodType<Prisma.UserScalarWhereWithAggregatesInput> = z
       ])
       .optional()
       .nullable(),
-    verified: z
+    IdVerified: z
       .union([
         z.lazy(() => EnumVERIFICATIONSTATUSWithAggregatesFilterObjectSchema),
         z.lazy(() => VERIFICATIONSTATUSSchema),
       ])
       .optional(),
+    emailVerified: z
+      .union([
+        z.lazy(() => DateTimeNullableWithAggregatesFilterObjectSchema),
+        z.coerce.date(),
+      ])
+      .optional()
+      .nullable(),
   })
   .strict();
 
