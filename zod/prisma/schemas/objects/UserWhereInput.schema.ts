@@ -1,19 +1,17 @@
 import { z } from 'zod';
-import { IntFilterObjectSchema } from './IntFilter.schema';
 import { StringFilterObjectSchema } from './StringFilter.schema';
+import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema';
 import { EnumROLEFilterObjectSchema } from './EnumROLEFilter.schema';
 import { ROLESchema } from '../enums/ROLE.schema';
 import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema';
+import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
 import { EnumVERIFICATIONSTATUSFilterObjectSchema } from './EnumVERIFICATIONSTATUSFilter.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
-import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 import { PaymentAccountDetailsRelationFilterObjectSchema } from './PaymentAccountDetailsRelationFilter.schema';
 import { PaymentAccountDetailsWhereInputObjectSchema } from './PaymentAccountDetailsWhereInput.schema';
 import { PurchaseHistoryRelationFilterObjectSchema } from './PurchaseHistoryRelationFilter.schema';
 import { PurchaseHistoryWhereInputObjectSchema } from './PurchaseHistoryWhereInput.schema';
-import { PersonalDetailsRelationFilterObjectSchema } from './PersonalDetailsRelationFilter.schema';
-import { PersonalDetailsWhereInputObjectSchema } from './PersonalDetailsWhereInput.schema';
 import { SettingsRelationFilterObjectSchema } from './SettingsRelationFilter.schema';
 import { SettingsWhereInputObjectSchema } from './SettingsWhereInput.schema';
 import { AccountListRelationFilterObjectSchema } from './AccountListRelationFilter.schema';
@@ -39,13 +37,13 @@ const Schema: z.ZodType<Prisma.UserWhereInput> = z
         z.lazy(() => UserWhereInputObjectSchema).array(),
       ])
       .optional(),
-    id: z.union([z.lazy(() => IntFilterObjectSchema), z.number()]).optional(),
-    email: z
+    id: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
-    password: z
-      .union([z.lazy(() => StringFilterObjectSchema), z.string()])
-      .optional(),
+    name: z
+      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
+      .optional()
+      .nullable(),
     role: z
       .union([
         z.lazy(() => EnumROLEFilterObjectSchema),
@@ -55,16 +53,10 @@ const Schema: z.ZodType<Prisma.UserWhereInput> = z
     createdAt: z
       .union([z.lazy(() => DateTimeFilterObjectSchema), z.coerce.date()])
       .optional(),
-    paymentAccountDetailsId: z
-      .union([z.lazy(() => IntNullableFilterObjectSchema), z.number()])
+    email: z
+      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
       .optional()
       .nullable(),
-    IdVerified: z
-      .union([
-        z.lazy(() => EnumVERIFICATIONSTATUSFilterObjectSchema),
-        z.lazy(() => VERIFICATIONSTATUSSchema),
-      ])
-      .optional(),
     emailVerified: z
       .union([
         z.lazy(() => DateTimeNullableFilterObjectSchema),
@@ -72,6 +64,20 @@ const Schema: z.ZodType<Prisma.UserWhereInput> = z
       ])
       .optional()
       .nullable(),
+    image: z
+      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
+      .optional()
+      .nullable(),
+    paymentAccountDetailsId: z
+      .union([z.lazy(() => IntNullableFilterObjectSchema), z.number()])
+      .optional()
+      .nullable(),
+    idVerified: z
+      .union([
+        z.lazy(() => EnumVERIFICATIONSTATUSFilterObjectSchema),
+        z.lazy(() => VERIFICATIONSTATUSSchema),
+      ])
+      .optional(),
     paymentAccount: z
       .union([
         z.lazy(() => PaymentAccountDetailsRelationFilterObjectSchema),
@@ -83,13 +89,6 @@ const Schema: z.ZodType<Prisma.UserWhereInput> = z
       .union([
         z.lazy(() => PurchaseHistoryRelationFilterObjectSchema),
         z.lazy(() => PurchaseHistoryWhereInputObjectSchema),
-      ])
-      .optional()
-      .nullable(),
-    personalDetails: z
-      .union([
-        z.lazy(() => PersonalDetailsRelationFilterObjectSchema),
-        z.lazy(() => PersonalDetailsWhereInputObjectSchema),
       ])
       .optional()
       .nullable(),

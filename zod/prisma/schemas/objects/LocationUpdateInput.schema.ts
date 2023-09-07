@@ -8,7 +8,6 @@ import { NullableFloatFieldUpdateOperationsInputObjectSchema } from './NullableF
 import { CountrySchema } from '../enums/Country.schema';
 import { EnumCountryFieldUpdateOperationsInputObjectSchema } from './EnumCountryFieldUpdateOperationsInput.schema';
 import { ArenaUpdateManyWithoutLocationNestedInputObjectSchema } from './ArenaUpdateManyWithoutLocationNestedInput.schema';
-import { PersonalDetailsUpdateOneWithoutLocationNestedInputObjectSchema } from './PersonalDetailsUpdateOneWithoutLocationNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -75,13 +74,15 @@ const Schema: z.ZodType<Prisma.LocationUpdateInput> = z
         z.lazy(() => EnumCountryFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
+    userId: z
+      .union([
+        z.number(),
+        z.lazy(() => NullableIntFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional()
+      .nullable(),
     arena: z
       .lazy(() => ArenaUpdateManyWithoutLocationNestedInputObjectSchema)
-      .optional(),
-    personalDetails: z
-      .lazy(
-        () => PersonalDetailsUpdateOneWithoutLocationNestedInputObjectSchema,
-      )
       .optional(),
   })
   .strict();

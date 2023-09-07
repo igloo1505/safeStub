@@ -12,23 +12,39 @@ import type { Prisma } from '@prisma/client';
 const Schema: z.ZodType<Prisma.UserOrderByWithAggregationInput> = z
   .object({
     id: z.lazy(() => SortOrderSchema).optional(),
-    email: z.lazy(() => SortOrderSchema).optional(),
-    password: z.lazy(() => SortOrderSchema).optional(),
-    role: z.lazy(() => SortOrderSchema).optional(),
-    createdAt: z.lazy(() => SortOrderSchema).optional(),
-    paymentAccountDetailsId: z
+    name: z
       .union([
         z.lazy(() => SortOrderSchema),
         z.lazy(() => SortOrderInputObjectSchema),
       ])
       .optional(),
-    IdVerified: z.lazy(() => SortOrderSchema).optional(),
+    role: z.lazy(() => SortOrderSchema).optional(),
+    createdAt: z.lazy(() => SortOrderSchema).optional(),
+    email: z
+      .union([
+        z.lazy(() => SortOrderSchema),
+        z.lazy(() => SortOrderInputObjectSchema),
+      ])
+      .optional(),
     emailVerified: z
       .union([
         z.lazy(() => SortOrderSchema),
         z.lazy(() => SortOrderInputObjectSchema),
       ])
       .optional(),
+    image: z
+      .union([
+        z.lazy(() => SortOrderSchema),
+        z.lazy(() => SortOrderInputObjectSchema),
+      ])
+      .optional(),
+    paymentAccountDetailsId: z
+      .union([
+        z.lazy(() => SortOrderSchema),
+        z.lazy(() => SortOrderInputObjectSchema),
+      ])
+      .optional(),
+    idVerified: z.lazy(() => SortOrderSchema).optional(),
     _count: z.lazy(() => UserCountOrderByAggregateInputObjectSchema).optional(),
     _avg: z.lazy(() => UserAvgOrderByAggregateInputObjectSchema).optional(),
     _max: z.lazy(() => UserMaxOrderByAggregateInputObjectSchema).optional(),

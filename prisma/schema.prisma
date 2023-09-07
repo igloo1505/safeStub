@@ -248,52 +248,37 @@ model Team {
 }
 
 model Location {
-    id              Int              @id @default(autoincrement())
-    uniqueKey       String?          @unique
-    street          String?
-    zip             Int?
-    city            String
-    cityId          Int?
-    state           USSTATE?         @default(WI)
-    lat             Float?
-    long            Float?
-    country         Country          @default(US)
-    arena           Arena[]
-    personalDetails PersonalDetails? @relation(fields: [userId], references: [id])
-    userId          Int?             @unique
-}
-
-model LegalName {
-    first           String
-    middle          String?
-    last            String
-    personalDetails PersonalDetails @relation(fields: [detailsId], references: [id])
-    detailsId       Int             @unique
-}
-
-model PersonalDetails {
-    id       Int        @id @default(autoincrement())
-    user     User       @relation(fields: [userId], references: [id])
-    userId   Int        @unique
-    name     LegalName?
-    location Location?
+    id        Int      @id @default(autoincrement())
+    uniqueKey String?  @unique
+    street    String?
+    zip       Int?
+    city      String
+    cityId    Int?
+    state     USSTATE? @default(WI)
+    lat       Float?
+    long      Float?
+    country   Country  @default(US)
+    arena     Arena[]
+    userId    Int?     @unique
 }
 
 model User {
-    id                      Int                    @id @default(autoincrement())
-    email                   String                 @unique
-    password                String
+    id                      String                 @id @default(cuid())
+    name                    String?
     role                    ROLE                   @default(USER)
     createdAt               DateTime               @default(now())
+    email                   String?                @unique
+    emailVerified           DateTime?              @map("email_verified")
+    image                   String?
     paymentAccount          PaymentAccountDetails? @relation(fields: [paymentAccountDetailsId], references: [id])
     paymentAccountDetailsId Int?
     purchaseHistory         PurchaseHistory?
-    personalDetails         PersonalDetails?
-    IdVerified              VERIFICATIONSTATUS     @default(Unverified)
-    emailVerified           DateTime?
+    idVerified              VERIFICATIONSTATUS     @default(Unverified)
     settings                Settings?
     accounts                Account[]
     sessions                Session[]
+
+    @@map("users")
 }
 
 model Event {
@@ -411,31 +396,33 @@ model PurchaseHistory {
     bought Transaction[] @relation("buyer")
     sold   Transaction[] @relation("seller")
     user   User          @relation(fields: [userId], references: [id])
-    userId Int           @unique
+    userId String        @unique
 }
 
 model Settings {
     id       Int     @id @default(autoincrement())
     darkmode Boolean @default(true)
     user     User    @relation(fields: [userId], references: [id])
-    userId   Int     @unique
+    userId   String  @unique
 }
 
 /// Auth stuff
 model Session {
     id           String   @id @default(cuid())
-    sessionToken String   @unique
-    userId       Int
+    sessionToken String   @unique @map("session_token")
+    userId       String   @map("user_id")
     expires      DateTime
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@map("sessions")
 }
 
 model Account {
     id                String  @id @default(cuid())
-    userId            Int
+    userId            String  @map("user_id")
     type              String
     provider          String
-    providerAccountId String
+    providerAccountId String  @map("provider_account_id")
     refresh_token     String? @db.Text
     access_token      String? @db.Text
     expires_at        Int?
@@ -447,6 +434,7 @@ model Account {
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([provider, providerAccountId])
+    @@map("accounts")
 }
 
 model VerificationToken {
@@ -455,4 +443,5 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+    @@map("verificationtokens")
 }

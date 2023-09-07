@@ -5,7 +5,7 @@ import type { Prisma } from '@prisma/client';
 const Schema: z.ZodType<Prisma.SettingsWhereUniqueInput> = z
   .object({
     id: z.number().optional(),
-    userId: z.number().optional(),
+    userId: z.string().optional(),
   })
   .strict();
 

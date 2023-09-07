@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import { PaymentAccountDetailsArgsObjectSchema } from './PaymentAccountDetailsArgs.schema';
 import { PurchaseHistoryArgsObjectSchema } from './PurchaseHistoryArgs.schema';
-import { PersonalDetailsArgsObjectSchema } from './PersonalDetailsArgs.schema';
 import { SettingsArgsObjectSchema } from './SettingsArgs.schema';
 import { AccountFindManySchema } from '../findManyAccount.schema';
 import { SessionFindManySchema } from '../findManySession.schema';
@@ -12,10 +11,12 @@ import type { Prisma } from '@prisma/client';
 const Schema: z.ZodType<Prisma.UserSelect> = z
   .object({
     id: z.boolean().optional(),
-    email: z.boolean().optional(),
-    password: z.boolean().optional(),
+    name: z.boolean().optional(),
     role: z.boolean().optional(),
     createdAt: z.boolean().optional(),
+    email: z.boolean().optional(),
+    emailVerified: z.boolean().optional(),
+    image: z.boolean().optional(),
     paymentAccount: z
       .union([z.boolean(), z.lazy(() => PaymentAccountDetailsArgsObjectSchema)])
       .optional(),
@@ -23,11 +24,7 @@ const Schema: z.ZodType<Prisma.UserSelect> = z
     purchaseHistory: z
       .union([z.boolean(), z.lazy(() => PurchaseHistoryArgsObjectSchema)])
       .optional(),
-    personalDetails: z
-      .union([z.boolean(), z.lazy(() => PersonalDetailsArgsObjectSchema)])
-      .optional(),
-    IdVerified: z.boolean().optional(),
-    emailVerified: z.boolean().optional(),
+    idVerified: z.boolean().optional(),
     settings: z
       .union([z.boolean(), z.lazy(() => SettingsArgsObjectSchema)])
       .optional(),

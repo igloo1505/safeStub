@@ -1,13 +1,13 @@
 import { z } from 'zod';
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
+import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
 import { ROLESchema } from '../enums/ROLE.schema';
 import { EnumROLEFieldUpdateOperationsInputObjectSchema } from './EnumROLEFieldUpdateOperationsInput.schema';
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema';
+import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
 import { EnumVERIFICATIONSTATUSFieldUpdateOperationsInputObjectSchema } from './EnumVERIFICATIONSTATUSFieldUpdateOperationsInput.schema';
-import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { PurchaseHistoryUpdateOneWithoutUserNestedInputObjectSchema } from './PurchaseHistoryUpdateOneWithoutUserNestedInput.schema';
-import { PersonalDetailsUpdateOneWithoutUserNestedInputObjectSchema } from './PersonalDetailsUpdateOneWithoutUserNestedInput.schema';
 import { SettingsUpdateOneWithoutUserNestedInputObjectSchema } from './SettingsUpdateOneWithoutUserNestedInput.schema';
 import { AccountUpdateManyWithoutUserNestedInputObjectSchema } from './AccountUpdateManyWithoutUserNestedInput.schema';
 import { SessionUpdateManyWithoutUserNestedInputObjectSchema } from './SessionUpdateManyWithoutUserNestedInput.schema';
@@ -16,18 +16,19 @@ import type { Prisma } from '@prisma/client';
 
 const Schema: z.ZodType<Prisma.UserUpdateWithoutPaymentAccountInput> = z
   .object({
-    email: z
+    id: z
       .union([
         z.string(),
         z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    password: z
+    name: z
       .union([
         z.string(),
-        z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
+        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
       ])
-      .optional(),
+      .optional()
+      .nullable(),
     role: z
       .union([
         z.lazy(() => ROLESchema),
@@ -40,14 +41,13 @@ const Schema: z.ZodType<Prisma.UserUpdateWithoutPaymentAccountInput> = z
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    IdVerified: z
+    email: z
       .union([
-        z.lazy(() => VERIFICATIONSTATUSSchema),
-        z.lazy(
-          () => EnumVERIFICATIONSTATUSFieldUpdateOperationsInputObjectSchema,
-        ),
+        z.string(),
+        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
       ])
-      .optional(),
+      .optional()
+      .nullable(),
     emailVerified: z
       .union([
         z.coerce.date(),
@@ -55,11 +55,23 @@ const Schema: z.ZodType<Prisma.UserUpdateWithoutPaymentAccountInput> = z
       ])
       .optional()
       .nullable(),
+    image: z
+      .union([
+        z.string(),
+        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional()
+      .nullable(),
+    idVerified: z
+      .union([
+        z.lazy(() => VERIFICATIONSTATUSSchema),
+        z.lazy(
+          () => EnumVERIFICATIONSTATUSFieldUpdateOperationsInputObjectSchema,
+        ),
+      ])
+      .optional(),
     purchaseHistory: z
       .lazy(() => PurchaseHistoryUpdateOneWithoutUserNestedInputObjectSchema)
-      .optional(),
-    personalDetails: z
-      .lazy(() => PersonalDetailsUpdateOneWithoutUserNestedInputObjectSchema)
       .optional(),
     settings: z
       .lazy(() => SettingsUpdateOneWithoutUserNestedInputObjectSchema)

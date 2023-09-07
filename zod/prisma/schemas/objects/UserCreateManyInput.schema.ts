@@ -6,14 +6,15 @@ import type { Prisma } from '@prisma/client';
 
 const Schema: z.ZodType<Prisma.UserCreateManyInput> = z
   .object({
-    id: z.number().optional(),
-    email: z.string(),
-    password: z.string(),
+    id: z.string().optional(),
+    name: z.string().optional().nullable(),
     role: z.lazy(() => ROLESchema).optional(),
     createdAt: z.coerce.date().optional(),
-    paymentAccountDetailsId: z.number().optional().nullable(),
-    IdVerified: z.lazy(() => VERIFICATIONSTATUSSchema).optional(),
+    email: z.string().optional().nullable(),
     emailVerified: z.coerce.date().optional().nullable(),
+    image: z.string().optional().nullable(),
+    paymentAccountDetailsId: z.number().optional().nullable(),
+    idVerified: z.lazy(() => VERIFICATIONSTATUSSchema).optional(),
   })
   .strict();
 

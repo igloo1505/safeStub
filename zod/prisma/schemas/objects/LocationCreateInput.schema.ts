@@ -2,7 +2,6 @@ import { z } from 'zod';
 import { USSTATESchema } from '../enums/USSTATE.schema';
 import { CountrySchema } from '../enums/Country.schema';
 import { ArenaCreateNestedManyWithoutLocationInputObjectSchema } from './ArenaCreateNestedManyWithoutLocationInput.schema';
-import { PersonalDetailsCreateNestedOneWithoutLocationInputObjectSchema } from './PersonalDetailsCreateNestedOneWithoutLocationInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -20,13 +19,9 @@ const Schema: z.ZodType<Prisma.LocationCreateInput> = z
     lat: z.number().optional().nullable(),
     long: z.number().optional().nullable(),
     country: z.lazy(() => CountrySchema).optional(),
+    userId: z.number().optional().nullable(),
     arena: z
       .lazy(() => ArenaCreateNestedManyWithoutLocationInputObjectSchema)
-      .optional(),
-    personalDetails: z
-      .lazy(
-        () => PersonalDetailsCreateNestedOneWithoutLocationInputObjectSchema,
-      )
       .optional(),
   })
   .strict();

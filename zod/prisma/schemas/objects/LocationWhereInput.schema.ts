@@ -9,8 +9,6 @@ import { FloatNullableFilterObjectSchema } from './FloatNullableFilter.schema';
 import { EnumCountryFilterObjectSchema } from './EnumCountryFilter.schema';
 import { CountrySchema } from '../enums/Country.schema';
 import { ArenaListRelationFilterObjectSchema } from './ArenaListRelationFilter.schema';
-import { PersonalDetailsRelationFilterObjectSchema } from './PersonalDetailsRelationFilter.schema';
-import { PersonalDetailsWhereInputObjectSchema } from './PersonalDetailsWhereInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -78,13 +76,6 @@ const Schema: z.ZodType<Prisma.LocationWhereInput> = z
       .optional()
       .nullable(),
     arena: z.lazy(() => ArenaListRelationFilterObjectSchema).optional(),
-    personalDetails: z
-      .union([
-        z.lazy(() => PersonalDetailsRelationFilterObjectSchema),
-        z.lazy(() => PersonalDetailsWhereInputObjectSchema),
-      ])
-      .optional()
-      .nullable(),
   })
   .strict();
 

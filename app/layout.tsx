@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import Script from 'next/script'
 import { Toaster } from '#/components/ui/toaster'
+import { NextUIProvider } from '@nextui-org/react'
 
 export const metadata: Metadata = {
     title: 'Safe Stub',
@@ -43,10 +44,12 @@ const RootLayout = async ({
    }(document, 'script', 'facebook-jssdk'));
 `}</Script>
             </head>
-            <body className={"group/body"}>
-                {children}
-                <Toaster />
-            </body>
+            <NextUIProvider>
+                <body className={"group/body"}>
+                    {children}
+                    <Toaster />
+                </body>
+            </NextUIProvider>
         </html>
     )
 }

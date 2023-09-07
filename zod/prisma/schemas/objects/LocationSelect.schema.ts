@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { ArenaFindManySchema } from '../findManyArena.schema';
-import { PersonalDetailsArgsObjectSchema } from './PersonalDetailsArgs.schema';
 import { LocationCountOutputTypeArgsObjectSchema } from './LocationCountOutputTypeArgs.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -18,9 +17,6 @@ const Schema: z.ZodType<Prisma.LocationSelect> = z
     long: z.boolean().optional(),
     country: z.boolean().optional(),
     arena: z.union([z.boolean(), z.lazy(() => ArenaFindManySchema)]).optional(),
-    personalDetails: z
-      .union([z.boolean(), z.lazy(() => PersonalDetailsArgsObjectSchema)])
-      .optional(),
     userId: z.boolean().optional(),
     _count: z
       .union([

@@ -1,13 +1,13 @@
 import { z } from 'zod';
-import { IntWithAggregatesFilterObjectSchema } from './IntWithAggregatesFilter.schema';
 import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema';
+import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema';
 import { EnumROLEWithAggregatesFilterObjectSchema } from './EnumROLEWithAggregatesFilter.schema';
 import { ROLESchema } from '../enums/ROLE.schema';
 import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregatesFilter.schema';
+import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNullableWithAggregatesFilter.schema';
 import { IntNullableWithAggregatesFilterObjectSchema } from './IntNullableWithAggregatesFilter.schema';
 import { EnumVERIFICATIONSTATUSWithAggregatesFilterObjectSchema } from './EnumVERIFICATIONSTATUSWithAggregatesFilter.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
-import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNullableWithAggregatesFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -30,14 +30,15 @@ const Schema: z.ZodType<Prisma.UserScalarWhereWithAggregatesInput> = z
       ])
       .optional(),
     id: z
-      .union([z.lazy(() => IntWithAggregatesFilterObjectSchema), z.number()])
-      .optional(),
-    email: z
       .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
       .optional(),
-    password: z
-      .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
-      .optional(),
+    name: z
+      .union([
+        z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
+        z.string(),
+      ])
+      .optional()
+      .nullable(),
     role: z
       .union([
         z.lazy(() => EnumROLEWithAggregatesFilterObjectSchema),
@@ -50,19 +51,13 @@ const Schema: z.ZodType<Prisma.UserScalarWhereWithAggregatesInput> = z
         z.coerce.date(),
       ])
       .optional(),
-    paymentAccountDetailsId: z
+    email: z
       .union([
-        z.lazy(() => IntNullableWithAggregatesFilterObjectSchema),
-        z.number(),
+        z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
+        z.string(),
       ])
       .optional()
       .nullable(),
-    IdVerified: z
-      .union([
-        z.lazy(() => EnumVERIFICATIONSTATUSWithAggregatesFilterObjectSchema),
-        z.lazy(() => VERIFICATIONSTATUSSchema),
-      ])
-      .optional(),
     emailVerified: z
       .union([
         z.lazy(() => DateTimeNullableWithAggregatesFilterObjectSchema),
@@ -70,6 +65,26 @@ const Schema: z.ZodType<Prisma.UserScalarWhereWithAggregatesInput> = z
       ])
       .optional()
       .nullable(),
+    image: z
+      .union([
+        z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
+        z.string(),
+      ])
+      .optional()
+      .nullable(),
+    paymentAccountDetailsId: z
+      .union([
+        z.lazy(() => IntNullableWithAggregatesFilterObjectSchema),
+        z.number(),
+      ])
+      .optional()
+      .nullable(),
+    idVerified: z
+      .union([
+        z.lazy(() => EnumVERIFICATIONSTATUSWithAggregatesFilterObjectSchema),
+        z.lazy(() => VERIFICATIONSTATUSSchema),
+      ])
+      .optional(),
   })
   .strict();
 

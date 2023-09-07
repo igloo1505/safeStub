@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema';
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { TransactionUncheckedUpdateManyWithoutBuyerNestedInputObjectSchema } from './TransactionUncheckedUpdateManyWithoutBuyerNestedInput.schema';
 import { TransactionUncheckedUpdateManyWithoutSellerNestedInputObjectSchema } from './TransactionUncheckedUpdateManyWithoutSellerNestedInput.schema';
 
@@ -15,8 +16,8 @@ const Schema: z.ZodType<Prisma.PurchaseHistoryUncheckedUpdateInput> = z
       .optional(),
     userId: z
       .union([
-        z.number(),
-        z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
+        z.string(),
+        z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
     bought: z

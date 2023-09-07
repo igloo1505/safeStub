@@ -73,6 +73,13 @@ const Schema: z.ZodType<Prisma.LocationUpdateManyMutationInput> = z
         z.lazy(() => EnumCountryFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
+    userId: z
+      .union([
+        z.number(),
+        z.lazy(() => NullableIntFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional()
+      .nullable(),
   })
   .strict();
 

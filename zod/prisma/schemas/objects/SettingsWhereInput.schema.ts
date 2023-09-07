@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { IntFilterObjectSchema } from './IntFilter.schema';
 import { BoolFilterObjectSchema } from './BoolFilter.schema';
+import { StringFilterObjectSchema } from './StringFilter.schema';
 import { UserRelationFilterObjectSchema } from './UserRelationFilter.schema';
 import { UserWhereInputObjectSchema } from './UserWhereInput.schema';
 
@@ -29,7 +30,7 @@ const Schema: z.ZodType<Prisma.SettingsWhereInput> = z
       .union([z.lazy(() => BoolFilterObjectSchema), z.boolean()])
       .optional(),
     userId: z
-      .union([z.lazy(() => IntFilterObjectSchema), z.number()])
+      .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
     user: z
       .union([

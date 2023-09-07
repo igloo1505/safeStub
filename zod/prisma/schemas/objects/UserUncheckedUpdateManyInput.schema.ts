@@ -1,13 +1,13 @@
 import { z } from 'zod';
-import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema';
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
+import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
 import { ROLESchema } from '../enums/ROLE.schema';
 import { EnumROLEFieldUpdateOperationsInputObjectSchema } from './EnumROLEFieldUpdateOperationsInput.schema';
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema';
+import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
 import { EnumVERIFICATIONSTATUSFieldUpdateOperationsInputObjectSchema } from './EnumVERIFICATIONSTATUSFieldUpdateOperationsInput.schema';
-import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -15,22 +15,17 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateManyInput> = z
   .object({
     id: z
       .union([
-        z.number(),
-        z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
-      ])
-      .optional(),
-    email: z
-      .union([
         z.string(),
         z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    password: z
+    name: z
       .union([
         z.string(),
-        z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
+        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
       ])
-      .optional(),
+      .optional()
+      .nullable(),
     role: z
       .union([
         z.lazy(() => ROLESchema),
@@ -43,21 +38,13 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateManyInput> = z
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    paymentAccountDetailsId: z
+    email: z
       .union([
-        z.number(),
-        z.lazy(() => NullableIntFieldUpdateOperationsInputObjectSchema),
+        z.string(),
+        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional()
       .nullable(),
-    IdVerified: z
-      .union([
-        z.lazy(() => VERIFICATIONSTATUSSchema),
-        z.lazy(
-          () => EnumVERIFICATIONSTATUSFieldUpdateOperationsInputObjectSchema,
-        ),
-      ])
-      .optional(),
     emailVerified: z
       .union([
         z.coerce.date(),
@@ -65,6 +52,28 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateManyInput> = z
       ])
       .optional()
       .nullable(),
+    image: z
+      .union([
+        z.string(),
+        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional()
+      .nullable(),
+    paymentAccountDetailsId: z
+      .union([
+        z.number(),
+        z.lazy(() => NullableIntFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional()
+      .nullable(),
+    idVerified: z
+      .union([
+        z.lazy(() => VERIFICATIONSTATUSSchema),
+        z.lazy(
+          () => EnumVERIFICATIONSTATUSFieldUpdateOperationsInputObjectSchema,
+        ),
+      ])
+      .optional(),
   })
   .strict();
 

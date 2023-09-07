@@ -6,7 +6,7 @@ const Schema: z.ZodType<Prisma.SettingsCreateManyInput> = z
   .object({
     id: z.number().optional(),
     darkmode: z.boolean().optional(),
-    userId: z.number(),
+    userId: z.string(),
   })
   .strict();
 

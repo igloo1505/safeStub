@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import { PaymentAccountDetailsArgsObjectSchema } from './PaymentAccountDetailsArgs.schema';
 import { PurchaseHistoryArgsObjectSchema } from './PurchaseHistoryArgs.schema';
-import { PersonalDetailsArgsObjectSchema } from './PersonalDetailsArgs.schema';
 import { SettingsArgsObjectSchema } from './SettingsArgs.schema';
 import { AccountFindManySchema } from '../findManyAccount.schema';
 import { SessionFindManySchema } from '../findManySession.schema';
@@ -16,9 +15,6 @@ const Schema: z.ZodType<Prisma.UserInclude> = z
       .optional(),
     purchaseHistory: z
       .union([z.boolean(), z.lazy(() => PurchaseHistoryArgsObjectSchema)])
-      .optional(),
-    personalDetails: z
-      .union([z.boolean(), z.lazy(() => PersonalDetailsArgsObjectSchema)])
       .optional(),
     settings: z
       .union([z.boolean(), z.lazy(() => SettingsArgsObjectSchema)])

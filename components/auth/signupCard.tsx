@@ -5,7 +5,7 @@ import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import GoogleAuthButton from '../navigation/authButtons/google';
 import FacebookAuthButton from '../navigation/authButtons/facebook';
-import { getProviders, signIn, signOut, useSession } from "next-auth/react"
+import { getProviders } from "next-auth/react"
 
 
 interface SignupCardProps {

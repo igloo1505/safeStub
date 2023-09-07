@@ -7,7 +7,7 @@ const Schema: z.ZodType<Prisma.PurchaseHistoryUncheckedCreateWithoutBoughtInput>
   z
     .object({
       id: z.number().optional(),
-      userId: z.number(),
+      userId: z.string(),
       sold: z
         .lazy(
           () =>

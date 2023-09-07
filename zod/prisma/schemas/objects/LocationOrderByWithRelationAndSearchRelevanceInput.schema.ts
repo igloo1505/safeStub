@@ -2,7 +2,6 @@ import { z } from 'zod';
 import { SortOrderSchema } from '../enums/SortOrder.schema';
 import { SortOrderInputObjectSchema } from './SortOrderInput.schema';
 import { ArenaOrderByRelationAggregateInputObjectSchema } from './ArenaOrderByRelationAggregateInput.schema';
-import { PersonalDetailsOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './PersonalDetailsOrderByWithRelationAndSearchRelevanceInput.schema';
 import { LocationOrderByRelevanceInputObjectSchema } from './LocationOrderByRelevanceInput.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -63,12 +62,6 @@ const Schema: z.ZodType<Prisma.LocationOrderByWithRelationAndSearchRelevanceInpu
         .optional(),
       arena: z
         .lazy(() => ArenaOrderByRelationAggregateInputObjectSchema)
-        .optional(),
-      personalDetails: z
-        .lazy(
-          () =>
-            PersonalDetailsOrderByWithRelationAndSearchRelevanceInputObjectSchema,
-        )
         .optional(),
       _relevance: z
         .lazy(() => LocationOrderByRelevanceInputObjectSchema)

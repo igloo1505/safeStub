@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { SortOrderSchema } from '../enums/SortOrder.schema';
 import { TransactionOrderByRelationAggregateInputObjectSchema } from './TransactionOrderByRelationAggregateInput.schema';
 import { UserOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './UserOrderByWithRelationAndSearchRelevanceInput.schema';
+import { PurchaseHistoryOrderByRelevanceInputObjectSchema } from './PurchaseHistoryOrderByRelevanceInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -18,6 +19,9 @@ const Schema: z.ZodType<Prisma.PurchaseHistoryOrderByWithRelationAndSearchReleva
         .optional(),
       user: z
         .lazy(() => UserOrderByWithRelationAndSearchRelevanceInputObjectSchema)
+        .optional(),
+      _relevance: z
+        .lazy(() => PurchaseHistoryOrderByRelevanceInputObjectSchema)
         .optional(),
     })
     .strict();

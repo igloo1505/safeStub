@@ -6,6 +6,7 @@ const nextConfig = {
     poweredByHeader: false,
     experimental: {
         serverActions: true,
+        typedRoutes: true
     },
 }
 

@@ -4,7 +4,6 @@ import type { Prisma } from '@prisma/client';
 
 const Schema: z.ZodType<Prisma.UserSumAggregateInputType> = z
   .object({
-    id: z.literal(true).optional(),
     paymentAccountDetailsId: z.literal(true).optional(),
   })
   .strict();

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { IntFilterObjectSchema } from './IntFilter.schema';
+import { StringFilterObjectSchema } from './StringFilter.schema';
 import { TransactionListRelationFilterObjectSchema } from './TransactionListRelationFilter.schema';
 import { UserRelationFilterObjectSchema } from './UserRelationFilter.schema';
 import { UserWhereInputObjectSchema } from './UserWhereInput.schema';
@@ -26,7 +27,7 @@ const Schema: z.ZodType<Prisma.PurchaseHistoryWhereInput> = z
       .optional(),
     id: z.union([z.lazy(() => IntFilterObjectSchema), z.number()]).optional(),
     userId: z
-      .union([z.lazy(() => IntFilterObjectSchema), z.number()])
+      .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
     bought: z.lazy(() => TransactionListRelationFilterObjectSchema).optional(),
     sold: z.lazy(() => TransactionListRelationFilterObjectSchema).optional(),

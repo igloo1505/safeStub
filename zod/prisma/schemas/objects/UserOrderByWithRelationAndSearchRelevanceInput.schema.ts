@@ -3,7 +3,6 @@ import { SortOrderSchema } from '../enums/SortOrder.schema';
 import { SortOrderInputObjectSchema } from './SortOrderInput.schema';
 import { PaymentAccountDetailsOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './PaymentAccountDetailsOrderByWithRelationAndSearchRelevanceInput.schema';
 import { PurchaseHistoryOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './PurchaseHistoryOrderByWithRelationAndSearchRelevanceInput.schema';
-import { PersonalDetailsOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './PersonalDetailsOrderByWithRelationAndSearchRelevanceInput.schema';
 import { SettingsOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './SettingsOrderByWithRelationAndSearchRelevanceInput.schema';
 import { AccountOrderByRelationAggregateInputObjectSchema } from './AccountOrderByRelationAggregateInput.schema';
 import { SessionOrderByRelationAggregateInputObjectSchema } from './SessionOrderByRelationAggregateInput.schema';
@@ -15,23 +14,39 @@ const Schema: z.ZodType<Prisma.UserOrderByWithRelationAndSearchRelevanceInput> =
   z
     .object({
       id: z.lazy(() => SortOrderSchema).optional(),
-      email: z.lazy(() => SortOrderSchema).optional(),
-      password: z.lazy(() => SortOrderSchema).optional(),
-      role: z.lazy(() => SortOrderSchema).optional(),
-      createdAt: z.lazy(() => SortOrderSchema).optional(),
-      paymentAccountDetailsId: z
+      name: z
         .union([
           z.lazy(() => SortOrderSchema),
           z.lazy(() => SortOrderInputObjectSchema),
         ])
         .optional(),
-      IdVerified: z.lazy(() => SortOrderSchema).optional(),
+      role: z.lazy(() => SortOrderSchema).optional(),
+      createdAt: z.lazy(() => SortOrderSchema).optional(),
+      email: z
+        .union([
+          z.lazy(() => SortOrderSchema),
+          z.lazy(() => SortOrderInputObjectSchema),
+        ])
+        .optional(),
       emailVerified: z
         .union([
           z.lazy(() => SortOrderSchema),
           z.lazy(() => SortOrderInputObjectSchema),
         ])
         .optional(),
+      image: z
+        .union([
+          z.lazy(() => SortOrderSchema),
+          z.lazy(() => SortOrderInputObjectSchema),
+        ])
+        .optional(),
+      paymentAccountDetailsId: z
+        .union([
+          z.lazy(() => SortOrderSchema),
+          z.lazy(() => SortOrderInputObjectSchema),
+        ])
+        .optional(),
+      idVerified: z.lazy(() => SortOrderSchema).optional(),
       paymentAccount: z
         .lazy(
           () =>
@@ -42,12 +57,6 @@ const Schema: z.ZodType<Prisma.UserOrderByWithRelationAndSearchRelevanceInput> =
         .lazy(
           () =>
             PurchaseHistoryOrderByWithRelationAndSearchRelevanceInputObjectSchema,
-        )
-        .optional(),
-      personalDetails: z
-        .lazy(
-          () =>
-            PersonalDetailsOrderByWithRelationAndSearchRelevanceInputObjectSchema,
         )
         .optional(),
       settings: z

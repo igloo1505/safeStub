@@ -3,7 +3,6 @@ import { ROLESchema } from '../enums/ROLE.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
 import { PaymentAccountDetailsCreateNestedOneWithoutUserInputObjectSchema } from './PaymentAccountDetailsCreateNestedOneWithoutUserInput.schema';
 import { PurchaseHistoryCreateNestedOneWithoutUserInputObjectSchema } from './PurchaseHistoryCreateNestedOneWithoutUserInput.schema';
-import { PersonalDetailsCreateNestedOneWithoutUserInputObjectSchema } from './PersonalDetailsCreateNestedOneWithoutUserInput.schema';
 import { SettingsCreateNestedOneWithoutUserInputObjectSchema } from './SettingsCreateNestedOneWithoutUserInput.schema';
 import { AccountCreateNestedManyWithoutUserInputObjectSchema } from './AccountCreateNestedManyWithoutUserInput.schema';
 import { SessionCreateNestedManyWithoutUserInputObjectSchema } from './SessionCreateNestedManyWithoutUserInput.schema';
@@ -12,12 +11,14 @@ import type { Prisma } from '@prisma/client';
 
 const Schema: z.ZodType<Prisma.UserCreateInput> = z
   .object({
-    email: z.string(),
-    password: z.string(),
+    id: z.string().optional(),
+    name: z.string().optional().nullable(),
     role: z.lazy(() => ROLESchema).optional(),
     createdAt: z.coerce.date().optional(),
-    IdVerified: z.lazy(() => VERIFICATIONSTATUSSchema).optional(),
+    email: z.string().optional().nullable(),
     emailVerified: z.coerce.date().optional().nullable(),
+    image: z.string().optional().nullable(),
+    idVerified: z.lazy(() => VERIFICATIONSTATUSSchema).optional(),
     paymentAccount: z
       .lazy(
         () => PaymentAccountDetailsCreateNestedOneWithoutUserInputObjectSchema,
@@ -25,9 +26,6 @@ const Schema: z.ZodType<Prisma.UserCreateInput> = z
       .optional(),
     purchaseHistory: z
       .lazy(() => PurchaseHistoryCreateNestedOneWithoutUserInputObjectSchema)
-      .optional(),
-    personalDetails: z
-      .lazy(() => PersonalDetailsCreateNestedOneWithoutUserInputObjectSchema)
       .optional(),
     settings: z
       .lazy(() => SettingsCreateNestedOneWithoutUserInputObjectSchema)

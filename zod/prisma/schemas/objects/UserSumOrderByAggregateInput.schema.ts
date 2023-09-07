@@ -5,7 +5,6 @@ import type { Prisma } from '@prisma/client';
 
 const Schema: z.ZodType<Prisma.UserSumOrderByAggregateInput> = z
   .object({
-    id: z.lazy(() => SortOrderSchema).optional(),
     paymentAccountDetailsId: z.lazy(() => SortOrderSchema).optional(),
   })
   .strict();

@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema';
 import { BoolFieldUpdateOperationsInputObjectSchema } from './BoolFieldUpdateOperationsInput.schema';
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -20,8 +21,8 @@ const Schema: z.ZodType<Prisma.SettingsUncheckedUpdateInput> = z
       .optional(),
     userId: z
       .union([
-        z.number(),
-        z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
+        z.string(),
+        z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
   })

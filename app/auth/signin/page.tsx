@@ -1,23 +1,24 @@
 import React from 'react'
-import { getProviders, signIn } from "next-auth/react"
-import GoogleAuthButton from '#/components/navigation/authButtons/google'
-import FacebookAuthButton from '#/components/navigation/authButtons/facebook'
 import SignupCard from '#/components/auth/signupCard'
 import PageContentWrapper from '#/components/layout/pageContentWrapper'
+import { redirect } from 'next/navigation'
+import { getServerSession } from '#/actions/server/auth'
 
 
 interface SigninPageProps {
 
 }
 
-const ButtonMap = {
-    google: GoogleAuthButton,
-    facebook: FacebookAuthButton
-}
 
 const SigninPage = async (props: SigninPageProps) => {
-    const providers = await getProviders()
-    console.log("providers: ", providers)
+    const session = await getServerSession()
+    if (session) {
+        if (session?.user?.id) {
+            redirect(`/profile/${session.user.id}`)
+        } else {
+            redirect("/")
+        }
+    }
     return (
         <PageContentWrapper>
             <div className={"w-full h-full flex justify-center items-center"}>

@@ -7,7 +7,7 @@ import type { Prisma } from '@prisma/client';
 const Schema: z.ZodType<Prisma.PurchaseHistoryUncheckedCreateInput> = z
   .object({
     id: z.number().optional(),
-    userId: z.number(),
+    userId: z.string(),
     bought: z
       .lazy(
         () => TransactionUncheckedCreateNestedManyWithoutBuyerInputObjectSchema,
