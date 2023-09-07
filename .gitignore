@@ -36,3 +36,4 @@ next-env.d.ts
 
 /zod/prisma
 /state
+state/**
