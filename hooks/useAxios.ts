@@ -1,20 +1,18 @@
-import { AppError } from '#/classes/ErrorHandling'
 import { setLoading } from '#/state/slices/network'
 import { showToast } from '#/state/slices/ui'
 import store from '#/state/store'
-import { ToastConfigType } from '#/types/uiTypes'
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Method } from 'axios'
 
 
 
-const handleErrorDisplay = (err: AppError) => {
-    console.log("err: ", err.toastError)
-    if (err.toastError) {
-        store.dispatch(showToast({
-            ...err.toastError as ToastConfigType
-        }))
-    }
-}
+// const handleErrorDisplay = (err: AppError) => {
+//     console.log("err: ", err.toastError)
+//     if (err.toastError) {
+//         store.dispatch(showToast({
+//             ...err.toastError as ToastConfigType
+//         }))
+//     }
+// }
 
 const handleAxios = async (method: Method, url: string, data?: object, config?: AxiosRequestConfig) => {
     store.dispatch(setLoading(true))
@@ -31,10 +29,11 @@ const handleAxios = async (method: Method, url: string, data?: object, config?: 
     } catch (rr) {
         store.dispatch(setLoading(false))
         const r = rr as AxiosError
-        const err = r.response as AxiosResponse<{ error?: AppError }>
-        if (err?.data?.error) {
-            handleErrorDisplay(err?.data?.error)
-        }
+        console.log("r: ", r)
+        // const err = r.response as AxiosResponse<{ error?: AppError }>
+        // if (err?.data?.error) {
+        //     handleErrorDisplay(err?.data?.error)
+        // }
         return
     }
 }

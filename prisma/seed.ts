@@ -1,6 +1,6 @@
-import { seedGames } from '../seeding/seedNFLGames2023'
-import '../seeding/seedLocalData'
+// import { seedGames } from '../seeding/seedNFLGames2023'
+// import '../seeding/seedLocalData'
 
-const wait3FuckingMinutesForPrismaToCatchup = 60 * 3 * 1000
+// const wait3FuckingMinutesForPrismaToCatchup = 60 * 3 * 1000
 
-setTimeout(seedGames, wait3FuckingMinutesForPrismaToCatchup)
+// setTimeout(seedGames, wait3FuckingMinutesForPrismaToCatchup)

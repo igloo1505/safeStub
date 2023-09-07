@@ -1,3 +1,0 @@
-import * as Yup from 'yup';
-
-export const USSTATESchema = Yup.mixed().oneOf(["AL","AK","AS","AZ","AR","UM_81","CA","CO","CT","DE","DC","FL","GA","GU","HI","UM_84","ID","IL","IN","IA","UM_86","UM_67","KS","KY","UM_89","LA","ME","MD","MA","MI","UM_71","MN","MS","MO","MT","UM_76","NE","NV","NH","NJ","NM","NY","NC","ND","MP","OH","OK","OR","UM_95","PA","PR","RI","SC","SD","TN","TX","UM","VI","UT","VT","VA","UM_79","WA","WI","WV","WY"])
