@@ -93,6 +93,7 @@
     "@tanstack/eslint-plugin-query": "^4.34.1",
     "clsx": "^2.0.0",
     "dotenv-cli": "^7.3.0",
+    "next-superjson": "^0.0.4",
     "nodemailer": "^6.9.5",
     "postcss": "^8.4.29",
     "postcss-import": "^15.1.0",
