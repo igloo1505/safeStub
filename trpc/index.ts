@@ -7,14 +7,14 @@ import { settingsChangeSchema } from "#/zod/local/settingsChange";
 
 
 export const appRouter = router({
-    getSettings: publicProcedure.input(z.number().int()).query(async (opts) => {
+    getSettings: publicProcedure.input(z.string()).query(async (opts) => {
         return await prisma.settings.findFirst({
             where: {
                 userId: opts.input
             }
         })
     }),
-    getUser: publicProcedure.input(z.number().int()).query(async (opts) => {
+    getUser: publicProcedure.input(z.string()).query(async (opts) => {
         return await prisma.user.findFirst({
             where: {
                 id: opts.input

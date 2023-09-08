@@ -1,3 +1,4 @@
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: ["class"],
@@ -16,6 +17,11 @@ module.exports = {
             },
         },
         extend: {
+            fontFamily: {
+                // 👇 Add CSS variables
+                lexand: ["var(--font-lexand)"],
+                // mono: ["var(--font-roboto-mono)"],
+            },
             colors: {
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
@@ -72,10 +78,14 @@ module.exports = {
             },
             transitionDelay: {
                 '1200': '1200ms',
+                '1300': '1300ms',
+                '1400': '1400ms',
                 '1500': '1500ms',
             }
         },
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [
+        require("tailwindcss-animate"),
+    ],
 
 }

@@ -4,9 +4,6 @@ import Image from 'next/image'
 import Navbar from '#/components/navigation/navbar'
 import { WithSession } from '#/types/utility'
 import { Button } from '#/components/ui/button'
-import SignupCard from '#/components/auth/signupCard'
-import DynamicIcon from '#/components/ui/dynamicIcon'
-import { BrandIcons } from '#/components/ui/brandIcons'
 import clsx from 'clsx'
 import InstagramSocialIcon from '#/assets/social/instagram'
 import FacebookSocialIcon from '#/assets/social/facebook'
@@ -57,22 +54,22 @@ em.classList.add("isLoaded")
 `}
             </Script>
             <Navbar session={session} container="absolute w-full h-fit text-white" />
-            <div className={"w-full h-full flex justify-center items-center"}>
+            <div className={"w-full h-full flex justify-center items-center px-4"}>
                 <div className={"flex flex-col justify-center items-center w-fit h-full gap-4"}>
                     <div className={"grid grid-cols-[1fr_auto_1fr] w-full place-items-center gap-2"}>
-                        <div className={"h-[2px] bg-gray-300 bg-opacity-70 w-full origin-right scale-x-0 hero-label-line transition-transform duration-300 delay-1000 group-[.isLoaded]/heroContainer:scale-x-100"} />
-                        <p className={"text-2xl text-white opacity-0 transition-all duration-300 translate-y-8 group-[.isLoaded]/heroContainer:translate-y-0  group-[.isLoaded]/heroContainer:opacity-100 delay-700"}>Putting tickets back in fans hands</p>
-                        <div className={"h-[2px] bg-gray-300 bg-opacity-70 w-full origin-left scale-x-0 hero-label-line transition-transform duration-300 group-[.isLoaded]/heroContainer:scale-x-100 delay-1000"} />
+                        <div className={"h-[2px] bg-gray-300 bg-opacity-70 w-full origin-right scale-x-0 hero-label-line transition-[opacity,transform] duration-300 delay-1000 group-[.isLoaded]/heroContainer:scale-x-100"} />
+                        <p className={"text-md text-[4vw] lg:text-2xl text-white opacity-0 transition-[opacity,transform] duration-300 translate-y-8 group-[.isLoaded]/heroContainer:translate-y-0  group-[.isLoaded]/heroContainer:opacity-100 delay-700"}>Putting tickets back in fans hands</p>
+                        <div className={"h-[2px] bg-gray-300 bg-opacity-70 w-full origin-left scale-x-0 hero-label-line transition-[opacity,transform] duration-300 group-[.isLoaded]/heroContainer:scale-x-100 delay-1000"} />
                     </div>
                     <HeroAnimatedTitle />
-                    <p className={"text-gray-300 max-w-[768px] text-center text-xl opacity-0 group-[.isLoaded]/heroContainer:opacity-100 transition-opacity duration-300 delay-1200"}>Laoreet elementum nulla adipiscing lacus eu donec at varius vitae suscipit ornare consequat at dictumst nullam porta, tortor at ac.</p>
-                    <div className={"flex flex-row justify-center items-center gap-4"}>
+                    <p className={"text-gray-300 max-w-[768px] text-center text-[4vw] md:text-xl opacity-0 group-[.isLoaded]/heroContainer:opacity-100 transition-opacity duration-300 delay-1200"}>Laoreet elementum nulla adipiscing lacus eu donec at varius vitae suscipit ornare consequat at dictumst nullam porta, tortor at ac.</p>
+                    <div className={"flex flex-row justify-center items-center gap-4 opacity-0 -translate-y-8 group-[.isLoaded]/heroContainer:translate-y-0 group-[.isLoaded]/heroContainer:opacity-100 transition-all duration-300 delay-1200"}>
                         <Link href="/auth/signin">
                             <Button className={"text-white"}>Get Started</Button>
                         </Link>
                         <Link href="/aboutUs" className={"bg-black transition-colors duration-300 bg-opacity-30 hover:bg-opacity-50 text-white rounded-lg px-4 py-2 border-primary border"}>Learn More</Link>
                     </div>
-                    <div className={"w-fit flex flex-row text-white justify-center items-center gap-4 mt-6"}>
+                    <div className={"w-fit flex flex-row text-white justify-center items-center gap-4 mt-6 opacity-0 -translate-y-8 group-[.isLoaded]/heroContainer:translate-y-0 group-[.isLoaded]/heroContainer:opacity-100 transition-all duration-300 delay-1300"}>
                         <IconButton>
                             <FacebookSocialIcon className={"fill-gray-200 w-8 h-8 group-hover/iconButton:fill-white transition-colors duration-300"} />
                         </IconButton>

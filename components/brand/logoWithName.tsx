@@ -16,8 +16,9 @@ const LogoWithName = (props: LogoWithNameProps) => {
     return (
         <div className={"flex flex-row justify-start items-center gap-2 my-2"}>
             <Logo {...icon} className={clsx("w-8 h-8", icon?.className && icon.className)} />
-            <h3 className={"font-semibold tracking-wide text-lg"}>
-                Safe Stub
+            <h3 className={"font-semibold tracking-wide text-lg font-lexand"}>
+                <span className={"font-extrabold"}>Safe</span>
+                <span className={"font-thin"}>Stub</span>
             </h3>
         </div>
     )
