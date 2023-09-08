@@ -5,6 +5,11 @@ import gsap from 'gsap'
 
 const HeroAnimatedTitle = () => {
     useEffect(() => {
+        if (typeof window === "undefined") return;
+        let em = document.getElementById("hero-container")
+        if (em) {
+            em.classList.add("isLoaded")
+        }
         animate()
     }, [])
     return (

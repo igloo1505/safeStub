@@ -27,6 +27,7 @@ const ImageBg = () => {
                 src={HeroImage}
                 alt="Arena Image"
                 fill
+                priority
                 className={"object-cover "}
             />
             <div className={"w-full h-full bg-black opacity-60 fixed"} />
@@ -46,13 +47,6 @@ const IconButton = ({ children, className }: { children: React.ReactNode, classN
 const Hero = ({ session }: HeroProps) => {
     return (
         <div className={"w-full h-screen relative overflow-hidden dark group/heroContainer"} id={"hero-container"}>
-            <Script id="on-load-hero">
-                {`let em = document.getElementById("hero-container");
-if(em) {
-em.classList.add("isLoaded")
-}
-`}
-            </Script>
             <Navbar session={session} container="absolute w-full h-fit text-white" />
             <div className={"w-full h-full flex justify-center items-center px-4"}>
                 <div className={"flex flex-col justify-center items-center w-fit h-full gap-4"}>

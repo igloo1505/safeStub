@@ -12,7 +12,7 @@ const lexand = Lexend_Giga({
 
 export const metadata: Metadata = {
     title: 'Safe Stub',
-    description: 'The safe way to transfer tickets.',
+    description: 'Putting tickets back in fan\'s hands.',
 }
 
 const RootLayout = async ({
