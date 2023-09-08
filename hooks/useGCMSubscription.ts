@@ -2,6 +2,7 @@
 import { client } from "#/trpc/client"
 import { base64ToUint8Array } from "#/utils/base64ToUInt"
 import { useEffect, useState } from "react"
+import '@ducanh2912/next-pwa/workbox'
 
 
 export const useGCMSubscription = (userId?: string | null) => {
@@ -22,10 +23,6 @@ export const useGCMSubscription = (userId?: string | null) => {
     }, [userId])
 
     useEffect(() => {
-        console.log("window: ", window)
-        console.log("navigator: ", navigator)
-        // BUG: Fix this issue with the sw.js file not attaching a workbox object to the window
-        if (typeof window === "undefined") return;
         if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window?.workbox !== undefined) {
             // run only in browser
             navigator.serviceWorker.ready.then(reg => {
