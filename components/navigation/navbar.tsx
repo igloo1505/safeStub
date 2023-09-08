@@ -11,6 +11,8 @@ import { AuthRole, validateRole } from '#/lib/auth/authValidators';
 import { MoonStar } from 'lucide-react';
 import { toggleDarkmode } from '#/actions/client/ui';
 import { Button } from '../ui/button';
+import clsx from 'clsx';
+import NavbarSearchInput from './navbarSearchInput';
 
 
 interface NavbarProps {
@@ -46,7 +48,7 @@ const validationMap: { [k in NavbuttonType['authStatus']]: (s?: Session | null) 
 }
 
 
-const NavbarButton = ({ item, pathname, session }: { session: Session | null, item: NavbuttonType, pathname: string }) => {
+const NavbarButton = ({ item, pathname, session }: { session?: Session | null, item: NavbuttonType, pathname: string }) => {
     console.log("session: ", session)
     if (!validationMap[item.authStatus](session)) {
         return null
@@ -67,10 +69,10 @@ const NavbarButton = ({ item, pathname, session }: { session: Session | null, it
 }
 
 
-const Navbar = ({ session }: { session: Session | null }) => {
+const Navbar = ({ session, container }: { session?: Session | null, container?: string }) => {
     const pathname = usePathname()
     return (
-        <div className="px-8 hidden md:flex py-6 h-[var(--nav-height)] justify-between">
+        <div className={clsx("px-8 hidden md:flex py-4 h-[var(--nav-height)] justify-between z-10", container && container)}>
             <div className={"flex flex-row justify-center items-center w-fit"}>
                 <Link href="/" className="mr-6 flex items-center space-x-2">
                     <LogoWithName />
@@ -82,6 +84,7 @@ const Navbar = ({ session }: { session: Session | null }) => {
                 </nav>
             </div>
             <nav className={"w-fit flex flex-row justify-center items-center gap-4"}>
+                <NavbarSearchInput />
                 <Button variant="ghost" role="button" onClick={toggleDarkmode} className={"p-2 rounded-[50%]"}>
                     <MoonStar />
                 </Button>

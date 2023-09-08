@@ -6,16 +6,17 @@ import { Input } from '../ui/input';
 import GoogleAuthButton from '../navigation/authButtons/google';
 import FacebookAuthButton from '../navigation/authButtons/facebook';
 import { getProviders } from "next-auth/react"
+import clsx from 'clsx';
 
 
 interface SignupCardProps {
-
+    container?: string
 }
 
-const SignupCard = async (props: SignupCardProps) => {
+const SignupCard = async ({ container }: SignupCardProps) => {
     const providers = await getProviders()
     return (
-        <Card>
+        <Card className={clsx(container && container)}>
             <CardHeader className="space-y-1">
                 <CardTitle className="text-2xl">Create an account</CardTitle>
                 <CardDescription>

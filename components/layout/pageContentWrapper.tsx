@@ -8,17 +8,18 @@ import { getServerSession } from '#/actions/server/auth';
 interface PageContentWrapperProps {
     children: React.ReactNode
     noParent?: boolean
+    noNav?: boolean
 }
 
-const PageContentWrapper = async ({ children, noParent }: PageContentWrapperProps) => {
+const PageContentWrapper = async ({ children, noNav, noParent }: PageContentWrapperProps) => {
     const session = await getServerSession()
     return (
         <div className={"w-full h-screen min-h-fit"}>
-            <Navbar session={session} />
+            {!noNav && <Navbar session={session} />}
             {noParent ? children : <div className={"py-8 w-full h-[calc(100%-var(--nav-height)-var(--footer-height))] flex flex-col justify-start items-center"}>
                 {children}
             </div>}
-            <Footer />
+            {!noNav && <Footer />}
         </div>
     )
 }
