@@ -13,6 +13,7 @@ import FacebookSocialIcon from '#/assets/social/facebook'
 import TwitterXSocialIcon from '#/assets/social/twitterX'
 import Script from 'next/script'
 import HeroAnimatedTitle from './heroAnimatedTitle'
+import Link from 'next/link'
 
 
 
@@ -66,8 +67,10 @@ em.classList.add("isLoaded")
                     <HeroAnimatedTitle />
                     <p className={"text-gray-300 max-w-[768px] text-center text-xl opacity-0 group-[.isLoaded]/heroContainer:opacity-100 transition-opacity duration-300 delay-1200"}>Laoreet elementum nulla adipiscing lacus eu donec at varius vitae suscipit ornare consequat at dictumst nullam porta, tortor at ac.</p>
                     <div className={"flex flex-row justify-center items-center gap-4"}>
-                        <Button className={"text-white"}>Get Started</Button>
-                        <a role="button" className={"bg-black transition-colors duration-300 bg-opacity-30 hover:bg-opacity-50 text-white rounded-lg px-4 py-2 border-primary border"}>Learn More</a>
+                        <Link href="/auth/signin">
+                            <Button className={"text-white"}>Get Started</Button>
+                        </Link>
+                        <Link href="/aboutUs" className={"bg-black transition-colors duration-300 bg-opacity-30 hover:bg-opacity-50 text-white rounded-lg px-4 py-2 border-primary border"}>Learn More</Link>
                     </div>
                     <div className={"w-fit flex flex-row text-white justify-center items-center gap-4 mt-6"}>
                         <IconButton>
