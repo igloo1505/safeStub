@@ -13,6 +13,7 @@ const Schema: z.ZodType<Prisma.UserCountAggregateInputType> = z
     image: z.literal(true).optional(),
     paymentAccountDetailsId: z.literal(true).optional(),
     idVerified: z.literal(true).optional(),
+    gcmSubscription: z.literal(true).optional(),
     _all: z.literal(true).optional(),
   })
   .strict();

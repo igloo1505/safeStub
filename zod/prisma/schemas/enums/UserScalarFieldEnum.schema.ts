@@ -10,4 +10,5 @@ export const UserScalarFieldEnumSchema = z.enum([
   'image',
   'paymentAccountDetailsId',
   'idVerified',
+  'gcmSubscription',
 ]);

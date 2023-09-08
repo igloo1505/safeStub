@@ -47,6 +47,12 @@ const Schema: z.ZodType<Prisma.UserOrderByWithRelationAndSearchRelevanceInput> =
         ])
         .optional(),
       idVerified: z.lazy(() => SortOrderSchema).optional(),
+      gcmSubscription: z
+        .union([
+          z.lazy(() => SortOrderSchema),
+          z.lazy(() => SortOrderInputObjectSchema),
+        ])
+        .optional(),
       paymentAccount: z
         .lazy(
           () =>

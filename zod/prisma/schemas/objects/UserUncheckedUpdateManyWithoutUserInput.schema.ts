@@ -7,8 +7,18 @@ import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldU
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
 import { EnumVERIFICATIONSTATUSFieldUpdateOperationsInputObjectSchema } from './EnumVERIFICATIONSTATUSFieldUpdateOperationsInput.schema';
+import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
 
 import type { Prisma } from '@prisma/client';
+
+const literalSchema = z.union([z.string(), z.number(), z.boolean()]);
+const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
+  z.union([
+    literalSchema,
+    z.array(jsonSchema.nullable()),
+    z.record(jsonSchema.nullable()),
+  ]),
+);
 
 const Schema: z.ZodType<Prisma.UserUncheckedUpdateManyWithoutUserInput> = z
   .object({
@@ -65,6 +75,9 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateManyWithoutUserInput> = z
           () => EnumVERIFICATIONSTATUSFieldUpdateOperationsInputObjectSchema,
         ),
       ])
+      .optional(),
+    gcmSubscription: z
+      .union([z.lazy(() => NullableJsonNullValueInputSchema), jsonSchema])
       .optional(),
   })
   .strict();

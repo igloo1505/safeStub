@@ -45,6 +45,12 @@ const Schema: z.ZodType<Prisma.UserOrderByWithAggregationInput> = z
       ])
       .optional(),
     idVerified: z.lazy(() => SortOrderSchema).optional(),
+    gcmSubscription: z
+      .union([
+        z.lazy(() => SortOrderSchema),
+        z.lazy(() => SortOrderInputObjectSchema),
+      ])
+      .optional(),
     _count: z.lazy(() => UserCountOrderByAggregateInputObjectSchema).optional(),
     _avg: z.lazy(() => UserAvgOrderByAggregateInputObjectSchema).optional(),
     _max: z.lazy(() => UserMaxOrderByAggregateInputObjectSchema).optional(),

@@ -13,7 +13,7 @@ declare module "next-auth" {
             email?: string | null
             image?: string | null
             role?: RoleTypes
-            id?: string | number | null
+            id?: string | null
             idVerified?: VERIFICATIONSTATUS
         } & DefaultSession["user"]
         error?: "RefreshAccessTokenError"

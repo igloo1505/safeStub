@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma, User } from "@prisma/client";
 import { z } from "zod";
 
 
@@ -9,3 +9,8 @@ export const settingsChangeSchema: z.ZodType<{ darkmode?: boolean, userId: strin
     })
     .strict();
 
+
+export const gcmSubscriptionChangeSchema: z.ZodType<{ id: string, gcmSubscription?: PushSubscriptionJSON }> = z.object({
+    id: z.string(),
+    gcmSubscription: z.any()
+}).strict()

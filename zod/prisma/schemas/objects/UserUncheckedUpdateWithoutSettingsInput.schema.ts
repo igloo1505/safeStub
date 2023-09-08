@@ -8,11 +8,21 @@ import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './Nullab
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
 import { EnumVERIFICATIONSTATUSFieldUpdateOperationsInputObjectSchema } from './EnumVERIFICATIONSTATUSFieldUpdateOperationsInput.schema';
+import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
 import { PurchaseHistoryUncheckedUpdateOneWithoutUserNestedInputObjectSchema } from './PurchaseHistoryUncheckedUpdateOneWithoutUserNestedInput.schema';
 import { AccountUncheckedUpdateManyWithoutUserNestedInputObjectSchema } from './AccountUncheckedUpdateManyWithoutUserNestedInput.schema';
 import { SessionUncheckedUpdateManyWithoutUserNestedInputObjectSchema } from './SessionUncheckedUpdateManyWithoutUserNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
+
+const literalSchema = z.union([z.string(), z.number(), z.boolean()]);
+const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
+  z.union([
+    literalSchema,
+    z.array(jsonSchema.nullable()),
+    z.record(jsonSchema.nullable()),
+  ]),
+);
 
 const Schema: z.ZodType<Prisma.UserUncheckedUpdateWithoutSettingsInput> = z
   .object({
@@ -76,6 +86,9 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateWithoutSettingsInput> = z
           () => EnumVERIFICATIONSTATUSFieldUpdateOperationsInputObjectSchema,
         ),
       ])
+      .optional(),
+    gcmSubscription: z
+      .union([z.lazy(() => NullableJsonNullValueInputSchema), jsonSchema])
       .optional(),
     purchaseHistory: z
       .lazy(

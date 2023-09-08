@@ -13,6 +13,7 @@ import { toggleDarkmode } from '#/actions/client/ui';
 import { Button } from '../ui/button';
 import clsx from 'clsx';
 import NavbarSearchInput from './navbarSearchInput';
+import { useGCMSubscription } from '#/hooks/useGCMSubscription';
 
 
 interface NavbarProps {
@@ -71,6 +72,8 @@ const NavbarButton = ({ item, pathname, session }: { session?: Session | null, i
 
 const Navbar = ({ session, container }: { session?: Session | null, container?: string }) => {
     const pathname = usePathname()
+    const data = useGCMSubscription(session?.user?.id)
+    console.log("data: ", data)
     return (
         <div className={clsx("px-8 hidden md:flex py-4 h-[var(--nav-height)] justify-between z-10", container && container)}>
             <div className={"flex flex-row justify-center items-center w-fit"}>

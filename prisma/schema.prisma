@@ -262,6 +262,7 @@ model Location {
     userId    Int?     @unique
 }
 
+
 model User {
     id                      String                 @id @default(cuid())
     name                    String?
@@ -277,6 +278,7 @@ model User {
     settings                Settings?
     accounts                Account[]
     sessions                Session[]
+    gcmSubscription         Json?
 
     @@map("users")
 }

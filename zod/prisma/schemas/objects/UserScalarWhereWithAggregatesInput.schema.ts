@@ -8,6 +8,7 @@ import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNull
 import { IntNullableWithAggregatesFilterObjectSchema } from './IntNullableWithAggregatesFilter.schema';
 import { EnumVERIFICATIONSTATUSWithAggregatesFilterObjectSchema } from './EnumVERIFICATIONSTATUSWithAggregatesFilter.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
+import { JsonNullableWithAggregatesFilterObjectSchema } from './JsonNullableWithAggregatesFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -84,6 +85,9 @@ const Schema: z.ZodType<Prisma.UserScalarWhereWithAggregatesInput> = z
         z.lazy(() => EnumVERIFICATIONSTATUSWithAggregatesFilterObjectSchema),
         z.lazy(() => VERIFICATIONSTATUSSchema),
       ])
+      .optional(),
+    gcmSubscription: z
+      .lazy(() => JsonNullableWithAggregatesFilterObjectSchema)
       .optional(),
   })
   .strict();

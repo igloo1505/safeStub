@@ -1,7 +1,7 @@
 import { publicProcedure, router } from "./trpc";
 import { prisma } from "#/db/db"
 import { z } from 'zod'
-import { settingsChangeSchema } from "#/zod/local/settingsChange";
+import { gcmSubscriptionChangeSchema, settingsChangeSchema } from "#/zod/local/settingsChange";
 
 
 
@@ -35,6 +35,27 @@ export const appRouter = router({
         })
         return res
     }),
+    setUserGCMRegistration: publicProcedure.input(gcmSubscriptionChangeSchema).mutation(async (opts) => {
+        let user = await prisma.user.update({
+            where: {
+                id: opts.input.id
+            },
+            data: {
+                gcmSubscription: opts.input.gcmSubscription ? JSON.stringify(opts.input.gcmSubscription) : undefined
+            }
+        })
+        return user
+    }),
+    getGcmSubscription: publicProcedure.input(z.string()).query(async (opts) => {
+        return await prisma.user.findFirst({
+            where: {
+                id: opts.input
+            },
+            select: {
+                gcmSubscription: true
+            }
+        })
+    })
 })
 
 

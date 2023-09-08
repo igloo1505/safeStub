@@ -1,11 +1,21 @@
 import { z } from 'zod';
 import { ROLESchema } from '../enums/ROLE.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
+import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
 import { SettingsUncheckedCreateNestedOneWithoutUserInputObjectSchema } from './SettingsUncheckedCreateNestedOneWithoutUserInput.schema';
 import { AccountUncheckedCreateNestedManyWithoutUserInputObjectSchema } from './AccountUncheckedCreateNestedManyWithoutUserInput.schema';
 import { SessionUncheckedCreateNestedManyWithoutUserInputObjectSchema } from './SessionUncheckedCreateNestedManyWithoutUserInput.schema';
 
 import type { Prisma } from '@prisma/client';
+
+const literalSchema = z.union([z.string(), z.number(), z.boolean()]);
+const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
+  z.union([
+    literalSchema,
+    z.array(jsonSchema.nullable()),
+    z.record(jsonSchema.nullable()),
+  ]),
+);
 
 const Schema: z.ZodType<Prisma.UserUncheckedCreateWithoutPurchaseHistoryInput> =
   z
@@ -19,6 +29,9 @@ const Schema: z.ZodType<Prisma.UserUncheckedCreateWithoutPurchaseHistoryInput> =
       image: z.string().optional().nullable(),
       paymentAccountDetailsId: z.number().optional().nullable(),
       idVerified: z.lazy(() => VERIFICATIONSTATUSSchema).optional(),
+      gcmSubscription: z
+        .union([z.lazy(() => NullableJsonNullValueInputSchema), jsonSchema])
+        .optional(),
       settings: z
         .lazy(
           () => SettingsUncheckedCreateNestedOneWithoutUserInputObjectSchema,

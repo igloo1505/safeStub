@@ -8,6 +8,7 @@ import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.sch
 import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
 import { EnumVERIFICATIONSTATUSFilterObjectSchema } from './EnumVERIFICATIONSTATUSFilter.schema';
 import { VERIFICATIONSTATUSSchema } from '../enums/VERIFICATIONSTATUS.schema';
+import { JsonNullableFilterObjectSchema } from './JsonNullableFilter.schema';
 import { PaymentAccountDetailsRelationFilterObjectSchema } from './PaymentAccountDetailsRelationFilter.schema';
 import { PaymentAccountDetailsWhereInputObjectSchema } from './PaymentAccountDetailsWhereInput.schema';
 import { PurchaseHistoryRelationFilterObjectSchema } from './PurchaseHistoryRelationFilter.schema';
@@ -78,6 +79,7 @@ const Schema: z.ZodType<Prisma.UserWhereInput> = z
         z.lazy(() => VERIFICATIONSTATUSSchema),
       ])
       .optional(),
+    gcmSubscription: z.lazy(() => JsonNullableFilterObjectSchema).optional(),
     paymentAccount: z
       .union([
         z.lazy(() => PaymentAccountDetailsRelationFilterObjectSchema),
