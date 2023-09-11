@@ -1,0 +1,4 @@
+Clear Events | npx dotenv -e .env.local -- ts-node --compiler-options {\"module\":\"CommonJS\"} seed/clearEvents.ts
+Clear Teams | npx dotenv -e .env.local -- ts-node --compiler-options {\"module\":\"CommonJS\"} seed/clearTeams.ts
+Clear Tags | npx dotenv -e .env.local -- ts-node --compiler-options {\"module\":\"CommonJS\"} seed/clearTags.ts
+Seed All | npx dotenv -e .env.local -- ts-node --compiler-options {\"module\":\"CommonJS\"} seed/index.ts

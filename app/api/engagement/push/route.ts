@@ -12,12 +12,12 @@ interface RequestContext {
 }
 
 
-webpush.setGCMAPIKey(process.env.GCM_API_KEY!);
-webpush.setVapidDetails(
-    `mailto:${process.env.WEB_PUSH_EMAIL}`,
-    process.env.NEXT_PUBLIC_WEB_PUSH_PUBLIC_KEY!,
-    process.env.WEB_PUSH_PRIVATE_KEY!
-);
+// webpush.setGCMAPIKey(process.env.GCM_API_KEY!);
+// webpush.setVapidDetails(
+//     `mailto:${process.env.WEB_PUSH_EMAIL}`,
+//     process.env.NEXT_PUBLIC_WEB_PUSH_PUBLIC_KEY!,
+//     process.env.WEB_PUSH_PRIVATE_KEY!
+// );
 
 
 const router = createEdgeRouter<NextRequest, RequestContext>();
@@ -27,12 +27,12 @@ router
 
     .post(async (req, ctx) => {
         try {
-            const { subscription }: { subscription: webpush.PushSubscription } = await req.json()
-            webpush
-                .sendNotification(
-                    subscription,
-                    JSON.stringify({ title: 'Hello Web Push', message: 'Your web push notification is here!' })
-                )
+            // const { subscription }: { subscription: webpush.PushSubscription } = await req.json()
+            // webpush
+            //     .sendNotification(
+            //         subscription,
+            //         JSON.stringify({ title: 'Hello Web Push', message: 'Your web push notification is here!' })
+            //     )
             return new NextResponse(JSON.stringify({ success: true }));
         } catch (err) {
             console.error(err)

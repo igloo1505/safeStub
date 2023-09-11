@@ -3,6 +3,7 @@ import seedTeams from "./data/teams"
 // import seedUsers from "./data/users"
 import { prisma } from "../db/db"
 import { Prisma } from "@prisma/client"
+import { seedGames } from "./seedNflGames2023"
 
 export const seedLocalData = async () => {
     // for (var i = 0; i < seedUsers.length; i++) {
@@ -27,5 +28,8 @@ export const seedLocalData = async () => {
         }
         await prisma.team.create(item)
     }
+    setTimeout(() => {
+        seedGames()
+    }, 60 * 1000 * 5)
     // console.log(logoData)
 }

@@ -8,6 +8,7 @@ import { seedLocalData } from './seedLocal'
 // deleteAllGames()
 
 seedLocalData()
+
 setTimeout(() => {
     seedGames()
 }, 60000)
