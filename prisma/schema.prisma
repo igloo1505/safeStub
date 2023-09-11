@@ -241,8 +241,7 @@ model Team {
     colors            Colors?         @relation(fields: [colorsId], references: [id])
     homeArena         Arena?          @relation(fields: [homeArenaId], references: [id])
     homeArenaId       Int?
-    Event             Event?          @relation(fields: [eventId], references: [id])
-    eventId           Int?
+    Event             Event[]
     colorsId          Int?
     logos             Logo[]
 }

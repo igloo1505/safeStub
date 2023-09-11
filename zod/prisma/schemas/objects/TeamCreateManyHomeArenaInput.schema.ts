@@ -26,7 +26,6 @@ const Schema: z.ZodType<Prisma.TeamCreateManyHomeArenaInput> = z
       .lazy(() => NFL_DivisionSchema)
       .optional()
       .nullable(),
-    eventId: z.number().optional().nullable(),
     colorsId: z.number().optional().nullable(),
   })
   .strict();

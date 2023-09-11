@@ -16,7 +16,6 @@ const Schema: z.ZodType<Prisma.TeamMaxAggregateInputType> = z
     conference: z.literal(true).optional(),
     division: z.literal(true).optional(),
     homeArenaId: z.literal(true).optional(),
-    eventId: z.literal(true).optional(),
     colorsId: z.literal(true).optional(),
   })
   .strict();

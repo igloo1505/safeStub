@@ -102,13 +102,6 @@ const Schema: z.ZodType<Prisma.TeamUncheckedUpdateManyWithoutTeamInput> = z
       ])
       .optional()
       .nullable(),
-    eventId: z
-      .union([
-        z.number(),
-        z.lazy(() => NullableIntFieldUpdateOperationsInputObjectSchema),
-      ])
-      .optional()
-      .nullable(),
   })
   .strict();
 

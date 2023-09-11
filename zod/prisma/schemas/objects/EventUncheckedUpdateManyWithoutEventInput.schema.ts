@@ -27,6 +27,12 @@ const Schema: z.ZodType<Prisma.EventUncheckedUpdateManyWithoutEventInput> = z
         z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
+    amenitiesId: z
+      .union([
+        z.number(),
+        z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
     date: z
       .union([
         z.coerce.date(),

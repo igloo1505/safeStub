@@ -3,7 +3,6 @@ import { TeamCreateWithoutEventInputObjectSchema } from './TeamCreateWithoutEven
 import { TeamUncheckedCreateWithoutEventInputObjectSchema } from './TeamUncheckedCreateWithoutEventInput.schema';
 import { TeamCreateOrConnectWithoutEventInputObjectSchema } from './TeamCreateOrConnectWithoutEventInput.schema';
 import { TeamUpsertWithWhereUniqueWithoutEventInputObjectSchema } from './TeamUpsertWithWhereUniqueWithoutEventInput.schema';
-import { TeamCreateManyEventInputEnvelopeObjectSchema } from './TeamCreateManyEventInputEnvelope.schema';
 import { TeamWhereUniqueInputObjectSchema } from './TeamWhereUniqueInput.schema';
 import { TeamUpdateWithWhereUniqueWithoutEventInputObjectSchema } from './TeamUpdateWithWhereUniqueWithoutEventInput.schema';
 import { TeamUpdateManyWithWhereWithoutEventInputObjectSchema } from './TeamUpdateManyWithWhereWithoutEventInput.schema';
@@ -34,9 +33,6 @@ const Schema: z.ZodType<Prisma.TeamUpdateManyWithoutEventNestedInput> = z
           .lazy(() => TeamUpsertWithWhereUniqueWithoutEventInputObjectSchema)
           .array(),
       ])
-      .optional(),
-    createMany: z
-      .lazy(() => TeamCreateManyEventInputEnvelopeObjectSchema)
       .optional(),
     set: z
       .union([

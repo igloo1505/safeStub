@@ -27,7 +27,6 @@ const Schema: z.ZodType<Prisma.TeamCreateManyColorsInput> = z
       .optional()
       .nullable(),
     homeArenaId: z.number().optional().nullable(),
-    eventId: z.number().optional().nullable(),
   })
   .strict();
 

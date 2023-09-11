@@ -112,13 +112,6 @@ const Schema: z.ZodType<Prisma.TeamScalarWhereWithAggregatesInput> = z
       ])
       .optional()
       .nullable(),
-    eventId: z
-      .union([
-        z.lazy(() => IntNullableWithAggregatesFilterObjectSchema),
-        z.number(),
-      ])
-      .optional()
-      .nullable(),
     colorsId: z
       .union([
         z.lazy(() => IntNullableWithAggregatesFilterObjectSchema),

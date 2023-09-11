@@ -13,6 +13,5 @@ export const TeamScalarFieldEnumSchema = z.enum([
   'conference',
   'division',
   'homeArenaId',
-  'eventId',
   'colorsId',
 ]);

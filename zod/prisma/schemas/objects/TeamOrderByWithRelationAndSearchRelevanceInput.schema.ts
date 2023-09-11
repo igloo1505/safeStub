@@ -3,7 +3,7 @@ import { SortOrderSchema } from '../enums/SortOrder.schema';
 import { SortOrderInputObjectSchema } from './SortOrderInput.schema';
 import { ColorsOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './ColorsOrderByWithRelationAndSearchRelevanceInput.schema';
 import { ArenaOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './ArenaOrderByWithRelationAndSearchRelevanceInput.schema';
-import { EventOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './EventOrderByWithRelationAndSearchRelevanceInput.schema';
+import { EventOrderByRelationAggregateInputObjectSchema } from './EventOrderByRelationAggregateInput.schema';
 import { LogoOrderByRelationAggregateInputObjectSchema } from './LogoOrderByRelationAggregateInput.schema';
 import { TeamOrderByRelevanceInputObjectSchema } from './TeamOrderByRelevanceInput.schema';
 
@@ -64,12 +64,6 @@ const Schema: z.ZodType<Prisma.TeamOrderByWithRelationAndSearchRelevanceInput> =
           z.lazy(() => SortOrderInputObjectSchema),
         ])
         .optional(),
-      eventId: z
-        .union([
-          z.lazy(() => SortOrderSchema),
-          z.lazy(() => SortOrderInputObjectSchema),
-        ])
-        .optional(),
       colorsId: z
         .union([
           z.lazy(() => SortOrderSchema),
@@ -85,7 +79,7 @@ const Schema: z.ZodType<Prisma.TeamOrderByWithRelationAndSearchRelevanceInput> =
         .lazy(() => ArenaOrderByWithRelationAndSearchRelevanceInputObjectSchema)
         .optional(),
       Event: z
-        .lazy(() => EventOrderByWithRelationAndSearchRelevanceInputObjectSchema)
+        .lazy(() => EventOrderByRelationAggregateInputObjectSchema)
         .optional(),
       logos: z
         .lazy(() => LogoOrderByRelationAggregateInputObjectSchema)

@@ -63,12 +63,6 @@ const Schema: z.ZodType<Prisma.TeamOrderByWithAggregationInput> = z
         z.lazy(() => SortOrderInputObjectSchema),
       ])
       .optional(),
-    eventId: z
-      .union([
-        z.lazy(() => SortOrderSchema),
-        z.lazy(() => SortOrderInputObjectSchema),
-      ])
-      .optional(),
     colorsId: z
       .union([
         z.lazy(() => SortOrderSchema),

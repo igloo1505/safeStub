@@ -102,13 +102,6 @@ const Schema: z.ZodType<Prisma.TeamUncheckedUpdateManyInput> = z
       ])
       .optional()
       .nullable(),
-    eventId: z
-      .union([
-        z.number(),
-        z.lazy(() => NullableIntFieldUpdateOperationsInputObjectSchema),
-      ])
-      .optional()
-      .nullable(),
     colorsId: z
       .union([
         z.number(),

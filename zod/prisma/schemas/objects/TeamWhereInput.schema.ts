@@ -16,8 +16,7 @@ import { ColorsRelationFilterObjectSchema } from './ColorsRelationFilter.schema'
 import { ColorsWhereInputObjectSchema } from './ColorsWhereInput.schema';
 import { ArenaRelationFilterObjectSchema } from './ArenaRelationFilter.schema';
 import { ArenaWhereInputObjectSchema } from './ArenaWhereInput.schema';
-import { EventRelationFilterObjectSchema } from './EventRelationFilter.schema';
-import { EventWhereInputObjectSchema } from './EventWhereInput.schema';
+import { EventListRelationFilterObjectSchema } from './EventListRelationFilter.schema';
 import { LogoListRelationFilterObjectSchema } from './LogoListRelationFilter.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -97,10 +96,6 @@ const Schema: z.ZodType<Prisma.TeamWhereInput> = z
       .union([z.lazy(() => IntNullableFilterObjectSchema), z.number()])
       .optional()
       .nullable(),
-    eventId: z
-      .union([z.lazy(() => IntNullableFilterObjectSchema), z.number()])
-      .optional()
-      .nullable(),
     colorsId: z
       .union([z.lazy(() => IntNullableFilterObjectSchema), z.number()])
       .optional()
@@ -119,13 +114,7 @@ const Schema: z.ZodType<Prisma.TeamWhereInput> = z
       ])
       .optional()
       .nullable(),
-    Event: z
-      .union([
-        z.lazy(() => EventRelationFilterObjectSchema),
-        z.lazy(() => EventWhereInputObjectSchema),
-      ])
-      .optional()
-      .nullable(),
+    Event: z.lazy(() => EventListRelationFilterObjectSchema).optional(),
     logos: z.lazy(() => LogoListRelationFilterObjectSchema).optional(),
   })
   .strict();

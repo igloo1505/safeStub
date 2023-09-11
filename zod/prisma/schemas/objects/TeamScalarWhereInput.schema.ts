@@ -90,10 +90,6 @@ const Schema: z.ZodType<Prisma.TeamScalarWhereInput> = z
       .union([z.lazy(() => IntNullableFilterObjectSchema), z.number()])
       .optional()
       .nullable(),
-    eventId: z
-      .union([z.lazy(() => IntNullableFilterObjectSchema), z.number()])
-      .optional()
-      .nullable(),
     colorsId: z
       .union([z.lazy(() => IntNullableFilterObjectSchema), z.number()])
       .optional()

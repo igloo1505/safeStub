@@ -7,7 +7,6 @@ const Schema: z.ZodType<Prisma.TeamSumOrderByAggregateInput> = z
   .object({
     id: z.lazy(() => SortOrderSchema).optional(),
     homeArenaId: z.lazy(() => SortOrderSchema).optional(),
-    eventId: z.lazy(() => SortOrderSchema).optional(),
     colorsId: z.lazy(() => SortOrderSchema).optional(),
   })
   .strict();

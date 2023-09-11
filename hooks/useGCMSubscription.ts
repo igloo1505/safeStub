@@ -2,8 +2,12 @@
 import { client } from "#/trpc/client"
 import { base64ToUint8Array } from "#/utils/base64ToUInt"
 import { useEffect, useState } from "react"
-import '@ducanh2912/next-pwa/workbox'
 
+declare global {
+    interface Window {
+        workbox: any;
+    }
+}
 
 export const useGCMSubscription = (userId?: string | null) => {
     const [subscription, setSubscription] = useState<PushSubscription | null>(null)

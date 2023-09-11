@@ -17,7 +17,6 @@ const Schema: z.ZodType<Prisma.TeamCountOrderByAggregateInput> = z
     conference: z.lazy(() => SortOrderSchema).optional(),
     division: z.lazy(() => SortOrderSchema).optional(),
     homeArenaId: z.lazy(() => SortOrderSchema).optional(),
-    eventId: z.lazy(() => SortOrderSchema).optional(),
     colorsId: z.lazy(() => SortOrderSchema).optional(),
   })
   .strict();

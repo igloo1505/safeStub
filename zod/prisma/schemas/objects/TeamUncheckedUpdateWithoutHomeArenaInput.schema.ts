@@ -12,6 +12,7 @@ import { NullableEnumNFL_ConferenceFieldUpdateOperationsInputObjectSchema } from
 import { NFL_DivisionSchema } from '../enums/NFL_Division.schema';
 import { NullableEnumNFL_DivisionFieldUpdateOperationsInputObjectSchema } from './NullableEnumNFL_DivisionFieldUpdateOperationsInput.schema';
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
+import { EventUncheckedUpdateManyWithoutParticipantsNestedInputObjectSchema } from './EventUncheckedUpdateManyWithoutParticipantsNestedInput.schema';
 import { LogoUncheckedUpdateManyWithoutTeamNestedInputObjectSchema } from './LogoUncheckedUpdateManyWithoutTeamNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -96,13 +97,6 @@ const Schema: z.ZodType<Prisma.TeamUncheckedUpdateWithoutHomeArenaInput> = z
       ])
       .optional()
       .nullable(),
-    eventId: z
-      .union([
-        z.number(),
-        z.lazy(() => NullableIntFieldUpdateOperationsInputObjectSchema),
-      ])
-      .optional()
-      .nullable(),
     colorsId: z
       .union([
         z.number(),
@@ -110,6 +104,12 @@ const Schema: z.ZodType<Prisma.TeamUncheckedUpdateWithoutHomeArenaInput> = z
       ])
       .optional()
       .nullable(),
+    Event: z
+      .lazy(
+        () =>
+          EventUncheckedUpdateManyWithoutParticipantsNestedInputObjectSchema,
+      )
+      .optional(),
     logos: z
       .lazy(() => LogoUncheckedUpdateManyWithoutTeamNestedInputObjectSchema)
       .optional(),

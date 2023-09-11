@@ -4,6 +4,7 @@ import { LeaguesSchema } from '../enums/Leagues.schema';
 import { SportsSchema } from '../enums/Sports.schema';
 import { NFL_ConferenceSchema } from '../enums/NFL_Conference.schema';
 import { NFL_DivisionSchema } from '../enums/NFL_Division.schema';
+import { EventUncheckedCreateNestedManyWithoutParticipantsInputObjectSchema } from './EventUncheckedCreateNestedManyWithoutParticipantsInput.schema';
 import { LogoUncheckedCreateNestedManyWithoutTeamInputObjectSchema } from './LogoUncheckedCreateNestedManyWithoutTeamInput.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -28,8 +29,13 @@ const Schema: z.ZodType<Prisma.TeamUncheckedCreateInput> = z
       .optional()
       .nullable(),
     homeArenaId: z.number().optional().nullable(),
-    eventId: z.number().optional().nullable(),
     colorsId: z.number().optional().nullable(),
+    Event: z
+      .lazy(
+        () =>
+          EventUncheckedCreateNestedManyWithoutParticipantsInputObjectSchema,
+      )
+      .optional(),
     logos: z
       .lazy(() => LogoUncheckedCreateNestedManyWithoutTeamInputObjectSchema)
       .optional(),
