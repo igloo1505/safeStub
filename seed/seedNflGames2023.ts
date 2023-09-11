@@ -247,7 +247,7 @@ export const seedGames = async () => {
             await prisma.event.create(seeding)
         }
         if (remaining >= 1) {
-            setTimeout(async () => await seedItem(i + 1), 1000)
+            setTimeout(async () => await seedItem(i + 1), 2000)
         }
         return true
     }

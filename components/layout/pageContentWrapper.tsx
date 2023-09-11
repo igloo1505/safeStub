@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../navigation/navbar';
-import Footer from '../navigation/footer';
 import { getServerSession } from '#/actions/server/auth';
+import Footer from '../ui/footer/footer';
 
 
 
@@ -9,9 +9,10 @@ interface PageContentWrapperProps {
     children: React.ReactNode
     noParent?: boolean
     noNav?: boolean
+    noFooter?: boolean
 }
 
-const PageContentWrapper = async ({ children, noNav, noParent }: PageContentWrapperProps) => {
+const PageContentWrapper = async ({ children, noFooter, noNav, noParent }: PageContentWrapperProps) => {
     const session = await getServerSession()
     return (
         <div className={"w-full h-screen min-h-fit"}>
@@ -19,7 +20,7 @@ const PageContentWrapper = async ({ children, noNav, noParent }: PageContentWrap
             {noParent ? children : <div className={"py-8 w-full h-[calc(100%-var(--nav-height)-var(--footer-height))] flex flex-col justify-start items-center"}>
                 {children}
             </div>}
-            {!noNav && <Footer />}
+            {!noFooter && <Footer />}
         </div>
     )
 }

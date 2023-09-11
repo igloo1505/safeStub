@@ -7,7 +7,7 @@ import { seedLocalData } from './seedLocal'
 // setTimeout(seedGames, wait3FuckingMinutesForPrismaToCatchup)
 // deleteAllGames()
 
-seedLocalData()
+// seedLocalData()
 
 setTimeout(() => {
     seedGames()

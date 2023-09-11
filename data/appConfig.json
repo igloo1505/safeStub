@@ -2,13 +2,21 @@
   "app": {
     "title": "Safe Stub",
     "short_title": "Safe Stub",
+    "logoBg": "#111827",
     "slogan": "Putting tickets back in fan's hands.",
-    "url": "https://www.safestub.com"
+    "url": "https://www.safestub.com",
+    "navbarBreakpoint": 768
   },
   "twitter": {
-    "name": "@safestub"
+    "name": "@safestub",
+    "url": "https://www.twitter.com"
   },
   "instagram": {
-    "name": "@safestub"
+    "name": "@safestub",
+    "url": "https://www.instagram.com"
+  },
+  "facebook": {
+    "name": "@safestub",
+    "url": "https://www.facebook.com"
   }
 }

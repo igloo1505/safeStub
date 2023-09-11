@@ -1,4 +1,7 @@
 Clear Events | npx dotenv -e .env.local -- ts-node --compiler-options {\"module\":\"CommonJS\"} seed/clearEvents.ts
 Clear Teams | npx dotenv -e .env.local -- ts-node --compiler-options {\"module\":\"CommonJS\"} seed/clearTeams.ts
 Clear Tags | npx dotenv -e .env.local -- ts-node --compiler-options {\"module\":\"CommonJS\"} seed/clearTags.ts
+Clear Logos | npx dotenv -e .env.local -- ts-node --compiler-options {\"module\":\"CommonJS\"} seed/clearLogos.ts
 Seed All | npx dotenv -e .env.local -- ts-node --compiler-options {\"module\":\"CommonJS\"} seed/index.ts
+Seed Local | npx dotenv -e .env.local -- ts-node --compiler-options {\"module\":\"CommonJS\"} seed/seedLocal.ts
+Seed Games | npx dotenv -e .env.local -- ts-node --compiler-options {\"module\":\"CommonJS\"} seed/seedNflGames2023.ts

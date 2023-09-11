@@ -1,3 +1,4 @@
+"use client"
 import { Keyboard, SearchIcon } from 'lucide-react';
 import React, { useState } from 'react'
 import { Input } from '../ui/input';

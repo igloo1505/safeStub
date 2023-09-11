@@ -1,12 +1,5 @@
-import { LockIcon, LucideProps, ShieldCheck } from 'lucide-react';
 import React, { SVGProps } from 'react'
 
-
-const Logo1 = (props: LucideProps) => {
-    return (
-        <ShieldCheck {...props} />
-    )
-}
 
 
 const Logo = (props: SVGProps<SVGSVGElement>) => {

@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import LogoWithName from '../brand/logoWithName';
 import { usePathname } from "next/navigation"
 import { cn } from '#/utils/universal';
@@ -14,7 +14,8 @@ import { Button } from '../ui/button';
 import clsx from 'clsx';
 import NavbarSearchInput from './navbarSearchInput';
 import { useGCMSubscription } from '#/hooks/useGCMSubscription';
-
+import appConfig from "#/data/appConfig.json"
+import MobileNavbar from './mobile/navbar';
 
 interface NavbarProps {
 
@@ -71,43 +72,57 @@ const NavbarButton = ({ item, pathname, session }: { session?: Session | null, i
 
 
 const Navbar = ({ session, container }: { session?: Session | null, container?: string }) => {
+    const [isMobile, setIsMobile] = useState<boolean | null>(null)
     const pathname = usePathname()
-    const data = useGCMSubscription(session?.user?.id)
-    console.log("data: ", data)
+    const checkViewport = () => {
+        if (typeof window === "undefined") return;
+        let vw = window.innerWidth
+        setIsMobile(vw <= appConfig.app.navbarBreakpoint)
+    }
+    useEffect(() => {
+        checkViewport()
+        window.addEventListener("resize", checkViewport)
+        return () => window.removeEventListener("resize", checkViewport)
+    }, [])
+    /* const data = useGCMSubscription(session?.user?.id) */
     return (
-        <div className={clsx("px-8 hidden md:flex py-4 h-[var(--nav-height)] justify-between z-10", container && container)}>
-            <div className={"flex flex-row justify-center items-center w-fit"}>
-                <Link href="/" className="mr-6 flex items-center space-x-2">
-                    <LogoWithName />
-                </Link>
-                <nav className="flex items-center space-x-6 text-sm font-medium">
-                    {navButtons.map((b, i) => {
-                        return <NavbarButton session={session} item={b} key={`nav-${i}`} pathname={pathname} />
-                    })}
+        <>
+            {isMobile === false ? (<div className={clsx("px-8 hidden md:flex py-4 h-[var(--nav-height)] justify-between z-10", container && container)}>
+                <div className={"flex flex-row justify-center items-center w-fit"}>
+                    <Link href="/" className="mr-6 flex items-center space-x-2">
+                        <LogoWithName />
+                    </Link>
+                    <nav className="flex items-center space-x-6 text-sm font-medium">
+                        {navButtons.map((b, i) => {
+                            return <NavbarButton session={session} item={b} key={`nav-${i}`} pathname={pathname} />
+                        })}
+                    </nav>
+                </div>
+                <nav className={"w-fit flex flex-row justify-center items-center gap-4"}>
+                    <NavbarSearchInput />
+                    <Button variant="ghost" role="button" onClick={toggleDarkmode} className={"p-2 rounded-[50%]"}>
+                        <MoonStar />
+                    </Button>
+                    <NavbarButton session={session} pathname={pathname} item={{
+                        href: "/auth/signin",
+                        label: "Sign In",
+                        authStatus: "unauthenticated"
+                    }} />
+                    <a
+                        role="button"
+                        onClick={() => signOut()}
+                        className={cn(
+                            "transition-colors hover:text-foreground/80 text-foreground/60",
+                            !session && "hidden"
+                        )}
+                    >
+                        Sign Out
+                    </a>
                 </nav>
-            </div>
-            <nav className={"w-fit flex flex-row justify-center items-center gap-4"}>
-                <NavbarSearchInput />
-                <Button variant="ghost" role="button" onClick={toggleDarkmode} className={"p-2 rounded-[50%]"}>
-                    <MoonStar />
-                </Button>
-                <NavbarButton session={session} pathname={pathname} item={{
-                    href: "/auth/signin",
-                    label: "Sign In",
-                    authStatus: "unauthenticated"
-                }} />
-                <a
-                    role="button"
-                    onClick={() => signOut()}
-                    className={cn(
-                        "transition-colors hover:text-foreground/80 text-foreground/60",
-                        !session && "hidden"
-                    )}
-                >
-                    Sign Out
-                </a>
-            </nav>
-        </div>
+            </div>)
+                : isMobile === true ? <MobileNavbar session={session} /> : <></>
+            }
+        </>
     )
 }
 
