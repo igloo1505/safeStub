@@ -87,7 +87,7 @@ const Navbar = ({ session, container }: { session?: Session | null, container?: 
     /* const data = useGCMSubscription(session?.user?.id) */
     return (
         <>
-            {isMobile === false ? (<div className={clsx("px-8 hidden md:flex py-4 h-[var(--nav-height)] justify-between z-10", container && container)}>
+            {isMobile === false ? (<div className={clsx("px-8 hidden md:flex py-4 justify-between z-10", container && container)}>
                 <div className={"flex flex-row justify-center items-center w-fit"}>
                     <Link href="/" className="mr-6 flex items-center space-x-2">
                         <LogoWithName />
