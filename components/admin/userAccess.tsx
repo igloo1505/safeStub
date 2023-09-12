@@ -194,6 +194,7 @@ export const columns: ColumnDef<UsersType>[] = [
     {
         id: "actions",
         enableHiding: false,
+        /// @ts-ignore
         cell: ActionsEm
     },
 ]
