@@ -107,7 +107,7 @@ const Footer = () => {
                     </div>
 
                     <div className="mt-6 lg:mt-0 lg:flex-1">
-                        <div className="flex flex-col justify-center items-center gap-4 md:items-start md:grid md:gap-6 md:grid-cols-3">
+                        <div className="flex flex-col justify-center items-center gap-4 md:flex-row md:justify-around lg:items-start lg:grid lg:gap-6 lg:grid-cols-3">
                             <FooterCategory items={groupedQuickLinks.navigation} title="Navigation" />
                             <FooterCategory items={groupedQuickLinks.legal} title="Legal" />
                             <FooterCategory items={groupedQuickLinks.user} title="Profile" />
