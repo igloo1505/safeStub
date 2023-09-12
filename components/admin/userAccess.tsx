@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import {
+    CellContext,
     ColumnDef,
     ColumnFiltersState,
     RowData,
@@ -36,12 +37,13 @@ import {
     TableHeader,
     TableRow,
 } from "#/components/ui/table"
-import dayjs from "dayjs"
 import type { serverClient } from "#/trpc/serverClient"
 import { formatDateShort } from "#/lib/formatting/dates"
 import { ROLE } from "@prisma/client"
 import { client } from "#/trpc/client"
 
+import appConfig from "#/data/appConfig.json"
+import { useToast } from "../ui/use-toast"
 
 type UsersType = Awaited<ReturnType<typeof serverClient.getUsers>>[0]
 
@@ -49,6 +51,54 @@ declare module '@tanstack/react-table' {
     interface TableMeta<TData extends RowData> {
         updateData: (rowIndex: number, columnId: string, value: unknown) => void
     }
+}
+
+
+const ActionsEm = ({ row, column, table }: CellContext<UsersType, "actions">) => {
+    const { toast } = useToast()
+    const setUserAccess = async (role: ROLE) => {
+        let email = row?.getValue("email") as string
+        console.log("email: ", email)
+        if (email.toLowerCase() === appConfig.app.adminEmail) {
+            toast({
+                title: "Ah shit...",
+                description: "You're the boss. Don't lock yourself out",
+                variant: "destructive"
+            })
+        }
+        let userId = row.getValue("id") as string
+        let user = await client.setUserAccess.mutate({ userId, role })
+        if (user) {
+            row.renderValue("role")
+            table.options.meta?.updateData(row.index, "role", user.role)
+        }
+    }
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="h-8 w-8 p-0">
+                    <span className="sr-only">Open menu</span>
+                    <MoreHorizontal className="h-4 w-4" />
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+                <DropdownMenuLabel>Access</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                    onClick={async () => await setUserAccess("USER")}
+                >
+                    User
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                    onClick={async () => await setUserAccess("ADMIN")}
+                >Admin</DropdownMenuItem>
+                <DropdownMenuItem
+                    onClick={async () => await setUserAccess("BANNED")}
+                >Banned</DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+    )
+
 }
 
 export const columns: ColumnDef<UsersType>[] = [
@@ -144,41 +194,7 @@ export const columns: ColumnDef<UsersType>[] = [
     {
         id: "actions",
         enableHiding: false,
-        cell: ({ row, column, table }) => {
-            const setUserAccess = async (role: ROLE) => {
-                let userId = row.getValue("id") as string
-                let user = await client.setUserAccess.mutate({ userId, role })
-                if (user) {
-                    row.renderValue("role")
-                    table.options.meta?.updateData(row.index, "role", user.role)
-                }
-            }
-            return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Access</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem
-                            onClick={async () => await setUserAccess("USER")}
-                        >
-                            User
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                            onClick={async () => await setUserAccess("ADMIN")}
-                        >Admin</DropdownMenuItem>
-                        <DropdownMenuItem
-                            onClick={async () => await setUserAccess("BANNED")}
-                        >Banned</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            )
-        },
+        cell: ActionsEm
     },
 ]
 

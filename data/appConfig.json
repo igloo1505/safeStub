@@ -5,7 +5,8 @@
     "logoBg": "#111827",
     "slogan": "Putting tickets back in fan's hands.",
     "url": "https://www.safestub.com",
-    "navbarBreakpoint": 768
+    "navbarBreakpoint": 768,
+    "adminEmail": "admin@safestub.com"
   },
   "twitter": {
     "name": "@safestub",
