@@ -54,7 +54,7 @@ declare module '@tanstack/react-table' {
 }
 
 
-const ActionsEm = ({ row, column, table }: CellContext<UsersType, "actions">) => {
+const ActionsEm = ({ row, table }: CellContext<UsersType, "actions">) => {
     const { toast } = useToast()
     const setUserAccess = async (role: ROLE) => {
         let email = row?.getValue("email") as string
@@ -65,6 +65,7 @@ const ActionsEm = ({ row, column, table }: CellContext<UsersType, "actions">) =>
                 description: "You're the boss. Don't lock yourself out",
                 variant: "destructive"
             })
+            return
         }
         let userId = row.getValue("id") as string
         let user = await client.setUserAccess.mutate({ userId, role })
