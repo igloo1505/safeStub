@@ -49,7 +49,7 @@ const MobileDrawer = ({ session, setLocked }: { session: SessionType, setLocked:
     }
     return (
         <>
-            <div className={"fixed w-[17rem] z-[2] h-screen top-0 left-0 bg-popover text-popover-foreground translate-x-[-100%] group-[.isOpen]/mobileNav:translate-x-0 transition-transform duration-200 border-r border-muted flex flex-col justify-between items-center gap-4 pb-6"}>
+            <div className={"fixed w-[17rem] z-[2] h-screen max-h-screen top-0 left-0 bg-popover text-popover-foreground translate-x-[-100%] group-[.isOpen]/mobileNav:translate-x-0 transition-transform duration-200 border-r border-muted flex flex-col justify-between items-center gap-4 pb-6"}>
                 <div className={"flex flex-col justify-start items-center w-full "}>
                     <div className={"w-full flex flex-row justify-start items-center px-6 pt-4 gap-2 mb-4"}>
                         <Logo className={"bi bi-app-indicator px-2 py-1 rounded-md w-12 h-12"} />
