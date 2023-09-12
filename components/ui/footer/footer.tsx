@@ -14,41 +14,47 @@ import LogoWithName from '#/components/brand/logoWithName';
 const getQuickLinks = () => {
     const quickLinks: QuickLinkType[] = [
         {
-            category: "docs",
-            label: "Scipy",
-            href: "https://scipy.org/"
+            category: "legal",
+            label: "Privacy",
+            href: "/privacy"
         },
         {
-            category: "youtube",
-            label: "Professor Leonard",
-            href: "https://www.youtube.com/@ProfessorLeonard"
+            category: "legal",
+            label: "Terms of Service",
+            href: "/termsOfService"
         },
         {
-            category: "youtube",
-            label: "MIT",
-            href: "https://www.youtube.com/@mitocw"
+            category: "user",
+            label: "Profile",
+            href: "/profile"
         },
         {
-            category: "lectures",
-            label: "MIT: General Relativity",
-            href: "https://www.youtube.com/playlist?list=PLUl4u3cNGP629n_3fX7HmKKgin_rqGzbx"
+            category: "user",
+            label: "My Items",
+            href: "/profile?myItems"
         },
         {
-            category: "lectures",
-            label: "Susskind: General Relativity",
-            href: "https://www.youtube.com/playlist?list=PLpGHT1n4-mAvcXwzOIz3dHnGZaQP1LEib"
+            category: "user",
+            label: "Messages",
+            href: "/messages"
         },
         {
-            category: "lectures",
-            label: "Susskind: Special Relativity",
-            href: "https://www.youtube.com/playlist?list=PLD9DDFBDC338226CA"
+            category: "navigation",
+            label: "Up Coming",
+            href: "/events?sort=upNext"
         },
+        {
+            category: "navigation",
+            label: "Great Deals",
+            href: "/events?sort=price"
+        },
+
     ]
 
     const groupedQuickLinks: { [k in QuickLinkType['category']]?: QuickLinkType[] } = {
-        locations: [],
-        youtube: [],
-        lectures: []
+        legal: [],
+        user: [],
+        navigation: []
     }
 
     quickLinks.forEach((l) => {
@@ -102,9 +108,9 @@ const Footer = () => {
 
                     <div className="mt-6 lg:mt-0 lg:flex-1">
                         <div className="flex flex-col justify-center items-center gap-4 md:items-start md:grid md:gap-6 md:grid-cols-3">
-                            <FooterCategory items={groupedQuickLinks.locations} title="Navigation" />
-                            <FooterCategory items={groupedQuickLinks.youtube} title="Legal" />
-                            <FooterCategory items={groupedQuickLinks.lectures} title="Profile" />
+                            <FooterCategory items={groupedQuickLinks.navigation} title="Navigation" />
+                            <FooterCategory items={groupedQuickLinks.legal} title="Legal" />
+                            <FooterCategory items={groupedQuickLinks.user} title="Profile" />
                         </div>
                     </div>
                 </div>

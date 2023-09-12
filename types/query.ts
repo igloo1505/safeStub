@@ -2,6 +2,11 @@ import { Route } from "next"
 
 export interface QuickLinkType {
     label: string
-    category: "math" | "physics" | "docs" | "youtube" | "lectures" | "locations"
+    category: "legal" | "navigation" | "user"
     href: Route
+}
+
+
+export interface EventsSearchParams {
+    sort: "upNext" | "price"
 }
