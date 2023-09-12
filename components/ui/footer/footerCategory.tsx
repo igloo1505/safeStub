@@ -18,8 +18,8 @@ const FooterLinkItem = ({ item }: { item: QuickLinkType }) => {
 const FooterCategory = ({ items, title }: FooterCategoryProps) => {
     console.log("items: ", items)
     return (
-        <div>
-            <h3 className="text-gray-700 uppercase dark:text-white">{title}</h3>
+        <div className={"w-full flex flex-col justify-center items-center md:inline-block"}>
+            <h3 className="text-gray-700 uppercase dark:text-white w-full text-center md:w-fit">{title}</h3>
             {items && items.map((item, i) => <FooterLinkItem item={item} key={`quick-link-${item.category}-${i}`} />)}
         </div>
     )

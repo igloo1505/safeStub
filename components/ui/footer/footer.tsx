@@ -70,7 +70,7 @@ const Footer = () => {
         <footer className="bg-background mt-4 border-t border-t-muted z-[10] relative" id="footer-panel">
             <div className="container p-6 mx-auto">
                 <div className="lg:flex">
-                    <div className="w-full -mx-6 lg:w-2/5">
+                    <div className="w-full md:-mx-6 lg:w-2/5">
                         <div className="px-6 flex flex-col md:grid md:grid-cols-[auto_1fr] lg:flex lg:flex-col">
                             <div className={"w-full flex flex-col justify-center items-center md:w-fit md:inline-block"}>
                                 <Link href="/" className={"h-12 w-auto"}>
@@ -101,7 +101,7 @@ const Footer = () => {
                     </div>
 
                     <div className="mt-6 lg:mt-0 lg:flex-1">
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                        <div className="flex flex-col justify-center items-center gap-4 md:items-start md:grid md:gap-6 md:grid-cols-3">
                             <FooterCategory items={groupedQuickLinks.locations} title="Navigation" />
                             <FooterCategory items={groupedQuickLinks.youtube} title="Legal" />
                             <FooterCategory items={groupedQuickLinks.lectures} title="Profile" />
@@ -109,7 +109,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div>
-                    <p className="text-center text-gray-500 dark:text-gray-400 mt-2">{`© Safe Stub ${new Date().getFullYear()} - All rights reserved, but do your thang`}</p>
+                    <p className="text-center text-gray-500 dark:text-gray-400 mt-4">{`© Safe Stub ${new Date().getFullYear()} - All rights reserved, but do your thang`}</p>
                 </div>
             </div>
         </footer>
