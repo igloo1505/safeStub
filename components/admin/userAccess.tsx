@@ -83,7 +83,17 @@ export const columns: ColumnDef<UsersType>[] = [
     {
         accessorKey: "role",
         id: "role",
-        header: "Role",
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                >
+                    Role
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            )
+        },
         cell: ({ row }) => {
             let val = row.getValue("role") as string
             val = `${val[0].toUpperCase()}${val.slice(1).toLowerCase()}`
