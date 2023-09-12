@@ -73,7 +73,7 @@ const Footer = () => {
     let groupedQuickLinks = getQuickLinks()
     console.log("groupedQuickLinks: ", groupedQuickLinks)
     return (
-        <footer className="bg-background mt-4 border-t border-t-muted z-[10] relative" id="footer-panel">
+        <footer className="bg-background mt-4 border-t border-t-muted z-[1] relative" id="footer-panel">
             <div className="container p-6 mx-auto">
                 <div className="lg:flex">
                     <div className="w-full md:-mx-6 lg:w-2/5">

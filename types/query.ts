@@ -9,4 +9,5 @@ export interface QuickLinkType {
 
 export interface EventsSearchParams {
     sort: "upNext" | "price"
+    query: string
 }

@@ -13,13 +13,13 @@ interface AboutUsHeroProps {
 
 const AboutUsHeroImage = ({ className }: { className?: string }) => {
     return (
-        <Image src={fansCheering} alt="Fans Cheering" className={clsx("w-2/3 h-auto", className && className)} />
+        <Image src={fansCheering} priority alt="Fans Cheering" className={clsx("w-2/3 h-auto", className && className)} />
     )
 }
 
 const AboutUsHero = (props: AboutUsHeroProps) => {
     return (
-        <div className={"w-full h-fit flex flex-col justify-center items-center"}>
+        <div className={"w-full max-w-screen-xl overflow-hidden h-fit flex flex-col justify-center items-center"}>
             <div className={"w-5/6 rounded-3xl bg-primary/40 px-6 pt-6 pb-8 md:py-12"}>
                 <div className={"flex flex-col-reverse md:grid md:grid-cols-2 gap-4 place-items-center"}>
                     <div className={"flex flex-col justify-center items-center md:items-start gap-4 text-primary-foreground"}>
@@ -36,7 +36,7 @@ const AboutUsHero = (props: AboutUsHeroProps) => {
                 </div>
                 <AboutUsStats container="grid grid-cols-3 w-full hidden md:grid" />
             </div>
-            <AboutUsStats container="flex flex-col justify-center w-5/6 items-center gap-4 md:hidden" />
+            <AboutUsStats container="flex flex-col justify-center w-5/6 items-center gap-8 md:hidden" />
         </div>
     )
 }

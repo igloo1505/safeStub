@@ -9,6 +9,8 @@ import { Button } from '#/components/ui/button';
 import { signIn, signOut } from 'next-auth/react';
 import { SessionType } from '#/types/auth';
 import { toggleDarkmode } from '#/actions/client/ui';
+import { Input } from '#/components/ui/input';
+import DrawerSearchInput from './drawerSearchInput';
 
 interface DrawerItemProps {
     Icon: LucideIcon
@@ -63,6 +65,7 @@ const MobileDrawer = ({ session, setLocked }: { session: SessionType, setLocked:
                         </h3>
                     </div>
                     <MobileDrawerDivider />
+                    <DrawerSearchInput closeDrawer={closeDrawer} />
                     <div className={"w-full flex flex-col px-6 pb-4"}>
                         <MobileDrawerItem closeDrawer={closeDrawer} Icon={HomeIcon} href="/" label="Home" />
                         <MobileDrawerItem closeDrawer={closeDrawer} Icon={TicketIcon} href="/myTickets" label="My Tickets" />

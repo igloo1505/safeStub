@@ -26,7 +26,7 @@ const AboutUsStat = (props: AboutUsStatItem) => {
 
 const AboutUsStats = (props: AboutUsStatsProps) => {
     return (
-        <div className={clsx("gap-4 mt-8", props.container && props.container)}>
+        <div className={clsx("gap-4 mt-8 overflow-hidden", props.container && props.container)}>
             <AboutUsStat
                 value={"100k"}
                 text={"Pellentesque dolor urna eu nibh sem porta, est efficitur suspendisse vivamus dictum sem diam porta."}
