@@ -11,7 +11,7 @@ import TwitterXSocialIcon from '#/assets/social/twitterX'
 import Script from 'next/script'
 import HeroAnimatedTitle from './heroAnimatedTitle'
 import Link from 'next/link'
-
+import { isMobile } from 'react-device-detect'
 
 
 
@@ -47,7 +47,7 @@ const IconButton = ({ children, className }: { children: React.ReactNode, classN
 const Hero = ({ session }: HeroProps) => {
     return (
         <div className={"w-full h-screen relative overflow-hidden dark group/heroContainer"} id={"hero-container"}>
-            <Navbar session={session} container="absolute w-full h-fit text-white" />
+            <Navbar session={session} container={"w-full h-fit text-white"} />
             <div className={"w-full h-full flex justify-center items-center px-4"}>
                 <div className={"flex flex-col justify-center items-center w-fit h-full gap-4"}>
                     <div className={"grid grid-cols-[1fr_auto_1fr] w-full place-items-center gap-2"}>

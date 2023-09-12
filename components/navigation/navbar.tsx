@@ -16,6 +16,7 @@ import NavbarSearchInput from './navbarSearchInput';
 import { useGCMSubscription } from '#/hooks/useGCMSubscription';
 import appConfig from "#/data/appConfig.json"
 import MobileNavbar from './mobile/navbar';
+import { isMobile } from 'react-device-detect';
 
 interface NavbarProps {
 
@@ -72,7 +73,7 @@ const NavbarButton = ({ item, pathname, session }: { session?: Session | null, i
 
 
 const Navbar = ({ session, container }: { session?: Session | null, container?: string }) => {
-    const [isMobile, setIsMobile] = useState<boolean | null>(null)
+    const [isMobileVp, setIsMobile] = useState<boolean | null>(null)
     const pathname = usePathname()
     const checkViewport = () => {
         if (typeof window === "undefined") return;
@@ -87,7 +88,7 @@ const Navbar = ({ session, container }: { session?: Session | null, container?: 
     /* const data = useGCMSubscription(session?.user?.id) */
     return (
         <>
-            {isMobile === false ? (<div className={clsx("px-8 hidden md:flex py-4 justify-between z-10", container && container)}>
+            {isMobileVp === false ? (<div className={clsx("px-8 hidden md:flex py-4 justify-between z-10", container && container, isMobile ? "relative" : "absolute")}>
                 <div className={"flex flex-row justify-center items-center w-fit"}>
                     <Link href="/" className="mr-6 flex items-center space-x-2">
                         <LogoWithName />
@@ -120,7 +121,7 @@ const Navbar = ({ session, container }: { session?: Session | null, container?: 
                     </a>
                 </nav>
             </div>)
-                : isMobile === true ? <MobileNavbar session={session} /> : <></>
+                : isMobileVp === true ? <MobileNavbar session={session} /> : <></>
             }
         </>
     )
