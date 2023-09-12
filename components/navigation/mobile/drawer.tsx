@@ -38,7 +38,7 @@ const MobileDrawerItem = ({ Icon, label, href }: DrawerItemProps) => {
     )
 }
 
-const MobileDrawer = ({ session }: { session: SessionType }) => {
+const MobileDrawer = ({ session, setLocked }: { session: SessionType, setLocked: (b: boolean) => void }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(session?.user)
     useEffect(() => {
         setIsAuthenticated(session?.user)
@@ -69,7 +69,7 @@ const MobileDrawer = ({ session }: { session: SessionType }) => {
                     {isAuthenticated ? <Button onClick={handleAuth}>Log out</Button> : <Link href="/auth/signin" onClick={closeDrawer}><Button>Sign in</Button></Link>}
                 </div>
             </div>
-            <MobileNavOverlay />
+            <MobileNavOverlay setLocked={setLocked} />
         </>
     )
 }

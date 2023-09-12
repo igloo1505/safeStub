@@ -1,7 +1,8 @@
 import React from 'react'
 
-const MobileNavOverlay = () => {
+const MobileNavOverlay = ({ setLocked }: { setLocked: (b: boolean) => void }) => {
     const closeNav = () => {
+        setLocked(false)
         document.getElementById("mobile-navbar")?.classList?.remove("isOpen")
     }
     return (

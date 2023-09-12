@@ -4,13 +4,23 @@ import "#/styles/mobileNav.scss"
 
 
 interface HamburgerIconProps {
+    setLocked: (b: boolean) => void
 }
 
-const HamburgerIcon = ({ }: HamburgerIconProps) => {
+const HamburgerIcon = ({ setLocked }: HamburgerIconProps) => {
     const toggleOpen = () => {
         let em = document.getElementById("mobile-navbar")
         if (!em) return
-        em.classList.toggle("isOpen")
+        let currentlyOpen = em.classList.contains("isOpen")
+        if (!currentlyOpen) {
+            setLocked(true)
+            em.classList.add("isOpen")
+            return
+        }
+        if (currentlyOpen) {
+            setLocked(false)
+            em.classList.remove("isOpen")
+        }
     }
     return (
         <svg id="hamburger" className="mobile-nav-burger z-[2] w-8 h-8 group-[.isOpen]/mobileNav:translate-x-48 transition-transform duration-200" viewBox="0 0 60 40" onClick={toggleOpen}>
