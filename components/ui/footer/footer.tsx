@@ -5,7 +5,6 @@ import FacebookSocialIcon from '#/assets/social/facebook'
 import TwitterXSocialIcon from '#/assets/social/twitterX'
 import { QuickLinkType } from '#/types/query';
 import FooterCategory from './footerCategory';
-import Logo from '#/components/brand/logo';
 import appConfig from "#/data/appConfig.json"
 import { Route } from 'next';
 import LogoWithName from '#/components/brand/logoWithName';
@@ -71,7 +70,6 @@ const iconClasses = "w-5 h-5 fill-current md:w-8 md:h-8 md:mx-2 lg:w-5 lg:h-5 lg
 
 const Footer = () => {
     let groupedQuickLinks = getQuickLinks()
-    console.log("groupedQuickLinks: ", groupedQuickLinks)
     return (
         <footer className="bg-background mt-4 border-t border-t-muted z-[1] relative" id="footer-panel">
             <div className="container p-6 mx-auto">

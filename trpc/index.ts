@@ -3,6 +3,8 @@ import { prisma } from "#/db/db"
 import { z } from 'zod'
 import { gcmSubscriptionChangeSchema, settingsChangeSchema } from "#/zod/local/settingsChange";
 import { validateGetUpcomingEvents } from "#/lib/events/getUpcomingEvents";
+import { paginateSchema } from "#/types/utility";
+import { UserAccessInput } from "#/types/auth";
 
 
 
@@ -72,6 +74,28 @@ export const appRouter = router({
             include: {
                 participants: true,
                 arena: true,
+            }
+        })
+    }),
+    getUsers: publicProcedure.input(paginateSchema).query(async (opts) => {
+        return await prisma.user.findMany({
+            skip: opts.input.skip || 0,
+            take: opts.input.take || 50,
+            orderBy: [{
+                createdAt: "asc",
+            }, {
+                role: "asc"
+            }]
+        })
+    }),
+    setUserAccess: publicProcedure.input(UserAccessInput).mutation(async (opts) => {
+        // TODO: Make sure this cookies are checked for admin access here once this is up and running. Leaving this for now to set initial admin access.
+        return await prisma.user.update({
+            where: {
+                id: opts.input.userId,
+            },
+            data: {
+                role: opts.input.role
             }
         })
     })

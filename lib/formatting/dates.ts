@@ -19,3 +19,6 @@ export const formatEventDate = (dateString: string | Date) => {
     }
     return dayjs(dateString).format("dddd MMMM Do [at] h:mm a")
 }
+
+
+export const formatDateShort = (dateString: string | Date) => dayjs(dateString).format("M-D-YY")
