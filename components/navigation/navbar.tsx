@@ -72,7 +72,7 @@ const NavbarButton = ({ item, pathname, session }: { session?: Session | null, i
 }
 
 
-const Navbar = ({ session, container }: { session?: Session | null, container?: string }) => {
+const Navbar = ({ session, container, mobileContainer }: { session?: Session | null, mobileContainer?: string, container?: string }) => {
     const [isMobileVp, setIsMobile] = useState<boolean | null>(null)
     const pathname = usePathname()
     const checkViewport = () => {
@@ -88,7 +88,7 @@ const Navbar = ({ session, container }: { session?: Session | null, container?: 
     /* const data = useGCMSubscription(session?.user?.id) */
     return (
         <>
-            {isMobileVp === false ? (<div className={clsx("px-8 hidden md:flex py-4 justify-between z-10", container && container, isMobile ? "relative" : "absolute")}>
+            {isMobileVp === false ? (<div className={clsx("px-8 w-full hidden md:flex py-4 justify-between z-10 relative", container && container)}>
                 <div className={"flex flex-row justify-center items-center w-fit"}>
                     <Link href="/" className="mr-6 flex items-center space-x-2">
                         <LogoWithName />
@@ -121,7 +121,7 @@ const Navbar = ({ session, container }: { session?: Session | null, container?: 
                     </a>
                 </nav>
             </div>)
-                : isMobileVp === true ? <MobileNavbar session={session} /> : <></>
+                : isMobileVp === true ? <MobileNavbar session={session} container={mobileContainer} /> : <></>
             }
         </>
     )

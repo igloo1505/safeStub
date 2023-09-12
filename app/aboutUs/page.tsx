@@ -1,16 +1,15 @@
 import PageContentWrapper from '#/components/layout/pageContentWrapper';
+import AboutUsProcess from '#/components/pageSpecific/about/aboutUsProcess';
+import AboutUsHero from '#/components/pageSpecific/about/hero';
 import React from 'react'
 
 
 
-interface AboutUsPageProps {
-
-}
-
-const AboutUsPage = (props: AboutUsPageProps) => {
+const AboutUsPage = () => {
     return (
         <PageContentWrapper>
-            About us here
+            <AboutUsHero />
+            <AboutUsProcess />
         </PageContentWrapper>
     )
 }

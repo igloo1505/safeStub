@@ -4,11 +4,13 @@ import HamburgerIcon from './hamburger';
 import MobileDrawer from './drawer';
 import { SessionType } from '#/types/auth';
 import useLockedBody from '#/hooks/lockBodyScroll';
+import clsx from 'clsx';
 
 
 
 interface MobileNavbarProps {
     session: SessionType
+    container?: string
 }
 
 const MobileNavbar = (props: MobileNavbarProps) => {
@@ -33,7 +35,7 @@ const MobileNavbar = (props: MobileNavbarProps) => {
         return () => document.removeEventListener("scroll", handleScroll)
     }, [])
     return (
-        <div className={"w-screen h-[64px] fixed top-0 left-0 z-[9999] px-8 flex flex-row justify-start items-center group/mobileNav transition-transform duration-150 [&_.scrolling]:translate-y-[-100%]"} id="mobile-navbar" ref={ref}>
+        <div className={clsx("w-screen h-[64px] top-0 left-0 z-[9999] px-8 flex flex-row justify-start items-center group/mobileNav transition-transform duration-150 [&_.scrolling]:translate-y-[-100%]", props.container && props.container)} id="mobile-navbar" ref={ref}>
             <MobileDrawer session={props.session} setLocked={setLocked} />
             <HamburgerIcon setLocked={setLocked} />
         </div>

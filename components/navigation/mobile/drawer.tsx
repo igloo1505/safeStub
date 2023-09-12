@@ -1,44 +1,48 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import MobileNavOverlay from './mobileNavOverlay';
-import { HomeIcon, LucideIcon, TicketIcon, User } from 'lucide-react';
+import { HomeIcon, LucideIcon, MoonIcon, TicketIcon, User } from 'lucide-react';
 import { Route } from 'next';
 import Link from 'next/link';
 import Logo from '#/components/brand/logo';
 import { Button } from '#/components/ui/button';
 import { signIn, signOut } from 'next-auth/react';
 import { SessionType } from '#/types/auth';
+import { toggleDarkmode } from '#/actions/client/ui';
 
 interface DrawerItemProps {
     Icon: LucideIcon
     label: string
+    closeDrawer: () => void
     href: Route
 }
 
-const closeDrawer = () => {
-    document.getElementById("mobile-navbar")?.classList.remove("isOpen")
-}
 
 const MobileDrawerDivider = () => {
     return (
-        <div className="bg-gray-600 h-[1px] w-5/6" />
+        <div className="bg-foreground/40 h-[1px] w-5/6" />
     )
 }
 
-const MobileDrawerItem = ({ Icon, label, href }: DrawerItemProps) => {
+const MobileDrawerItem = ({ Icon, label, closeDrawer, href }: DrawerItemProps) => {
     return (
         <Link href={href} onClick={closeDrawer}>
             <div
-                className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-accent text-white"
+                className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-accent text-foreground/60 dark:text-foreground/80"
             >
                 <Icon className={"w-8 h-8"} />
-                <div className={"text-[15px] ml-4 text-gray-200 font-bold"}>{label}</div>
+                <div className={"text-[15px] ml-4 font-bold"}>{label}</div>
             </div>
         </Link>
     )
 }
 
 const MobileDrawer = ({ session, setLocked }: { session: SessionType, setLocked: (b: boolean) => void }) => {
+    const closeDrawer = () => {
+        document.getElementById("mobile-navbar")?.classList.remove("isOpen")
+        setLocked(false)
+    }
+
     const [isAuthenticated, setIsAuthenticated] = useState(session?.user)
     useEffect(() => {
         setIsAuthenticated(session?.user)
@@ -59,13 +63,29 @@ const MobileDrawer = ({ session, setLocked }: { session: SessionType, setLocked:
                         </h3>
                     </div>
                     <MobileDrawerDivider />
-                    <div className={"w-full flex flex-col px-6"}>
-                        <MobileDrawerItem Icon={HomeIcon} href="/" label="Home" />
-                        <MobileDrawerItem Icon={TicketIcon} href="/myTickets" label="My Tickets" />
-                        <MobileDrawerItem Icon={User} href="/profile" label="Profile" />
+                    <div className={"w-full flex flex-col px-6 pb-4"}>
+                        <MobileDrawerItem closeDrawer={closeDrawer} Icon={HomeIcon} href="/" label="Home" />
+                        <MobileDrawerItem closeDrawer={closeDrawer} Icon={TicketIcon} href="/myTickets" label="My Tickets" />
+                        <MobileDrawerItem closeDrawer={closeDrawer} Icon={User} href="/profile" label="Profile" />
+
                     </div>
+                    <MobileDrawerDivider />
+                    <div className={"w-full flex flex-col px-6"}>
+                        <a role="button" onClick={() => {
+                            closeDrawer()
+                            toggleDarkmode()
+                        }}>
+                            <div
+                                className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-accent text-foreground/60 dark:text-foreground/80"
+                            >
+                                <MoonIcon className={"w-8 h-8"} />
+                                <div className={"text-[15px] ml-4 font-bold"}>Dark Mode</div>
+                            </div>
+                        </a>
+                    </div>
+
                 </div>
-                <div className={""}>
+                <div className={"w-full flex flex-col justify-center items-center px-6"}>
                     {isAuthenticated ? <Button onClick={handleAuth}>Log out</Button> : <Link href="/auth/signin" onClick={closeDrawer}><Button>Sign in</Button></Link>}
                 </div>
             </div>

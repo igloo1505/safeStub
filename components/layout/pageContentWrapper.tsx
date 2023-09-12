@@ -17,7 +17,7 @@ const PageContentWrapper = async ({ children, noFooter, noNav, noParent }: PageC
     return (
         <div className={"w-full h-screen min-h-fit"}>
             {!noNav && <Navbar session={session} />}
-            {noParent ? children : <div className={"py-8 w-full min-h-[calc(100%-var(--nav-height)-var(--footer-height))] flex flex-col justify-start items-center test"}>
+            {noParent ? children : <div className={"py-8 w-full min-h-[calc(100%-var(--nav-height)-var(--footer-height))] flex flex-col justify-start items-center"}>
                 {children}
             </div>}
             {!noFooter && <Footer />}
