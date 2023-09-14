@@ -47,7 +47,7 @@ const TeamLogo = (data: typeof teamLogos[number]) => {
         search: `?team=${data.team}`
     }
     return (
-        <Link href={_url} className={"w-full h-full bg-gray-200 bg-opacity-0 hover:bg-opacity-60 transition-all duration-300 cursor-pointer rounded-lg"}>
+        <Link href={_url} className={"w-full h-full bg-gray-200 bg-opacity-0 hover:bg-opacity-60 transition-all duration-300 cursor-pointer rounded-lg flex flex-col justify-center items-center"}>
             <Image
                 src={data.logo}
                 id={`${data.team}-logo`}
@@ -64,13 +64,13 @@ const TeamLogo = (data: typeof teamLogos[number]) => {
 
 const TeamsSection = () => {
     return (
-        <div className={"w-full min-h-screen md:min-h-fit flex flex-col justify-center items-center p-6"}>
+        <div className={"w-full flex flex-col justify-center items-center p-6"}>
             <div className={"grid grid-cols-[1fr_auto_1fr] w-5/6 max-w-screen-md place-items-center"}>
                 <div className={"h-[1px] w-full bg-white"} />
-                <h2 className={"text-white text-2xl font-bold tracking-wider my-6 px-6"}>Who&apos;s your team?</h2>
+                <h2 className={"text-white text-2xl font-bold tracking-wider my-6 px-6 text-center"}>Who&apos;s your team?</h2>
                 <div className={"h-[1px] w-full bg-white"} />
             </div>
-            <div className={"grid grid-cols-4 grid-rows-8 landscape:grid-cols-8 landscape:grid-rows-4 gap-2 md:gap-6 w-5/6 max-w-screen-md h-fit max-h-[calc(100vh-4rem)]"}>{teamLogos.map((t, i) => <TeamLogo {...t} key={`${t.team}-logo`} />)}</div>
+            <div className={"grid grid-cols-[repeat(4,1fr)] grid-rows-[repeat(8,1fr)] landscape:grid-cols-[repeat(8,1fr)] landscape:grid-rows-[repeat(4,1fr)] gap-2 md:gap-6 w-5/6 max-w-screen-md"}>{teamLogos.map((t, i) => <TeamLogo {...t} key={`${t.team}-logo`} />)}</div>
         </div>
     )
 }
