@@ -8,6 +8,10 @@
     "navbarBreakpoint": 768,
     "adminEmail": "admin@safestub.com"
   },
+  "landing": {
+    "subtitle": "Empowering Fans. One Ticket at a Time.",
+    "slogan": "Fed up with all the crazy fees? Sick of dealing with scammers? Safestub is your go-to online platform for finding tickets to the big game."
+  },
   "twitter": {
     "name": "@safestub",
     "url": "https://www.twitter.com"

@@ -1,4 +1,5 @@
 import { NFLTeamName } from '@prisma/client'
+import { Route } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -42,19 +43,14 @@ const teamLogos: { team: NFLTeamName, logo: string }[] = [
 ]
 
 const TeamLogo = (data: typeof teamLogos[number]) => {
-    const _url: UrlObject = {
-        pathname: "/events",
-        search: `?team=${data.team}`
-    }
     return (
-        <Link href={_url} className={"w-full h-full bg-gray-200 bg-opacity-0 hover:bg-opacity-60 transition-all duration-300 cursor-pointer rounded-lg flex flex-col justify-center items-center"}>
+        <Link href={`/events/team/${data.team}` as Route} className={"w-full h-full bg-gray-200 bg-opacity-0 hover:bg-opacity-60 transition-all duration-300 cursor-pointer rounded-lg flex flex-col justify-center items-center"}>
             <Image
                 src={data.logo}
                 id={`${data.team}-logo`}
                 alt={`${data.team} logo`}
                 width={300}
                 height={300}
-                /* className={"max-w-[min(15%,120px)] h-auto max-h-[min(12vh,120px)] landscape:max-w-[min(10%,120px)] landscape:max-h-[min(20vh,120px)]"} */
                 className={"w-full h-auto max-w-full max-h-[10vh] landscape:max-h-[15vh]"}
             />
         </Link>

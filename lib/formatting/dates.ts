@@ -22,3 +22,8 @@ export const formatEventDate = (dateString: string | Date) => {
 
 
 export const formatDateShort = (dateString: string | Date) => dayjs(dateString).format("M-D-YY")
+
+export const formatDateLong = (dateString: string | Date | undefined) => {
+    if (!dateString) return ""
+    return dayjs(dateString).format("dddd, MMMM Do YYYY [at] h:mm A")
+}

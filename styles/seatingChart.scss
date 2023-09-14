@@ -2,7 +2,19 @@
   path {
     transition: opacity 0.3s ease-in-out;
   }
-  path:hover {
-    opacity: 0.9;
+  // &:hover,
+  &.focusSection {
+    path {
+      opacity: 0.8;
+    }
+    path:hover {
+      opacity: 1;
+    }
   }
+  path.indicateFocus {
+    opacity: 1;
+  }
+  // path:hover {
+  //   opacity: 0.3;
+  // }
 }

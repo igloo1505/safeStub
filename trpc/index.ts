@@ -98,6 +98,46 @@ export const appRouter = router({
                 role: opts.input.role
             }
         })
+    }),
+    getEvent: publicProcedure.input(z.object({
+        eventId: z.number().int(),
+        take: z.number().int().default(50),
+        skip: z.number().int().default(0),
+    })).query(async (opts) => {
+        return await prisma.event.findFirst({
+            where: {
+                id: opts.input.eventId
+            },
+            include: {
+                arena: {
+                    include: {
+                        location: true,
+                        homeTeams: true
+                    }
+                },
+                tickets: {
+                    take: opts.input.take,
+                    skip: opts.input.skip,
+                    include: {
+                        arenaSection: true,
+                    }
+                },
+                ticketGroups: {
+                    take: opts.input.take,
+                    skip: opts.input.skip,
+                    include: {
+                        tickets: {
+                            include: {
+                                arenaSection: true
+                            }
+                        }
+                    }
+                },
+                tags: true,
+                participants: true,
+                amenities: true
+            }
+        })
     })
 })
 

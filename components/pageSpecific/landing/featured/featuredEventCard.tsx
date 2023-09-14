@@ -15,6 +15,8 @@ import { getUpcomingEvents } from "#/lib/events/getUpcomingEvents"
 import { serverClient } from "#/trpc/serverClient"
 import { formatEventDate } from "#/lib/formatting/dates"
 import Image from "next/image"
+import Link from "next/link"
+import { Route } from "next"
 
 
 interface CardProps extends React.ComponentProps<typeof Card> {
@@ -44,9 +46,11 @@ const FeaturedEventCard = ({ className, event, ...props }: CardProps) => {
                 </div>
             </CardContent>
             <CardFooter className={"h-fit"}>
-                <Button className="w-full md:w-fit">
-                    <TicketIcon className="mr-2 h-4 w-4" /> Find my tickets
-                </Button>
+                <Link href={`/event/${event.id}` as Route}>
+                    <Button className="w-full md:w-fit">
+                        <TicketIcon className="mr-2 h-4 w-4" /> Find my tickets
+                    </Button>
+                </Link>
             </CardFooter>
         </Card>
     )

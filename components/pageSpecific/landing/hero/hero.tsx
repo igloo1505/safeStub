@@ -8,7 +8,7 @@ import clsx from 'clsx'
 import InstagramSocialIcon from '#/assets/social/instagram'
 import FacebookSocialIcon from '#/assets/social/facebook'
 import TwitterXSocialIcon from '#/assets/social/twitterX'
-import Script from 'next/script'
+import appConfig from "#/data/appConfig.json"
 import HeroAnimatedTitle from './heroAnimatedTitle'
 import Link from 'next/link'
 import { isMobile } from 'react-device-detect'
@@ -52,11 +52,11 @@ const Hero = ({ session }: HeroProps) => {
                 <div className={"flex flex-col justify-center items-center w-fit h-full gap-4"}>
                     <div className={"grid grid-cols-[1fr_auto_1fr] w-full place-items-center gap-2"}>
                         <div className={"h-[2px] bg-gray-300 bg-opacity-70 w-full origin-right scale-x-0 hero-label-line transition-[opacity,transform] duration-300 delay-1000 group-[.isLoaded]/heroContainer:scale-x-100"} />
-                        <p className={"text-md text-[4vw] lg:text-2xl text-white opacity-0 transition-[opacity,transform] duration-300 translate-y-8 group-[.isLoaded]/heroContainer:translate-y-0  group-[.isLoaded]/heroContainer:opacity-100 delay-700"}>Putting tickets back in fans hands</p>
+                        <p className={"text-md text-[4vw] lg:text-2xl text-white opacity-0 transition-[opacity,transform] duration-300 translate-y-8 group-[.isLoaded]/heroContainer:translate-y-0  group-[.isLoaded]/heroContainer:opacity-100 delay-700"}>{appConfig.landing.subtitle}</p>
                         <div className={"h-[2px] bg-gray-300 bg-opacity-70 w-full origin-left scale-x-0 hero-label-line transition-[opacity,transform] duration-300 group-[.isLoaded]/heroContainer:scale-x-100 delay-1000"} />
                     </div>
                     <HeroAnimatedTitle />
-                    <p className={"text-gray-300 max-w-[768px] text-center text-[4vw] md:text-xl opacity-0 group-[.isLoaded]/heroContainer:opacity-100 transition-opacity duration-300 delay-1200"}>Laoreet elementum nulla adipiscing lacus eu donec at varius vitae suscipit ornare consequat at dictumst nullam porta, tortor at ac.</p>
+                    <p className={"text-gray-300 max-w-[768px] text-center text-[4vw] md:text-xl opacity-0 group-[.isLoaded]/heroContainer:opacity-100 transition-opacity duration-300 delay-1200"}>{appConfig.landing.slogan}</p>
                     <div className={"flex flex-row justify-center items-center gap-4 opacity-0 -translate-y-8 group-[.isLoaded]/heroContainer:translate-y-0 group-[.isLoaded]/heroContainer:opacity-100 transition-all duration-300 delay-1200"}>
                         <Link href="/auth/signin">
                             <Button className={"text-white"}>Get Started</Button>

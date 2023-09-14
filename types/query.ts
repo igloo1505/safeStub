@@ -1,3 +1,4 @@
+import type { serverClient } from "#/trpc/serverClient"
 import { NFLTeamName } from "@prisma/client"
 import { Route } from "next"
 
@@ -13,3 +14,6 @@ export interface EventsSearchParams {
     query: string
     team: NFLTeamName
 }
+
+
+export type SingleEventReturned = Awaited<ReturnType<typeof serverClient.getEvent>>

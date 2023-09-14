@@ -261,7 +261,6 @@ model Location {
     userId    Int?     @unique
 }
 
-
 model User {
     id                      String                 @id @default(cuid())
     name                    String?
@@ -299,11 +298,12 @@ model Event {
 }
 
 model TicketGroup {
-    id             Int      @id @default(autoincrement())
-    Event          Event?   @relation(fields: [eventId], references: [id])
+    id             Int          @id @default(autoincrement())
+    Event          Event?       @relation(fields: [eventId], references: [id])
     eventId        Int?
     tickets        Ticket[]
-    seatedTogether Boolean
+    arenaSection   ArenaSection @relation(fields: [arenaSectionId], references: [id])
+    arenaSectionId Int
 }
 
 model Ticket {
@@ -317,11 +317,14 @@ model Ticket {
 }
 
 model ArenaSection {
-    id      Int      @id @default(autoincrement())
-    name    String
-    Arena   Arena    @relation(fields: [arenaId], references: [id])
-    arenaId Int
-    Ticket  Ticket[]
+    id          Int           @id @default(autoincrement())
+    name        String
+    Arena       Arena         @relation(fields: [arenaId], references: [id])
+    arenaId     Int
+    section     Int
+    row         Int
+    Ticket      Ticket[]
+    TicketGroup TicketGroup[]
 }
 
 model ArenaAmenities {
