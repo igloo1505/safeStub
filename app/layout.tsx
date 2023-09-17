@@ -27,7 +27,7 @@ const RootLayout = async ({
     console.log("darkMode: ", darkMode)
     return (
         <html lang="en"
-            className={clsx("group/html", darkMode && "dark", lexand.variable)}
+            className={clsx("group/html overscroll-y-none", darkMode && "dark", lexand.variable)}
             suppressHydrationWarning
         >
             <head>
