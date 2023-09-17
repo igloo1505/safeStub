@@ -52,7 +52,6 @@ const validationMap: { [k in NavbuttonType['authStatus']]: (s?: Session | null) 
 
 
 const NavbarButton = ({ item, pathname, session }: { session?: Session | null, item: NavbuttonType, pathname: string }) => {
-    console.log("session: ", session)
     if (!validationMap[item.authStatus](session)) {
         return null
     }

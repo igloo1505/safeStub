@@ -24,11 +24,10 @@ const RootLayout = async ({
 }) => {
     const cookieJar = cookies()
     const darkMode = cookieJar.has("darkMode")
-
+    console.log("darkMode: ", darkMode)
     return (
         <html lang="en"
-            /* className={clsx("group/html", darkMode && "dark")} */
-            className={clsx("group/html", "dark", lexand.variable)}
+            className={clsx("group/html", darkMode && "dark", lexand.variable)}
             suppressHydrationWarning
         >
             <head>
@@ -47,7 +46,7 @@ const RootLayout = async ({
                 <meta name="twitter:url" content="https://www.safestub.com" />
                 <meta name="twitter:title" content="Safe Stub" />
                 <meta name="twitter:description" content={appConfig.app.slogan} />
-                <meta name="twitter:image" content="https://www.safestub.com/appIcons/android-chrome-192x192.png" />
+                <meta name="twitter:image" content="https://www.safestub.com/appIcons/icon-512.png" />
                 <meta name="twitter:creator" content={appConfig.twitter.name} />
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content={appConfig.app.title} />
@@ -55,26 +54,10 @@ const RootLayout = async ({
                 <meta property="og:site_name" content={appConfig.app.title} />
                 <meta property="og:url" content={appConfig.app.url} />
                 <meta property="og:image" content={`${appConfig.app.url}/appIcons/apple-icon.png`} />
-                <link href="/appIcons/apple_splash_2048.png" sizes="2048x2732" rel="apple-touch-startup-image" />
-                <link href="/appIcons/apple_splash_1668.png" sizes="1668x2224" rel="apple-touch-startup-image" />
-                <link href="/appIcons/apple_splash_1536.png" sizes="1536x2048" rel="apple-touch-startup-image" />
-                <link href="/appIcons/apple_splash_1125.png" sizes="1125x2436" rel="apple-touch-startup-image" />
-                <link href="/appIcons/apple_splash_1242.png" sizes="1242x2208" rel="apple-touch-startup-image" />
-                <link href="/appIcons/apple_splash_750.png" sizes="750x1334" rel="apple-touch-startup-image" />
-                <link href="/appIcons/apple_splash_640.png" sizes="640x1136" rel="apple-touch-startup-image" />
-                <link rel="apple-touch-icon" sizes="57x57" href="/appIcons/apple-icon-57x57.png" />
-                <link rel="apple-touch-icon" sizes="60x60" href="/appIcons/apple-icon-60x60.png" />
-                <link rel="apple-touch-icon" sizes="72x72" href="/appIcons/apple-icon-72x72.png" />
-                <link rel="apple-touch-icon" sizes="76x76" href="/appIcons/apple-icon-76x76.png" />
-                <link rel="apple-touch-icon" sizes="114x114" href="/appIcons/apple-icon-114x114.png" />
-                <link rel="apple-touch-icon" sizes="120x120" href="/appIcons/apple-icon-120x120.png" />
-                <link rel="apple-touch-icon" sizes="144x144" href="/appIcons/apple-icon-144x144.png" />
-                <link rel="apple-touch-icon" sizes="152x152" href="/appIcons/apple-icon-152x152.png" />
-                <link rel="apple-touch-icon" sizes="180x180" href="/appIcons/apple-icon-180x180.png" />
-                <link rel="icon" type="image/png" sizes="192x192" href="/appIcons/android-icon-192x192.png" />
+                <link rel="icon" href="/appIcons/favicon.ico" sizes="any" />
+                <link rel="apple-touch-icon" href="/appIcons/apple-touch-icon.png" />
                 <link rel="manifest" href="/manifest.json" />
                 <meta name="msapplication-TileColor" content={appConfig.app.logoBg} />
-                <meta name="msapplication-TileImage" content="/appIcons/ms-icon-144x144.png" />
                 <meta
                     name='viewport'
                     content='minimum-scale=1, initial-scale=1, width=device-width, height=device-height'

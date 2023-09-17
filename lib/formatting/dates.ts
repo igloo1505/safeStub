@@ -27,3 +27,33 @@ export const formatDateLong = (dateString: string | Date | undefined) => {
     if (!dateString) return ""
     return dayjs(dateString).format("dddd, MMMM Do YYYY [at] h:mm A")
 }
+
+export const formatDateLongNoYear = (dateString: string | Date | undefined) => {
+    if (!dateString) return ""
+    return dayjs(dateString).format("dddd, MMMM Do [at] h:mm A")
+}
+
+export const dayOfWeek = (dateString: string | Date | undefined) => {
+    if (!dateString) return ""
+    return dayjs(dateString).format("dddd")
+}
+
+
+export const timeOfDay = (dateString: string | Date | undefined) => {
+    if (!dateString) return ""
+    return dayjs(dateString).format("h:mm A")
+}
+
+export const dayOfMonth = (dateString: string | Date | undefined) => {
+    if (!dateString) return ""
+    return dayjs(dateString).format("MMMM Do")
+}
+
+export const dateAndTime = (dateString: string | Date) => {
+    let d = dayjs(dateString)
+    return {
+        day: d.format("MMM D"),
+        dow: d.format("dddd"),
+        time: d.format("h:mm A")
+    }
+}

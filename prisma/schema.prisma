@@ -253,7 +253,7 @@ model Location {
     zip       Int?
     city      String
     cityId    Int?
-    state     USSTATE? @default(WI)
+    state     USSTATE?
     lat       Float?
     long      Float?
     country   Country  @default(US)

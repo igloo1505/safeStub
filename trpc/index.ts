@@ -5,6 +5,7 @@ import { gcmSubscriptionChangeSchema, settingsChangeSchema } from "#/zod/local/s
 import { validateGetUpcomingEvents } from "#/lib/events/getUpcomingEvents";
 import { paginateSchema } from "#/types/utility";
 import { UserAccessInput } from "#/types/auth";
+import { NFLTeamName } from "@prisma/client";
 
 
 
@@ -76,6 +77,51 @@ export const appRouter = router({
                 arena: true,
             }
         })
+    }),
+    getTeamSpecificGames: publicProcedure.input(z.nativeEnum(NFLTeamName)).query(async (opts) => {
+
+        let now = new Date()
+        let data = await prisma.team.findFirst({
+            where: {
+                name: opts.input
+            },
+            include: {
+                Event: {
+                    orderBy: {
+                        date: "asc"
+                    },
+                    where: {
+                        date: {
+                            gte: now
+                        }
+                    },
+                    include: {
+                        participants: true,
+                        tickets: true,
+                        ticketGroups: true,
+                        arena: {
+                            include: {
+                                location: true
+                            }
+                        },
+                        _count: true
+                    },
+                }
+            },
+
+        })
+        let futureEvents = data?.Event || []
+        let homeEvents = futureEvents.filter((e) => e.arenaId === data?.homeArenaId) || []
+        let _home = homeEvents.map((e) => e.tickets.length || 0)
+        return {
+            teamData: data,
+            totalEvents: futureEvents.length || 0,
+            totalHomeEvents: homeEvents.length,
+            totalAwayEvents: futureEvents.length - homeEvents.length,
+            totalTickets: futureEvents.map((a) => a.tickets.length).reduce((a, b) => a + b) || 0,
+            totalAwayTickets: futureEvents.filter((e) => e.arenaId !== data?.homeArenaId).map((e) => e.tickets.length).reduce((a, b) => a + b),
+            totalHomeTickets: _home.length > 0 ? _home.reduce((a, b) => a + b) : 0
+        }
     }),
     getUsers: publicProcedure.input(paginateSchema).query(async (opts) => {
         return await prisma.user.findMany({

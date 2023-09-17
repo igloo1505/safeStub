@@ -1,13 +1,15 @@
+import axios from "axios";
 import { isTablet } from "react-device-detect"
 export const htmlEm = () => {
     return document.querySelector("html")
 }
-export const toggleDarkmode = () => {
+export const toggleDarkmode = async () => {
     if (typeof window === "undefined") return;
     let em = htmlEm()
+    let willBeDark = !em?.classList.contains("dark")
     if (!em) return
     em.classList.toggle("dark")
-    // TODO: Handle cookie here too...
+    await axios({ method: "post", url: "/api/util/setDarkmode", data: { darkMode: willBeDark } })
 }
 
 
