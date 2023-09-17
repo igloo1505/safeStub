@@ -7,6 +7,8 @@ const Schema: z.ZodType<Prisma.ArenaSectionCreateManyInput> = z
     id: z.number().optional(),
     name: z.string(),
     arenaId: z.number(),
+    section: z.number(),
+    row: z.number(),
   })
   .strict();
 

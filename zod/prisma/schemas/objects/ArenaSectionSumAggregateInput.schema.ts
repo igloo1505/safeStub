@@ -6,6 +6,8 @@ const Schema: z.ZodType<Prisma.ArenaSectionSumAggregateInputType> = z
   .object({
     id: z.literal(true).optional(),
     arenaId: z.literal(true).optional(),
+    section: z.literal(true).optional(),
+    row: z.literal(true).optional(),
   })
   .strict();
 

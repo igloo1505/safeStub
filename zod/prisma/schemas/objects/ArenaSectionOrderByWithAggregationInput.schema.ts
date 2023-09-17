@@ -13,6 +13,8 @@ const Schema: z.ZodType<Prisma.ArenaSectionOrderByWithAggregationInput> = z
     id: z.lazy(() => SortOrderSchema).optional(),
     name: z.lazy(() => SortOrderSchema).optional(),
     arenaId: z.lazy(() => SortOrderSchema).optional(),
+    section: z.lazy(() => SortOrderSchema).optional(),
+    row: z.lazy(() => SortOrderSchema).optional(),
     _count: z
       .lazy(() => ArenaSectionCountOrderByAggregateInputObjectSchema)
       .optional(),

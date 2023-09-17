@@ -6,6 +6,8 @@ const Schema: z.ZodType<Prisma.ArenaSectionCreateManyArenaInput> = z
   .object({
     id: z.number().optional(),
     name: z.string(),
+    section: z.number(),
+    row: z.number(),
   })
   .strict();
 

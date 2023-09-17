@@ -19,6 +19,18 @@ const Schema: z.ZodType<Prisma.ArenaSectionUncheckedUpdateManyWithoutSectionsInp
           z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
         ])
         .optional(),
+      section: z
+        .union([
+          z.number(),
+          z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
+        ])
+        .optional(),
+      row: z
+        .union([
+          z.number(),
+          z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
+        ])
+        .optional(),
     })
     .strict();
 

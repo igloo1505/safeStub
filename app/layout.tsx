@@ -63,7 +63,7 @@ const RootLayout = async ({
                     content='minimum-scale=1, initial-scale=1, width=device-width, height=device-height'
                 />
             </head>
-            <body className={"group/body"}>
+            <body className={"group/body overscroll-y-none"}>
                 {children}
                 <Toaster />
             </body>

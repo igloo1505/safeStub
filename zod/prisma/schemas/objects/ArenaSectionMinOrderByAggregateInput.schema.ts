@@ -8,6 +8,8 @@ const Schema: z.ZodType<Prisma.ArenaSectionMinOrderByAggregateInput> = z
     id: z.lazy(() => SortOrderSchema).optional(),
     name: z.lazy(() => SortOrderSchema).optional(),
     arenaId: z.lazy(() => SortOrderSchema).optional(),
+    section: z.lazy(() => SortOrderSchema).optional(),
+    row: z.lazy(() => SortOrderSchema).optional(),
   })
   .strict();
 

@@ -7,6 +7,8 @@ const Schema: z.ZodType<Prisma.ArenaSectionMinAggregateInputType> = z
     id: z.literal(true).optional(),
     name: z.literal(true).optional(),
     arenaId: z.literal(true).optional(),
+    section: z.literal(true).optional(),
+    row: z.literal(true).optional(),
   })
   .strict();
 

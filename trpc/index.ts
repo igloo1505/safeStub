@@ -79,7 +79,6 @@ export const appRouter = router({
         })
     }),
     getTeamSpecificGames: publicProcedure.input(z.nativeEnum(NFLTeamName)).query(async (opts) => {
-
         let now = new Date()
         let data = await prisma.team.findFirst({
             where: {

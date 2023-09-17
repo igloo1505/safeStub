@@ -3,6 +3,7 @@ import PageContentWrapper from '#/components/layout/pageContentWrapper'
 import FeaturedSection from '#/components/pageSpecific/landing/featured/featuredSection'
 import Hero from '#/components/pageSpecific/landing/hero/hero'
 import "#/styles/landing.scss"
+import { Suspense } from 'react'
 
 
 const Home = async () => {
@@ -10,7 +11,9 @@ const Home = async () => {
     return (
         <PageContentWrapper noParent noNav>
             <main className={"w-full h-fit"}>
-                <Hero session={session} />
+                <Suspense>
+                    <Hero session={session} />
+                </Suspense>
                 <FeaturedSection />
             </main>
         </PageContentWrapper>

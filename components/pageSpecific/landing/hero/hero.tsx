@@ -11,7 +11,6 @@ import TwitterXSocialIcon from '#/assets/social/twitterX'
 import appConfig from "#/data/appConfig.json"
 import HeroAnimatedTitle from './heroAnimatedTitle'
 import Link from 'next/link'
-import { isMobile } from 'react-device-detect'
 
 
 
@@ -28,7 +27,7 @@ const ImageBg = () => {
                 alt="Arena Image"
                 fill
                 priority
-                className={"object-cover "}
+                className={"object-cover"}
             />
             <div className={"w-full h-full bg-black opacity-60 fixed"} />
         </div>

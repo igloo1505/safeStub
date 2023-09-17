@@ -6,7 +6,7 @@ const Schema: z.ZodType<Prisma.TicketGroupCreateManyInput> = z
   .object({
     id: z.number().optional(),
     eventId: z.number().optional().nullable(),
-    seatedTogether: z.boolean(),
+    arenaSectionId: z.number(),
   })
   .strict();
 

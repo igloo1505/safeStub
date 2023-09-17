@@ -35,15 +35,15 @@ const FeaturedEventCard = ({ className, event, ...props }: CardProps) => {
                 </div>
             </div>
             <CardHeader>
-                <CardTitle>{event.description}</CardTitle>
-                <CardDescription>{formatEventDate(event.date)}</CardDescription>
+                <CardTitle className={"w-full text-center md:text-start"}>{event.description}</CardTitle>
+                <CardDescription className={"w-full text-center md:text-center"}>{formatEventDate(event.date)}</CardDescription>
             </CardHeader>
             <CardContent className="grid gap-4">
-                <div>
+                <div className={"text-center md:text-start"}>
                     Vitae vel posuere, orci rhoncus tincidunt, ut amet malesuada molestie imperdiet id sed eleifend nullam curabitur arcu porttitor quam sed molestie neque semper cras ex dui
                 </div>
             </CardContent>
-            <CardFooter className={"h-fit"}>
+            <CardFooter className={"h-fit w-full md:w-fit flex flex-col justify-center items-center"}>
                 <Link href={`/event/${event.id}` as Route}>
                     <Button className="w-full md:w-fit">
                         <TicketIcon className="mr-2 h-4 w-4" /> Find my tickets

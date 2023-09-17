@@ -7,6 +7,8 @@ const Schema: z.ZodType<Prisma.ArenaSectionCountAggregateInputType> = z
     id: z.literal(true).optional(),
     name: z.literal(true).optional(),
     arenaId: z.literal(true).optional(),
+    section: z.literal(true).optional(),
+    row: z.literal(true).optional(),
     _all: z.literal(true).optional(),
   })
   .strict();

@@ -8,6 +8,7 @@ import { NFLTeamName } from "@prisma/client";
 interface RequestContext {
 }
 
+
 const router = createEdgeRouter<NextRequest, RequestContext>();
 
 

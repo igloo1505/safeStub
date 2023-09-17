@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { ArenaArgsObjectSchema } from './ArenaArgs.schema';
 import { TicketFindManySchema } from '../findManyTicket.schema';
+import { TicketGroupFindManySchema } from '../findManyTicketGroup.schema';
 import { ArenaSectionCountOutputTypeArgsObjectSchema } from './ArenaSectionCountOutputTypeArgs.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -12,6 +13,9 @@ const Schema: z.ZodType<Prisma.ArenaSectionInclude> = z
       .optional(),
     Ticket: z
       .union([z.boolean(), z.lazy(() => TicketFindManySchema)])
+      .optional(),
+    TicketGroup: z
+      .union([z.boolean(), z.lazy(() => TicketGroupFindManySchema)])
       .optional(),
     _count: z
       .union([

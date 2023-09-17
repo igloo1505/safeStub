@@ -35,6 +35,12 @@ const Schema: z.ZodType<Prisma.ArenaSectionScalarWhereWithAggregatesInput> = z
     arenaId: z
       .union([z.lazy(() => IntWithAggregatesFilterObjectSchema), z.number()])
       .optional(),
+    section: z
+      .union([z.lazy(() => IntWithAggregatesFilterObjectSchema), z.number()])
+      .optional(),
+    row: z
+      .union([z.lazy(() => IntWithAggregatesFilterObjectSchema), z.number()])
+      .optional(),
   })
   .strict();
 

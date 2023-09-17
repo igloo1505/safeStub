@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema';
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { TicketUncheckedUpdateManyWithoutArenaSectionNestedInputObjectSchema } from './TicketUncheckedUpdateManyWithoutArenaSectionNestedInput.schema';
+import { TicketGroupUncheckedUpdateManyWithoutArenaSectionNestedInputObjectSchema } from './TicketGroupUncheckedUpdateManyWithoutArenaSectionNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -19,10 +20,28 @@ const Schema: z.ZodType<Prisma.ArenaSectionUncheckedUpdateWithoutArenaInput> = z
         z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
+    section: z
+      .union([
+        z.number(),
+        z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
+    row: z
+      .union([
+        z.number(),
+        z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
     Ticket: z
       .lazy(
         () =>
           TicketUncheckedUpdateManyWithoutArenaSectionNestedInputObjectSchema,
+      )
+      .optional(),
+    TicketGroup: z
+      .lazy(
+        () =>
+          TicketGroupUncheckedUpdateManyWithoutArenaSectionNestedInputObjectSchema,
       )
       .optional(),
   })

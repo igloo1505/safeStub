@@ -1,10 +1,11 @@
 import { z } from 'zod';
 import { IntFilterObjectSchema } from './IntFilter.schema';
 import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
-import { BoolFilterObjectSchema } from './BoolFilter.schema';
 import { EventRelationFilterObjectSchema } from './EventRelationFilter.schema';
 import { EventWhereInputObjectSchema } from './EventWhereInput.schema';
 import { TicketListRelationFilterObjectSchema } from './TicketListRelationFilter.schema';
+import { ArenaSectionRelationFilterObjectSchema } from './ArenaSectionRelationFilter.schema';
+import { ArenaSectionWhereInputObjectSchema } from './ArenaSectionWhereInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -31,8 +32,8 @@ const Schema: z.ZodType<Prisma.TicketGroupWhereInput> = z
       .union([z.lazy(() => IntNullableFilterObjectSchema), z.number()])
       .optional()
       .nullable(),
-    seatedTogether: z
-      .union([z.lazy(() => BoolFilterObjectSchema), z.boolean()])
+    arenaSectionId: z
+      .union([z.lazy(() => IntFilterObjectSchema), z.number()])
       .optional(),
     Event: z
       .union([
@@ -42,6 +43,12 @@ const Schema: z.ZodType<Prisma.TicketGroupWhereInput> = z
       .optional()
       .nullable(),
     tickets: z.lazy(() => TicketListRelationFilterObjectSchema).optional(),
+    arenaSection: z
+      .union([
+        z.lazy(() => ArenaSectionRelationFilterObjectSchema),
+        z.lazy(() => ArenaSectionWhereInputObjectSchema),
+      ])
+      .optional(),
   })
   .strict();
 

@@ -4,6 +4,7 @@ import { StringFilterObjectSchema } from './StringFilter.schema';
 import { ArenaRelationFilterObjectSchema } from './ArenaRelationFilter.schema';
 import { ArenaWhereInputObjectSchema } from './ArenaWhereInput.schema';
 import { TicketListRelationFilterObjectSchema } from './TicketListRelationFilter.schema';
+import { TicketGroupListRelationFilterObjectSchema } from './TicketGroupListRelationFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -32,6 +33,10 @@ const Schema: z.ZodType<Prisma.ArenaSectionWhereInput> = z
     arenaId: z
       .union([z.lazy(() => IntFilterObjectSchema), z.number()])
       .optional(),
+    section: z
+      .union([z.lazy(() => IntFilterObjectSchema), z.number()])
+      .optional(),
+    row: z.union([z.lazy(() => IntFilterObjectSchema), z.number()]).optional(),
     Arena: z
       .union([
         z.lazy(() => ArenaRelationFilterObjectSchema),
@@ -39,6 +44,9 @@ const Schema: z.ZodType<Prisma.ArenaSectionWhereInput> = z
       ])
       .optional(),
     Ticket: z.lazy(() => TicketListRelationFilterObjectSchema).optional(),
+    TicketGroup: z
+      .lazy(() => TicketGroupListRelationFilterObjectSchema)
+      .optional(),
   })
   .strict();
 
