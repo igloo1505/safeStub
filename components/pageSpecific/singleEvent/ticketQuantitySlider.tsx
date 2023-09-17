@@ -9,7 +9,7 @@ interface TicketQuantitySliderProps {
 
 const TicketQuantitySlider = (props: TicketQuantitySliderProps) => {
     return (
-        <div className={"w-full h-fit flex flex-col justify-center items-center gap-2"}>
+        <div className={"w-5/6 md:w-full h-fit flex flex-col justify-center items-center gap-2"}>
             <Slider min={1} max={5} defaultValue={[1]} step={1} />
             <div className={"w-full flex flex-row justify-between items-center translate-x-2"}>
                 {["1", "2", "3", "4", "4+"].map((s) => {
