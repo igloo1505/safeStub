@@ -26,6 +26,7 @@ const EventTicketListItem = ({ item }: TicketListItemProps) => {
         svgEm?.classList.remove("focusSection")
         em?.classList.remove("indicateFocus")
     }
+
     return (
         <li className={"grid grid-cols-[1fr_auto_120px] px-4 py-4 place-items-center"} onMouseEnter={indicateSectionHover} onMouseLeave={removeHover}>
             <div className={"w-full flex flex-col justify-center items-start"}>

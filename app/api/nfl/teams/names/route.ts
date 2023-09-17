@@ -2,12 +2,10 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { createEdgeRouter } from "next-connect";
 import { prisma } from "#/db/db";
+import { NFLTeamName } from "@prisma/client";
 
 
 interface RequestContext {
-    // params: {
-    //     id: string
-    // }
 }
 
 const router = createEdgeRouter<NextRequest, RequestContext>();
@@ -21,7 +19,7 @@ router
                     name: true
                 }
             })
-            let teams = t.map((t) => t.name)
+            let teams = t.map((t: { name: NFLTeamName }) => t.name)
             return new NextResponse(JSON.stringify({ teams }));
         } catch (err) {
             console.error(err)

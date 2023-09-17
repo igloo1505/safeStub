@@ -246,6 +246,7 @@ model Team {
     logos             Logo[]
 }
 
+
 model Location {
     id        Int      @id @default(autoincrement())
     uniqueKey String?  @unique
@@ -297,6 +298,7 @@ model Event {
     participants Team[]
 }
 
+
 model TicketGroup {
     id             Int          @id @default(autoincrement())
     Event          Event?       @relation(fields: [eventId], references: [id])
@@ -305,6 +307,7 @@ model TicketGroup {
     arenaSection   ArenaSection @relation(fields: [arenaSectionId], references: [id])
     arenaSectionId Int
 }
+
 
 model Ticket {
     id             Int          @id @default(autoincrement())
@@ -315,6 +318,7 @@ model Ticket {
     arenaSection   ArenaSection @relation(fields: [arenaSectionId], references: [id])
     arenaSectionId Int
 }
+
 
 model ArenaSection {
     id          Int           @id @default(autoincrement())
