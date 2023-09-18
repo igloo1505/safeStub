@@ -3,6 +3,8 @@ import { TeamSpecificEventsType } from './teamSpecificEventList'
 import { dateAndTime, dayOfMonth, dayOfWeek, formatDateLongNoYear, timeOfDay } from '#/lib/formatting/dates'
 import { Button } from '#/components/ui/button'
 import clsx from 'clsx'
+import Link from 'next/link'
+import { Route } from 'next'
 
 
 
@@ -36,7 +38,9 @@ const TeamSpecificEventLi = ({ event, home }: TeamSpecificEventLiProps) => {
             </div>
             <div className={"my-2 md:my-0 grid grid-cols-2 gap-2 place-items-center md:gap-4 w-full h-full"}>
                 <Button className={"w-full sm:w-fit"} disabled={event.tickets.length === 0}>Buy Tickets</Button>
-                <Button className={"w-full sm:w-fit"}>Sell Tickets</Button>
+                <Link href={`/sell/${event.id}` as Route}>
+                    <Button className={"w-full sm:w-fit"}>Sell Tickets</Button>
+                </Link>
             </div>
         </li>
     )
