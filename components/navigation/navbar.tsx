@@ -100,7 +100,7 @@ const Navbar = ({ session, container, mobileContainer }: { session?: Session | n
                 </div>
                 <nav className={"w-fit flex flex-row justify-center items-center gap-4"}>
                     <NavbarSearchInput />
-                    <Button variant="ghost" role="button" onClick={toggleDarkmode} className={"p-2 rounded-[50%]"}>
+                    <Button variant="ghost" aria-label="dark mode" role="button" onClick={toggleDarkmode} className={"p-2 rounded-[50%]"}>
                         <MoonStar />
                     </Button>
                     <NavbarButton session={session} pathname={pathname} item={{
