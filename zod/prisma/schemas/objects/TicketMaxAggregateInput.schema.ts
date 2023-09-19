@@ -7,7 +7,9 @@ const Schema: z.ZodType<Prisma.TicketMaxAggregateInputType> = z
     id: z.literal(true).optional(),
     eventId: z.literal(true).optional(),
     ticketGroupId: z.literal(true).optional(),
-    arenaSectionId: z.literal(true).optional(),
+    section: z.literal(true).optional(),
+    row: z.literal(true).optional(),
+    seat: z.literal(true).optional(),
   })
   .strict();
 

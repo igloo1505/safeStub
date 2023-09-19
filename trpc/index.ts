@@ -6,6 +6,8 @@ import { validateGetUpcomingEvents } from "#/lib/events/getUpcomingEvents";
 import { paginateSchema } from "#/types/utility";
 import { UserAccessInput } from "#/types/auth";
 import { NFLTeamName } from "@prisma/client";
+import { saleFormSchema } from "#/components/pageSpecific/sell/form/saleFormContext";
+import { formatTicketGroupCreate } from "#/lib/formatting/ticketGroupCreate";
 
 
 
@@ -163,24 +165,37 @@ export const appRouter = router({
                 tickets: {
                     take: opts.input.take,
                     skip: opts.input.skip,
-                    include: {
-                        arenaSection: true,
-                    }
                 },
                 ticketGroups: {
                     take: opts.input.take,
                     skip: opts.input.skip,
                     include: {
-                        tickets: {
-                            include: {
-                                arenaSection: true
-                            }
-                        }
+                        tickets: true
                     }
                 },
                 tags: true,
                 participants: true,
                 amenities: true
+            }
+        })
+    }),
+    createTicketGroup: publicProcedure.input(saleFormSchema).mutation(async (opts) => {
+        const formattedData = formatTicketGroupCreate(opts.input)
+        return await prisma.ticketGroup.create({
+            data: formattedData,
+            select: {
+                id: true
+            }
+        })
+    }),
+    getTicketGroup: publicProcedure.input(z.number().int()).query(async (opts) => {
+        return await prisma.ticketGroup.findFirst({
+            where: {
+                id: opts.input
+            },
+            include: {
+                tickets: true,
+                Event: true
             }
         })
     })

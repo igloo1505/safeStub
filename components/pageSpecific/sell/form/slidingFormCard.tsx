@@ -11,16 +11,15 @@ interface SlidingFormContainerProps {
     children: React.ReactNode
     step: number
     anchor?: boolean
-    maxStep: number
     handleSubmit?: () => void
 }
 
 
 export const maxStepSale = 3
 
-const SlidingFormContainer = ({ children, handleSubmit, step, maxStep, anchor }: SlidingFormContainerProps) => {
+const SlidingFormCard = ({ children, handleSubmit, step, anchor }: SlidingFormContainerProps) => {
     const dispatch = useContext(SlidingFormDispatchContext)
-    const { step: currentStep } = useContext(SlidingFormContext)
+    const { step: currentStep, maxStep } = useContext(SlidingFormContext)
 
     const stepForward = () => {
         if (currentStep === maxStep && handleSubmit) {
@@ -34,8 +33,9 @@ const SlidingFormContainer = ({ children, handleSubmit, step, maxStep, anchor }:
         if (currentStep === 1) return
         dispatch({ type: "decrement" })
     }
+
     return (
-        <div className={clsx("w-fit h-fit top-0 right-0 bottom-0 bg-card text-foreground transition-all duration-300 px-4 py-6 rounded-lg border border-border flex flex-col justify-center items-center gap-4 left-[50%]", stepMap[step], anchor ? "inline-block anchor" : "absolute")}
+        <div className={clsx("w-fit h-fit top-0 right-0 bottom-0 opacity-0 scale-0 bg-card text-foreground transition-all duration-300 px-4 pb-6 rounded-lg border border-border flex flex-col justify-center items-center gap-4 left-[50%]", stepMap[step], anchor ? "inline-block anchor" : "absolute")}
         >
             {children}
             <div className={"w-full h-fit flex flex-row gap-4 justify-end items-center"}>
@@ -49,7 +49,7 @@ const SlidingFormContainer = ({ children, handleSubmit, step, maxStep, anchor }:
 }
 
 
-SlidingFormContainer.displayName = "SlidingFormContainer"
+SlidingFormCard.displayName = "SlidingFormContainer"
 
 
-export default SlidingFormContainer;
+export default SlidingFormCard;

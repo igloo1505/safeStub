@@ -3,7 +3,7 @@ import { SortOrderSchema } from '../enums/SortOrder.schema';
 import { SortOrderInputObjectSchema } from './SortOrderInput.schema';
 import { EventOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './EventOrderByWithRelationAndSearchRelevanceInput.schema';
 import { TicketOrderByRelationAggregateInputObjectSchema } from './TicketOrderByRelationAggregateInput.schema';
-import { ArenaSectionOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './ArenaSectionOrderByWithRelationAndSearchRelevanceInput.schema';
+import { TicketGroupOrderByRelevanceInputObjectSchema } from './TicketGroupOrderByRelevanceInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -17,18 +17,15 @@ const Schema: z.ZodType<Prisma.TicketGroupOrderByWithRelationAndSearchRelevanceI
           z.lazy(() => SortOrderInputObjectSchema),
         ])
         .optional(),
-      arenaSectionId: z.lazy(() => SortOrderSchema).optional(),
+      confirmationId: z.lazy(() => SortOrderSchema).optional(),
       Event: z
         .lazy(() => EventOrderByWithRelationAndSearchRelevanceInputObjectSchema)
         .optional(),
       tickets: z
         .lazy(() => TicketOrderByRelationAggregateInputObjectSchema)
         .optional(),
-      arenaSection: z
-        .lazy(
-          () =>
-            ArenaSectionOrderByWithRelationAndSearchRelevanceInputObjectSchema,
-        )
+      _relevance: z
+        .lazy(() => TicketGroupOrderByRelevanceInputObjectSchema)
         .optional(),
     })
     .strict();

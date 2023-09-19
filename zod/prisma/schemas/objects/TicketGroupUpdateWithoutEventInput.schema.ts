@@ -1,19 +1,19 @@
 import { z } from 'zod';
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { TicketUpdateManyWithoutTicketGroupNestedInputObjectSchema } from './TicketUpdateManyWithoutTicketGroupNestedInput.schema';
-import { ArenaSectionUpdateOneRequiredWithoutTicketGroupNestedInputObjectSchema } from './ArenaSectionUpdateOneRequiredWithoutTicketGroupNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
 const Schema: z.ZodType<Prisma.TicketGroupUpdateWithoutEventInput> = z
   .object({
+    confirmationId: z
+      .union([
+        z.string(),
+        z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
     tickets: z
       .lazy(() => TicketUpdateManyWithoutTicketGroupNestedInputObjectSchema)
-      .optional(),
-    arenaSection: z
-      .lazy(
-        () =>
-          ArenaSectionUpdateOneRequiredWithoutTicketGroupNestedInputObjectSchema,
-      )
       .optional(),
   })
   .strict();

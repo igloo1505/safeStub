@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import { EventFindManySchema } from '../findManyEvent.schema';
 import { LocationArgsObjectSchema } from './LocationArgs.schema';
-import { ArenaSectionFindManySchema } from '../findManyArenaSection.schema';
 import { ArenaAmenitiesArgsObjectSchema } from './ArenaAmenitiesArgs.schema';
 import { ImageArgsObjectSchema } from './ImageArgs.schema';
 import { TeamFindManySchema } from '../findManyTeam.schema';
@@ -19,9 +18,6 @@ const Schema: z.ZodType<Prisma.ArenaSelect> = z
       .optional(),
     location: z
       .union([z.boolean(), z.lazy(() => LocationArgsObjectSchema)])
-      .optional(),
-    sections: z
-      .union([z.boolean(), z.lazy(() => ArenaSectionFindManySchema)])
       .optional(),
     amenities: z
       .union([z.boolean(), z.lazy(() => ArenaAmenitiesArgsObjectSchema)])

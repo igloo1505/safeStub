@@ -7,7 +7,7 @@ const Schema: z.ZodType<Prisma.TicketGroupUncheckedCreateWithoutTicketsInput> =
     .object({
       id: z.number().optional(),
       eventId: z.number().optional().nullable(),
-      arenaSectionId: z.number(),
+      confirmationId: z.string(),
     })
     .strict();
 

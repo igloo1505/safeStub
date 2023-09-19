@@ -6,3 +6,6 @@ import urlencode from 'urlencode';
 export const formatGoogleMapsQuery = (location: Location) => {
     return urlencode(`${location.street ? `${location.street},` : ""}${location.city ? `${location.city},` : ""}${location.state ? `${location.state},` : ""}${location.zip ? `${location.zip}` : ""}`)
 }
+
+
+

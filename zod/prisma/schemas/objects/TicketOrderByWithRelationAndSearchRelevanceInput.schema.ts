@@ -3,7 +3,7 @@ import { SortOrderSchema } from '../enums/SortOrder.schema';
 import { SortOrderInputObjectSchema } from './SortOrderInput.schema';
 import { EventOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './EventOrderByWithRelationAndSearchRelevanceInput.schema';
 import { TicketGroupOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './TicketGroupOrderByWithRelationAndSearchRelevanceInput.schema';
-import { ArenaSectionOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './ArenaSectionOrderByWithRelationAndSearchRelevanceInput.schema';
+import { TicketOrderByRelevanceInputObjectSchema } from './TicketOrderByRelevanceInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -23,7 +23,9 @@ const Schema: z.ZodType<Prisma.TicketOrderByWithRelationAndSearchRelevanceInput>
           z.lazy(() => SortOrderInputObjectSchema),
         ])
         .optional(),
-      arenaSectionId: z.lazy(() => SortOrderSchema).optional(),
+      section: z.lazy(() => SortOrderSchema).optional(),
+      row: z.lazy(() => SortOrderSchema).optional(),
+      seat: z.lazy(() => SortOrderSchema).optional(),
       Event: z
         .lazy(() => EventOrderByWithRelationAndSearchRelevanceInputObjectSchema)
         .optional(),
@@ -33,11 +35,8 @@ const Schema: z.ZodType<Prisma.TicketOrderByWithRelationAndSearchRelevanceInput>
             TicketGroupOrderByWithRelationAndSearchRelevanceInputObjectSchema,
         )
         .optional(),
-      arenaSection: z
-        .lazy(
-          () =>
-            ArenaSectionOrderByWithRelationAndSearchRelevanceInputObjectSchema,
-        )
+      _relevance: z
+        .lazy(() => TicketOrderByRelevanceInputObjectSchema)
         .optional(),
     })
     .strict();

@@ -7,7 +7,6 @@ const Schema: z.ZodType<Prisma.TicketGroupAvgOrderByAggregateInput> = z
   .object({
     id: z.lazy(() => SortOrderSchema).optional(),
     eventId: z.lazy(() => SortOrderSchema).optional(),
-    arenaSectionId: z.lazy(() => SortOrderSchema).optional(),
   })
   .strict();
 

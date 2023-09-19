@@ -3,7 +3,6 @@ import { SortOrderSchema } from '../enums/SortOrder.schema';
 import { SortOrderInputObjectSchema } from './SortOrderInput.schema';
 import { EventOrderByRelationAggregateInputObjectSchema } from './EventOrderByRelationAggregateInput.schema';
 import { LocationOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './LocationOrderByWithRelationAndSearchRelevanceInput.schema';
-import { ArenaSectionOrderByRelationAggregateInputObjectSchema } from './ArenaSectionOrderByRelationAggregateInput.schema';
 import { ArenaAmenitiesOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './ArenaAmenitiesOrderByWithRelationAndSearchRelevanceInput.schema';
 import { ImageOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './ImageOrderByWithRelationAndSearchRelevanceInput.schema';
 import { TeamOrderByRelationAggregateInputObjectSchema } from './TeamOrderByRelationAggregateInput.schema';
@@ -37,9 +36,6 @@ const Schema: z.ZodType<Prisma.ArenaOrderByWithRelationAndSearchRelevanceInput> 
         .lazy(
           () => LocationOrderByWithRelationAndSearchRelevanceInputObjectSchema,
         )
-        .optional(),
-      sections: z
-        .lazy(() => ArenaSectionOrderByRelationAggregateInputObjectSchema)
         .optional(),
       amenities: z
         .lazy(

@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { IntWithAggregatesFilterObjectSchema } from './IntWithAggregatesFilter.schema';
 import { IntNullableWithAggregatesFilterObjectSchema } from './IntNullableWithAggregatesFilter.schema';
+import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -39,8 +40,14 @@ const Schema: z.ZodType<Prisma.TicketScalarWhereWithAggregatesInput> = z
       ])
       .optional()
       .nullable(),
-    arenaSectionId: z
-      .union([z.lazy(() => IntWithAggregatesFilterObjectSchema), z.number()])
+    section: z
+      .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
+      .optional(),
+    row: z
+      .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
+      .optional(),
+    seat: z
+      .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
       .optional(),
   })
   .strict();

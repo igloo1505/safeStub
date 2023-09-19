@@ -1,7 +1,7 @@
 "use client"
 import { createContext } from "react";
 
-export const defaultStepState = { step: 1, maxStep: 0, id: "" }
+export const defaultStepState = { step: 1, maxStep: 0 }
 
 type StepActions = "increment" | "decrement"
 
@@ -12,7 +12,7 @@ export const stepReducer = (state: typeof defaultStepState, action: ActionType) 
         case 'increment': {
             return {
                 ...state,
-                step: state.step === state.maxStep ? state.step : state.step + 1
+                step: state.step >= state.maxStep ? state.maxStep : state.step + 1
             }
         }
         case 'decrement': {

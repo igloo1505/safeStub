@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import SlidingFormContainer, { maxStepSale } from './slidingFormCard';
+import SlidingFormCard, { maxStepSale } from './slidingFormCard';
 import { SingleEventReturned } from '#/types/query';
 import { formatLocation } from '#/lib/formatting/teamNames';
 import dayjs from 'dayjs';
@@ -13,15 +13,37 @@ dayjs.extend(advancedFormat)
 
 export const SaleCardTitle = ({ children }: { children: string }) => {
     return <div className={"w-full flex flex-col justify-center items-center"}>
-        <h2 className={"text-2xl text-foreground tracking-wide text-center md:text-start"}>{children}</h2>
+        <h2 className={"text-2xl my-4 text-foreground tracking-wide text-center md:text-start"}>{children}</h2>
         <Separator />
     </div>
 }
 
 
+
+
 interface SaleFormStepOneProps {
     event: NonNullable<SingleEventReturned>
     form: SaleFormType
+}
+
+
+export const SaleCardEventInfo = ({ event }: { event: SaleFormStepOneProps['event'] }) => {
+    return (
+        <>
+            <div className={"w-full flex flex-col-reverse md:flex-row md:gap-4"}>
+                <div className={"w-full flex flex-col justify-start items-start whitespace-nowrap"}>
+                    <div className={"font-semibold"}>{event.title}</div>
+                    <div className={"text-sm text-foreground/80"}>{dayjs(event.date).format("MMM Do")}</div>
+                    <div className={"text-sm text-foreground/80"}>{dayjs(event.date).format("dddd [at] h:mm A")}</div>
+                </div>
+                <div className={"w-full flex flex-col justify-start items-start"}>
+                    <div className={"whitespace-break-spaces sm:whitespace-nowrap"}>{event.description}</div>
+                    <div className={"text-sm text-foreground/80"}>{formatLocation(event.arena.location)}</div>
+                </div>
+            </div>
+            <Separator />
+        </>
+    )
 }
 
 const SaleFormStepOne = ({ event, form }: SaleFormStepOneProps) => {
@@ -33,19 +55,9 @@ const SaleFormStepOne = ({ event, form }: SaleFormStepOneProps) => {
     }, [quant])
 
     return (
-        <SlidingFormContainer step={1} maxStep={maxStepSale} anchor>
+        <SlidingFormCard step={1} anchor>
             <SaleCardTitle>Tell Us About Your Tickets</SaleCardTitle>
-            <div className={"w-full flex flex-col-reverse md:flex-row md:gap-4"}>
-                <div className={"w-full flex flex-col justify-start items-start"}>
-                    <div className={"font-semibold"}>{event.title}</div>
-                    <div className={"text-sm text-foreground/80"}>{dayjs(event.date).format("MMM Do")}</div>
-                    <div className={"text-sm text-foreground/80"}>{dayjs(event.date).format("dddd [at] h:mm A")}</div>
-                </div>
-                <div className={"w-full flex flex-col justify-start items-start"}>
-                    <div className={"whitespace-break-spaces sm:whitespace-nowrap"}>{event.description}</div>
-                    <div className={"text-sm text-foreground/80"}>{formatLocation(event.arena.location)}</div>
-                </div>
-            </div>
+            <SaleCardEventInfo event={event} />
             <div className={"w-full flex flex-row justify-start items-start"}>
                 <FormField
                     control={form.control}
@@ -61,7 +73,7 @@ const SaleFormStepOne = ({ event, form }: SaleFormStepOneProps) => {
                     )}
                 />
             </div>
-        </SlidingFormContainer>
+        </SlidingFormCard>
     )
 }
 

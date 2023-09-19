@@ -16,8 +16,9 @@ generator prismaClassGenerator {
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+    provider  = "postgresql"
+    url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+    directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 enum VERIFICATIONSTATUS {
@@ -246,7 +247,6 @@ model Team {
     logos             Logo[]
 }
 
-
 model Location {
     id        Int      @id @default(autoincrement())
     uniqueKey String?  @unique
@@ -298,37 +298,23 @@ model Event {
     participants Team[]
 }
 
-
 model TicketGroup {
-    id             Int          @id @default(autoincrement())
-    Event          Event?       @relation(fields: [eventId], references: [id])
+    id             Int      @id @default(autoincrement())
+    Event          Event?   @relation(fields: [eventId], references: [id])
     eventId        Int?
     tickets        Ticket[]
-    arenaSection   ArenaSection @relation(fields: [arenaSectionId], references: [id])
-    arenaSectionId Int
+    confirmationId String   @unique
 }
-
 
 model Ticket {
-    id             Int          @id @default(autoincrement())
-    Event          Event?       @relation(fields: [eventId], references: [id])
-    eventId        Int?
-    TicketGroup    TicketGroup? @relation(fields: [ticketGroupId], references: [id])
-    ticketGroupId  Int?
-    arenaSection   ArenaSection @relation(fields: [arenaSectionId], references: [id])
-    arenaSectionId Int
-}
-
-
-model ArenaSection {
-    id          Int           @id @default(autoincrement())
-    name        String
-    Arena       Arena         @relation(fields: [arenaId], references: [id])
-    arenaId     Int
-    section     Int
-    row         Int
-    Ticket      Ticket[]
-    TicketGroup TicketGroup[]
+    id            Int          @id @default(autoincrement())
+    Event         Event?       @relation(fields: [eventId], references: [id])
+    eventId       Int?
+    TicketGroup   TicketGroup? @relation(fields: [ticketGroupId], references: [id])
+    ticketGroupId Int?
+    section       String
+    row           String
+    seat          String
 }
 
 model ArenaAmenities {
@@ -364,7 +350,6 @@ model Arena {
     name             String         @unique
     events           Event[]
     location         Location       @relation(fields: [locationId], references: [id])
-    sections         ArenaSection[]
     amenities        ArenaAmenities @relation(fields: [arenaAmenitiesId], references: [id])
     sectionImage     Image?         @relation(fields: [sectionImageId], references: [id])
     arenaAmenitiesId Int

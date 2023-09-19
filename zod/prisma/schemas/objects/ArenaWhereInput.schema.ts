@@ -6,7 +6,6 @@ import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
 import { EventListRelationFilterObjectSchema } from './EventListRelationFilter.schema';
 import { LocationRelationFilterObjectSchema } from './LocationRelationFilter.schema';
 import { LocationWhereInputObjectSchema } from './LocationWhereInput.schema';
-import { ArenaSectionListRelationFilterObjectSchema } from './ArenaSectionListRelationFilter.schema';
 import { ArenaAmenitiesRelationFilterObjectSchema } from './ArenaAmenitiesRelationFilter.schema';
 import { ArenaAmenitiesWhereInputObjectSchema } from './ArenaAmenitiesWhereInput.schema';
 import { ImageRelationFilterObjectSchema } from './ImageRelationFilter.schema';
@@ -57,9 +56,6 @@ const Schema: z.ZodType<Prisma.ArenaWhereInput> = z
         z.lazy(() => LocationRelationFilterObjectSchema),
         z.lazy(() => LocationWhereInputObjectSchema),
       ])
-      .optional(),
-    sections: z
-      .lazy(() => ArenaSectionListRelationFilterObjectSchema)
       .optional(),
     amenities: z
       .union([

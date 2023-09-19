@@ -15,6 +15,7 @@ router
         try {
             const { darkMode } = await req.json()
             let res = new NextResponse(JSON.stringify({}), getCorsHeaders(req, 200))
+            console.log("darkMode!!!: ", darkMode)
             if (darkMode) {
                 res.cookies.set("darkMode", "true")
             } else {

@@ -3,7 +3,6 @@ import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOpera
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
-import { ArenaSectionUncheckedUpdateManyWithoutArenaNestedInputObjectSchema } from './ArenaSectionUncheckedUpdateManyWithoutArenaNestedInput.schema';
 import { TeamUncheckedUpdateManyWithoutHomeArenaNestedInputObjectSchema } from './TeamUncheckedUpdateManyWithoutHomeArenaNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -48,12 +47,6 @@ const Schema: z.ZodType<Prisma.ArenaUncheckedUpdateWithoutEventsInput> = z
       ])
       .optional()
       .nullable(),
-    sections: z
-      .lazy(
-        () =>
-          ArenaSectionUncheckedUpdateManyWithoutArenaNestedInputObjectSchema,
-      )
-      .optional(),
     homeTeams: z
       .lazy(
         () => TeamUncheckedUpdateManyWithoutHomeArenaNestedInputObjectSchema,

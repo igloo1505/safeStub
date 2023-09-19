@@ -15,9 +15,7 @@ interface SlidingFormContainerProps {
 
 
 const SlidingFormContainer = ({ children, maxStep }: SlidingFormContainerProps) => {
-    const id = useId()
-    /* const step_ = useContext(SlidingFormContext) */
-    const [activeStep, dispatch] = useReducer(stepReducer, { ...defaultStepState, id, maxStep });
+    const [activeStep, dispatch] = useReducer(stepReducer, { ...defaultStepState, maxStep });
     return (
         <div className={`w-fit h-fit flex flex-col gap-6 justify-between items-center group/slidingFormStepContainer step-${activeStep.step}`} id={"sale-page-form-step-container"}>
             <Progress value={(activeStep.step / maxStep) * 100} className={"max-w-[300px]"} />

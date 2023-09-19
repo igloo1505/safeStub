@@ -24,7 +24,9 @@ const Schema: z.ZodType<Prisma.TicketOrderByWithAggregationInput> = z
         z.lazy(() => SortOrderInputObjectSchema),
       ])
       .optional(),
-    arenaSectionId: z.lazy(() => SortOrderSchema).optional(),
+    section: z.lazy(() => SortOrderSchema).optional(),
+    row: z.lazy(() => SortOrderSchema).optional(),
+    seat: z.lazy(() => SortOrderSchema).optional(),
     _count: z
       .lazy(() => TicketCountOrderByAggregateInputObjectSchema)
       .optional(),

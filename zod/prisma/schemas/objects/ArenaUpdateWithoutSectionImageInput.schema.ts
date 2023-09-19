@@ -3,7 +3,6 @@ import { NullableStringFieldUpdateOperationsInputObjectSchema } from './Nullable
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { EventUpdateManyWithoutArenaNestedInputObjectSchema } from './EventUpdateManyWithoutArenaNestedInput.schema';
 import { LocationUpdateOneRequiredWithoutArenaNestedInputObjectSchema } from './LocationUpdateOneRequiredWithoutArenaNestedInput.schema';
-import { ArenaSectionUpdateManyWithoutArenaNestedInputObjectSchema } from './ArenaSectionUpdateManyWithoutArenaNestedInput.schema';
 import { ArenaAmenitiesUpdateOneRequiredWithoutArenaNestedInputObjectSchema } from './ArenaAmenitiesUpdateOneRequiredWithoutArenaNestedInput.schema';
 import { TeamUpdateManyWithoutHomeArenaNestedInputObjectSchema } from './TeamUpdateManyWithoutHomeArenaNestedInput.schema';
 
@@ -29,9 +28,6 @@ const Schema: z.ZodType<Prisma.ArenaUpdateWithoutSectionImageInput> = z
       .optional(),
     location: z
       .lazy(() => LocationUpdateOneRequiredWithoutArenaNestedInputObjectSchema)
-      .optional(),
-    sections: z
-      .lazy(() => ArenaSectionUpdateManyWithoutArenaNestedInputObjectSchema)
       .optional(),
     amenities: z
       .lazy(

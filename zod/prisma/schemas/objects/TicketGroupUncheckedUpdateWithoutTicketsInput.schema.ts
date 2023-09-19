@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema';
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -20,10 +21,10 @@ const Schema: z.ZodType<Prisma.TicketGroupUncheckedUpdateWithoutTicketsInput> =
         ])
         .optional()
         .nullable(),
-      arenaSectionId: z
+      confirmationId: z
         .union([
-          z.number(),
-          z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
+          z.string(),
+          z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
         ])
         .optional(),
     })

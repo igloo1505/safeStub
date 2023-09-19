@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import { EventArgsObjectSchema } from './EventArgs.schema';
 import { TicketGroupArgsObjectSchema } from './TicketGroupArgs.schema';
-import { ArenaSectionArgsObjectSchema } from './ArenaSectionArgs.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -16,10 +15,9 @@ const Schema: z.ZodType<Prisma.TicketSelect> = z
       .union([z.boolean(), z.lazy(() => TicketGroupArgsObjectSchema)])
       .optional(),
     ticketGroupId: z.boolean().optional(),
-    arenaSection: z
-      .union([z.boolean(), z.lazy(() => ArenaSectionArgsObjectSchema)])
-      .optional(),
-    arenaSectionId: z.boolean().optional(),
+    section: z.boolean().optional(),
+    row: z.boolean().optional(),
+    seat: z.boolean().optional(),
   })
   .strict();
 

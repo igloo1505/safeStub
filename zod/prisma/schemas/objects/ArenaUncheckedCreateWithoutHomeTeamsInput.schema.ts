@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { EventUncheckedCreateNestedManyWithoutArenaInputObjectSchema } from './EventUncheckedCreateNestedManyWithoutArenaInput.schema';
-import { ArenaSectionUncheckedCreateNestedManyWithoutArenaInputObjectSchema } from './ArenaSectionUncheckedCreateNestedManyWithoutArenaInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -14,12 +13,6 @@ const Schema: z.ZodType<Prisma.ArenaUncheckedCreateWithoutHomeTeamsInput> = z
     sectionImageId: z.number().optional().nullable(),
     events: z
       .lazy(() => EventUncheckedCreateNestedManyWithoutArenaInputObjectSchema)
-      .optional(),
-    sections: z
-      .lazy(
-        () =>
-          ArenaSectionUncheckedCreateNestedManyWithoutArenaInputObjectSchema,
-      )
       .optional(),
   })
   .strict();
