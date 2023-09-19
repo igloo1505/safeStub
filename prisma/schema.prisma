@@ -3,6 +3,7 @@ generator client {
     previewFeatures = ["fullTextSearch"]
 }
 
+
 generator zod {
     provider          = "prisma-zod-generator"
     output            = "../zod/prisma"
