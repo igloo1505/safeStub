@@ -32,7 +32,7 @@ export const getEventsSearchResult = async (props: EventsSearchParams) => {
             title: true,
             description: true,
             arena: {
-                select: {
+                include: {
                     location: true
                 }
             },

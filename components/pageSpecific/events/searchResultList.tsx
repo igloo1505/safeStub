@@ -9,12 +9,11 @@ interface EventSearchResultListProps {
 }
 
 const EventSearchResultList = ({ events }: EventSearchResultListProps) => {
+    console.log("events: ", events)
     return (
-        <div>
-            <ul className={""}>
-                {events.map((event, i) => <SearchResultListItem event={event} key={`event-${i}`} />)}
-            </ul>
-        </div>
+        <ul className={""}>
+            {events.map((event, i) => <SearchResultListItem event={event} key={`event-${i}`} />)}
+        </ul>
     )
 }
 

@@ -9,15 +9,15 @@ interface SearchResultListItemProps {
 }
 
 const SearchResultListItem = ({ event }: SearchResultListItemProps) => {
+    console.log("event: ", event)
     return (
-        <li className={"w-full"}>
+        <li className={"w-full grid grid-cols-[auto_1fr_auto] gap-4"}>
             <div className={"w-fit flex flex-col justify-center items-start"}>
                 <div className={""}>{day(event.date).format("MMMM Do")}</div>
                 <div className={""}>{day(event.date).format("dddd [at] h:mm A")}</div>
             </div>
             <div className={"flex flex-col  justify-center items-start"}>
                 <div className={""}>{event.description}</div>
-                <div className={""}>{formatLocation(event.location)}</div>
             </div>
         </li>
     )

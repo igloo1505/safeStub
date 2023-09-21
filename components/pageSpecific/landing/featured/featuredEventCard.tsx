@@ -1,4 +1,4 @@
-import { BellRing, Check, TicketIcon } from "lucide-react"
+import { TicketIcon } from "lucide-react"
 import { cn } from "#/utils/universal"
 import { Button } from "#/components/ui/button"
 import {
@@ -36,7 +36,7 @@ const FeaturedEventCard = ({ className, event, ...props }: CardProps) => {
             </div>
             <CardHeader>
                 <CardTitle className={"w-full text-center md:text-start"}>{event.description}</CardTitle>
-                <CardDescription className={"w-full text-center md:text-center"}>{formatEventDate(event.date)}</CardDescription>
+                <CardDescription className={"w-full text-center md:text-start"}>{formatEventDate(event.date)}</CardDescription>
             </CardHeader>
             <CardContent className="grid gap-4">
                 <div className={"text-center md:text-start"}>
