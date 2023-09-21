@@ -1,3 +1,4 @@
+import DynamicIcon from '#/components/ui/dynamicIcon'
 import clsx from 'clsx'
 import { StarIcon, StarHalfIcon } from 'lucide-react'
 import React from 'react'
@@ -28,22 +29,16 @@ const AboutUsStats = (props: AboutUsStatsProps) => {
     return (
         <div className={clsx("gap-4 mt-8 overflow-hidden", props.container && props.container)}>
             <AboutUsStat
-                value={"100k"}
-                text={"Pellentesque dolor urna eu nibh sem porta, est efficitur suspendisse vivamus dictum sem diam porta."}
+                value={<div className={"flex flex-row gap-1 justify-start items-center"}>100% Guaranteed</div>}
+                text={"We offer a money back guarantee on all purchases"}
             />
             <AboutUsStat
-                value={<div className={"flex flex-row justify-start items-center"}>
-                    <StarIcon className="w-auto h-[40px]" />
-                    <StarIcon className="w-auto h-[40px]" />
-                    <StarIcon className="w-auto h-[40px]" />
-                    <StarIcon className="w-auto h-[40px]" />
-                    <StarHalfIcon className="w-auto h-[40px]" />
-                </div>}
-                text={"Pellentesque dolor urna eu nibh sem porta, est efficitur suspendisse vivamus dictum sem diam porta."}
+                value={"Convenience"}
+                text={"You can find and buy tickets to events in seconds"}
             />
             <AboutUsStat
-                value={"9/10"}
-                text={"Pellentesque dolor urna eu nibh sem porta, est efficitur suspendisse vivamus dictum sem diam porta."}
+                value={"Fair Fees"}
+                text={"We believe in transparent pricing and ensure our fees are reasonable, unlike the big guys."}
             />
         </div>
     )

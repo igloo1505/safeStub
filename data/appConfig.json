@@ -23,5 +23,16 @@
   "facebook": {
     "name": "@safestub",
     "url": "https://www.facebook.com"
+  },
+  "aboutUs": {
+    "hero": {
+      "title": "SafeStub: The safest, cheapest and most convenient way to buy and sell tickets to live events.",
+      "body": [
+        "Safestub is a new ticket marketplace that provides a safe, convenient and afofrdable way for fans to buy and sell tickets to sports games, concerts, and more. We use the latest security technologies to not only authenticate each user tof our marketplace but also to protect our user's data and transactions.",
+        "We believe that everyone should have the opportunity to experience the best events in life, and we are committed to making it as easy as possible to buy tickets. With SafeStub, you can find the tickets you want at a fair price, and you can be sure that your purchase is safe and secure.",
+        "Whether you are a buyer or seller, SafeStub is the best way to buy and sell tickets.",
+        "Here are some of the benefits of using SafeStub:"
+      ]
+    }
   }
 }

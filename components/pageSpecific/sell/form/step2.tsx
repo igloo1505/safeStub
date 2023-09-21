@@ -36,7 +36,7 @@ const TicketFormItem = ({ form, index, isLast }: { form: SaleFormType, index: nu
                 render={({ field }) => (
                     <>
                         <FormItem>
-                            <FormLabel>Seat</FormLabel>
+                            <FormLabel>Section</FormLabel>
                             <FormControl>
                                 <Input placeholder="Section" {...form.register(`tickets.${index}.section`)} />
                             </FormControl>
