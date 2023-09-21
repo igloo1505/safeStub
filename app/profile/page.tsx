@@ -1,33 +1,23 @@
-import AuthWrapper from '#/components/auth/authWrapper'
-import PageContentWrapper from '#/components/layout/pageContentWrapper'
+import { getServerSession } from '#/actions/server/auth'
+import { redirect } from 'next/navigation'
 import React from 'react'
 
 
 
-interface ProfilePageProps {
-    params: {
-        userId: string
-    }
+interface ProfilePageContentProps {
+
 }
 
-const ProfilePage = ({ params }: ProfilePageProps) => {
+const ProfilePageContent = async (props: ProfilePageContentProps) => {
+    const session = await getServerSession()
+    if (!session?.user.id) redirect("/auth/signin")
     return (
-        <AuthWrapper auth={"authenticated"}>
-            <PageContentWrapper>
-                <div>Profile Page</div>
-            </PageContentWrapper>
-        </AuthWrapper>
+        <div></div>
     )
 }
 
 
-ProfilePage.displayName = "ProfilePage"
-
-/* ProfilePage.auth = { */
-/*     role: "admin", */
-/*     loading: <LoadingIndicator />, */
-/*     unauthorized: "/", */
-/* } */
+ProfilePageContent.displayName = "ProfilePageContent"
 
 
-export default ProfilePage;
+export default ProfilePageContent;

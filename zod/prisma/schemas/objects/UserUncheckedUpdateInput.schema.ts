@@ -13,6 +13,8 @@ import { PurchaseHistoryUncheckedUpdateOneWithoutUserNestedInputObjectSchema } f
 import { SettingsUncheckedUpdateOneWithoutUserNestedInputObjectSchema } from './SettingsUncheckedUpdateOneWithoutUserNestedInput.schema';
 import { AccountUncheckedUpdateManyWithoutUserNestedInputObjectSchema } from './AccountUncheckedUpdateManyWithoutUserNestedInput.schema';
 import { SessionUncheckedUpdateManyWithoutUserNestedInputObjectSchema } from './SessionUncheckedUpdateManyWithoutUserNestedInput.schema';
+import { TicketGroupUncheckedUpdateManyWithoutBuyerNestedInputObjectSchema } from './TicketGroupUncheckedUpdateManyWithoutBuyerNestedInput.schema';
+import { TicketGroupUncheckedUpdateManyWithoutSellerNestedInputObjectSchema } from './TicketGroupUncheckedUpdateManyWithoutSellerNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -105,6 +107,17 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateInput> = z
       .optional(),
     sessions: z
       .lazy(() => SessionUncheckedUpdateManyWithoutUserNestedInputObjectSchema)
+      .optional(),
+    ticketGroupsPurchased: z
+      .lazy(
+        () => TicketGroupUncheckedUpdateManyWithoutBuyerNestedInputObjectSchema,
+      )
+      .optional(),
+    ticketGroupsSold: z
+      .lazy(
+        () =>
+          TicketGroupUncheckedUpdateManyWithoutSellerNestedInputObjectSchema,
+      )
       .optional(),
   })
   .strict();

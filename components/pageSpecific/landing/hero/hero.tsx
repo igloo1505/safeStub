@@ -11,6 +11,7 @@ import TwitterXSocialIcon from '#/assets/social/twitterX'
 import appConfig from "#/data/appConfig.json"
 import HeroAnimatedTitle from './heroAnimatedTitle'
 import Link from 'next/link'
+import GetStartedButton from './getStartedButton'
 
 
 
@@ -57,9 +58,7 @@ const Hero = ({ session }: HeroProps) => {
                     <HeroAnimatedTitle />
                     <p className={"text-gray-300 max-w-[768px] text-center text-[4vw] md:text-xl opacity-0 group-[.isLoaded]/heroContainer:opacity-100 transition-opacity duration-300 delay-1200"}>{appConfig.landing.slogan}</p>
                     <div className={"flex flex-row justify-center items-center gap-4 opacity-0 -translate-y-8 group-[.isLoaded]/heroContainer:translate-y-0 group-[.isLoaded]/heroContainer:opacity-100 transition-all duration-300 delay-1200"}>
-                        <Link href="/auth/signin">
-                            <Button className={"bg-primary text-primary-foreground"}>Get Started</Button>
-                        </Link>
+                        <GetStartedButton userId={session?.user.id} />
                         <Link href="/aboutUs" className={"bg-black transition-colors duration-300 bg-opacity-30 hover:bg-opacity-50 text-white rounded-lg px-4 py-2 border-primary border"}>Learn More</Link>
                     </div>
                     <div className={"w-fit flex flex-row text-white justify-center items-center gap-4 mt-6 opacity-0 -translate-y-8 group-[.isLoaded]/heroContainer:translate-y-0 group-[.isLoaded]/heroContainer:opacity-100 transition-all duration-300 delay-1300"}>

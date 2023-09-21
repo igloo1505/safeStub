@@ -19,6 +19,13 @@ const Schema: z.ZodType<Prisma.TicketGroupOrderByWithAggregationInput> = z
       ])
       .optional(),
     confirmationId: z.lazy(() => SortOrderSchema).optional(),
+    sellerId: z.lazy(() => SortOrderSchema).optional(),
+    buyerId: z
+      .union([
+        z.lazy(() => SortOrderSchema),
+        z.lazy(() => SortOrderInputObjectSchema),
+      ])
+      .optional(),
     _count: z
       .lazy(() => TicketGroupCountOrderByAggregateInputObjectSchema)
       .optional(),

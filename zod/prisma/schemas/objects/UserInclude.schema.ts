@@ -4,6 +4,7 @@ import { PurchaseHistoryArgsObjectSchema } from './PurchaseHistoryArgs.schema';
 import { SettingsArgsObjectSchema } from './SettingsArgs.schema';
 import { AccountFindManySchema } from '../findManyAccount.schema';
 import { SessionFindManySchema } from '../findManySession.schema';
+import { TicketGroupFindManySchema } from '../findManyTicketGroup.schema';
 import { UserCountOutputTypeArgsObjectSchema } from './UserCountOutputTypeArgs.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -24,6 +25,12 @@ const Schema: z.ZodType<Prisma.UserInclude> = z
       .optional(),
     sessions: z
       .union([z.boolean(), z.lazy(() => SessionFindManySchema)])
+      .optional(),
+    ticketGroupsPurchased: z
+      .union([z.boolean(), z.lazy(() => TicketGroupFindManySchema)])
+      .optional(),
+    ticketGroupsSold: z
+      .union([z.boolean(), z.lazy(() => TicketGroupFindManySchema)])
       .optional(),
     _count: z
       .union([z.boolean(), z.lazy(() => UserCountOutputTypeArgsObjectSchema)])

@@ -7,6 +7,8 @@ const Schema: z.ZodType<Prisma.TicketGroupMinAggregateInputType> = z
     id: z.literal(true).optional(),
     eventId: z.literal(true).optional(),
     confirmationId: z.literal(true).optional(),
+    sellerId: z.literal(true).optional(),
+    buyerId: z.literal(true).optional(),
   })
   .strict();
 

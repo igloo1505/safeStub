@@ -4,4 +4,6 @@ export const TicketGroupScalarFieldEnumSchema = z.enum([
   'id',
   'eventId',
   'confirmationId',
+  'sellerId',
+  'buyerId',
 ]);

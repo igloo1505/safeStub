@@ -14,17 +14,15 @@ import { useForm } from 'react-hook-form';
 
 interface SellPageContainerProps {
     event: NonNullable<SingleEventReturned>
+    userId: string
 }
 
 
-const SellPageContainer = ({ event }: SellPageContainerProps) => {
+const SellPageContainer = ({ event, userId }: SellPageContainerProps) => {
     const saleForm = useForm<SaleFormObjectType>({
         resolver: zodResolver(saleFormSchema),
         defaultValues: {
             quantity: 1,
-            /* seat: "", */
-            /* section: "", */
-            /* row: "", */
             pricePerTicket: 100,
             payoutMethod: PayoutMethodEnum.paypal,
             tickets: [{
@@ -42,7 +40,7 @@ const SellPageContainer = ({ event }: SellPageContainerProps) => {
                     <SaleFormStepOne event={event} form={saleForm} />
                     <SalesFormStepTwo form={saleForm} />
                     <SalesFormStepThree form={saleForm} event={event} />
-                    <PostForSaleConfirmation form={saleForm} event={event} />
+                    <PostForSaleConfirmation form={saleForm} event={event} userId={userId} />
                 </Form>
             </SlidingFormContainer>
         </div>

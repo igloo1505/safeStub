@@ -3,12 +3,18 @@ import { Prisma } from "@prisma/client";
 import { randomUUID } from "crypto";
 
 
+
 export const formatTicketGroupCreate = (data: SaleFormObjectType): Prisma.TicketGroupCreateInput => {
     return {
         confirmationId: randomUUID(),
         Event: {
             connect: {
                 id: data.eventId
+            }
+        },
+        seller: {
+            connect: {
+                id: data.sellerId
             }
         },
         tickets: {

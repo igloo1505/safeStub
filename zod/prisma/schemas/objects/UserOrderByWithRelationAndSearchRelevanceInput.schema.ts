@@ -6,6 +6,7 @@ import { PurchaseHistoryOrderByWithRelationAndSearchRelevanceInputObjectSchema }
 import { SettingsOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './SettingsOrderByWithRelationAndSearchRelevanceInput.schema';
 import { AccountOrderByRelationAggregateInputObjectSchema } from './AccountOrderByRelationAggregateInput.schema';
 import { SessionOrderByRelationAggregateInputObjectSchema } from './SessionOrderByRelationAggregateInput.schema';
+import { TicketGroupOrderByRelationAggregateInputObjectSchema } from './TicketGroupOrderByRelationAggregateInput.schema';
 import { UserOrderByRelevanceInputObjectSchema } from './UserOrderByRelevanceInput.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -75,6 +76,12 @@ const Schema: z.ZodType<Prisma.UserOrderByWithRelationAndSearchRelevanceInput> =
         .optional(),
       sessions: z
         .lazy(() => SessionOrderByRelationAggregateInputObjectSchema)
+        .optional(),
+      ticketGroupsPurchased: z
+        .lazy(() => TicketGroupOrderByRelationAggregateInputObjectSchema)
+        .optional(),
+      ticketGroupsSold: z
+        .lazy(() => TicketGroupOrderByRelationAggregateInputObjectSchema)
         .optional(),
       _relevance: z
         .lazy(() => UserOrderByRelevanceInputObjectSchema)

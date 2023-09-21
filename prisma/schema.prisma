@@ -3,7 +3,6 @@ generator client {
     previewFeatures = ["fullTextSearch"]
 }
 
-
 generator zod {
     provider          = "prisma-zod-generator"
     output            = "../zod/prisma"
@@ -279,6 +278,8 @@ model User {
     accounts                Account[]
     sessions                Session[]
     gcmSubscription         Json?
+    ticketGroupsPurchased   TicketGroup[]          @relation("buyer")
+    ticketGroupsSold        TicketGroup[]          @relation("seller")
 
     @@map("users")
 }
@@ -305,6 +306,10 @@ model TicketGroup {
     eventId        Int?
     tickets        Ticket[]
     confirmationId String   @unique
+    seller         User     @relation(fields: [sellerId], references: [id], name: "seller")
+    sellerId       String
+    buyer          User?    @relation(fields: [buyerId], references: [id], name: "buyer")
+    buyerId        String?
 }
 
 model Ticket {

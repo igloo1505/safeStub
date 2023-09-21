@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { SlidingFormDispatchContext, SlidingFormContext } from './slidingFormContext'
 import SlidingFormCard from './slidingFormCard'
 import { SaleCardTitle, SaleCardEventInfo } from './step1'
 import { SingleEventReturned } from '#/types/query'
@@ -8,7 +7,6 @@ import { formatUSD } from '#/lib/formatting/currency'
 import { calculatePayout } from '#/lib/business/calculatePayout'
 import { useRouter } from 'next/navigation'
 import { Route } from 'next'
-import { serverClient } from '#/trpc/serverClient'
 import { client } from '#/trpc/client'
 
 
@@ -16,6 +14,7 @@ import { client } from '#/trpc/client'
 interface PostForSaleConfirmationProps {
     event: NonNullable<SingleEventReturned>
     form: SaleFormType
+    userId: string
 }
 
 
@@ -53,7 +52,7 @@ const TicketConfirmationItem = ({ ticket, index }: { ticket: SaleFormObjectType[
 }
 
 
-const PostForSaleConfirmation = ({ form, event }: PostForSaleConfirmationProps) => {
+const PostForSaleConfirmation = ({ form, userId, event }: PostForSaleConfirmationProps) => {
     const router = useRouter()
     const quant = form.watch("quantity")
     const tickets = form.watch("tickets")
@@ -73,7 +72,7 @@ const PostForSaleConfirmation = ({ form, event }: PostForSaleConfirmationProps) 
     ]
     const submitTicket = async () => {
         let data = form.getValues()
-        const ticketGroup = await client.createTicketGroup.mutate(data)
+        const ticketGroup = await client.createTicketGroup.mutate({ ...data, sellerId: userId, eventId: event.id, quantity: data.tickets.length })
         if (ticketGroup.id) {
             router.push(`/sell/confirmation/${event.id}/${ticketGroup.id}` as Route)
         } else {

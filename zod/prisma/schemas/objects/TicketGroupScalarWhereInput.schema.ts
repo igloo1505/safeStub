@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { IntFilterObjectSchema } from './IntFilter.schema';
 import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
 import { StringFilterObjectSchema } from './StringFilter.schema';
+import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -31,6 +32,13 @@ const Schema: z.ZodType<Prisma.TicketGroupScalarWhereInput> = z
     confirmationId: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
+    sellerId: z
+      .union([z.lazy(() => StringFilterObjectSchema), z.string()])
+      .optional(),
+    buyerId: z
+      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
+      .optional()
+      .nullable(),
   })
   .strict();
 

@@ -5,6 +5,8 @@ import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValue
 import { PurchaseHistoryUncheckedCreateNestedOneWithoutUserInputObjectSchema } from './PurchaseHistoryUncheckedCreateNestedOneWithoutUserInput.schema';
 import { AccountUncheckedCreateNestedManyWithoutUserInputObjectSchema } from './AccountUncheckedCreateNestedManyWithoutUserInput.schema';
 import { SessionUncheckedCreateNestedManyWithoutUserInputObjectSchema } from './SessionUncheckedCreateNestedManyWithoutUserInput.schema';
+import { TicketGroupUncheckedCreateNestedManyWithoutBuyerInputObjectSchema } from './TicketGroupUncheckedCreateNestedManyWithoutBuyerInput.schema';
+import { TicketGroupUncheckedCreateNestedManyWithoutSellerInputObjectSchema } from './TicketGroupUncheckedCreateNestedManyWithoutSellerInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -42,6 +44,17 @@ const Schema: z.ZodType<Prisma.UserUncheckedCreateWithoutSettingsInput> = z
       .optional(),
     sessions: z
       .lazy(() => SessionUncheckedCreateNestedManyWithoutUserInputObjectSchema)
+      .optional(),
+    ticketGroupsPurchased: z
+      .lazy(
+        () => TicketGroupUncheckedCreateNestedManyWithoutBuyerInputObjectSchema,
+      )
+      .optional(),
+    ticketGroupsSold: z
+      .lazy(
+        () =>
+          TicketGroupUncheckedCreateNestedManyWithoutSellerInputObjectSchema,
+      )
       .optional(),
   })
   .strict();

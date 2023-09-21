@@ -8,6 +8,8 @@ const Schema: z.ZodType<Prisma.TicketGroupMinOrderByAggregateInput> = z
     id: z.lazy(() => SortOrderSchema).optional(),
     eventId: z.lazy(() => SortOrderSchema).optional(),
     confirmationId: z.lazy(() => SortOrderSchema).optional(),
+    sellerId: z.lazy(() => SortOrderSchema).optional(),
+    buyerId: z.lazy(() => SortOrderSchema).optional(),
   })
   .strict();
 

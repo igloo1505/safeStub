@@ -16,15 +16,16 @@ interface SalesFormStepTwoProps {
 
 const TicketFormItem = ({ form, index, isLast }: { form: SaleFormType, index: number, isLast?: boolean }) => {
     const handleIconClick = () => {
+        const values = form.getValues("tickets")
         if (isLast) {
-            form.setValue("tickets", [...form.getValues("tickets"), {
-                row: "",
+            form.setValue("tickets", [...values, {
+                section: values.at(-1)?.section || "",
+                row: values.at(-1)?.row || "",
                 seat: "",
-                section: ""
             }])
         }
         if (!isLast) {
-            form.setValue("tickets", form.getValues("tickets").filter((t, i) => i !== index))
+            form.setValue("tickets", values.filter((t, i) => i !== index))
         }
     }
 

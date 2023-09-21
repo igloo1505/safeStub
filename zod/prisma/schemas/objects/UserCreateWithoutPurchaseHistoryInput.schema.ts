@@ -6,6 +6,8 @@ import { PaymentAccountDetailsCreateNestedOneWithoutUserInputObjectSchema } from
 import { SettingsCreateNestedOneWithoutUserInputObjectSchema } from './SettingsCreateNestedOneWithoutUserInput.schema';
 import { AccountCreateNestedManyWithoutUserInputObjectSchema } from './AccountCreateNestedManyWithoutUserInput.schema';
 import { SessionCreateNestedManyWithoutUserInputObjectSchema } from './SessionCreateNestedManyWithoutUserInput.schema';
+import { TicketGroupCreateNestedManyWithoutBuyerInputObjectSchema } from './TicketGroupCreateNestedManyWithoutBuyerInput.schema';
+import { TicketGroupCreateNestedManyWithoutSellerInputObjectSchema } from './TicketGroupCreateNestedManyWithoutSellerInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -44,6 +46,12 @@ const Schema: z.ZodType<Prisma.UserCreateWithoutPurchaseHistoryInput> = z
       .optional(),
     sessions: z
       .lazy(() => SessionCreateNestedManyWithoutUserInputObjectSchema)
+      .optional(),
+    ticketGroupsPurchased: z
+      .lazy(() => TicketGroupCreateNestedManyWithoutBuyerInputObjectSchema)
+      .optional(),
+    ticketGroupsSold: z
+      .lazy(() => TicketGroupCreateNestedManyWithoutSellerInputObjectSchema)
       .optional(),
   })
   .strict();
