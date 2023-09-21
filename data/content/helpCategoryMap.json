@@ -1,0 +1,30 @@
+{
+  "buyTickets": {
+    "title": "Buy Tickets",
+    "subTitle": "Payment details"
+  },
+  "myTickets": {
+    "title": "My Tickets",
+    "subTitle": "How to manage your tickets"
+  },
+  "myAccount": {
+    "title": "My Account",
+    "subTitle": "Profile, privacy and security info"
+  },
+  "ticketDelivery": {
+    "title": "Ticket Delivery",
+    "subTitle": "Latest delivery information"
+  },
+  "transferTickets": {
+    "title": "Transfer Tickets",
+    "subTitle": "How to receive and accept a transfer"
+  },
+  "refundsAndExchanges": {
+    "title": "Refunds & Exchanges",
+    "subTitle": "Details on our refunds and exchanges"
+  },
+  "contactUs": {
+    "title": "Contact Us",
+    "subTitle": "Find Support"
+  }
+}

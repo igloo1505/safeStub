@@ -23,6 +23,11 @@ const getQuickLinks = () => {
             href: "/termsOfService"
         },
         {
+            category: "legal",
+            label: "Help Center",
+            href: "/termsOfService"
+        },
+        {
             category: "user",
             label: "Profile",
             href: "/profile"
