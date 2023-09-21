@@ -32,7 +32,7 @@ export const processSteps: AboutUsProcessItem[] = [
     },
     {
         title: "Do stuff",
-        body: "Nulla faucibus sed metus consectetur efficitur nullam, laoreet tempor bibendum arcu vel porttitor dignissim ac, tempor sit fusce. Sit ligula neque lorem vulputate lacus eros magna sit imperdiet montes ultrices.",
+        body: "Dookie dookie faucibus sed metus consectetur efficitur nullam, laoreet tempor bibendum arcu vel porttitor dignissim ac, tempor sit fusce. Sit ligula neque lorem vulputate lacus eros magna sit imperdiet montes ultrices.",
         children: <Image className={iconClasses} src={gameDay} alt="Game Day" />
     },
 ]
