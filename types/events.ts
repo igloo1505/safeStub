@@ -1,3 +1,4 @@
+import type { serverClient } from '#/trpc/serverClient'
 import { Prisma } from '@prisma/client'
 
 export const TBDLocation: Prisma.LocationCreateOrConnectWithoutArenaInput = {
@@ -36,3 +37,5 @@ export const TBDTeam: Prisma.TeamCreateOrConnectWithoutEventInput = {
         league: "NFL"
     }
 }
+
+export type SearchEventsResult = Awaited<ReturnType<typeof serverClient.searchEvents>>

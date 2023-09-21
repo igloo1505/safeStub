@@ -8,6 +8,7 @@ import { UserAccessInput } from "#/types/auth";
 import { NFLTeamName } from "@prisma/client";
 import { saleFormSchema } from "#/components/pageSpecific/sell/form/saleFormContext";
 import { formatTicketGroupCreate } from "#/lib/formatting/ticketGroupCreate";
+import { getEventsSearchResult, searchEventsParams } from "#/utils/server/searchEvents";
 
 
 
@@ -109,7 +110,6 @@ export const appRouter = router({
                     },
                 }
             },
-
         })
         let futureEvents = data?.Event || []
         let homeEvents = futureEvents.filter((e) => e.arenaId === data?.homeArenaId) || []
@@ -198,7 +198,8 @@ export const appRouter = router({
                 Event: true
             }
         })
-    })
+    }),
+    searchEvents: publicProcedure.input(searchEventsParams).query(async (opts) => await getEventsSearchResult(opts.input))
 })
 
 
