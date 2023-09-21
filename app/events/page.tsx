@@ -4,7 +4,6 @@ import { serverClient } from '#/trpc/serverClient'
 import React from 'react'
 
 
-
 interface EventsPageProps {
 
 }
