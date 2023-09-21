@@ -5,14 +5,14 @@ import { SearchEventsResult } from '#/types/events'
 
 
 interface EventSearchResultListProps {
-    events: SearchEventsResult
+    events: SearchEventsResult['data']
+    hasTickets: boolean
 }
 
-const EventSearchResultList = ({ events }: EventSearchResultListProps) => {
-    console.log("events: ", events)
+const EventSearchResultList = ({ events, hasTickets }: EventSearchResultListProps) => {
     return (
         <ul className={""}>
-            {events.map((event, i) => <SearchResultListItem event={event} key={`event-${i}`} />)}
+            {events.map((event, i) => <SearchResultListItem event={event} hasTickets={hasTickets} key={`event-${i}`} />)}
         </ul>
     )
 }

@@ -1,4 +1,4 @@
-import type { serverClient } from "#/trpc/serverClient"
+import { serverClient } from "#/trpc/serverClient"
 import { NFLTeamName } from "@prisma/client"
 import { Route } from "next"
 

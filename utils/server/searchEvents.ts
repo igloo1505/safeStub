@@ -10,23 +10,29 @@ interface EventsSearchParams {
     skip?: number
     take?: number
     query?: string
+    page?: number
+    perPage?: number
 }
 
 export const searchEventsParams: z.ZodType<EventsSearchParams> = z.object({
     team: z.nativeEnum(NFLTeamName).optional(),
     skip: z.number().int().default(0),
     take: z.number().int().default(50),
-    query: z.string().optional()
+    query: z.string().optional(),
+    page: z.coerce.number().default(1),
+    perPage: z.coerce.number().default(20)
 })
 
 
 export const getEventsSearchResult = async (props: EventsSearchParams) => {
+    const pp = props.perPage || 20
+    const page = props.page || 1
     let params: Prisma.EventFindManyArgs = {
         orderBy: {
             date: "asc"
         },
-        skip: props.skip || 0,
-        take: props.take || 20,
+        skip: pp * (page - 1),
+        take: pp,
         select: {
             date: true,
             title: true,
@@ -54,5 +60,15 @@ export const getEventsSearchResult = async (props: EventsSearchParams) => {
             }
         }
     })
-    return await prisma.event.findMany(params)
+
+
+
+
+    const eventCount = await prisma.event.count({
+        where: params.where
+    })
+
+
+    let events = await prisma.event.findMany(params)
+    return { data: events, eventCount }
 }
