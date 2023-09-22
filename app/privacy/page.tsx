@@ -15,7 +15,7 @@ const PrivacyPolicyPage = (props: PrivacyPolicyPageProps) => {
     if (!policy) return redirect("/")
     return (
         <PageContentWrapper>
-            <div className="[&>*]:mb-3 [&>*:last-child]:mb-0" dangerouslySetInnerHTML={{ __html: policy.body.html }} />
+            <div className="[&>*]:mb-3 [&>*:last-child]:mb-0 w-5/6 max-w-screen-md" dangerouslySetInnerHTML={{ __html: policy.body.html }} />
         </PageContentWrapper>
     )
 }
