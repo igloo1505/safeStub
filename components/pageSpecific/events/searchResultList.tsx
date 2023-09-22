@@ -6,13 +6,12 @@ import { SearchEventsResult } from '#/types/events'
 
 interface EventSearchResultListProps {
     events: SearchEventsResult['data']
-    hasTickets: boolean
 }
 
-const EventSearchResultList = ({ events, hasTickets }: EventSearchResultListProps) => {
+const EventSearchResultList = ({ events }: EventSearchResultListProps) => {
     return (
         <ul className={""}>
-            {events.map((event, i) => <SearchResultListItem event={event} hasTickets={hasTickets} key={`event-${i}`} />)}
+            {events.map((event, i) => <SearchResultListItem key={`sr-${i}`} event={event} />)}
         </ul>
     )
 }

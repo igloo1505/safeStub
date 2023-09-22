@@ -13,17 +13,17 @@ interface EventsPageProps {
 
 const EventsPage = async ({ searchParams }: EventsPageProps) => {
     const page = parseInt(searchParams?.page || `${1}`)
-    const perPage = 20
+    const perPage = 500
     const events = await serverClient.searchEvents({
         page,
         perPage
     })
+    /* console.log("events: ", events.data.map((e) => e._count)) */
     return (
         <PageContentWrapper>
             <EventSearchResultList
                 events={events.data}
-                /* @ts-ignore */
-                hasTickets={Boolean(events?._count?.tickets > 0 || events?._count?.ticketGroup > 0)} />
+            />
             <PaginateButtons
                 page={page}
                 maxPages={Math.ceil(events.eventCount / perPage)}

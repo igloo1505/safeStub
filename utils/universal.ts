@@ -19,7 +19,6 @@ export const centerOnN = (n: number, length: number, prefer: "start" | "end" = "
         d.push(n + i)
         d.unshift(n - i)
     }
-    console.log("d.length, length: ", d.length, length)
     if (d.length < length) {
         if (prefer === "end") {
             d.push(d[d.length - 1] + 1)
