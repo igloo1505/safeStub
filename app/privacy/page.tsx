@@ -1,21 +1,19 @@
 import { allPrivacyPolicies } from '#/.contentlayer/generated';
 import PageContentWrapper from '#/components/layout/pageContentWrapper';
+import MarkdownDateBar from '#/components/utility/markdown/dateBar';
+import MarkdownContent from '#/components/utility/markdown/markdownContent';
 import { redirect } from 'next/navigation';
 import React from 'react'
 
 
 
-interface PrivacyPolicyPageProps {
-
-}
-
-
-const PrivacyPolicyPage = (props: PrivacyPolicyPageProps) => {
+const PrivacyPolicyPage = () => {
     const policy = allPrivacyPolicies[0]
     if (!policy) return redirect("/")
     return (
         <PageContentWrapper>
-            <div className="[&>*]:mb-3 [&>*:last-child]:mb-0 w-5/6 max-w-screen-md" dangerouslySetInnerHTML={{ __html: policy.body.html }} />
+            <MarkdownDateBar date={policy.lastUpdated} leadingText={"Last Updated on"} />
+            <MarkdownContent html={policy.body.html} />
         </PageContentWrapper>
     )
 }

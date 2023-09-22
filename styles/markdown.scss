@@ -1,0 +1,51 @@
+.markdownContent {
+  h1 {
+    font-size: 2rem;
+    font-weight: bolder;
+    letter-spacing: 0.15ch;
+    margin: 1.5rem 0;
+  }
+  h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  ul {
+    li {
+      position: relative;
+      visibility: hidden;
+      margin-bottom: 0.5rem;
+      &::before {
+        content: "•";
+        margin-right: 0.25rem;
+      }
+      &.noP {
+        visibility: visible;
+      }
+      &.withParagraph {
+        visibility: visible;
+        &::before {
+          position: absolute;
+        }
+        & > p {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+  a {
+    color: #0ea5e9;
+  }
+}
+
+html.dark {
+  .markdownContent {
+    a {
+      color: #38bdf8;
+    }
+  }
+}

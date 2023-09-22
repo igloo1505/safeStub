@@ -6,7 +6,7 @@ export const PrivacyPolicy = defineDocumentType(() => ({
     filePathPattern: `privacyPolicy.md`,
     fields: {
         title: { type: 'string', required: false },
-        date: { type: 'date', required: false },
+        lastUpdated: { type: 'date', required: false },
     },
     computedFields: {
         // url: { type: 'string', resolve: (post) => `/posts/${post._raw.flattenedPath}` },
@@ -19,7 +19,7 @@ export const Tos = defineDocumentType(() => ({
     filePathPattern: `termsOfService.md`,
     fields: {
         title: { type: 'string', required: false },
-        date: { type: 'date', required: false },
+        lastUpdated: { type: 'date', required: false },
     },
     computedFields: {
         // url: { type: 'string', resolve: (post) => `/posts/${post._raw.flattenedPath}` },
@@ -41,7 +41,7 @@ export const HelpTopic = defineDocumentType(() => ({
             },
             required: false
         },
-        date: { type: 'date', required: false },
+        created: { type: 'date', required: false },
     },
     computedFields: {
         // url: { type: 'string', resolve: (post) => `/posts/${post._raw.flattenedPath}` },

@@ -1,6 +1,8 @@
-# Terms and Conditions
+---
+lastUpdated: 9-22-23
+---
 
-Last updated: September 22, 2023
+# Terms and Conditions
 
 Please read these terms and conditions carefully before using Our Service.
 
