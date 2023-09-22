@@ -11,7 +11,7 @@ const router = createEdgeRouter<NextRequest, RequestContext>();
 
 
 router
-    .post(async (req, ctx) => {
+    .post(async (req, ctx): Promise<NextResponse> => {
         try {
             const { darkMode } = await req.json()
             let res = new NextResponse(JSON.stringify({}), getCorsHeaders(req, 200))
@@ -30,7 +30,7 @@ router
 
 
 export async function POST(request: NextRequest, ctx: RequestContext) {
-    return router.run(request, ctx);
+    return router.run(request, ctx) as Promise<NextResponse>
 }
 
 export const OPTIONS = optionsMethodResponse

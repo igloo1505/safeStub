@@ -16,7 +16,7 @@ const router = createEdgeRouter<NextRequest, RequestContext>();
 
 
 router
-    .get(async (req, ctx) => {
+    .get(async (req, ctx): Promise<NextResponse> => {
         try {
             if (process.env.NODE_ENV !== "development") {
                 return new NextResponse(JSON.stringify({ msg: "This is only a development route for seeding data." }));
@@ -74,5 +74,5 @@ router
 
 
 export async function GET(request: NextRequest, ctx: RequestContext) {
-    return router.run(request, ctx);
+    return router.run(request, ctx) as Promise<NextResponse>
 }
