@@ -34,7 +34,7 @@ router
 
 
 export async function GET(request: NextRequest, ctx: RequestContext) {
-    return router.run(request, ctx);
+    return router.run(request, ctx) as Promise<NextResponse>
 }
 
 export const OPTIONS = optionsMethodResponse
