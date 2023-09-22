@@ -39,18 +39,14 @@ const formatURL = (formatUrl: string, n: number) => {
 const PaginateButtons = ({ page, maxPages, formatUrl }: PaginateButtonsProps) => {
     const router = useRouter()
     const maxButtons = 10
-    let r = Math.floor(maxButtons / 2)
     let n: number[] = [0]
     if (page <= maxButtons - maxButtons / 3) {
-        console.log(`AAAA`)
         n = n.concat(upToN(maxButtons, 1))
     } else if (page > maxButtons - maxButtons / 3 && page > maxPages - maxButtons + maxButtons / 3) {
-        console.log(`BBBB`)
         n = n.concat(backFromN(maxPages - 1, maxButtons - 1))
     } else {
-        console.log(`CCCC`)
         n = n.concat(centerOnN(page, maxButtons - 2, "start"))
-        n.push(maxPages)
+        n.push(maxPages - 1)
     }
     return (
         <div className={"grid grid-rows-1 gap-2 mt-6"}
