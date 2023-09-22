@@ -13,7 +13,7 @@ const router = createEdgeRouter<NextRequest, RequestContext>();
 
 
 router
-    .get(async (req, ctx) => {
+    .get(async (req, ctx): Promise<NextResponse> => {
         try {
             let t = await prisma.team.findMany({
                 select: {

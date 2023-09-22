@@ -17,7 +17,7 @@ const router = createEdgeRouter<NextRequest, RequestContext>();
 
 
 router
-    .get(async (req, ctx) => {
+    .get(async (req, ctx): Promise<NextResponse> => {
         try {
             let params = req.nextUrl.searchParams
             let skip = parseInt(params.get("skip") || "0")
