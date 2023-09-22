@@ -12,3 +12,29 @@ export const upToN = (finish: number, start: number = 0) => {
     }
     return val
 }
+
+export const centerOnN = (n: number, length: number, prefer: "start" | "end" = "start") => {
+    let d = [n]
+    for (var i = 1; i < Math.floor((length + 1) / 2); i++) {
+        d.push(n + i)
+        d.unshift(n - i)
+    }
+    console.log("d.length, length: ", d.length, length)
+    if (d.length < length) {
+        if (prefer === "end") {
+            d.push(d[d.length - 1] + 1)
+        }
+        if (prefer === "start") {
+            d.unshift(d[0] - 1)
+        }
+    }
+    return d
+}
+
+export const backFromN = (n: number, length: number) => {
+    let d = [n]
+    for (var j = 0; j < length - 1; j++) {
+        d.unshift(d[0] - 1)
+    }
+    return d
+}

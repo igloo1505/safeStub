@@ -1,8 +1,8 @@
+"use client"
 import { Button } from '#/components/ui/button'
-import { upToN } from '#/utils/universal'
-import { max } from 'date-fns'
+import { backFromN, centerOnN, upToN } from '#/utils/universal'
 import { Route } from 'next'
-import Link from 'next/link'
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
@@ -16,17 +16,19 @@ interface PaginateButtonsProps {
 
 interface PageButtonProps {
     index: number
-    active: boolean
-    maxPages: number
-    maxShowButtons: number
     href: Route
+    router: AppRouterInstance
 }
 
-const PageButton = ({ index, href, active, maxPages, maxShowButtons }: PageButtonProps) => {
+const PageButton = ({ index, href, router }: PageButtonProps) => {
+
     return (
-        <Link href={href}>
-            <Button>{index + 1}</Button>
-        </Link>
+        <Button
+            onClick={() => {
+                router.push(href)
+            }}
+            className={"w-full h-full"}
+        >{index + 1}</Button>
     )
 }
 
@@ -35,34 +37,32 @@ const formatURL = (formatUrl: string, n: number) => {
 }
 
 const PaginateButtons = ({ page, maxPages, formatUrl }: PaginateButtonsProps) => {
+    const router = useRouter()
     const maxButtons = 10
     let r = Math.floor(maxButtons / 2)
-    const shouldCenter = page > r
-    const n = upToN(maxPages).filter((n) => {
-        if (n === 0) {
-            return true
-        }
-        if (shouldCenter && n > page - r && n < page + r) {
-            return true
-        }
-        if (!shouldCenter && n < maxButtons) {
-            return true
-        }
-        return false
-    })
+    let n: number[] = [0]
+    if (page <= maxButtons - maxButtons / 3) {
+        console.log(`AAAA`)
+        n = n.concat(upToN(maxButtons, 1))
+    } else if (page > maxButtons - maxButtons / 3 && page > maxPages - maxButtons + maxButtons / 3) {
+        console.log(`BBBB`)
+        n = n.concat(backFromN(maxPages - 1, maxButtons - 1))
+    } else {
+        console.log(`CCCC`)
+        n = n.concat(centerOnN(page, maxButtons - 2, "start"))
+        n.push(maxPages)
+    }
     return (
         <div className={"grid grid-rows-1 gap-2 mt-6"}
             style={{
-                gridTemplateColumns: `repeat(${maxPages < maxButtons ? maxPages : maxButtons}, 1fr)`
+                gridTemplateColumns: `repeat(${n.length}, 1fr)`
             }}
         >{n.map((_n) => {
             return (<PageButton
                 key={`p-button-${_n}`}
                 href={formatURL(formatUrl, _n + 1)}
                 index={_n}
-                active={_n + 1 === page}
-                maxPages={maxPages}
-                maxShowButtons={maxButtons}
+                router={router}
             />
             )
         })}</div>

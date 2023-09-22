@@ -7,12 +7,12 @@ import React from 'react'
 
 interface EventsPageProps {
     searchParams?: {
-        page?: number
+        page?: string
     }
 }
 
 const EventsPage = async ({ searchParams }: EventsPageProps) => {
-    const page = searchParams?.page || 1
+    const page = parseInt(searchParams?.page || `${1}`)
     const perPage = 20
     const events = await serverClient.searchEvents({
         page,
