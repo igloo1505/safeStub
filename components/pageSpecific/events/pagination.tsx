@@ -1,5 +1,6 @@
 "use client"
 import { Button } from '#/components/ui/button'
+import { EventsSearchParams } from '#/types/query'
 import { backFromN, centerOnN, upToN } from '#/utils/universal'
 import { Route } from 'next'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
@@ -12,6 +13,7 @@ interface PaginateButtonsProps {
     page: number
     maxPages: number
     formatUrl: string
+    searchParams?: EventsSearchParams
 }
 
 interface PageButtonProps {
@@ -21,7 +23,6 @@ interface PageButtonProps {
 }
 
 const PageButton = ({ index, href, router }: PageButtonProps) => {
-
     return (
         <Button
             onClick={() => {
@@ -32,13 +33,19 @@ const PageButton = ({ index, href, router }: PageButtonProps) => {
     )
 }
 
-const formatURL = (formatUrl: string, n: number) => {
-    return formatUrl.replace("NN", `${n}`) as Route
+const formatURL = <T extends { [k: string]: any }>(formatUrl: string, n: number, searchParams: T) => {
+    const params = new URLSearchParams()
+    for (const k in searchParams) {
+        params.set(k, searchParams[k as string])
+    }
+    params.set("page", `${n}`)
+    /* return formatUrl.replace("NN", `${n}`) as Route */
+    return `${formatUrl}?${params.toString()}` as Route
 }
 
-const PaginateButtons = ({ page, maxPages, formatUrl }: PaginateButtonsProps) => {
+const PaginateButtons = ({ page, maxPages, formatUrl, searchParams }: PaginateButtonsProps) => {
     const router = useRouter()
-    const maxButtons = 10
+    const maxButtons = Math.min(10, maxPages)
     let n: number[] = [0]
     if (page <= maxButtons - maxButtons / 3) {
         n = n.concat(upToN(maxButtons, 1))
@@ -56,7 +63,7 @@ const PaginateButtons = ({ page, maxPages, formatUrl }: PaginateButtonsProps) =>
         >{n.map((_n) => {
             return (<PageButton
                 key={`p-button-${_n}`}
-                href={formatURL(formatUrl, _n + 1)}
+                href={formatURL(formatUrl, _n + 1, searchParams || {})}
                 index={_n}
                 router={router}
             />

@@ -2,6 +2,7 @@ import { prisma } from '#/db/db'
 import { NFLTeamName } from '@prisma/client'
 import * as z from 'zod'
 import type { Prisma } from "@prisma/client"
+import { nflTeamNameList } from '#/seed/seedNflGames2023'
 
 
 
@@ -27,13 +28,21 @@ export const searchEventsParams: z.ZodType<EventsSearchParams> = z.object({
 export const getEventsSearchResult = async (props: EventsSearchParams) => {
     const pp = props.perPage || 20
     const page = props.page || 1
+    const query = props.query ? nflTeamNameList.find((t) => t.toLowerCase() === props.query?.toLowerCase()) || props.query : undefined
+    let isTeam = query ? nflTeamNameList.includes(query) : false
     let params: Prisma.EventFindManyArgs = {
         orderBy: {
             date: "asc"
         },
+        where: {
+            date: {
+                gte: new Date()
+            }
+        },
         skip: pp * (page - 1),
         take: pp,
         select: {
+            id: true,
             date: true,
             title: true,
             description: true,
@@ -61,8 +70,31 @@ export const getEventsSearchResult = async (props: EventsSearchParams) => {
         }
     })
 
-
-
+    props.query && addWhere({
+        OR: [
+            { title: { search: props.query, mode: "insensitive" } },
+            { description: { search: props.query, mode: "insensitive" } },
+            {
+                tags: {
+                    some: {
+                        value: {
+                            equals: props.query
+                        }
+                    }
+                }
+            },
+        ]
+    })
+    isTeam && params.where?.OR && params.where?.OR.push({
+        participants: {
+            some: {
+                name: {
+                    equals: query as NFLTeamName
+                }
+            }
+        }
+    },
+    )
 
     const eventCount = await prisma.event.count({
         where: params.where

@@ -6,7 +6,7 @@ import { LocationJSONData, states } from '../types/inputValidation'
 import { TBDArena, TBDTeam } from '../types/events'
 const cityData = cData as LocationJSONData
 
-const teamNames = [
+export const nflTeamNameList = [
     "Patriots",
     "Jets",
     "Falcons",
@@ -44,9 +44,8 @@ const teamNames = [
 const getTeamId = async (name: string) => {
     const s = name.split(" ")
     let _name = s[s.length - 1]
-    console.log(`Looking for: ${name} as ${_name}`)
     _name === "49ers" && (_name = "FourtyNiners")
-    if (!teamNames.includes(_name)) {
+    if (!nflTeamNameList.includes(_name)) {
         console.log(`Not found: ${_name}`)
     }
     const team = await prisma.team.findFirst({

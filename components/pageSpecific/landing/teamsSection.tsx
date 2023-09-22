@@ -44,7 +44,7 @@ const teamLogos: { team: NFLTeamName, logo: string }[] = [
 
 const TeamLogo = (data: typeof teamLogos[number]) => {
     return (
-        <Link href={`/team/${data.team}` as Route} className={"w-full h-full bg-gray-200 bg-opacity-0 hover:bg-opacity-60 transition-all duration-300 cursor-pointer rounded-lg flex flex-col justify-center items-center"}>
+        <Link href={`/team/${data.team}` as Route} className={"w-full h-full bg-gray-200 bg-opacity-0 hover:bg-opacity-60 dark:hover:bg-black dark:hover:bg-opacity-80 transition-all duration-300 cursor-pointer rounded-lg flex flex-col justify-center items-center"}>
             <Image
                 src={data.logo}
                 id={`${data.team}-logo`}
