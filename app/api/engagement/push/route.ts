@@ -1,4 +1,4 @@
-import * as webpush from "web-push"
+// import * as webpush from "web-push"
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { createEdgeRouter } from "next-connect";
@@ -22,17 +22,17 @@ interface RequestContext {
 
 const router = createEdgeRouter<NextRequest, RequestContext>();
 
+// const { subscription }: { subscription: webpush.PushSubscription } = await req.json()
+// webpush
+//     .sendNotification(
+//         subscription,
+//         JSON.stringify({ title: 'Hello Web Push', message: 'Your web push notification is here!' })
+//     )
 
 router
 
     .post(async (req, ctx) => {
         try {
-            // const { subscription }: { subscription: webpush.PushSubscription } = await req.json()
-            // webpush
-            //     .sendNotification(
-            //         subscription,
-            //         JSON.stringify({ title: 'Hello Web Push', message: 'Your web push notification is here!' })
-            //     )
             return new NextResponse(JSON.stringify({ success: true }));
         } catch (err) {
             console.error(err)
