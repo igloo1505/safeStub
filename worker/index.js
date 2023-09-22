@@ -5,7 +5,7 @@ self.addEventListener('push', function(event) {
     event.waitUntil(
         registration.showNotification(data.title, {
             body: data.message,
-            icon: '/appIcons/android-icon-192x192.png'
+            icon: '/appIcons/icon-192.png'
         })
     )
 })
