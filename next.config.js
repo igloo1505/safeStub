@@ -2,9 +2,9 @@
 
 const withPWA = require("@ducanh2912/next-pwa").default({
     dest: "public",
-    workboxOptions: {
-        maximumFileSizeToCacheInBytes: 7000000
-    }
+    // workboxOptions: {
+    //     maximumFileSizeToCacheInBytes: 7000000
+    // }
 });
 
 /** @type {import('next').NextConfig} */
