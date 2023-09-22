@@ -1,6 +1,6 @@
 "use client"
 import { Button } from '#/components/ui/button'
-import { EventsSearchParams } from '#/types/query'
+import { EventsSearchParams } from '#/utils/server/searchEvents'
 import { backFromN, centerOnN, upToN } from '#/utils/universal'
 import { Route } from 'next'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'

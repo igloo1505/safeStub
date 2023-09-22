@@ -5,7 +5,6 @@ import { cookies } from 'next/headers'
 import { Toaster } from '#/components/ui/toaster'
 import { Lexend_Giga } from 'next/font/google'
 import appConfig from "#/data/appConfig.json"
-import Script from 'next/script'
 const lexand = Lexend_Giga({
     subsets: ['latin'],
     variable: "--font-lexand"
@@ -24,7 +23,6 @@ const RootLayout = async ({
 }) => {
     const cookieJar = cookies()
     const darkMode = cookieJar.has("darkMode")
-    console.log("darkMode: ", darkMode)
     return (
         <html lang="en"
             className={clsx("group/html overscroll-y-none", darkMode && "dark", lexand.variable)}

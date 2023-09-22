@@ -6,13 +6,19 @@ import { nflTeamNameList } from '#/seed/seedNflGames2023'
 
 
 
-interface EventsSearchParams {
+export enum EventsSearchSort {
+    upNext = "upNext",
+    price = "price"
+}
+
+export interface EventsSearchParams {
     team?: NFLTeamName
     skip?: number
     take?: number
     query?: string
     page?: number
     perPage?: number
+    sort?: EventsSearchSort
 }
 
 export const searchEventsParams: z.ZodType<EventsSearchParams> = z.object({
@@ -21,7 +27,8 @@ export const searchEventsParams: z.ZodType<EventsSearchParams> = z.object({
     take: z.number().int().default(50),
     query: z.string().optional(),
     page: z.coerce.number().default(1),
-    perPage: z.coerce.number().default(20)
+    perPage: z.coerce.number().default(20),
+    sort: z.nativeEnum(EventsSearchSort)
 })
 
 
@@ -52,7 +59,8 @@ export const getEventsSearchResult = async (props: EventsSearchParams) => {
                 }
             },
             _count: true
-        }
+        },
+        distinct: ['id']
     }
     const addWhere = (val: Prisma.EventWhereInput) => {
         if (!params.where) {

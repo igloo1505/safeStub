@@ -253,4 +253,3 @@ export const seedGames = async () => {
     await seedItem(0)
 }
 
-seedGames()

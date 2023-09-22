@@ -1,4 +1,5 @@
 // const { withSuperjson } = require('next-superjson')
+const { withContentlayer } = require('next-contentlayer')
 
 const withPWA = require("@ducanh2912/next-pwa").default({
     dest: "public",
@@ -17,4 +18,4 @@ const nextConfig = withPWA({
     },
 })
 
-module.exports = nextConfig
+module.exports = withContentlayer(nextConfig)

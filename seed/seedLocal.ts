@@ -25,4 +25,4 @@ export const seedLocalData = async () => {
     // console.log(logoData)
 }
 
-seedLocalData()
+// seedLocalData()

@@ -5,4 +5,4 @@ export const deleteAllTeams = async () => {
     console.log(`Deleted all teams`)
 }
 
-deleteAllTeams()
+// deleteAllTeams()

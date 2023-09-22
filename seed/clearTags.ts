@@ -5,4 +5,4 @@ export const deleteAllTags = async () => {
 }
 console.log(`Deleted all tags`)
 
-deleteAllTags()
+// deleteAllTags()

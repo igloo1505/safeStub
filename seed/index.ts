@@ -1,6 +1,7 @@
 // import { deleteAllGames } from "./clearEvents"
-import { seedGames } from "./seedNflGames2023"
-import { seedLocalData } from './seedLocal'
+// // import { seedGames } from "./seedNflGames2023"
+// import { seedLocalData } from './seedLocal'
+
 
 // const wait3FuckingMinutesForPrismaToCatchup = 60 * 3 * 1000
 
@@ -9,6 +10,8 @@ import { seedLocalData } from './seedLocal'
 
 // seedLocalData()
 
-setTimeout(() => {
-    seedGames()
-}, 60000)
+// setTimeout(() => {
+//     seedGames()
+// }, 60000)
+
+// seedGames()

@@ -2,13 +2,23 @@ import { Button } from '#/components/ui/button'
 import { day } from '#/lib/formatting/dates'
 import { formatLocation } from '#/lib/formatting/teamNames'
 import { SearchEventsResult } from '#/types/events'
+import { CATEGORY } from '@prisma/client'
 import Link from 'next/link'
 import React from 'react'
 
 
 interface SearchResultListItemProps {
-    event: SearchEventsResult['data'][number]
+    event: {
+        date: string;
+        id: number;
+        category: CATEGORY;
+        arenaId: number;
+        amenitiesId: number;
+        title: string;
+        description: string;
+    }
 }
+
 
 const SearchResultListItem = ({ event }: SearchResultListItemProps) => {
     /* @ts-ignore */

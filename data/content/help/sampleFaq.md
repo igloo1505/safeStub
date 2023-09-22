@@ -2,7 +2,6 @@
 title: Sample help Q&A
 category: buyTickets
 tags: [buy, newUser, someOtherTagToHelpWithSorting]
-linkKey: someUNIQUEKeyToIdentifyNoteForLinking1
 ---
 
 # How do you buy a ticket on Safe Stub?

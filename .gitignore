@@ -45,3 +45,4 @@ state/**
 **/public/worker-*.js
 
 /notes/postgresOnVercel.md
+.contentlayer

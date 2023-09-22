@@ -9,12 +9,6 @@ export interface QuickLinkType {
 }
 
 
-export interface EventsSearchParams {
-    sort: "upNext" | "price"
-    query: string
-    team: NFLTeamName
-    page?: string
-}
 
 
 export type SingleEventReturned = Awaited<ReturnType<typeof serverClient.getEvent>>

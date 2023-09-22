@@ -17,7 +17,7 @@ const TrpcProvider = ({ children }: TrpcProviderProps) => {
     const [trpcClient, setTrpcClient] = useState(() => trpc.createClient({
         links: [
             httpBatchLink({
-                url: Boolean(window) ? `${window.location.host}/api/trpc` : "https://localhost:3000/api/trpc"
+                url: typeof window !== "undefined" ? `${window.location.host}/api/trpc` : "https://localhost:3000/api/trpc"
             })
         ]
     }))
