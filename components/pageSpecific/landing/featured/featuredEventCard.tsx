@@ -14,7 +14,7 @@ import { formatEventDate } from "#/lib/formatting/dates"
 import Image from "next/image"
 import Link from "next/link"
 import { Route } from "next"
-import { formatTeamName } from "#/lib/formatting/teamNames"
+import { formatLocation, formatTeamName } from "#/lib/formatting/teamNames"
 
 
 interface CardProps extends React.ComponentProps<typeof Card> {
@@ -27,7 +27,7 @@ const FeaturedEventCard = ({ className, event, ...props }: CardProps) => {
     const homeIcon = `/assets/teams/logos/${formatTeamName(event.participants[0].nickname)}.svg`
     const awayIcon = event.participants.length >= 2 ? `/assets/teams/logos/${formatTeamName(event.participants[1].nickname)}.svg` : homeIcon
     return (
-        <Card className={cn("w-full grid grid-cols-1 grid-rows-[126px_auto_1fr_auto]", className)} {...props}>
+        <Card className={cn("w-full grid grid-cols-1 grid-rows-[126px_auto_1fr_auto] @container", className)} {...props}>
             <div className={"mt-6"}>
                 <div className={"flex flex-row gap-4 justify-center items-center"}>
                     <Image src={homeIcon} className={logoClasses} alt="homeIcon" width={200} height={200} />
@@ -35,17 +35,27 @@ const FeaturedEventCard = ({ className, event, ...props }: CardProps) => {
                 </div>
             </div>
             <CardHeader>
-                <CardTitle className={"w-full text-center md:text-start"}>{event.description}</CardTitle>
-                <CardDescription className={"w-full text-center md:text-start"}>{formatEventDate(event.date)}</CardDescription>
+                <CardTitle className={"w-full text-center @[400px]:text-start"}>{event.description}</CardTitle>
+                <CardDescription className={"w-full text-center @[400px]:text-start"}>{formatEventDate(event.date)}</CardDescription>
+                <div className={"w-full mt-1 text-sm text-muted-foreground text-center @[400px]:text-start flex flex-row justify-center @[400px]:justify-start gap-x-1 items-center flex-wrap"} style={{
+                    marginTop: "0px !important"
+                }}>
+                    {event.arena.name && <div className={"inline-block"}>
+                        {`${event.arena.name} `}{" "}
+                    </div>}
+                    <div className={"inline-block"}>
+                        {formatLocation(event.arena.location)}
+                    </div>
+                </div>
             </CardHeader>
             <CardContent className="grid gap-4">
-                <div className={"text-center md:text-start"}>
+                <div className={"text-center @[400px]:text-start"}>
                     Vitae vel posuere, orci rhoncus tincidunt, ut amet malesuada molestie imperdiet id sed eleifend nullam curabitur arcu porttitor quam sed molestie neque semper cras ex dui
                 </div>
             </CardContent>
-            <CardFooter className={"h-fit w-full md:w-fit flex flex-col justify-center items-center"}>
-                <Link href={`/event/${event.id}` as Route}>
-                    <Button className="w-full md:w-fit">
+            <CardFooter className={"h-fit w-full @[400px]:w-fit flex flex-col justify-center items-center"}>
+                <Link href={`/event/${event.id}` as Route} className={"w-full @[400px]:w-fit"}>
+                    <Button className="w-full @[400px]:w-fit">
                         <TicketIcon className="mr-2 h-4 w-4" /> Find my tickets
                     </Button>
                 </Link>

@@ -31,6 +31,16 @@ export const appRouter = router({
             }
         })
     }),
+    getUserProfile: publicProcedure.input(z.string()).query(async (opts) => {
+        return await prisma.user.findFirst({
+            where: {
+                id: opts.input
+            },
+            include: {
+                settings: true
+            }
+        })
+    }),
     updateSettings: publicProcedure.input(settingsChangeSchema).mutation(async (opts) => {
         let settings = await prisma.settings.findFirst({})
         if (!settings) return
@@ -77,7 +87,11 @@ export const appRouter = router({
             },
             include: {
                 participants: true,
-                arena: true,
+                arena: {
+                    include: {
+                        location: true
+                    }
+                },
             }
         })
     }),

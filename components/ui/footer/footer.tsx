@@ -8,6 +8,7 @@ import FooterCategory from './footerCategory';
 import appConfig from "#/data/appConfig.json"
 import { Route } from 'next';
 import LogoWithName from '#/components/brand/logoWithName';
+import clsx from 'clsx';
 
 
 const getQuickLinks = () => {
@@ -77,10 +78,10 @@ const getQuickLinks = () => {
 
 const iconClasses = "w-5 h-5 fill-current md:w-8 md:h-8 md:mx-2 lg:w-5 lg:h-5 lg:mx-0"
 
-const Footer = () => {
+const Footer = ({ className }: { className?: string }) => {
     let groupedQuickLinks = getQuickLinks()
     return (
-        <footer className="bg-background mt-4 border-t border-t-muted z-[1] relative" id="footer-panel">
+        <footer className={clsx("bg-background mt-4 border-t border-t-muted z-[1] relative", className && className)} id="footer-panel">
             <div className="container p-6 mx-auto">
                 <div className="lg:flex">
                     <div className="w-full md:-mx-6 lg:w-2/5">
