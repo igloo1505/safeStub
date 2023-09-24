@@ -24,8 +24,8 @@ const getQuickLinks = () => {
         },
         {
             category: "legal",
-            label: "Help Center",
-            href: "/helpCenter"
+            label: "Refund Policy",
+            href: "/refundPolicy"
         },
         {
             category: "user",
@@ -52,7 +52,11 @@ const getQuickLinks = () => {
             label: "Great Deals",
             href: "/events?sort=price"
         },
-
+        {
+            category: "navigation",
+            label: "Help Center",
+            href: "/helpCenter"
+        },
     ]
 
     const groupedQuickLinks: { [k in QuickLinkType['category']]?: QuickLinkType[] } = {

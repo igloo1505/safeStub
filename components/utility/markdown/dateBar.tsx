@@ -2,7 +2,6 @@ import { day } from '#/lib/formatting/dates'
 import React from 'react'
 
 
-
 interface MarkdownDateBarProps {
     date: string | Date | undefined | null
     leadingText?: string

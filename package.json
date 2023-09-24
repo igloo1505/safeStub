@@ -91,6 +91,7 @@
     "react-redux": "^8.1.2",
     "react-spinners": "^0.13.8",
     "redux-persist": "^6.0.0",
+    "remark-gfm": "^4.0.0",
     "sass": "^1.66.1",
     "stripe": "^13.4.0",
     "superjson": "^1.13.1",

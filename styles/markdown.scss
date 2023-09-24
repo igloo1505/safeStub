@@ -14,11 +14,18 @@
     font-size: 1.3rem;
     font-weight: bold;
   }
+  ol {
+    list-style-position: inside;
+    li {
+      list-style-type: decimal;
+    }
+  }
   ul {
     li {
       position: relative;
       visibility: hidden;
-      margin-bottom: 0.5rem;
+      list-style-type: none;
+      padding-left: 0.5rem;
       &::before {
         content: "•";
         margin-right: 0.25rem;

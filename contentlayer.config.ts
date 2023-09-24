@@ -1,5 +1,5 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
-
+import remarkGfm from 'remark-gfm'
 const contentRoot = "./data/content"
 export const PrivacyPolicy = defineDocumentType(() => ({
     name: 'PrivacyPolicy',
@@ -26,6 +26,17 @@ export const Tos = defineDocumentType(() => ({
     },
 }))
 
+export const RefundPolicy = defineDocumentType(() => ({
+    name: 'RefundPolicy',
+    filePathPattern: `refundPolicy.md`,
+    fields: {
+        title: { type: 'string', required: false },
+        lastUpdated: { type: 'date', required: false },
+    },
+    computedFields: {
+        // url: { type: 'string', resolve: (post) => `/posts/${post._raw.flattenedPath}` },
+    },
+}))
 
 export const HelpTopic = defineDocumentType(() => ({
     name: 'Help',
@@ -49,9 +60,17 @@ export const HelpTopic = defineDocumentType(() => ({
 }))
 
 export default makeSource({
-    contentDirPath: contentRoot, documentTypes: [
+    contentDirPath: contentRoot,
+    documentTypes: [
         PrivacyPolicy,
         Tos,
-        HelpTopic
-    ]
+        HelpTopic,
+        RefundPolicy
+    ],
+    markdown: {
+        remarkPlugins: [remarkGfm]
+    },
+    mdx: {
+        remarkPlugins: [remarkGfm]
+    }
 })

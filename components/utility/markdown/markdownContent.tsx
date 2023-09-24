@@ -1,13 +1,15 @@
 "use client"
 import React, { useEffect, useId } from 'react'
 import "#/styles/markdown.scss"
+import clsx from 'clsx'
 
 
 interface MarkdownContentProps {
     html: string
+    className?: string
 }
 
-const MarkdownContent = ({ html }: MarkdownContentProps) => {
+const MarkdownContent = ({ html, className }: MarkdownContentProps) => {
     const id = useId()
     useEffect(() => {
         const markdown = document.getElementById(id)
@@ -26,7 +28,7 @@ const MarkdownContent = ({ html }: MarkdownContentProps) => {
     }, [])
     return (
         <>
-            <div id={id} className="markdownContent [&>p]:mb-3 [&>*:last-child]:mb-0  w-5/6 max-w-screen-md" dangerouslySetInnerHTML={{ __html: html }} />
+            <div id={id} className={clsx("markdownContent [&>p]:mb-3 [&>*:last-child]:mb-0  w-5/6 max-w-screen-md", className && className)} dangerouslySetInnerHTML={{ __html: html }} />
         </>
     )
 }
