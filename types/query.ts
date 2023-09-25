@@ -1,5 +1,4 @@
-import { serverClient } from "#/trpc/serverClient"
-import { NFLTeamName } from "@prisma/client"
+import type { serverClient } from "#/trpc/serverClient"
 import { Route } from "next"
 
 export interface QuickLinkType {

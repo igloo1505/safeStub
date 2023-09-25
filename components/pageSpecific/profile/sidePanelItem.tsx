@@ -37,7 +37,7 @@ const SidePanelItem = ({ label, icon, href, clickClass }: SidePanelItemProps) =>
         return (
             <Link
                 href={href as Route}
-                className={"w-5/6 grid grid-cols-[auto_1fr] gap-4 mb-3 cursor-pointer"}
+                className={"w-5/6 grid grid-cols-[auto_1fr] gap-4 cursor-pointer px-4 py-2"}
             >
                 <DynamicIcon name={icon} className={"w-6 h-auto"} />
                 <div className={"w-full"}>{label}</div>
@@ -45,7 +45,7 @@ const SidePanelItem = ({ label, icon, href, clickClass }: SidePanelItemProps) =>
         )
     }
     return (
-        <div className={"w-5/6 grid grid-cols-[auto_1fr] gap-4 mb-3 cursor-pointer"} onClick={clickClass === "signout" ? () => signOut() : () => handleStateToggle(clickClass as string)}>
+        <div className={"w-5/6 px-4 py-2 grid grid-cols-[auto_1fr] gap-4 cursor-pointer hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"} onClick={clickClass === "signout" ? () => signOut() : () => handleStateToggle(clickClass as string)}>
             <DynamicIcon name={icon} className={"w-6 h-auto"} />
             <div className={"w-full"}>{label}</div>
         </div>

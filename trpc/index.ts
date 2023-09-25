@@ -9,6 +9,8 @@ import { NFLTeamName } from "@prisma/client";
 import { saleFormSchema } from "#/components/pageSpecific/sell/form/saleFormContext";
 import { formatTicketGroupCreate } from "#/lib/formatting/ticketGroupCreate";
 import { getEventsSearchResult, searchEventsParams } from "#/utils/server/searchEvents";
+import { findGreatDeals } from "#/utils/server/findEventDeals";
+import { paginateParamsZod } from "#/utils/server/getPaginationData";
 
 
 
@@ -213,7 +215,9 @@ export const appRouter = router({
             }
         })
     }),
-    searchEvents: publicProcedure.input(searchEventsParams).query(async (opts) => await getEventsSearchResult(opts.input))
+    searchEvents: publicProcedure.input(searchEventsParams).query(async (opts) => await getEventsSearchResult(opts.input)),
+    findGreatDeals: publicProcedure.input(paginateParamsZod).query(async (opts) => await findGreatDeals(opts.input))
+
 })
 
 

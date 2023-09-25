@@ -3,32 +3,27 @@ import { NFLTeamName } from '@prisma/client'
 import * as z from 'zod'
 import type { Prisma } from "@prisma/client"
 import { nflTeamNameList } from '#/seed/seedNflGames2023'
-import queryMap from "#/utils/server/query/queryMap.json"
+import { getQueryHelper } from './getQueryHelper'
+import { getPagination } from './getPaginationData'
 
 
-const getQueryHelper = (query?: string): (null | NFLTeamName) => {
-    if (!query) return null
-    let q = query.toLowerCase()
-    let l = Object.keys(queryMap).find((k) => {
-        let d = queryMap[k as keyof typeof queryMap] as string[]
-        return d.includes(q)
-    }
-    )
-    return l ? l as NFLTeamName : null
-}
 
 export enum EventsSearchSort {
     upNext = "upNext",
     price = "price"
 }
 
-export interface EventsSearchParams {
-    team?: NFLTeamName
+
+export interface BasicSearchParams {
     skip?: number
     take?: number
-    query?: string
     page?: number
     perPage?: number
+}
+
+export interface EventsSearchParams extends BasicSearchParams {
+    team?: NFLTeamName
+    query?: string
     sort?: EventsSearchSort
 }
 
@@ -43,12 +38,12 @@ export const searchEventsParams: z.ZodType<EventsSearchParams> = z.object({
 })
 
 
+
 export const getEventsSearchResult = async (props: EventsSearchParams) => {
-    const pp = props.perPage || 20
-    const page = props.page || 1
     const query = props.query ? nflTeamNameList.find((t) => t.toLowerCase() === props.query?.toLowerCase()) || props.query : undefined
     let queryHelper = getQueryHelper(query)
     let isTeam = query ? nflTeamNameList.includes(query) : false
+    const pag = getPagination(props)
     let params: Prisma.EventFindManyArgs = {
         orderBy: {
             date: "asc"
@@ -58,8 +53,8 @@ export const getEventsSearchResult = async (props: EventsSearchParams) => {
                 gte: new Date()
             }
         },
-        skip: pp * (page - 1),
-        take: pp,
+        skip: pag.skip,
+        take: pag.take,
         select: {
             id: true,
             date: true,

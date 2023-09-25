@@ -29,9 +29,9 @@ const MobileDrawerItem = ({ Icon, label, closeDrawer, href }: DrawerItemProps) =
     return (
         <Link href={href} onClick={closeDrawer}>
             <div
-                className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-accent text-foreground/60 dark:text-foreground/80"
+                className="p-2.5 mt-3 md:mt-1 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-accent text-foreground/60 dark:text-foreground/80"
             >
-                <Icon className={"w-8 h-8"} />
+                <Icon className={"w-8 h-8 md:w-6 md:h-6"} />
                 <div className={"text-[15px] ml-4 font-bold"}>{label}</div>
             </div>
         </Link>
@@ -65,22 +65,24 @@ const MobileDrawer = ({ session, setLocked }: { session: SessionType, setLocked:
                     </div>
                     <MobileDrawerDivider />
                     <DrawerSearchInput closeDrawer={closeDrawer} />
-                    <div className={"w-full flex flex-col px-6 pb-4"}>
+                    <div className={"w-full flex flex-col px-6 pb-4 md:pb-2"}>
                         <MobileDrawerItem closeDrawer={closeDrawer} Icon={HomeIcon} href="/" label="Home" />
                         <MobileDrawerItem closeDrawer={closeDrawer} Icon={TicketIcon} href="/myTickets" label="My Tickets" />
                         <MobileDrawerItem closeDrawer={closeDrawer} Icon={User} href="/profile" label="Profile" />
                         {session?.user && session.user.role === "ADMIN" && <MobileDrawerItem closeDrawer={closeDrawer} Icon={ShieldEllipsis} href="/admin" label="Admin" />}
                     </div>
+                    <div className={"hidden md:block md:my-2"} />
                     <MobileDrawerDivider />
+                    <div className={"hidden md:block md:my-2"} />
                     <div className={"w-full flex flex-col px-6"}>
                         <a role="button" onClick={() => {
                             closeDrawer()
                             toggleDarkmode()
                         }}>
                             <div
-                                className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-accent text-foreground/60 dark:text-foreground/80"
+                                className="p-2.5 mt-3 md:mt-1 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-accent text-foreground/60 dark:text-foreground/80"
                             >
-                                <MoonIcon className={"w-8 h-8"} />
+                                <MoonIcon className={"w-8 h-8 md:w-6 md:h-6"} />
                                 <div className={"text-[15px] ml-4 font-bold"}>Dark Mode</div>
                             </div>
                         </a>

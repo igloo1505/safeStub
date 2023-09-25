@@ -89,7 +89,6 @@ const MobileNavbar = ({ session, container }: MobileNavbarProps) => {
     const handleScroll = (e: Event) => {
         let diff = prevScroll - window.scrollY
         prevScroll = window.scrollY
-        console.log("diff: ", diff)
         if (diff <= -8) {
             ref.current.classList.add("translate-y-[-100%]")
         }
@@ -104,16 +103,13 @@ const MobileNavbar = ({ session, container }: MobileNavbarProps) => {
         return () => document.removeEventListener("scroll", handleScroll)
     }, [])
     return (
-        <div className={clsx("w-screen h-[64px] top-0 left-0 z-[9999] px-8 flex flex-row justify-between items-center group/mobileNav transition-transform duration-150 [&_.scrolling]:translate-y-[-100%]", container && container, pathname === "/" && "dark")} id="mobile-navbar" ref={ref}>
+        <div className={clsx("w-screen h-[64px] top-0 left-0 z-[9999] px-8 flex flex-row justify-between items-center group/mobileNav transition-transform duration-150 [&_.scrolling]:translate-y-[-100%]", container && container)} id="mobile-navbar" ref={ref}>
             <div className={"flex flex-row justify-center items-center w-fit"}>
                 <MobileDrawer session={session} setLocked={setLocked} />
                 <HamburgerIcon setLocked={setLocked} />
             </div>
-            <nav className={"w-fit flex flex-row justify-center items-center gap-4"}>
+            <nav className={clsx("w-fit flex flex-row justify-center items-center gap-4", pathname === "/" && "dark")}>
                 <NavbarSearchInput />
-                <Button variant="ghost" aria-label="dark mode" role="button" onClick={toggleDarkmode} className={"p-2 rounded-[50%]"}>
-                    <MoonStar />
-                </Button>
                 <NavbarButton session={session} pathname={pathname} item={{
                     href: "/auth/signin",
                     label: "Sign In",

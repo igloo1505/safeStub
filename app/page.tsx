@@ -11,10 +11,10 @@ const Home = async () => {
     return (
         <PageContentWrapper noParent noNav>
             <main className={"w-full h-fit"}>
+                <Hero session={session} />
                 <Suspense>
-                    <Hero session={session} />
+                    <FeaturedSection />
                 </Suspense>
-                <FeaturedSection />
             </main>
         </PageContentWrapper>
     )

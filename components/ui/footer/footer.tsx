@@ -51,7 +51,7 @@ const getQuickLinks = () => {
         {
             category: "navigation",
             label: "Great Deals",
-            href: "/events?sort=price"
+            href: "/deals"
         },
         {
             category: "navigation",
@@ -76,12 +76,13 @@ const getQuickLinks = () => {
     return groupedQuickLinks
 }
 
-const iconClasses = "w-5 h-5 fill-current md:w-8 md:h-8 md:mx-2 lg:w-5 lg:h-5 lg:mx-0"
+const iconClasses = "w-5 h-5 md:w-8 md:h-8 md:mx-2 lg:w-5 lg:h-5 lg:mx-0 bg-white rounded-md"
+/* "text-foreground hover:text-muted-foreground fill-current" */
 
 const Footer = ({ className }: { className?: string }) => {
     let groupedQuickLinks = getQuickLinks()
     return (
-        <footer className={clsx("bg-background border-t border-t-muted z-[1] relative", className ? className : "mt-4")} id="footer-panel">
+        <footer className={clsx("bg-background border-t border-t-muted  relative", className ? className : "mt-4")} id="footer-panel">
             <div className="container p-6 mx-auto">
                 <div className="lg:flex">
                     <div className="w-full md:-mx-6 lg:w-2/5">
@@ -94,21 +95,21 @@ const Footer = ({ className }: { className?: string }) => {
                             </div>
                             <div className="w-full md:w-fit justify-center items-center flex mt-6 -mx-2 md:place-self-center lg:place-self-start md:mt-0 lg:mt-6 lg:w-fit">
                                 <Link href={appConfig.twitter.url as Route}
-                                    className="mx-2 transition-colors duration-300 text-foreground hover:text-muted-foreground"
+                                    className="mx-2 transition-colors duration-300"
                                     aria-label="Twitter">
-                                    <TwitterXSocialIcon className={iconClasses} />
+                                    <TwitterXSocialIcon className={iconClasses} colorful />
                                 </Link>
                                 <Link href={appConfig.facebook.url as Route}
-                                    className="mx-2 transition-colors duration-300 text-foreground hover:text-muted-foreground"
+                                    className="mx-2 transition-colors duration-300"
                                     aria-label="Facebook"
                                 >
-                                    <FacebookSocialIcon className={iconClasses} />
+                                    <FacebookSocialIcon className={`${iconClasses} rounded-[100%]`} colorful />
                                 </Link>
                                 <Link href={appConfig.instagram.url as Route}
-                                    className="mx-2 transition-colors duration-300 text-foreground hover:text-muted-foreground"
+                                    className="mx-2 transition-colors duration-300"
                                     aria-label="Instagram"
                                 >
-                                    <InstagramSocialIcon className={iconClasses} />
+                                    <InstagramSocialIcon className={iconClasses} colorful />
                                 </Link>
                             </div>
                         </div>

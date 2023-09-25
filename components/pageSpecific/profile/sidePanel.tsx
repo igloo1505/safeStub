@@ -15,12 +15,12 @@ interface ProfileSidePanelProps {
 
 const SidePanelLabel = ({ children }: { children: string }) => {
     return (
-        <h2 className={"font-bold text-lg w-full text-start"}>{children}</h2>
+        <h2 className={"font-bold text-lg w-full text-start pl-6"}>{children}</h2>
     )
 }
 
 const SidePanelSeparator = () => {
-    return <div className={"w-full h-[1px] bg-muted-foreground/60 dark:bg-muted-foreground my-3"} />
+    return <div className={"w-[calc(100%-2rem)] px-4 h-[1px] bg-muted-foreground/60 dark:bg-muted-foreground my-3"} />
 }
 
 
@@ -62,7 +62,7 @@ const items: SidePanelItemProps[] = [
 
 const ProfileSidePanel = (props: ProfileSidePanelProps) => {
     return (
-        <div className={"w-[300px] h-full top-[80px] left-0 bg-secondary px-6 py-4 rounded-tr-lg rounded-tb-lg flex flex-col justify-start items-center"}>
+        <div className={"w-[300px] h-full top-[80px] left-0 bg-secondary px-2 py-4 rounded-tr-lg rounded-tb-lg flex flex-col justify-start items-center"}>
             <SidePanelLabel>My Account</SidePanelLabel>
             <SidePanelSeparator />
             {items.map((item) => {

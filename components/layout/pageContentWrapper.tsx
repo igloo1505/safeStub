@@ -17,6 +17,7 @@ interface PageContentWrapperProps {
     }
 }
 
+
 const PageContentWrapper = async ({ children, classes, noFooter, noNav, noParent }: PageContentWrapperProps) => {
     const session = await getServerSession()
     return (
