@@ -1,5 +1,5 @@
 {
-  "Cardinals": ["cards”, "ari", "arz", "phoenix", "gannon"],
+  "Cardinals": ["cards”, "ari", "arz", "phoenix", "gannon",],
   "Falcons": ["atl", "ga", "georgia"],
   "Ravens": ["maryland", "md", "lamar"],
   "Bills": ["buf", "ny", "josh allen", "stefon diggs", "bills mafia"],
@@ -30,5 +30,5 @@
   "Buccaneers": ["bucs", "tb", “tampa”, “813”, “baker”, “mike evans”, “chris godwin”, “fl”, “fla”],
   "Steelers": [“pit”, “pa”, “tomlin”, “kenny pickett”],
   "Commanders": [“wash”, “dc”, “redskins”],
-  "Titans": [“tenn”, “tn”, “vrabel”, “hopkins”, ]
+  "Titans": [“tenn”, “tn”, “vrabel”, “hopkins”,]
 }
