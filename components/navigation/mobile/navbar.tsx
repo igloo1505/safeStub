@@ -7,7 +7,8 @@ import useLockedBody from '#/hooks/lockBodyScroll';
 import clsx from 'clsx';
 import { toggleDarkmode } from '#/actions/client/ui';
 import { cn } from '#/utils/universal';
-import { Link, MoonStar } from 'lucide-react';
+import { MoonStar } from 'lucide-react';
+import Link from 'next/link'
 import { signOut } from 'next-auth/react';
 import NavbarSearchInput from '../navbarSearchInput';
 import { Session } from 'next-auth';
