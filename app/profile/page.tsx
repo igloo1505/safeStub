@@ -18,7 +18,7 @@ const ProfilePageContent = async (props: ProfilePageContentProps) => {
     if (!user) return redirect("/api/auth")
     return (
         <PageContentWrapper classes={{
-            body: "py-0",
+            body: "pb-0 pt-0",
             footer: "mt-0"
         }}>
             <ProfilePageContainer user={user} />

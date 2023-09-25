@@ -2,13 +2,11 @@ import { MouseEventHandler, useRef } from "react"
 import { SeatingChartProps } from "./props"
 import clsx from "clsx"
 
+
 const SeatingChart = (props: SeatingChartProps) => {
     const ref = useRef<SVGSVGElement>(null!)
     const handleSectionHover: MouseEventHandler<SVGPathElement> = (e) => {
         ref.current.classList.add("focusSection")
-        let target = e.target as SVGPathElement
-        let id = target.id
-        console.log("id: ", id)
     }
     const removeSectionHover: MouseEventHandler<SVGPathElement> = (e) => {
         ref.current.classList.remove("focusSection")

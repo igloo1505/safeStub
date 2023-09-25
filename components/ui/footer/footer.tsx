@@ -81,7 +81,7 @@ const iconClasses = "w-5 h-5 fill-current md:w-8 md:h-8 md:mx-2 lg:w-5 lg:h-5 lg
 const Footer = ({ className }: { className?: string }) => {
     let groupedQuickLinks = getQuickLinks()
     return (
-        <footer className={clsx("bg-background mt-4 border-t border-t-muted z-[1] relative", className && className)} id="footer-panel">
+        <footer className={clsx("bg-background border-t border-t-muted z-[1] relative", className ? className : "mt-4")} id="footer-panel">
             <div className="container p-6 mx-auto">
                 <div className="lg:flex">
                     <div className="w-full md:-mx-6 lg:w-2/5">

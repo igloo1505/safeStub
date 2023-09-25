@@ -1,20 +1,20 @@
 .stadium-seating-chart {
+  cursor: pointer;
+  // path:not(#Field):hover ~ path {
+  //   opacity: 0.5;
+  // }
   path {
     transition: opacity 0.3s ease-in-out;
   }
-  // &:hover,
   &.focusSection {
     path {
       opacity: 0.8;
     }
-    path:hover {
+    path:not(#Field):hover {
       opacity: 1;
     }
   }
   path.indicateFocus {
     opacity: 1;
   }
-  // path:hover {
-  //   opacity: 0.3;
-  // }
 }
