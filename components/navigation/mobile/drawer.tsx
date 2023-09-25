@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import MobileNavOverlay from './mobileNavOverlay';
-import { HomeIcon, LucideIcon, MoonIcon, TicketIcon, User } from 'lucide-react';
+import { HomeIcon, LucideIcon, MoonIcon, TicketIcon, User, ShieldEllipsis } from 'lucide-react';
 import { Route } from 'next';
 import Link from 'next/link';
 import Logo from '#/components/brand/logo';
@@ -9,7 +9,6 @@ import { Button } from '#/components/ui/button';
 import { signIn, signOut } from 'next-auth/react';
 import { SessionType } from '#/types/auth';
 import { toggleDarkmode } from '#/actions/client/ui';
-import { Input } from '#/components/ui/input';
 import DrawerSearchInput from './drawerSearchInput';
 
 interface DrawerItemProps {
@@ -70,7 +69,7 @@ const MobileDrawer = ({ session, setLocked }: { session: SessionType, setLocked:
                         <MobileDrawerItem closeDrawer={closeDrawer} Icon={HomeIcon} href="/" label="Home" />
                         <MobileDrawerItem closeDrawer={closeDrawer} Icon={TicketIcon} href="/myTickets" label="My Tickets" />
                         <MobileDrawerItem closeDrawer={closeDrawer} Icon={User} href="/profile" label="Profile" />
-
+                        {session?.user && session.user.role === "ADMIN" && <MobileDrawerItem closeDrawer={closeDrawer} Icon={ShieldEllipsis} href="/admin" label="Admin" />}
                     </div>
                     <MobileDrawerDivider />
                     <div className={"w-full flex flex-col px-6"}>
@@ -86,7 +85,6 @@ const MobileDrawer = ({ session, setLocked }: { session: SessionType, setLocked:
                             </div>
                         </a>
                     </div>
-
                 </div>
                 <div className={"w-full flex flex-col justify-center items-center px-6"}>
                     {isAuthenticated ? <Button onClick={handleAuth}>Log out</Button> : <Link href="/auth/signin" onClick={closeDrawer}><Button>Sign in</Button></Link>}

@@ -16,7 +16,6 @@ import NavbarSearchInput from './navbarSearchInput';
 import { useGCMSubscription } from '#/hooks/useGCMSubscription';
 import appConfig from "#/data/appConfig.json"
 import MobileNavbar from './mobile/navbar';
-import { isMobile } from 'react-device-detect';
 
 interface NavbarProps {
 
@@ -36,6 +35,11 @@ const navButtons: NavbuttonType[] = [
         href: "/events",
         label: "Events",
         authStatus: "all"
+    },
+    {
+        href: "/admin",
+        label: "Admin",
+        authStatus: "ADMIN"
     }
 ]
 

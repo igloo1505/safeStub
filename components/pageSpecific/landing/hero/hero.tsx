@@ -63,13 +63,13 @@ const Hero = ({ session }: HeroProps) => {
                     </div>
                     <div className={"w-fit flex flex-row text-white justify-center items-center gap-4 mt-6 opacity-0 -translate-y-8 group-[.isLoaded]/heroContainer:translate-y-0 group-[.isLoaded]/heroContainer:opacity-100 transition-all duration-300 delay-1300"}>
                         <IconButton>
-                            <FacebookSocialIcon className={"fill-gray-200 w-8 h-8 group-hover/iconButton:fill-white transition-colors duration-300"} />
+                            <FacebookSocialIcon className={"fill-[#4267B2] bg-white rounded-md w-8 h-8 transition-colors duration-300"} />
                         </IconButton>
                         <IconButton>
-                            <InstagramSocialIcon className={"fill-gray-200 w-8 h-8 group-hover/iconButton:fill-white transition-colors duration-300"} />
+                            <InstagramSocialIcon className={"bg-white rounded-md w-8 h-8 transition-colors duration-300"} />
                         </IconButton>
                         <IconButton>
-                            <TwitterXSocialIcon className={"fill-gray-200 w-8 h-8 group-hover/iconButton:fill-white transition-colors duration-300"} />
+                            <TwitterXSocialIcon className={"fill-black bg-white rounded-md w-8 h-8 transition-colors duration-300"} />
                         </IconButton>
                     </div>
                 </div>
