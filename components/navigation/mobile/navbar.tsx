@@ -5,16 +5,84 @@ import MobileDrawer from './drawer';
 import { SessionType } from '#/types/auth';
 import useLockedBody from '#/hooks/lockBodyScroll';
 import clsx from 'clsx';
+import { toggleDarkmode } from '#/actions/client/ui';
+import { cn } from '#/utils/universal';
+import { Link, MoonStar } from 'lucide-react';
+import { signOut } from 'next-auth/react';
+import NavbarSearchInput from '../navbarSearchInput';
+import { Session } from 'next-auth';
+import { AuthRole, validateRole } from '#/lib/auth/authValidators';
+import { Route } from 'next';
+import { Button } from '#/components/ui/button';
+import { usePathname } from 'next/navigation';
 
 
 
-interface MobileNavbarProps {
+export interface MobileNavbarProps {
     session: SessionType
     container?: string
 }
 
-const MobileNavbar = (props: MobileNavbarProps) => {
+
+
+export interface NavbuttonType {
+    href: Route
+    label: string
+    authStatus: AuthRole
+}
+
+
+export const navButtons: NavbuttonType[] = [
+    {
+        href: "/events",
+        label: "Events",
+        authStatus: "all"
+    },
+    {
+        href: "/admin",
+        label: "Admin",
+        authStatus: "ADMIN"
+    }
+]
+
+
+
+const validationMap: { [k in NavbuttonType['authStatus']]: (s?: Session | null) => boolean } = {
+    all: (s?: Session | null | undefined) => true,
+    unauthenticated: (s?: Session | null | undefined) => Boolean(!s || !s.user),
+    authenticated: (s?: Session | null | undefined) => Boolean(s && s.user),
+    verified: (s?: Session | null | undefined) => Boolean(s && s?.user?.role === "ADMIN" || s?.user?.role === "VERIFIED"),
+    ADMIN: (s?: Session | null | undefined) => Boolean(s && s?.user?.role === "ADMIN"),
+    USER: (s?: Session | null | undefined) => validateRole(["USER"], s),
+    BANNED: () => false,
+    EMPLOYEE: (s?: Session | null | undefined) => validateRole(["EMPLOYEE"], s),
+}
+
+
+
+export const NavbarButton = ({ item, pathname, session }: { session?: Session | null, item: NavbuttonType, pathname: string }) => {
+
+    if (!validationMap[item.authStatus](session)) {
+        return null
+    }
+    return (
+        <Link
+            href={item.href}
+            className={cn(
+                "transition-colors hover:text-foreground/80",
+                pathname?.startsWith(item.href)
+                    ? "text-foreground"
+                    : "text-foreground/60"
+            )}
+        >
+            {item.label}
+        </Link>
+    )
+}
+
+const MobileNavbar = ({ session, container }: MobileNavbarProps) => {
     const [locked, setLocked] = useLockedBody(false, 'root')
+    const pathname = usePathname()
     let ref = useRef<HTMLDivElement>(null!)
     let prevScroll = 0
     const handleScroll = (e: Event) => {
@@ -35,9 +103,32 @@ const MobileNavbar = (props: MobileNavbarProps) => {
         return () => document.removeEventListener("scroll", handleScroll)
     }, [])
     return (
-        <div className={clsx("w-screen h-[64px] top-0 left-0 z-[9999] px-8 flex flex-row justify-start items-center group/mobileNav transition-transform duration-150 [&_.scrolling]:translate-y-[-100%]", props.container && props.container)} id="mobile-navbar" ref={ref}>
-            <MobileDrawer session={props.session} setLocked={setLocked} />
-            <HamburgerIcon setLocked={setLocked} />
+        <div className={clsx("w-screen h-[64px] top-0 left-0 z-[9999] px-8 flex flex-row justify-between items-center group/mobileNav transition-transform duration-150 [&_.scrolling]:translate-y-[-100%]", container && container, pathname === "/" && "dark")} id="mobile-navbar" ref={ref}>
+            <div className={"flex flex-row justify-center items-center w-fit"}>
+                <MobileDrawer session={session} setLocked={setLocked} />
+                <HamburgerIcon setLocked={setLocked} />
+            </div>
+            <nav className={"w-fit flex flex-row justify-center items-center gap-4"}>
+                <NavbarSearchInput />
+                <Button variant="ghost" aria-label="dark mode" role="button" onClick={toggleDarkmode} className={"p-2 rounded-[50%]"}>
+                    <MoonStar />
+                </Button>
+                <NavbarButton session={session} pathname={pathname} item={{
+                    href: "/auth/signin",
+                    label: "Sign In",
+                    authStatus: "unauthenticated"
+                }} />
+                <a
+                    role="button"
+                    onClick={() => signOut()}
+                    className={cn(
+                        "transition-colors hover:text-foreground/80 text-foreground/60",
+                        !session && "hidden"
+                    )}
+                >
+                    Sign Out
+                </a>
+            </nav>
         </div>
     )
 }

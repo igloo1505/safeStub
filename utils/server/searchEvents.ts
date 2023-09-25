@@ -3,8 +3,19 @@ import { NFLTeamName } from '@prisma/client'
 import * as z from 'zod'
 import type { Prisma } from "@prisma/client"
 import { nflTeamNameList } from '#/seed/seedNflGames2023'
+import queryMap from "#/utils/server/query/queryMap.json"
 
 
+const getQueryHelper = (query?: string): (null | NFLTeamName) => {
+    if (!query) return null
+    let q = query.toLowerCase()
+    let l = Object.keys(queryMap).find((k) => {
+        let d = queryMap[k as keyof typeof queryMap] as string[]
+        return d.includes(q)
+    }
+    )
+    return l ? l as NFLTeamName : null
+}
 
 export enum EventsSearchSort {
     upNext = "upNext",
@@ -36,6 +47,7 @@ export const getEventsSearchResult = async (props: EventsSearchParams) => {
     const pp = props.perPage || 20
     const page = props.page || 1
     const query = props.query ? nflTeamNameList.find((t) => t.toLowerCase() === props.query?.toLowerCase()) || props.query : undefined
+    let queryHelper = getQueryHelper(query)
     let isTeam = query ? nflTeamNameList.includes(query) : false
     let params: Prisma.EventFindManyArgs = {
         orderBy: {
@@ -78,21 +90,50 @@ export const getEventsSearchResult = async (props: EventsSearchParams) => {
         }
     })
 
-    props.query && addWhere({
-        OR: [
-            { title: { search: props.query, mode: "insensitive" } },
-            { description: { search: props.query, mode: "insensitive" } },
-            {
-                tags: {
-                    some: {
-                        value: {
-                            equals: props.query
-                        }
+    let OR: Prisma.EventWhereInput[] = [
+        {
+            title: {
+                search: props.query,
+                mode: "insensitive"
+            }
+        },
+        { description: { search: props.query, mode: "insensitive" } },
+        {
+            tags: {
+                some: {
+                    value: {
+                        equals: props.query
                     }
                 }
-            },
-        ]
+            }
+        },
+    ]
+
+    props.team && OR.push({
+        participants: {
+            some: {
+                name: {
+                    equals: props.team
+                }
+            }
+        }
     })
+
+    queryHelper && OR.push({
+        participants: {
+            some: {
+                name: {
+                    equals: queryHelper
+                }
+            }
+        }
+    })
+
+
+    props.query && addWhere({
+        OR
+    })
+
     isTeam && params.where?.OR && params.where?.OR.push({
         participants: {
             some: {

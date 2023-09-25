@@ -15,63 +15,10 @@ import clsx from 'clsx';
 import NavbarSearchInput from './navbarSearchInput';
 import { useGCMSubscription } from '#/hooks/useGCMSubscription';
 import appConfig from "#/data/appConfig.json"
-import MobileNavbar from './mobile/navbar';
+import MobileNavbar, { NavbarButton, navButtons } from './mobile/navbar';
 
 interface NavbarProps {
 
-}
-
-
-
-interface NavbuttonType {
-    href: Route
-    label: string
-    authStatus: AuthRole
-}
-
-
-const navButtons: NavbuttonType[] = [
-    {
-        href: "/events",
-        label: "Events",
-        authStatus: "all"
-    },
-    {
-        href: "/admin",
-        label: "Admin",
-        authStatus: "ADMIN"
-    }
-]
-
-const validationMap: { [k in NavbuttonType['authStatus']]: (s?: Session | null) => boolean } = {
-    all: (s?: Session | null | undefined) => true,
-    unauthenticated: (s?: Session | null | undefined) => Boolean(!s || !s.user),
-    authenticated: (s?: Session | null | undefined) => Boolean(s && s.user),
-    verified: (s?: Session | null | undefined) => Boolean(s && s?.user?.role === "ADMIN" || s?.user?.role === "VERIFIED"),
-    ADMIN: (s?: Session | null | undefined) => Boolean(s && s?.user?.role === "ADMIN"),
-    USER: (s?: Session | null | undefined) => validateRole(["USER"], s),
-    BANNED: () => false,
-    EMPLOYEE: (s?: Session | null | undefined) => validateRole(["EMPLOYEE"], s),
-}
-
-
-const NavbarButton = ({ item, pathname, session }: { session?: Session | null, item: NavbuttonType, pathname: string }) => {
-    if (!validationMap[item.authStatus](session)) {
-        return null
-    }
-    return (
-        <Link
-            href={item.href}
-            className={cn(
-                "transition-colors hover:text-foreground/80",
-                pathname?.startsWith(item.href)
-                    ? "text-foreground"
-                    : "text-foreground/60"
-            )}
-        >
-            {item.label}
-        </Link>
-    )
 }
 
 
@@ -81,13 +28,15 @@ const Navbar = ({ session, container, mobileContainer }: { session?: Session | n
     const checkViewport = () => {
         if (typeof window === "undefined") return;
         let vw = window.innerWidth
-        setIsMobile(vw <= appConfig.app.navbarBreakpoint)
+        setIsMobile(vw <= appConfig.app.navbarBreakpoint || Boolean(session?.user.id))
     }
     useEffect(() => {
-        checkViewport()
         window.addEventListener("resize", checkViewport)
         return () => window.removeEventListener("resize", checkViewport)
     }, [])
+    useEffect(() => {
+        checkViewport()
+    }, [session])
     /* const data = useGCMSubscription(session?.user?.id) */
     return (
         <>
