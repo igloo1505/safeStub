@@ -10,6 +10,7 @@ interface GreatDealsPageProps extends BasicSearchParams {
 
 const GreatDealsPage = async ({ page }: GreatDealsPageProps) => {
     const deals = await serverClient.findGreatDeals({ page })
+
     return (
         <PageContentWrapper>
             Highlighting what appears to be good deals will go here.
