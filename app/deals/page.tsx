@@ -5,10 +5,12 @@ import React from 'react'
 
 
 
-interface GreatDealsPageProps extends BasicSearchParams {
+interface GreatDealsPageProps {
+    searchParams: BasicSearchParams
 }
 
-const GreatDealsPage = async ({ page }: GreatDealsPageProps) => {
+
+const GreatDealsPage = async ({ searchParams: { page } }: GreatDealsPageProps) => {
     const deals = await serverClient.findGreatDeals({ page })
 
     return (
