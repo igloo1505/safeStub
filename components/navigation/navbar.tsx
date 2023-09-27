@@ -4,16 +4,13 @@ import React, { useEffect, useState } from 'react'
 import LogoWithName from '../brand/logoWithName';
 import { usePathname } from "next/navigation"
 import { cn } from '#/utils/universal';
-import { Route } from 'next';
 import { Session } from 'next-auth';
 import { signOut } from 'next-auth/react';
-import { AuthRole, validateRole } from '#/lib/auth/authValidators';
 import { MoonStar } from 'lucide-react';
 import { toggleDarkmode } from '#/actions/client/ui';
 import { Button } from '../ui/button';
 import clsx from 'clsx';
 import NavbarSearchInput from './navbarSearchInput';
-import { useGCMSubscription } from '#/hooks/useGCMSubscription';
 import appConfig from "#/data/appConfig.json"
 import MobileNavbar, { NavbarButton, navButtons } from './mobile/navbar';
 
@@ -40,7 +37,7 @@ const Navbar = ({ session, container, mobileContainer }: { session?: Session | n
     /* const data = useGCMSubscription(session?.user?.id) */
     return (
         <>
-            {isMobileVp === false ? (<div className={clsx("px-8 w-full hidden md:flex py-4 justify-between z-10 relative", container && container)}>
+            {isMobileVp === false ? (<div className={clsx("px-8 w-full hidden md:flex py-4 justify-between z-10 relative dark", container && container)}>
                 <div className={"flex flex-row justify-center items-center w-fit"}>
                     <Link href="/" className="mr-6 flex items-center space-x-2">
                         <LogoWithName />

@@ -14,4 +14,4 @@ const wait3FuckingMinutesForPrismaToCatchup = 60 * 3 * 1000
 //     seedGames()
 // }, 60000)
 
-seedGames()
+// seedGames()
