@@ -2,8 +2,7 @@ import { z } from 'zod';
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { EventUpdateOneWithoutTicketGroupsNestedInputObjectSchema } from './EventUpdateOneWithoutTicketGroupsNestedInput.schema';
 import { TicketUpdateManyWithoutTicketGroupNestedInputObjectSchema } from './TicketUpdateManyWithoutTicketGroupNestedInput.schema';
-import { UserUpdateOneRequiredWithoutTicketGroupsSoldNestedInputObjectSchema } from './UserUpdateOneRequiredWithoutTicketGroupsSoldNestedInput.schema';
-import { UserUpdateOneWithoutTicketGroupsPurchasedNestedInputObjectSchema } from './UserUpdateOneWithoutTicketGroupsPurchasedNestedInput.schema';
+import { TransactionUpdateOneWithoutTicketGroupsNestedInputObjectSchema } from './TransactionUpdateOneWithoutTicketGroupsNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -21,15 +20,9 @@ const Schema: z.ZodType<Prisma.TicketGroupUpdateInput> = z
     tickets: z
       .lazy(() => TicketUpdateManyWithoutTicketGroupNestedInputObjectSchema)
       .optional(),
-    seller: z
+    transaction: z
       .lazy(
-        () =>
-          UserUpdateOneRequiredWithoutTicketGroupsSoldNestedInputObjectSchema,
-      )
-      .optional(),
-    buyer: z
-      .lazy(
-        () => UserUpdateOneWithoutTicketGroupsPurchasedNestedInputObjectSchema,
+        () => TransactionUpdateOneWithoutTicketGroupsNestedInputObjectSchema,
       )
       .optional(),
   })

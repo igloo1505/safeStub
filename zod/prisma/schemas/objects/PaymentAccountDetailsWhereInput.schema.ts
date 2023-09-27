@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { IntFilterObjectSchema } from './IntFilter.schema';
 import { StringFilterObjectSchema } from './StringFilter.schema';
+import { EnumPAYOUTMETHODSFilterObjectSchema } from './EnumPAYOUTMETHODSFilter.schema';
+import { PAYOUTMETHODSSchema } from '../enums/PAYOUTMETHODS.schema';
 import { UserListRelationFilterObjectSchema } from './UserListRelationFilter.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -26,6 +28,12 @@ const Schema: z.ZodType<Prisma.PaymentAccountDetailsWhereInput> = z
     id: z.union([z.lazy(() => IntFilterObjectSchema), z.number()]).optional(),
     nameOnAccount: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
+      .optional(),
+    paymentMethodType: z
+      .union([
+        z.lazy(() => EnumPAYOUTMETHODSFilterObjectSchema),
+        z.lazy(() => PAYOUTMETHODSSchema),
+      ])
       .optional(),
     User: z.lazy(() => UserListRelationFilterObjectSchema).optional(),
   })

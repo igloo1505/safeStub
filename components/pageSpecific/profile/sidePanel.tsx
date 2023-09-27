@@ -1,11 +1,7 @@
-import DynamicIcon from '#/components/ui/dynamicIcon'
-import dynamicIconImports from 'lucide-react/dynamicIconImports'
-import { Route } from 'next'
-import { signOut } from 'next-auth/react'
-import Link from 'next/link'
+"use client"
 import React from 'react'
-import { string } from 'zod'
 import SidePanelItem, { SidePanelItemProps } from './sidePanelItem'
+import { BookOpenIcon, CreditCardIcon, DollarSignIcon, LogOutIcon, SettingsIcon, UserIcon, UsersIcon } from 'lucide-react'
 
 
 
@@ -30,31 +26,31 @@ const SidePanelSeparator = () => {
 const items: SidePanelItemProps[] = [
     {
         label: "Profile",
-        icon: "user",
+        Icon: ({ className }: { className: string }) => <UserIcon className={className} />,
         clickClass: "profile",
     }, {
         label: "Orders",
-        icon: "credit-card",
+        Icon: ({ className }: { className: string }) => <CreditCardIcon className={className} />,
         clickClass: "orders",
     }, {
         label: "Sales",
-        icon: "dollar-sign",
+        Icon: ({ className }: { className: string }) => <DollarSignIcon className={className} />,
         clickClass: "sales",
     }, {
         label: "Active Listings",
-        icon: "book-open",
-        clickClass: "activeListings",
+        Icon: ({ className }: { className: string }) => <BookOpenIcon className={className} />,
+        clickClass: "listings",
     }, {
         label: "Payments",
-        icon: "users",
+        Icon: ({ className }: { className: string }) => <UsersIcon className={className} />,
         clickClass: "payments",
     }, {
         label: "Settings",
-        icon: "settings",
+        Icon: ({ className }: { className: string }) => <SettingsIcon className={className} />,
         clickClass: "settings",
     }, {
         label: "Log Out",
-        icon: "log-out",
+        Icon: ({ className }: { className: string }) => <LogOutIcon className={className} />,
         clickClass: "signout",
     }
 ]
@@ -62,7 +58,7 @@ const items: SidePanelItemProps[] = [
 
 const ProfileSidePanel = (props: ProfileSidePanelProps) => {
     return (
-        <div className={"w-[300px] h-full top-[80px] left-0 bg-secondary px-2 py-4 rounded-tr-lg rounded-tb-lg flex flex-col justify-start items-center"}>
+        <div className={"w-[300px] h-full top-[80px] left-0 bg-card text-card-foreground px-2 py-4 rounded-tr-lg rounded-tb-lg flex flex-col justify-start items-center"}>
             <SidePanelLabel>My Account</SidePanelLabel>
             <SidePanelSeparator />
             {items.map((item) => {

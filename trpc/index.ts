@@ -7,10 +7,10 @@ import { paginateSchema } from "#/types/utility";
 import { UserAccessInput } from "#/types/auth";
 import { NFLTeamName } from "@prisma/client";
 import { saleFormSchema } from "#/components/pageSpecific/sell/form/saleFormContext";
-import { formatTicketGroupCreate } from "#/lib/formatting/ticketGroupCreate";
 import { getEventsSearchResult, searchEventsParams } from "#/utils/server/searchEvents";
 import { findGreatDeals } from "#/utils/server/findEventDeals";
 import { paginateParamsZod } from "#/utils/server/getPaginationData";
+import { createTicketgroupTransaction } from "#/lib/formatting/ticketGroupCreate";
 
 
 
@@ -39,7 +39,55 @@ export const appRouter = router({
                 id: opts.input
             },
             include: {
-                settings: true
+                settings: true,
+                purchaseHistory: {
+                    include: {
+                        bought: {
+                            include: {
+                                tickets: {
+                                    include: {
+                                        Event: {
+                                            select: {
+                                                id: true,
+                                                title: true,
+                                                description: true,
+                                                date: true,
+                                                arena: {
+                                                    include: {
+                                                        location: true
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        sold: {
+                            include: {
+                                tickets: {
+                                    include: {
+                                        Event: {
+                                            select: {
+                                                id: true,
+                                                title: true,
+                                                description: true,
+                                                date: true,
+                                                arena: {
+                                                    include: {
+                                                        location: true
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
             }
         })
     }),
@@ -196,11 +244,11 @@ export const appRouter = router({
         })
     }),
     createTicketGroup: publicProcedure.input(saleFormSchema).mutation(async (opts) => {
-        const formattedData = formatTicketGroupCreate(opts.input)
-        return await prisma.ticketGroup.create({
+        const formattedData = createTicketgroupTransaction(opts.input)
+        return await prisma.transaction.create({
             data: formattedData,
             select: {
-                id: true
+                id: true,
             }
         })
     }),
@@ -216,7 +264,31 @@ export const appRouter = router({
         })
     }),
     searchEvents: publicProcedure.input(searchEventsParams).query(async (opts) => await getEventsSearchResult(opts.input)),
-    findGreatDeals: publicProcedure.input(paginateParamsZod).query(async (opts) => await findGreatDeals(opts.input))
+    findGreatDeals: publicProcedure.input(paginateParamsZod).query(async (opts) => await findGreatDeals(opts.input)),
+    getUserTransactionHistory: publicProcedure.input(z.object({
+        userId: z.string(),
+        skip: z.number().int().default(0),
+        take: z.number().int().default(20),
+    })).query(async (opts) => {
+        return await prisma.ticket.findMany({
+            where: {
+                OR: [
+                    {
+                        seller: {
+                            id: opts.input.userId
+                        }
+                    },
+                    {
+                        buyer: {
+                            id: opts.input.userId
+                        }
+                    }
+                ]
+            },
+            skip: opts.input.skip,
+            take: opts.input.take
+        })
+    })
 
 })
 

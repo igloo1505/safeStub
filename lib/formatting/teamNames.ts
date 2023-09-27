@@ -8,6 +8,8 @@ export const formatTeamName = (name?: string | null) => {
 }
 
 
-export const formatLocation = (location: Location) => {
+export const formatLocation = (location?: Location) => {
+    if (!location) return ""
     return `${location.city}${location.state || location.country ? ", " : ""}${location.state || location.country || ""}`
 }
+

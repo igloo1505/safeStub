@@ -67,7 +67,7 @@ const PostForSaleConfirmation = ({ form, userId, event }: PostForSaleConfirmatio
         },
         {
             label: "Total Payout",
-            value: formatUSD(calculatePayout(form.watch("pricePerTicket"), quant))
+            value: formatUSD(calculatePayout(form.getValues()))
         },
     ]
     const submitTicket = async () => {

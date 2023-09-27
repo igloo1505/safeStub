@@ -2,9 +2,13 @@ import { z } from 'zod';
 
 export const TransactionScalarFieldEnumSchema = z.enum([
   'id',
-  'price',
-  'paymentId',
+  'listedPrice',
   'sellerId',
   'buyerId',
-  'date',
+  'status',
+  'total',
+  'payout',
+  'payoutMethod',
+  'postedOn',
+  'purchasedOn',
 ]);

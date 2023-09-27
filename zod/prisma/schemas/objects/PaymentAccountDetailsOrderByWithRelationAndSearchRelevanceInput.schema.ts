@@ -10,6 +10,7 @@ const Schema: z.ZodType<Prisma.PaymentAccountDetailsOrderByWithRelationAndSearch
     .object({
       id: z.lazy(() => SortOrderSchema).optional(),
       nameOnAccount: z.lazy(() => SortOrderSchema).optional(),
+      paymentMethodType: z.lazy(() => SortOrderSchema).optional(),
       User: z
         .lazy(() => UserOrderByRelationAggregateInputObjectSchema)
         .optional(),

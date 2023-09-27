@@ -9,6 +9,10 @@ const Schema: z.ZodType<Prisma.TicketUncheckedCreateWithoutTicketGroupInput> = z
     section: z.string(),
     row: z.string(),
     seat: z.string(),
+    sellerId: z.string(),
+    buyerId: z.string().optional().nullable(),
+    transactionId: z.number().optional().nullable(),
+    ticketNumber: z.string().optional().nullable(),
   })
   .strict();
 

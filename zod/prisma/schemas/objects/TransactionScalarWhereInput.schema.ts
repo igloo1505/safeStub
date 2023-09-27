@@ -1,8 +1,13 @@
 import { z } from 'zod';
 import { IntFilterObjectSchema } from './IntFilter.schema';
 import { FloatFilterObjectSchema } from './FloatFilter.schema';
-import { StringFilterObjectSchema } from './StringFilter.schema';
+import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
+import { EnumTRANSACTIONSTATUSFilterObjectSchema } from './EnumTRANSACTIONSTATUSFilter.schema';
+import { TRANSACTIONSTATUSSchema } from '../enums/TRANSACTIONSTATUS.schema';
+import { EnumPAYOUTMETHODSFilterObjectSchema } from './EnumPAYOUTMETHODSFilter.schema';
+import { PAYOUTMETHODSSchema } from '../enums/PAYOUTMETHODS.schema';
 import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema';
+import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -25,21 +30,44 @@ const Schema: z.ZodType<Prisma.TransactionScalarWhereInput> = z
       ])
       .optional(),
     id: z.union([z.lazy(() => IntFilterObjectSchema), z.number()]).optional(),
-    price: z
+    listedPrice: z
       .union([z.lazy(() => FloatFilterObjectSchema), z.number()])
-      .optional(),
-    paymentId: z
-      .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
     sellerId: z
       .union([z.lazy(() => IntFilterObjectSchema), z.number()])
       .optional(),
     buyerId: z
-      .union([z.lazy(() => IntFilterObjectSchema), z.number()])
+      .union([z.lazy(() => IntNullableFilterObjectSchema), z.number()])
+      .optional()
+      .nullable(),
+    status: z
+      .union([
+        z.lazy(() => EnumTRANSACTIONSTATUSFilterObjectSchema),
+        z.lazy(() => TRANSACTIONSTATUSSchema),
+      ])
       .optional(),
-    date: z
+    total: z
+      .union([z.lazy(() => FloatFilterObjectSchema), z.number()])
+      .optional(),
+    payout: z
+      .union([z.lazy(() => FloatFilterObjectSchema), z.number()])
+      .optional(),
+    payoutMethod: z
+      .union([
+        z.lazy(() => EnumPAYOUTMETHODSFilterObjectSchema),
+        z.lazy(() => PAYOUTMETHODSSchema),
+      ])
+      .optional(),
+    postedOn: z
       .union([z.lazy(() => DateTimeFilterObjectSchema), z.coerce.date()])
       .optional(),
+    purchasedOn: z
+      .union([
+        z.lazy(() => DateTimeNullableFilterObjectSchema),
+        z.coerce.date(),
+      ])
+      .optional()
+      .nullable(),
   })
   .strict();
 

@@ -6,13 +6,17 @@ import { getServerSession } from '#/actions/server/auth'
 
 
 interface SigninPageProps {
-
+    searchParams: {
+        f: string | boolean
+    }
 }
 
 
-const SigninPage = async (props: SigninPageProps) => {
+const SigninPage = async ({ searchParams: {
+    f
+} }: SigninPageProps) => {
     const session = await getServerSession()
-    if (session) {
+    if (session && !Boolean(f)) {
         if (session?.user?.id) {
             redirect(`/profile/${session.user.id}`)
         } else {

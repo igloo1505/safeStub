@@ -13,8 +13,8 @@ import { PurchaseHistoryUpdateOneWithoutUserNestedInputObjectSchema } from './Pu
 import { SettingsUpdateOneWithoutUserNestedInputObjectSchema } from './SettingsUpdateOneWithoutUserNestedInput.schema';
 import { AccountUpdateManyWithoutUserNestedInputObjectSchema } from './AccountUpdateManyWithoutUserNestedInput.schema';
 import { SessionUpdateManyWithoutUserNestedInputObjectSchema } from './SessionUpdateManyWithoutUserNestedInput.schema';
-import { TicketGroupUpdateManyWithoutBuyerNestedInputObjectSchema } from './TicketGroupUpdateManyWithoutBuyerNestedInput.schema';
-import { TicketGroupUpdateManyWithoutSellerNestedInputObjectSchema } from './TicketGroupUpdateManyWithoutSellerNestedInput.schema';
+import { TicketUpdateManyWithoutBuyerNestedInputObjectSchema } from './TicketUpdateManyWithoutBuyerNestedInput.schema';
+import { TicketUpdateManyWithoutSellerNestedInputObjectSchema } from './TicketUpdateManyWithoutSellerNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -103,11 +103,11 @@ const Schema: z.ZodType<Prisma.UserUpdateInput> = z
     sessions: z
       .lazy(() => SessionUpdateManyWithoutUserNestedInputObjectSchema)
       .optional(),
-    ticketGroupsPurchased: z
-      .lazy(() => TicketGroupUpdateManyWithoutBuyerNestedInputObjectSchema)
+    ticketsPurchased: z
+      .lazy(() => TicketUpdateManyWithoutBuyerNestedInputObjectSchema)
       .optional(),
-    ticketGroupsSold: z
-      .lazy(() => TicketGroupUpdateManyWithoutSellerNestedInputObjectSchema)
+    ticketsSold: z
+      .lazy(() => TicketUpdateManyWithoutSellerNestedInputObjectSchema)
       .optional(),
   })
   .strict();

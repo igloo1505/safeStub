@@ -5,11 +5,15 @@ import type { Prisma } from '@prisma/client';
 const Schema: z.ZodType<Prisma.TransactionMaxAggregateInputType> = z
   .object({
     id: z.literal(true).optional(),
-    price: z.literal(true).optional(),
-    paymentId: z.literal(true).optional(),
+    listedPrice: z.literal(true).optional(),
     sellerId: z.literal(true).optional(),
     buyerId: z.literal(true).optional(),
-    date: z.literal(true).optional(),
+    status: z.literal(true).optional(),
+    total: z.literal(true).optional(),
+    payout: z.literal(true).optional(),
+    payoutMethod: z.literal(true).optional(),
+    postedOn: z.literal(true).optional(),
+    purchasedOn: z.literal(true).optional(),
   })
   .strict();
 

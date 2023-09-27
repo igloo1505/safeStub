@@ -9,6 +9,7 @@ const Schema: z.ZodType<Prisma.PaymentAccountDetailsSelect> = z
     id: z.boolean().optional(),
     nameOnAccount: z.boolean().optional(),
     User: z.union([z.boolean(), z.lazy(() => UserFindManySchema)]).optional(),
+    paymentMethodType: z.boolean().optional(),
     _count: z
       .union([
         z.boolean(),

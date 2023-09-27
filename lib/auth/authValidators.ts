@@ -1,5 +1,6 @@
 import { ROLE } from "@prisma/client";
 import { Session } from "next-auth";
+import { redirect } from "next/navigation";
 
 export type AuthRole = ROLE | "all" | "authenticated" | "unauthenticated" | "verified"
 
@@ -20,3 +21,6 @@ export const validateRole = (roles: AuthRole[], session?: Session | null) => {
     console.log(`Reaching default validateRole return`)
     return false
 }
+
+
+export const toSignin = (force: boolean = false) => redirect(`/auth/signin${force ? "?f=true" : ""}`)

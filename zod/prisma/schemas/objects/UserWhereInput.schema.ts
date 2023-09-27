@@ -17,7 +17,7 @@ import { SettingsRelationFilterObjectSchema } from './SettingsRelationFilter.sch
 import { SettingsWhereInputObjectSchema } from './SettingsWhereInput.schema';
 import { AccountListRelationFilterObjectSchema } from './AccountListRelationFilter.schema';
 import { SessionListRelationFilterObjectSchema } from './SessionListRelationFilter.schema';
-import { TicketGroupListRelationFilterObjectSchema } from './TicketGroupListRelationFilter.schema';
+import { TicketListRelationFilterObjectSchema } from './TicketListRelationFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -104,12 +104,10 @@ const Schema: z.ZodType<Prisma.UserWhereInput> = z
       .nullable(),
     accounts: z.lazy(() => AccountListRelationFilterObjectSchema).optional(),
     sessions: z.lazy(() => SessionListRelationFilterObjectSchema).optional(),
-    ticketGroupsPurchased: z
-      .lazy(() => TicketGroupListRelationFilterObjectSchema)
+    ticketsPurchased: z
+      .lazy(() => TicketListRelationFilterObjectSchema)
       .optional(),
-    ticketGroupsSold: z
-      .lazy(() => TicketGroupListRelationFilterObjectSchema)
-      .optional(),
+    ticketsSold: z.lazy(() => TicketListRelationFilterObjectSchema).optional(),
   })
   .strict();
 

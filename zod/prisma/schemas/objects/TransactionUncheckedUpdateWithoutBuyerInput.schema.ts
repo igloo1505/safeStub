@@ -1,8 +1,14 @@
 import { z } from 'zod';
 import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema';
 import { FloatFieldUpdateOperationsInputObjectSchema } from './FloatFieldUpdateOperationsInput.schema';
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
+import { TRANSACTIONSTATUSSchema } from '../enums/TRANSACTIONSTATUS.schema';
+import { EnumTRANSACTIONSTATUSFieldUpdateOperationsInputObjectSchema } from './EnumTRANSACTIONSTATUSFieldUpdateOperationsInput.schema';
+import { PAYOUTMETHODSSchema } from '../enums/PAYOUTMETHODS.schema';
+import { EnumPAYOUTMETHODSFieldUpdateOperationsInputObjectSchema } from './EnumPAYOUTMETHODSFieldUpdateOperationsInput.schema';
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema';
+import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
+import { TicketUncheckedUpdateManyWithoutTransactionNestedInputObjectSchema } from './TicketUncheckedUpdateManyWithoutTransactionNestedInput.schema';
+import { TicketGroupUncheckedUpdateManyWithoutTransactionNestedInputObjectSchema } from './TicketGroupUncheckedUpdateManyWithoutTransactionNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -14,16 +20,10 @@ const Schema: z.ZodType<Prisma.TransactionUncheckedUpdateWithoutBuyerInput> = z
         z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    price: z
+    listedPrice: z
       .union([
         z.number(),
         z.lazy(() => FloatFieldUpdateOperationsInputObjectSchema),
-      ])
-      .optional(),
-    paymentId: z
-      .union([
-        z.string(),
-        z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
     sellerId: z
@@ -32,11 +32,56 @@ const Schema: z.ZodType<Prisma.TransactionUncheckedUpdateWithoutBuyerInput> = z
         z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    date: z
+    status: z
+      .union([
+        z.lazy(() => TRANSACTIONSTATUSSchema),
+        z.lazy(
+          () => EnumTRANSACTIONSTATUSFieldUpdateOperationsInputObjectSchema,
+        ),
+      ])
+      .optional(),
+    total: z
+      .union([
+        z.number(),
+        z.lazy(() => FloatFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
+    payout: z
+      .union([
+        z.number(),
+        z.lazy(() => FloatFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
+    payoutMethod: z
+      .union([
+        z.lazy(() => PAYOUTMETHODSSchema),
+        z.lazy(() => EnumPAYOUTMETHODSFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
+    postedOn: z
       .union([
         z.coerce.date(),
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
+      .optional(),
+    purchasedOn: z
+      .union([
+        z.coerce.date(),
+        z.lazy(() => NullableDateTimeFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional()
+      .nullable(),
+    tickets: z
+      .lazy(
+        () =>
+          TicketUncheckedUpdateManyWithoutTransactionNestedInputObjectSchema,
+      )
+      .optional(),
+    ticketGroups: z
+      .lazy(
+        () =>
+          TicketGroupUncheckedUpdateManyWithoutTransactionNestedInputObjectSchema,
+      )
       .optional(),
   })
   .strict();

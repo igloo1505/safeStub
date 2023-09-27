@@ -7,6 +7,7 @@ const Schema: z.ZodType<Prisma.TicketSumAggregateInputType> = z
     id: z.literal(true).optional(),
     eventId: z.literal(true).optional(),
     ticketGroupId: z.literal(true).optional(),
+    transactionId: z.literal(true).optional(),
   })
   .strict();
 

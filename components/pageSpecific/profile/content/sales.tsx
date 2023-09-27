@@ -1,14 +1,15 @@
+import clsx from 'clsx'
 import React from 'react'
 
 
 
 interface SalesProfileContentProps {
-
+    show: boolean
 }
 
-const SalesProfileContent = (props: SalesProfileContentProps) => {
+const SalesProfileContent = ({ show }: SalesProfileContentProps) => {
     return (
-        <div className={"hidden group-[.content-sales]/profileContainer:flex"}>
+        <div className={clsx("", show ? "flex" : "hidden")}>
             Sales Content
         </div>
     )

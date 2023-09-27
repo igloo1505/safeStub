@@ -6,7 +6,7 @@ import { PurchaseHistoryOrderByWithRelationAndSearchRelevanceInputObjectSchema }
 import { SettingsOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './SettingsOrderByWithRelationAndSearchRelevanceInput.schema';
 import { AccountOrderByRelationAggregateInputObjectSchema } from './AccountOrderByRelationAggregateInput.schema';
 import { SessionOrderByRelationAggregateInputObjectSchema } from './SessionOrderByRelationAggregateInput.schema';
-import { TicketGroupOrderByRelationAggregateInputObjectSchema } from './TicketGroupOrderByRelationAggregateInput.schema';
+import { TicketOrderByRelationAggregateInputObjectSchema } from './TicketOrderByRelationAggregateInput.schema';
 import { UserOrderByRelevanceInputObjectSchema } from './UserOrderByRelevanceInput.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -77,11 +77,11 @@ const Schema: z.ZodType<Prisma.UserOrderByWithRelationAndSearchRelevanceInput> =
       sessions: z
         .lazy(() => SessionOrderByRelationAggregateInputObjectSchema)
         .optional(),
-      ticketGroupsPurchased: z
-        .lazy(() => TicketGroupOrderByRelationAggregateInputObjectSchema)
+      ticketsPurchased: z
+        .lazy(() => TicketOrderByRelationAggregateInputObjectSchema)
         .optional(),
-      ticketGroupsSold: z
-        .lazy(() => TicketGroupOrderByRelationAggregateInputObjectSchema)
+      ticketsSold: z
+        .lazy(() => TicketOrderByRelationAggregateInputObjectSchema)
         .optional(),
       _relevance: z
         .lazy(() => UserOrderByRelevanceInputObjectSchema)

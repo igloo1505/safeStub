@@ -13,6 +13,7 @@ const Schema: z.ZodType<Prisma.PaymentAccountDetailsOrderByWithAggregationInput>
     .object({
       id: z.lazy(() => SortOrderSchema).optional(),
       nameOnAccount: z.lazy(() => SortOrderSchema).optional(),
+      paymentMethodType: z.lazy(() => SortOrderSchema).optional(),
       _count: z
         .lazy(() => PaymentAccountDetailsCountOrderByAggregateInputObjectSchema)
         .optional(),

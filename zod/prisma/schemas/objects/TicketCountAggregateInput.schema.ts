@@ -10,6 +10,10 @@ const Schema: z.ZodType<Prisma.TicketCountAggregateInputType> = z
     section: z.literal(true).optional(),
     row: z.literal(true).optional(),
     seat: z.literal(true).optional(),
+    sellerId: z.literal(true).optional(),
+    buyerId: z.literal(true).optional(),
+    transactionId: z.literal(true).optional(),
+    ticketNumber: z.literal(true).optional(),
     _all: z.literal(true).optional(),
   })
   .strict();

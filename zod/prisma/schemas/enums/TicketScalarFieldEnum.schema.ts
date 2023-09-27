@@ -7,4 +7,8 @@ export const TicketScalarFieldEnumSchema = z.enum([
   'section',
   'row',
   'seat',
+  'sellerId',
+  'buyerId',
+  'transactionId',
+  'ticketNumber',
 ]);

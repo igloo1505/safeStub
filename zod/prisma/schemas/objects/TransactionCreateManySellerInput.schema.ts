@@ -1,14 +1,20 @@
 import { z } from 'zod';
+import { TRANSACTIONSTATUSSchema } from '../enums/TRANSACTIONSTATUS.schema';
+import { PAYOUTMETHODSSchema } from '../enums/PAYOUTMETHODS.schema';
 
 import type { Prisma } from '@prisma/client';
 
 const Schema: z.ZodType<Prisma.TransactionCreateManySellerInput> = z
   .object({
     id: z.number().optional(),
-    price: z.number(),
-    paymentId: z.string(),
-    buyerId: z.number(),
-    date: z.coerce.date().optional(),
+    listedPrice: z.number(),
+    buyerId: z.number().optional().nullable(),
+    status: z.lazy(() => TRANSACTIONSTATUSSchema).optional(),
+    total: z.number(),
+    payout: z.number(),
+    payoutMethod: z.lazy(() => PAYOUTMETHODSSchema),
+    postedOn: z.coerce.date().optional(),
+    purchasedOn: z.coerce.date().optional().nullable(),
   })
   .strict();
 

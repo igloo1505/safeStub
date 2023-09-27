@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { IntWithAggregatesFilterObjectSchema } from './IntWithAggregatesFilter.schema';
 import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema';
+import { EnumPAYOUTMETHODSWithAggregatesFilterObjectSchema } from './EnumPAYOUTMETHODSWithAggregatesFilter.schema';
+import { PAYOUTMETHODSSchema } from '../enums/PAYOUTMETHODS.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -48,6 +50,12 @@ const Schema: z.ZodType<Prisma.PaymentAccountDetailsScalarWhereWithAggregatesInp
         .union([
           z.lazy(() => StringWithAggregatesFilterObjectSchema),
           z.string(),
+        ])
+        .optional(),
+      paymentMethodType: z
+        .union([
+          z.lazy(() => EnumPAYOUTMETHODSWithAggregatesFilterObjectSchema),
+          z.lazy(() => PAYOUTMETHODSSchema),
         ])
         .optional(),
     })

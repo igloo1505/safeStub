@@ -1,5 +1,8 @@
 import { z } from 'zod';
 import { TicketGroupCreateNestedOneWithoutTicketsInputObjectSchema } from './TicketGroupCreateNestedOneWithoutTicketsInput.schema';
+import { UserCreateNestedOneWithoutTicketsSoldInputObjectSchema } from './UserCreateNestedOneWithoutTicketsSoldInput.schema';
+import { UserCreateNestedOneWithoutTicketsPurchasedInputObjectSchema } from './UserCreateNestedOneWithoutTicketsPurchasedInput.schema';
+import { TransactionCreateNestedOneWithoutTicketsInputObjectSchema } from './TransactionCreateNestedOneWithoutTicketsInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -8,8 +11,18 @@ const Schema: z.ZodType<Prisma.TicketCreateWithoutEventInput> = z
     section: z.string(),
     row: z.string(),
     seat: z.string(),
+    ticketNumber: z.string().optional().nullable(),
     TicketGroup: z
       .lazy(() => TicketGroupCreateNestedOneWithoutTicketsInputObjectSchema)
+      .optional(),
+    seller: z.lazy(
+      () => UserCreateNestedOneWithoutTicketsSoldInputObjectSchema,
+    ),
+    buyer: z
+      .lazy(() => UserCreateNestedOneWithoutTicketsPurchasedInputObjectSchema)
+      .optional(),
+    transaction: z
+      .lazy(() => TransactionCreateNestedOneWithoutTicketsInputObjectSchema)
       .optional(),
   })
   .strict();

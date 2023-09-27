@@ -21,6 +21,7 @@ export const saleFormSchema = z.object({
         section: z.string(),
         row: z.string(),
         seat: z.string(),
+        ticketNumber: z.string().optional()
     })),
     // section: z.string(),
     // row: z.string(),
