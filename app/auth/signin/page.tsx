@@ -16,10 +16,10 @@ const SigninPage = async ({ searchParams: {
     f
 } }: SigninPageProps) => {
     const session = await getServerSession()
-    if (session && !Boolean(f)) {
+    if (session) {
         if (session?.user?.id) {
             redirect(`/profile/${session.user.id}`)
-        } else {
+        } else if (!Boolean(f)) {
             redirect("/")
         }
     }
