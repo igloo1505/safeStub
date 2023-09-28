@@ -17,10 +17,8 @@ router
 
     .post(async (req, ctx) => {
         try {
-            const { transactionId, sellerId, sellerPaymentHistoryId } = await req.json()
+            const { transactionId, sellerId } = await req.json()
             const session = await getServerSession()
-            console.log("sellerId: ", sellerId)
-            console.log("session.user.id: ", session?.user.id)
             const where = {
                 id: transactionId,
                 AND: [

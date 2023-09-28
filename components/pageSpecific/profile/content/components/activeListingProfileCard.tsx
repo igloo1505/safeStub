@@ -8,7 +8,6 @@ import { formatUSD } from '#/lib/formatting/currency'
 import { payoutMethodLabelMap, transactionStatusLabelMap } from '#/types/profile'
 import clsx from 'clsx'
 import { XIcon } from 'lucide-react'
-import { client } from '#/trpc/client'
 import axios from 'axios'
 import { getSession } from 'next-auth/react'
 
@@ -87,6 +86,7 @@ const ActiveListingProfileCard = ({ item, show, delay }: ActiveListingProfileCar
     const deleteItem = async () => {
         const session = await getSession()
         let res = await axios.post("/api/listing/deleteTransaction", { transactionId: item.id, sellerId: session?.user.id, sellerPaymentHistoryId: item.sellerId })
+        /* BUG: Adjust total estimated payout and # active listings here as well. Make everything in activelistings a client component if need be. */
         if (res.data.id === item.id) {
             if (ref.current) {
                 ref.current.style.display = "none"
