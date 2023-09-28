@@ -5,16 +5,13 @@ import MobileDrawer from './drawer';
 import { SessionType } from '#/types/auth';
 import useLockedBody from '#/hooks/lockBodyScroll';
 import clsx from 'clsx';
-import { toggleDarkmode } from '#/actions/client/ui';
 import { cn } from '#/utils/universal';
-import { MoonStar } from 'lucide-react';
 import Link from 'next/link'
 import { signOut } from 'next-auth/react';
 import NavbarSearchInput from '../navbarSearchInput';
 import { Session } from 'next-auth';
 import { AuthRole, validateRole } from '#/lib/auth/authValidators';
 import { Route } from 'next';
-import { Button } from '#/components/ui/button';
 import { usePathname } from 'next/navigation';
 
 
@@ -90,10 +87,10 @@ const MobileNavbar = ({ session, container }: MobileNavbarProps) => {
         let diff = prevScroll - window.scrollY
         prevScroll = window.scrollY
         if (diff <= -8) {
-            ref.current.classList.add("translate-y-[-100%]")
+            ref.current?.classList?.add("translate-y-[-100%]")
         }
         if (diff > 3) {
-            ref.current.classList.remove("translate-y-[-100%]")
+            ref.current?.classList?.remove("translate-y-[-100%]")
         }
     }
 

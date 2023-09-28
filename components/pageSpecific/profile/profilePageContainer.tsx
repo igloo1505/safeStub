@@ -8,17 +8,15 @@ import SalesProfileContent from './content/sales'
 import ActiveListingsProfileContent from './content/activeListings'
 import PaymentsProfileContent from './content/payments'
 import SettingsProfileContent from './content/settings'
-import { ProfileActiveType } from '#/types/profile'
 import "#/styles/profile.scss"
 import { activeTransactionStatus } from '#/lib/formatting/formatPaymentHistoryForTable'
+import { ProfilePageContainerProps } from './profileNavItems'
+import ProfileTopNav from './profileTopNav'
 export type UserProfileDetails = Awaited<ReturnType<typeof serverClient.getUserProfile>>
 
 
-interface ProfilePageContainerProps {
-    user: UserProfileDetails
-    type: ProfileActiveType
-}
 
+/* <ProfileSidePanel /> */
 
 const ProfilePageContainer = ({ user, type }: ProfilePageContainerProps) => {
     const activeListings = user?.purchaseHistory?.sold ? user?.purchaseHistory?.sold.filter((t) => activeTransactionStatus.indexOf(t.status) >= 0) : []
@@ -27,13 +25,13 @@ const ProfilePageContainer = ({ user, type }: ProfilePageContainerProps) => {
         totalEstimatedPayout += k.payout
     }
     return (
-        <div className={"w-screen h-fit"}>
+        <div className={"w-full lg:w-11/12 h-fit"}>
             <SidePanelContainer>
-                <ProfileSidePanel />
+                <ProfileTopNav />
                 <div className={"w-full h-full flex flex-col justify-start items-center px-6 py-4 group/profileContainer overflow-y-auto"} id="profile-content-container">
                     <ProfileContent user={user} show={type === "profile"} />
                     <OrdersProfileContent show={type === "orders"} />
-                    <SalesProfileContent show={type === "sales"} />
+                    <SalesProfileContent show={type === "sales"} sales={user?.purchaseHistory?.sold || []} />
                     <ActiveListingsProfileContent
                         show={type === "listings"}
                         nActiveListings={activeListings.length}

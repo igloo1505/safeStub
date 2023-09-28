@@ -15,13 +15,15 @@ const dFormat = "MM/D/YY"
 /*     </div> */
 /* ), */
 export const formatPaymentHistoryForTable = (history?: NonNullable<UserProfileDetails>['purchaseHistory']): PaymentHistoryItem[] => {
+    console.log("history: ", history)
     let d: (PaymentHistoryItem & { nDate: number })[] = []
+    /* let bought = history?.bought.map((t) => t.tickets) */
     if (history?.bought) {
         for (const p of history.bought) {
             d.push({
                 type: "bought",
                 date: p?.purchasedOn ? day(p.purchasedOn).format(dFormat) : "--",
-                event: p.tickets[0].eventId,
+                event: p.tickets[0]?.eventId,
                 nDate: new Date(p.purchasedOn || p.postedOn).valueOf(),
                 listingId: p.id,
                 seatData: p.tickets.length,
@@ -37,7 +39,7 @@ export const formatPaymentHistoryForTable = (history?: NonNullable<UserProfileDe
             d.push({
                 type: "sold",
                 date: day(p.postedOn).format(dFormat),
-                event: p.tickets[0].eventId,
+                event: p.tickets[0]?.eventId,
                 nDate: new Date(p.purchasedOn || p.postedOn).valueOf(),
                 listingId: p.id,
                 seatData: p.tickets.length,

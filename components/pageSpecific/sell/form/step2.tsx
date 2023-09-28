@@ -22,6 +22,7 @@ const TicketFormItem = ({ form, index, isLast }: { form: SaleFormType, index: nu
                 section: values.at(-1)?.section || "",
                 row: values.at(-1)?.row || "",
                 seat: "",
+
             }])
         }
         if (!isLast) {

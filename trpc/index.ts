@@ -60,6 +60,41 @@ export const appRouter = router({
                                             }
                                         }
                                     }
+                                },
+                                ticketGroups: {
+                                    include: {
+                                        Event: {
+                                            select: {
+                                                id: true,
+                                                title: true,
+                                                description: true,
+                                                date: true,
+                                                arena: {
+                                                    include: {
+                                                        location: true
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        tickets: {
+                                            include: {
+                                                Event: {
+                                                    select: {
+                                                        id: true,
+                                                        title: true,
+                                                        description: true,
+                                                        date: true,
+                                                        arena: {
+                                                            include: {
+                                                                location: true
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+
+                                    }
                                 }
                             }
                         },
@@ -82,10 +117,45 @@ export const appRouter = router({
                                             }
                                         }
                                     }
+                                },
+                                ticketGroups: {
+                                    include: {
+                                        Event: {
+                                            select: {
+                                                id: true,
+                                                title: true,
+                                                description: true,
+                                                date: true,
+                                                arena: {
+                                                    include: {
+                                                        location: true
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        tickets: {
+                                            include: {
+                                                Event: {
+                                                    select: {
+                                                        id: true,
+                                                        title: true,
+                                                        description: true,
+                                                        date: true,
+                                                        arena: {
+                                                            include: {
+                                                                location: true
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+
+                                    }
                                 }
+
                             }
                         }
-
                     }
                 }
             }
@@ -243,8 +313,23 @@ export const appRouter = router({
             }
         })
     }),
+    getPurchaseHistory: publicProcedure.input(z.string()).query(async (opts) => {
+        return await prisma.purchaseHistory.findFirst({
+            where: {
+                userId: opts.input
+            }
+        })
+    }),
     createTicketGroup: publicProcedure.input(saleFormSchema).mutation(async (opts) => {
         const formattedData = createTicketgroupTransaction(opts.input)
+        // const purchaseHistory = await prisma.purchaseHistory.findFirst({
+        //     where: {
+        //         userId: opts.input.sellerId
+        //     },
+        //     select: {
+        //         id: true
+        //     }
+        // })
         return await prisma.transaction.create({
             data: formattedData,
             select: {
@@ -288,8 +373,7 @@ export const appRouter = router({
             skip: opts.input.skip,
             take: opts.input.take
         })
-    })
-
+    }),
 })
 
 

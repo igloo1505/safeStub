@@ -16,7 +16,7 @@ interface ProfileContentProps {
 const ProfileContent = ({ user, show }: ProfileContentProps) => {
     return (
         <div className={clsx("w-full min-h-full", show ? "grid" : "hidden")}>
-            <div className={"grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-4 place-items-center h-fit w-full px-8 pb-8"}>
+            <div className={"grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-4 place-items-center h-fit w-full"}>
                 <ContactInformationProfileCard
                     delay={50}
                     show={show}

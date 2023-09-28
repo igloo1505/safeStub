@@ -21,9 +21,11 @@ const ActiveListingsProfileContent = ({ show, activeListings, nActiveListings, t
                 totalEstimatedPayout={totalEstimatedPayout || 0}
                 show={show}
             />
-            <div className={""}>
-                {activeListings && activeListings.map((a) => {
-                    return <ActiveListingProfileCard item={a} key={a.id} />
+            <div className={"mt-4 grid gap-4"} style={{
+                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))"
+            }}>
+                {activeListings && activeListings.map((a, i) => {
+                    return <ActiveListingProfileCard item={a} key={a.id} delay={150 + (i + 1) * 50} show={show} />
                 })}
             </div>
         </div>

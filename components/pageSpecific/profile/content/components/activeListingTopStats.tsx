@@ -1,4 +1,5 @@
 "use client"
+import { formatUSD } from '#/lib/formatting/currency'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 
@@ -45,7 +46,7 @@ const ActiveListingsTopStats = ({ nActiveListings, show, totalEstimatedPayout }:
             />
             <ActiveListingStatCard
                 title="Total Estimated Payout"
-                body={`${totalEstimatedPayout}`}
+                body={formatUSD(totalEstimatedPayout)}
                 delay={100}
                 show={show}
             />

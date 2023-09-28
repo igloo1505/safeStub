@@ -1,16 +1,19 @@
 import clsx from 'clsx'
 import React from 'react'
+import { UserProfileDetails } from '../profilePageContainer'
+import SalesByLineChart from './components/salesByMonthLineChart'
 
 
 
 interface SalesProfileContentProps {
     show: boolean
+    sales: NonNullable<NonNullable<UserProfileDetails>['purchaseHistory']>['sold']
 }
 
-const SalesProfileContent = ({ show }: SalesProfileContentProps) => {
+const SalesProfileContent = ({ show, sales }: SalesProfileContentProps) => {
     return (
         <div className={clsx("", show ? "flex" : "hidden")}>
-            Sales Content
+            <SalesByLineChart sales={sales} />
         </div>
     )
 }

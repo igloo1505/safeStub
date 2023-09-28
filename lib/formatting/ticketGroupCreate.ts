@@ -41,13 +41,27 @@ export const createTicketgroupTransaction = (data: SaleFormObjectType): Prisma.T
         payout: calculatePayout(data),
         payoutMethod: data.payoutMethod,
         seller: {
-            connect: {
-                userId: data.sellerId
+            connectOrCreate: {
+                where: {
+                    userId: data.sellerId
+                },
+                create: {
+                    user: {
+                        connect: {
+                            id: data.sellerId
+                        }
+                    }
+                }
             }
         },
         ticketGroups: {
             create: {
                 confirmationId: randomUUID(),
+                Event: {
+                    connect: {
+                        id: data.eventId
+                    }
+                },
                 tickets: {
                     createMany: {
                         data: data.tickets.map((t) => {
@@ -56,6 +70,7 @@ export const createTicketgroupTransaction = (data: SaleFormObjectType): Prisma.T
                                 row: t.row,
                                 seat: t.seat,
                                 sellerId: data.sellerId,
+                                eventId: data.eventId,
                                 ...(t.ticketNumber && { ticketNumber: t.ticketNumber })
                             }
                         })
