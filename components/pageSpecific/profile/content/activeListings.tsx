@@ -32,14 +32,16 @@ const ActiveListingsProfileContent = ({ show, activeListings, nActiveListings, t
 
     return (
         <div className={clsx("w-full h-fit flex-col justify-start gap-4", show ? "flex" : "hidden")}>
-            <SelectActiveListingFilter setActiveFilter={setActiveFilter} />
+            <div className={"w-full h-fit"}>
+                <SelectActiveListingFilter setActiveFilter={setActiveFilter} />
+            </div>
             <ActiveListingsTopStats
                 nActiveListings={nActiveListings || 0}
                 totalEstimatedPayout={totalEstimatedPayout || 0}
                 show={show}
             />
-            <div className={"grid gap-4"} style={{
-                gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))"
+            <div className={"grid gap-4 w-full h-fit"} style={{
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(400px,calc(100vw-2rem)), 1fr))"
             }}>
                 {listings && listings.map((a, i) => {
                     return <ActiveListingProfileCard item={a} key={a.id} delay={150 + (i + 1) * 50} show={show} />
