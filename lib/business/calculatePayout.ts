@@ -2,7 +2,7 @@ import { SaleFormObjectType } from "#/components/pageSpecific/sell/form/saleForm
 
 export const calculatePayout = (data: SaleFormObjectType) => {
     // TODO: Obviously calculate some profit into here at some point.
-    return data.pricePerTicket * data.tickets.length
+    return data.pricePerTicket * data.tickets.length * 0.92
 }
 
 

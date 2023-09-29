@@ -12,7 +12,7 @@ interface SalesProfileContentProps {
 
 const SalesProfileContent = ({ show, sales }: SalesProfileContentProps) => {
     return (
-        <div className={clsx("", show ? "flex" : "hidden")}>
+        <div className={clsx("w-full h-fit flex-col justify-start", show ? "flex" : "hidden")}>
             <SalesByLineChart sales={sales} />
         </div>
     )

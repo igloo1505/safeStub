@@ -40,6 +40,7 @@ export const createTicketgroupTransaction = (data: SaleFormObjectType): Prisma.T
         total: getTotalWithFees(data),
         payout: calculatePayout(data),
         payoutMethod: data.payoutMethod,
+        ...(data.postedOn && { postedOn: data.postedOn }),
         seller: {
             connectOrCreate: {
                 where: {

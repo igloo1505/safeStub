@@ -5,9 +5,6 @@ import { prisma } from "#/db/db";
 import { getServerSession } from "#/actions/server/auth";
 
 interface RequestContext {
-    // params: {
-    //     id: string
-    // }
 }
 
 const router = createEdgeRouter<NextRequest, RequestContext>();
@@ -15,7 +12,7 @@ const router = createEdgeRouter<NextRequest, RequestContext>();
 
 router
 
-    .post(async (req, ctx) => {
+    .post(async (req, ctx): Promise<NextResponse> => {
         try {
             const { transactionId, sellerId } = await req.json()
             const session = await getServerSession()

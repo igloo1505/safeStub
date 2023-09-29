@@ -49,7 +49,7 @@ const SalesFormStepThree = ({ form, event }: SalesFormStepThreeProps) => {
                             <Select onValueChange={field.onChange} defaultValue={field.value as unknown as string}>
                                 <FormControl>
                                     <SelectTrigger>
-                                        <SelectValue placeholder="Select a verified email to display" />
+                                        <SelectValue placeholder="" />
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>

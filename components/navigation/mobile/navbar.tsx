@@ -116,7 +116,7 @@ const MobileNavbar = ({ session, container }: MobileNavbarProps) => {
                     role="button"
                     onClick={() => signOut()}
                     className={cn(
-                        "transition-colors hover:text-foreground/80 text-foreground/60",
+                        "transition-colors hover:text-foreground/80 text-foreground/60 hidden lg:inline-block",
                         !session && "hidden"
                     )}
                 >

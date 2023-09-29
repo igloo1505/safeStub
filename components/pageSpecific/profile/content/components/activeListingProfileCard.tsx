@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
 import { UserProfileDetails } from '../../profilePageContainer'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '#/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '#/components/ui/card'
 import { formatDateLong } from '#/lib/formatting/dates'
 import { formatLocation } from '#/lib/formatting/teamNames'
 import { formatUSD } from '#/lib/formatting/currency'
@@ -10,6 +10,8 @@ import clsx from 'clsx'
 import { XIcon } from 'lucide-react'
 import axios from 'axios'
 import { getSession } from 'next-auth/react'
+import Link from 'next/link'
+import { Button } from '#/components/ui/button'
 
 
 
@@ -110,6 +112,11 @@ const ActiveListingProfileCard = ({ item, show, delay }: ActiveListingProfileCar
                     return <ListingItemDetail {...j} key={`${item.id}-${i}`} />
                 })}
             </CardContent>
+            <div className={"pb-4 px-4 flex flex-row justify-end items-center"}>
+                <Link href={`/editListing/${item.id}`}>
+                    <Button variant="link" className={"text-sm px-2 py-2 h-fit"}>Edit</Button>
+                </Link>
+            </div>
         </Card>
     )
 }

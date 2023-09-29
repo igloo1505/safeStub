@@ -37,7 +37,7 @@ const ActiveListingStatCard = ({ title, body, delay, show }: {
 
 const ActiveListingsTopStats = ({ nActiveListings, show, totalEstimatedPayout }: ActiveListingsTopStatsProps) => {
     return (
-        <div className={"w-full h-fit grid grid-cols-1 lg:grid-cols-[1fr_1fr_1fr] gap-3"}>
+        <div className={"w-full h-fit grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr] gap-3"}>
             <ActiveListingStatCard
                 title="# of Active Listings"
                 body={`${nActiveListings}`}

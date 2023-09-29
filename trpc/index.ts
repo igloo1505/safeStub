@@ -320,6 +320,29 @@ export const appRouter = router({
             }
         })
     }),
+    getTransactionDetails: publicProcedure.input(z.object({
+        userId: z.string(),
+        transactionId: z.coerce.number().int()
+    })).query(async (opts) => {
+        return await prisma.transaction.findFirst({
+            where: {
+                id: opts.input.transactionId,
+                AND: {
+                    seller: {
+                        userId: opts.input.userId
+                    }
+                }
+            },
+            include: {
+                ticketGroups: {
+                    include: {
+                        tickets: true
+                    }
+                },
+                tickets: true
+            }
+        })
+    }),
     createTicketGroup: publicProcedure.input(saleFormSchema).mutation(async (opts) => {
         const formattedData = createTicketgroupTransaction(opts.input)
         // const purchaseHistory = await prisma.purchaseHistory.findFirst({

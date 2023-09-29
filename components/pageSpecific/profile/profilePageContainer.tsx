@@ -28,7 +28,7 @@ const ProfilePageContainer = ({ user, type }: ProfilePageContainerProps) => {
         <div className={"w-full lg:w-11/12 h-fit"}>
             <SidePanelContainer>
                 <ProfileTopNav />
-                <div className={"w-full h-full flex flex-col justify-start items-center px-6 py-4 group/profileContainer overflow-y-auto"} id="profile-content-container">
+                <div className={"w-full h-full flex flex-col justify-start items-center px-6 py-4 group/profileContainer"} id="profile-content-container">
                     <ProfileContent user={user} show={type === "profile"} />
                     <OrdersProfileContent show={type === "orders"} />
                     <SalesProfileContent show={type === "sales"} sales={user?.purchaseHistory?.sold || []} />
