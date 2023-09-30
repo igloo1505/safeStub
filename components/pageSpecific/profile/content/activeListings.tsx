@@ -21,7 +21,6 @@ const ActiveListingsProfileContent = ({ show, activeListings, nActiveListings, t
     const [activeFilter, setActiveFilter] = useState<TRANSACTIONSTATUS | null>(null)
 
     useEffect(() => {
-        console.log("activeFilter: ", activeFilter)
         if (activeFilter) {
             return setListings(activeListings.filter((f) => f.status === activeFilter))
         }
@@ -40,9 +39,7 @@ const ActiveListingsProfileContent = ({ show, activeListings, nActiveListings, t
                 totalEstimatedPayout={totalEstimatedPayout || 0}
                 show={show}
             />
-            <div className={"grid gap-4 w-full h-fit"} style={{
-                gridTemplateColumns: "repeat(auto-fit, minmax(min(400px,calc(100vw-2rem)), 1fr))"
-            }}>
+            <div className={"grid gap-4 w-full h-fit grid-cols-[repeat(auto-fit,minmax(min(400px,calc(100vw-2rem)),1fr))]"} >
                 {listings && listings.map((a, i) => {
                     return <ActiveListingProfileCard item={a} key={a.id} delay={150 + (i + 1) * 50} show={show} />
                 })}

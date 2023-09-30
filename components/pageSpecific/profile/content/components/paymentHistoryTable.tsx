@@ -1,6 +1,5 @@
 "use client"
-import { formatPaymentHistoryForTable } from '#/lib/formatting/formatPaymentHistoryForTable'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { UserProfileDetails } from '../../profilePageContainer'
 import {
     Table,
@@ -16,70 +15,47 @@ import { Button } from '#/components/ui/button'
 
 
 interface PaymentHistoryTableProps {
-    transactionHistory?: NonNullable<UserProfileDetails>['purchaseHistory']
+    allDataLength: number
+    data: PaymentHistoryItem[]
+    perPage: number
+    page: number
+    previousPage: () => void
+    nextPage: () => void
+    maxPage: number
 }
 
 
-const PaymentHistoryTable = ({ transactionHistory }: PaymentHistoryTableProps) => {
-    const [data, setData] = useState<PaymentHistoryItem[]>([])
-    const [allData, setAllData] = useState<PaymentHistoryItem[]>([])
-    const [page, setPage] = useState(1)
-    const [maxPage, setMaxPage] = useState(1)
-    const perPage = 10
-    const setCurrentData = () => {
-        const newMin = perPage * (page - 1)
-        setData(allData.slice(newMin, Math.min(allData.length, newMin + perPage)))
-    }
-    useEffect(() => {
-        setCurrentData()
-    }, [page])
-    useEffect(() => {
-        const d = formatPaymentHistoryForTable(transactionHistory)
-        setAllData(d)
-        setMaxPage(Math.floor(d.length / perPage))
-        setCurrentData()
-    }, [])
-
-    const nextPage = () => {
-        if (page < maxPage) {
-            setPage(page + 1)
-        }
-    }
-
-    const previousPage = () => {
-        if (page > 0) {
-            setPage(page - 1)
-        }
-    }
+const PaymentHistoryTable = ({ perPage, allDataLength, data, previousPage, nextPage, page, maxPage }: PaymentHistoryTableProps) => {
 
     return (
-        <div className="w-full h-fit flex flex-col justify-center items-end">
-            <Table>
-                <TableCaption>{allData.length === 0 ? "Your transaction history is empty." : "A summary of your recent transactions."}</TableCaption>
-                <TableHeader>
-                    <TableRow>
-                        {["Date", "Event", "Listing #", "Location", "Ticket #", "Total Payout", "Payout Method", "Status"].map((t) => {
-                            return <TableHead key={`header-${t}`}>{t}</TableHead>
-                        })}
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {data.map((item) => (
-                        <TableRow key={item.listingId}>
-                            <TableCell className="font-medium">{item.date}</TableCell>
-                            <TableCell>{item.event}</TableCell>
-                            <TableCell>{item.listingId}</TableCell>
-                            <TableCell>{item.seatData}</TableCell>
-                            <TableCell>{item.ticketNumber}</TableCell>
-                            <TableCell>{item.total}</TableCell>
-                            <TableCell>{item.payoutMethod}</TableCell>
-                            <TableCell>{item.transactionStatus}</TableCell>
+        <>
+            <div className="w-full h-fit flex flex-col justify-center items-end">
+                <Table>
+                    <TableCaption>{allDataLength === 0 ? "Your transaction history is empty." : "A summary of your recent transactions."}</TableCaption>
+                    <TableHeader>
+                        <TableRow>
+                            {["Date", "Event", "Listing #", "Tickets", "Total Payout", "Payout Method", "Status"].map((t) => {
+                                return <TableHead key={`header-${t}`}>{t}</TableHead>
+                            })}
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-            {allData.length > perPage && (<><Button onClick={previousPage}>previous</Button> <Button onClick={nextPage}></Button></>)}
-        </div>
+                    </TableHeader>
+                    <TableBody>
+                        {data.length > 0 && data.map((item) => (
+                            <TableRow key={item.listingId}>
+                                <TableCell className="font-medium">{item.date}</TableCell>
+                                <TableCell>{item.event}</TableCell>
+                                <TableCell>{item.listingId}</TableCell>
+                                <TableCell>{item.seatData}</TableCell>
+                                <TableCell>{item.total}</TableCell>
+                                <TableCell>{item.payoutMethod}</TableCell>
+                                <TableCell>{item.transactionStatus}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+                {allDataLength > perPage && (<div className={"w-full h-fit flex flex-row justify-end items-center gap-2 md:gap-4"}><Button disabled={page <= 1} variant={page <= 1 ? "ghost" : "default"} onClick={previousPage}>Back</Button> <Button disabled={page === maxPage} variant={page === maxPage ? "ghost" : "default"} onClick={nextPage}>Next</Button></div>)}
+            </div>
+        </>
     )
 }
 

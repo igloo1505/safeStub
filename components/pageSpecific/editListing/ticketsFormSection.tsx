@@ -14,7 +14,8 @@ const EditTransactionTicketsSection = ({ form }: EditTransactionTicketsSectionPr
     return (
         <>
             <EditListingFormHeader>Tickets</EditListingFormHeader>
-            <div className={"pl-6 flex flex-col justify-center items-start gap-3"}>
+            <div className={"pl-6 gap-3 grid w-full grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(500px,1fr))]"}
+            >
                 {tickets.map((t, i) => {
                     return <TicketFormItem key={`ticket-form-item-${i}`} form={form} index={i} isLast={i === tickets.length - 1} />
                 })}

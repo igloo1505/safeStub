@@ -1,16 +1,21 @@
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '#/components/ui/select';
 import { TRANSACTIONSTATUS } from '@prisma/client';
+import clsx from 'clsx';
 import React from 'react'
 
-
+interface DropdownItem {
+    value: TRANSACTIONSTATUS | "all" | string
+    label: string
+}
 
 interface SelectActiveListingFilterProps {
     setActiveFilter: (v: TRANSACTIONSTATUS | null) => void
-
+    extraItems?: DropdownItem[]
+    className?: string
 }
 
-const SelectActiveListingFilter = ({ setActiveFilter }: SelectActiveListingFilterProps) => {
-    const items: { value: TRANSACTIONSTATUS | "all", label: string }[] = [
+const SelectActiveListingFilter = ({ setActiveFilter, className, extraItems = [] }: SelectActiveListingFilterProps) => {
+    const items: DropdownItem[] = [
         {
             value: "all",
             label: "All"
@@ -36,11 +41,12 @@ const SelectActiveListingFilter = ({ setActiveFilter }: SelectActiveListingFilte
             value: "awaitingIdVerification",
             label: "Awaiting ID Verification"
         },
+        ...extraItems
     ]
 
     return (
         <Select onValueChange={(value: string) => setActiveFilter(value === "all" ? null : value as TRANSACTIONSTATUS)}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className={clsx("w-[180px]", className && className)}>
                 <SelectValue placeholder="Filter" />
             </SelectTrigger>
             <SelectContent>

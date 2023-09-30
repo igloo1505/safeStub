@@ -13,7 +13,7 @@ interface TicketFormItemProps {
 
 const TicketFormItem = ({ index, isLast, form }: TicketFormItemProps) => {
     return (
-        <div className={"w-fit flex flex-col justify-center items-center gap-4 sm:grid sm:grid-rows-2 sm:grid-cols-[200px_200px] md:grid-rows-1 md:grid-cols-[200px_200px_200px_auto]"}>
+        <div className={"bg-card text-card-foreground py-3 px-3 rounded-md w-full max-w-[83vw] grid grid-cols-1 sm:grid-cols-3 gap-2"}>
             <FormField
                 control={form.control}
                 name="tickets"

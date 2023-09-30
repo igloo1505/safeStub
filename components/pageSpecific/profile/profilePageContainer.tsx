@@ -1,6 +1,5 @@
 import type { serverClient } from '#/trpc/serverClient'
 import React from 'react'
-import ProfileSidePanel from './sidePanel'
 import SidePanelContainer from './sidePanelContainer'
 import ProfileContent from './content/profile'
 import OrdersProfileContent from './content/orders'
@@ -15,8 +14,6 @@ import ProfileTopNav from './profileTopNav'
 export type UserProfileDetails = Awaited<ReturnType<typeof serverClient.getUserProfile>>
 
 
-
-/* <ProfileSidePanel /> */
 
 const ProfilePageContainer = ({ user, type }: ProfilePageContainerProps) => {
     const activeListings = user?.purchaseHistory?.sold ? user?.purchaseHistory?.sold.filter((t) => activeTransactionStatus.indexOf(t.status) >= 0) : []

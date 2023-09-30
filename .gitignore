@@ -35,8 +35,6 @@ yarn-error.log*
 next-env.d.ts
 
 /zod/prisma
-/state
-state/**
 
 # PWA
 **/public/workbox-*.js

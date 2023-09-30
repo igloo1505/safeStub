@@ -5,6 +5,7 @@ import { cookies } from 'next/headers'
 import { Toaster } from '#/components/ui/toaster'
 import { Lexend_Giga } from 'next/font/google'
 import appConfig from "#/data/appConfig.json"
+import Notifications from '#/components/notifications/NotificationWrapper'
 const lexand = Lexend_Giga({
     subsets: ['latin'],
     variable: "--font-lexand"
@@ -64,6 +65,7 @@ const RootLayout = async ({
             <body className={"group/body overscroll-y-none"}>
                 {children}
                 <Toaster />
+                <Notifications />
             </body>
         </html>
     )

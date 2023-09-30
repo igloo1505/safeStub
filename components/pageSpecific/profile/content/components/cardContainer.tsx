@@ -13,9 +13,11 @@ interface ProfileItemCardProps {
     className?: string
     delay: number
     show: boolean
+    titleClasses?: string
+    titleRight?: React.ReactNode
 }
 
-const ProfileItemCard = ({ children, show, delay, title, description, footer, className }: ProfileItemCardProps) => {
+const ProfileItemCard = ({ children, titleRight, show, delay, title, description, footer, className, titleClasses }: ProfileItemCardProps) => {
     const [shouldShow, setShouldShow] = useState(show)
     useEffect(() => {
         if (!show) return setShouldShow(false)
@@ -34,7 +36,7 @@ const ProfileItemCard = ({ children, show, delay, title, description, footer, cl
             }}
         >
             <CardHeader>
-                {title && <CardTitle className={"mb-2"}>{title}</CardTitle>}
+                {title && <div className={"w-full flex flex-row justify-between items-center"}><CardTitle className={clsx("mb-2", titleClasses && titleClasses)}>{title}</CardTitle>{titleRight && titleRight}</div>}
                 {description && <CardDescription>{description}</CardDescription>}
             </CardHeader>
             <CardContent className={"w-full h-full"}>

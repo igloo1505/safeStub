@@ -13,7 +13,7 @@ interface PaymentsProfileContentProps {
 
 const PaymentsProfileContent = ({ show, user }: PaymentsProfileContentProps) => {
     return (
-        <div className={clsx("w-full h-fit grid grid-rows-2 gap-4", show ? "grid" : "hidden")}>
+        <div className={clsx("w-full h-fit grid grid-rows-[auto_1fr] gap-4", show ? "grid" : "hidden")}>
             <div className={"grid grid-cols-1 lg:grid-cols-[1fr_1fr]"}>
                 <PaymentMethodProfileCard
                     delay={50}
@@ -25,6 +25,7 @@ const PaymentsProfileContent = ({ show, user }: PaymentsProfileContentProps) => 
                 delay={150}
                 show={show}
                 user={user}
+                className={"w-full overflow-x-auto"}
             />
         </div>
     )
