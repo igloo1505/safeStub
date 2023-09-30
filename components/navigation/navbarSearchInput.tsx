@@ -18,7 +18,7 @@ const NavbarSearchInput = () => {
         router.push(`/events?${params.toString()}`)
     }
     return (
-        <div className={"w-fit h-fit flex flex-row justify-center items-center relative"}>
+        <div className={"w-full md:w--5/6 max-w-lg h-fit flex flex-row justify-center items-center relative"}>
             <Input
                 type="search"
                 id="searchNavInput"

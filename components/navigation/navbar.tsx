@@ -25,6 +25,7 @@ const Navbar = ({ session, container, mobileContainer }: { session?: Session | n
     const checkViewport = () => {
         if (typeof window === "undefined") return;
         let vw = window.innerWidth
+        console.log("isMobile: ", vw <= appConfig.app.navbarBreakpoint || Boolean(session?.user.id))
         setIsMobile(vw <= appConfig.app.navbarBreakpoint || Boolean(session?.user.id))
     }
     useEffect(() => {
@@ -37,19 +38,21 @@ const Navbar = ({ session, container, mobileContainer }: { session?: Session | n
     /* const data = useGCMSubscription(session?.user?.id) */
     return (
         <>
-            {isMobileVp === false ? (<div className={clsx("px-8 w-full hidden md:flex py-4 justify-between z-10 relative dark", container && container)}>
+            {isMobileVp === false ? (<div className={clsx("px-8 w-full hidden md:grid md:grid-cols-[220px_1fr_220px] gap-x-3 py-4 grid-cols-[1fr_auto_1fr]  z-10 relative dark", container && container)}>
                 <div className={"flex flex-row justify-center items-center w-fit"}>
                     <Link href="/" className="mr-6 flex items-center space-x-2">
                         <LogoWithName />
                     </Link>
-                    <nav className="flex items-center space-x-6 text-sm font-medium">
+                    <nav className="hidden lg:flex items-center space-x-6 text-sm font-medium">
                         {navButtons.map((b, i) => {
                             return <NavbarButton session={session} item={b} key={`nav-${i}`} pathname={pathname} />
                         })}
                     </nav>
                 </div>
-                <nav className={"w-fit flex flex-row justify-center items-center gap-4"}>
+                <div className={"w-full h-full flex justify-center items-center"}>
                     <NavbarSearchInput />
+                </div>
+                <nav className={"flex flex-row justify-end items-center gap-4 w-full"}>
                     <Button variant="ghost" aria-label="dark mode" role="button" onClick={toggleDarkmode} className={"p-2 rounded-[50%]"}>
                         <MoonStar />
                     </Button>

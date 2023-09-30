@@ -89,6 +89,7 @@
     "react-dropzone": "^14.2.3",
     "react-ga4": "^2.1.0",
     "react-hook-form": "^7.46.1",
+    "react-loader-spinner": "^5.4.5",
     "react-redux": "^8.1.2",
     "react-spinners": "^0.13.8",
     "recharts": "^2.8.0",
