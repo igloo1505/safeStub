@@ -16,7 +16,6 @@ interface ProfileTopNavProps {
 const ProfileTopNav = (props: ProfileTopNavProps) => {
     const params = useSearchParams()
     const signOut = () => {
-        console.log("dispatching: ")
         store.dispatch(showNotification("logout"))
     }
     if (params.get)
