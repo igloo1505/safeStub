@@ -343,7 +343,7 @@ export const appRouter = router({
             }
         })
     }),
-    createTicketGroup: publicProcedure.input(saleFormSchema).mutation(async (opts) => {
+    createTransaction: publicProcedure.input(saleFormSchema).mutation(async (opts) => {
         const formattedData = createTicketgroupTransaction(opts.input)
         // const purchaseHistory = await prisma.purchaseHistory.findFirst({
         //     where: {

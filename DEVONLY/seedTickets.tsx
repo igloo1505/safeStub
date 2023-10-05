@@ -18,16 +18,17 @@ const getUniqueId = () => {
 }
 
 const getUniquePseudoTicket = (userId: string): SaleFormObjectType & { postedOn?: string | Date } => {
-    let q = Math.floor(Math.random() * 15)
+    let q = Math.ceil(Math.random() * 15)
     let tickets: SaleFormObjectType['tickets'] = []
     let section = `${Math.floor(Math.random() * 12)}`
     let row = `${Math.floor(Math.random() * 30)}`
 
-    for (var i = 1; i <= q; i++) {
+    for (var i = 0; i < q; i++) {
+        let s = Math.floor(Math.random() * 10)
         tickets.push({
             section,
             row,
-            seat: `${i}`
+            seat: `${s + i}`
         })
     }
     return {
@@ -51,8 +52,7 @@ const SeedTicketsButton = () => {
             data.push(getUniquePseudoTicket(userId))
         }
         for (const k of data) {
-            console.log("k: ", k)
-            await client.createTicketGroup.mutate(k)
+            await client.createTransaction.mutate(k)
         }
     }
     return (

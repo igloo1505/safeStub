@@ -10,7 +10,7 @@ interface FlatTicketItem {
 
 
 export const getFlattenedTickets = <T extends FlatTicketItem>(a: FlatTicketItem) => {
-    let t: (T['tickets'][number] | T['ticketGroups'][number]['tickets'])[] = a.tickets || []
+    let t: (T['tickets'][number] | T['ticketGroups'][number]['tickets'][number])[] = a.tickets || []
     for (const k of a.ticketGroups) {
         t = t.concat(k.tickets)
     }

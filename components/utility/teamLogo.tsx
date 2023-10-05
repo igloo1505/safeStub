@@ -7,6 +7,7 @@ import React, { ComponentProps } from 'react'
 
 interface TeamLogoProps extends Omit<ComponentProps<typeof Image>, "src" | "alt"> {
     teamName: NFLTeamName
+    className?: string
 }
 
 const TeamLogo = ({ teamName, ...props }: TeamLogoProps) => {
