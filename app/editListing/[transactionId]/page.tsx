@@ -9,14 +9,14 @@ import React from 'react'
 
 interface EditListingPageProps {
     params: {
-        listingId: string
+        transactionId: string
     }
 }
 
-const EditListingPage = async ({ params: { listingId } }: EditListingPageProps) => {
+const EditListingPage = async ({ params: { transactionId } }: EditListingPageProps) => {
     const session = await getServerSession()
     if (!session?.user.id) return redirect("/auth/signin")
-    const item = await serverClient.getTransactionDetails({ transactionId: parseInt(listingId), userId: session.user.id })
+    const item = await serverClient.getTransactionDetails({ transactionId: parseInt(transactionId), userId: session.user.id })
     if (!item) return redirect("/")
     return (
         <PageContentWrapper>

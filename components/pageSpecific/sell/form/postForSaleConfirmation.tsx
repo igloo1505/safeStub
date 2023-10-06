@@ -72,9 +72,9 @@ const PostForSaleConfirmation = ({ form, userId, event }: PostForSaleConfirmatio
     ]
     const submitTicket = async () => {
         let data = form.getValues()
-        const ticketGroup = await client.createTransaction.mutate({ ...data, sellerId: userId, eventId: event.id, quantity: data.tickets.length })
-        if (ticketGroup.id) {
-            router.push(`/sell/confirmation/${event.id}/${ticketGroup.id}` as Route)
+        const transaction = await client.createTransaction.mutate({ ...data, sellerId: userId, eventId: event.id, quantity: data.tickets.length })
+        if (transaction.id) {
+            router.push(`/sell/confirmation/${event.id}/${transaction.id}` as Route)
         } else {
             console.log(`Something went wrong...`, data)
         }

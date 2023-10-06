@@ -37,6 +37,7 @@ export const formatPaymentHistoryForTable = (history?: NonNullable<UserProfileDe
                 event: _loc,
                 nDate: new Date(p.purchasedOn || p.postedOn).valueOf(),
                 listingId: p.id,
+                /// @ts-ignore
                 seatData: getFlattenedTickets<typeof p>(p).length,
                 ticketNumber: <div>{p.tickets.map((t) => <div key={t.ticketNumber}>{t.ticketNumber}</div>)}</div> || "--",
                 total: formatUSD(p.listedPrice) || "--",

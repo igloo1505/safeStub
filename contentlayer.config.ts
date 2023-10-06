@@ -38,6 +38,29 @@ export const RefundPolicy = defineDocumentType(() => ({
     },
 }))
 
+
+// TODO: Once local markdown is working, send all relevant markdown files to a separate repo to hopefully prevent future conflicts as the rest of the app comes closer to alpha.
+export const BlogPost = defineDocumentType(() => ({
+    name: 'BlogPost',
+    filePathPattern: `blog/*.md`,
+    fields: {
+        title: { type: 'string', required: true },
+        subTitle: { type: 'string', required: false },
+        category: { type: 'string', required: true },
+        tags: {
+            type: "list",
+            of: {
+                type: "string"
+            },
+            required: false
+        },
+        created: { type: 'date', required: false },
+    },
+    computedFields: {
+        url: { type: 'string', resolve: (post) => `/blog/${post._raw.flattenedPath}` },
+    },
+}))
+
 export const HelpTopic = defineDocumentType(() => ({
     name: 'Help',
     filePathPattern: `help/*.md`,
@@ -65,7 +88,8 @@ export default makeSource({
         PrivacyPolicy,
         Tos,
         HelpTopic,
-        RefundPolicy
+        RefundPolicy,
+        BlogPost
     ],
     markdown: {
         remarkPlugins: [remarkGfm]

@@ -304,7 +304,8 @@ export const appRouter = router({
                     take: opts.input.take,
                     skip: opts.input.skip,
                     include: {
-                        tickets: true
+                        tickets: true,
+                        transaction: true
                     }
                 },
                 tags: true,
@@ -321,17 +322,19 @@ export const appRouter = router({
         })
     }),
     getTransactionDetails: publicProcedure.input(z.object({
-        userId: z.string(),
-        transactionId: z.coerce.number().int()
+        userId: z.string().optional(),
+        transactionId: z.coerce.number().int(),
     })).query(async (opts) => {
         return await prisma.transaction.findFirst({
             where: {
                 id: opts.input.transactionId,
-                AND: {
-                    seller: {
-                        userId: opts.input.userId
+                ...(opts.input.userId && {
+                    AND: {
+                        seller: {
+                            userId: opts.input.userId
+                        }
                     }
-                }
+                })
             },
             include: {
                 ticketGroups: {
@@ -368,6 +371,29 @@ export const appRouter = router({
             include: {
                 tickets: true,
                 Event: true
+            }
+        })
+    }),
+    getCheckoutData: publicProcedure.input(z.object({
+        transactionId: z.number().int(),
+        ticketIds: z.number().array()
+    })).query(async (opts) => {
+        return await prisma.transaction.findFirst({
+            where: {
+                id: opts.input.transactionId
+            },
+            include: {
+                ticketGroups: {
+                    include: {
+                        tickets: {
+                            where: {
+                                id: {
+                                    in: opts.input.ticketIds
+                                }
+                            }
+                        }
+                    }
+                }
             }
         })
     }),

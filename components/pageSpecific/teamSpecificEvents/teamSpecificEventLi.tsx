@@ -37,7 +37,9 @@ const TeamSpecificEventLi = ({ event, home }: TeamSpecificEventLiProps) => {
                 </div>
             </div>
             <div className={"my-2 md:my-0 grid grid-cols-2 gap-2 place-items-center md:gap-4 w-full h-full"}>
-                <Button className={"w-full sm:w-fit"} disabled={event.tickets.length === 0}>Buy Tickets</Button>
+                <Link href={`/event/${event.id}`}>
+                    <Button className={"w-full sm:w-fit"} disabled={event.tickets.length === 0}>Buy Tickets</Button>
+                </Link>
                 <Link href={`/sell/${event.id}` as Route}>
                     <Button className={"w-full sm:w-fit"}>Sell Tickets</Button>
                 </Link>

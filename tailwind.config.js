@@ -82,6 +82,12 @@ module.exports = {
                 '1300': '1300ms',
                 '1400': '1400ms',
                 '1500': '1500ms',
+            },
+            minHeight: {
+                innerScreen: "calc(100vh-80px)"
+            },
+            height: {
+                innerScreen: "calc(100vh-80px)"
             }
         },
     },

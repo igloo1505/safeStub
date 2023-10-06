@@ -30,6 +30,7 @@ const ConfirmationCard = ({ event, transaction }: ConfirmationCardProps) => {
     if (typeof transactionUniqueId === "number") {
         transactionUniqueId = `${transactionUniqueId}`
     }
+    /// @ts-ignore
     const flatTickets = getFlattenedTickets<typeof transaction>(transaction)
     let sections: string[] = []
     let rows: string[] = []

@@ -1,16 +1,19 @@
 "use client"
 import { formatUSD } from '#/lib/formatting/currency'
 import React from 'react'
-import { TicketFormattedForList } from './ticketList'
 import { Button } from '#/components/ui/button'
+import type { getFlattenedTickets } from '#/lib/formatting/util'
+import type { serverClient } from '#/trpc/serverClient'
+import Link from 'next/link'
 
 
 
 interface TicketListItemProps {
-    item: TicketFormattedForList
+    item: ReturnType<typeof getFlattenedTickets<NonNullable<Awaited<ReturnType<typeof serverClient.getEvent>>>>>[number]
 }
 
 const EventTicketListItem = ({ item }: TicketListItemProps) => {
+    console.log("item: ", item)
     const svgId = "event-specific-seating-chart"
     const indicateSectionHover = () => {
         let svgEm = document.getElementById(svgId)
@@ -33,8 +36,10 @@ const EventTicketListItem = ({ item }: TicketListItemProps) => {
                 <div className={""}>{`Section ${item.section}`}</div>
                 <div className={""}>{`Row ${item.row}`}</div>
             </div>
-            <div className={"px-4 h-full flex justify-center items-center"}>{formatUSD(item.price)}</div>
-            <Button>Select</Button>
+            <div className={"px-4 h-full flex justify-center items-center"}>{formatUSD(item.transactionAvereragedCost)}</div>
+            <Link href={`/listing/${item.transactionId}`}>
+                <Button>Select</Button>
+            </Link>
         </li>
     )
 }

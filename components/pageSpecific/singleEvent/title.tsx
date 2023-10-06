@@ -12,7 +12,7 @@ const SingleEventTitleBar = ({ event }: SingleEventTitleBarProps) => {
     return (
         <div className={"w-full h-fit text-foreground"}>
             <div className={"w-full h-fit flex flex-col justify-start items-start gap-2"}>
-                <h3 className={"font-bold text-2xl text-foreground text-center md:text-start"}>{event?.description.replace("at", "vs")}</h3>
+                <h3 className={"w-full font-bold text-2xl text-foreground text-center md:text-start"}>{event?.description.replace("at", "vs")}</h3>
                 <div className={"w-full text-foreground/80 text-sm md:text-base text-center md:text-start"}>
                     {formatDateLong(event?.date)}
                 </div>
