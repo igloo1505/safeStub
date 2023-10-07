@@ -14,6 +14,7 @@ interface PageContentWrapperProps {
     classes?: {
         footer?: string
         body?: string
+        container?: string
     }
 }
 
@@ -21,9 +22,9 @@ interface PageContentWrapperProps {
 const PageContentWrapper = async ({ children, classes, noFooter, noNav, noParent }: PageContentWrapperProps) => {
     const session = await getServerSession()
     return (
-        <div className={"w-full h-screen min-h-fit"}>
+        <div className={clsx("w-full h-fit min-h-screen", classes?.container && classes.container)}>
             {!noNav && <Navbar session={session} />}
-            {noParent ? children : <div className={clsx("py-8 w-full min-h-[calc(100%-var(--nav-height)-var(--footer-height))] flex flex-col justify-start items-center", classes?.body && classes.body)}>
+            {noParent ? children : <div className={clsx("py-8 w-full min-h-[calc(100%-var(--nav-height)-var(--footer-height))] h-fit flex flex-col justify-start items-center", classes?.body && classes.body)}>
                 {children}
             </div>}
             {!noFooter && <Footer className={classes?.footer || ""} />}

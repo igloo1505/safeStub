@@ -1,5 +1,6 @@
 'use client'
 import type { StripeError } from '@stripe/stripe-js'
+import "#/styles/checkout.scss"
 import * as React from 'react'
 import {
     useStripe,
@@ -13,16 +14,22 @@ import StripeTestCards from './stripeTestCards'
 import { createPaymentIntent } from '#/app/actions/stripe'
 import getStripe from '#/utils/money/stripe/getStripe'
 import { Input } from '../ui/input'
+import { stripeElementsAppearance } from '#/styles/stripeElementsAppearance'
+import { Button } from '../ui/button'
 const configData = getAppConfig()
 
 const config = configData.payments
 
-const StripeForm = () => {
+
+/* PRIORITY: Make sure to mark tickets as 'sale pending' or and apply appropriate statuses to everyone involved in the transaction once the payment was accepted. */
+/* Stripe webhook docs and dashboard: https://dashboard.stripe.com/test/webhooks/create?endpoint_location=local */
+/* PRIORITY: Integrate the webhook api route with Stripe to respond to the status's appropriately without requiring future user input. */
+
+
+const StripeForm = ({ amount }: { amount: number }) => {
     const [input, setInput] = React.useState<{
-        customDonation: number
         cardholderName: string
     }>({
-        customDonation: Math.round(config.maxAmount / config.amountStep),
         cardholderName: '',
     })
     const [paymentType, setPaymentType] = React.useState<string>('')
@@ -35,6 +42,7 @@ const StripeForm = () => {
     const elements = useElements()
 
     const PaymentStatus = ({ status }: { status: string }) => {
+        console.log("status: ", status)
         switch (status) {
             case 'processing':
             case 'requires_payment_method':
@@ -66,7 +74,7 @@ const StripeForm = () => {
             [e.currentTarget.name]: e.currentTarget.value,
         })
 
-        elements?.update({ amount: input.customDonation * 100 })
+        /* elements?.update({ amount: input.averagedTotal * 100 }) */
     }
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
@@ -81,15 +89,15 @@ const StripeForm = () => {
             const { error: submitError } = await elements.submit()
 
             if (submitError) {
+                console.log("submitError: ", submitError)
                 setPayment({ status: 'error' })
                 setErrorMessage(submitError.message ?? 'An unknown error occurred')
-
                 return
             }
 
             // Create a PaymentIntent with the specified amount.
             const { client_secret: clientSecret } = await createPaymentIntent(
-                new FormData(e.target as HTMLFormElement)
+                amount
             )
 
             // Use your card Element with other Stripe.js APIs
@@ -97,7 +105,7 @@ const StripeForm = () => {
                 elements,
                 clientSecret,
                 confirmParams: {
-                    return_url: `${window.location.origin}/donate-with-elements/result`,
+                    return_url: `${window.location.origin}/checkout/success`,
                     payment_method_data: {
                         billing_details: {
                             name: input.cardholderName,
@@ -112,7 +120,6 @@ const StripeForm = () => {
             }
         } catch (err) {
             const { message } = err as StripeError
-
             setPayment({ status: 'error' })
             setErrorMessage(message ?? 'An unknown error occurred')
         }
@@ -120,26 +127,24 @@ const StripeForm = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <Input
-                    type="number"
-                    value={input.customDonation}
-                    onChange={handleInputChange}
-                />
+            <form
+                onSubmit={handleSubmit}
+                className={"w-full flex flex-col justify-center items-center"}
+            >
                 <StripeTestCards />
-                <fieldset className="elements-style">
+                <fieldset className="elements-style w-[min(560px,calc(100vw-4rem))] gap-3">
                     <legend>Your payment details:</legend>
                     {paymentType === 'card' ? (
-                        <input
+                        <Input
                             placeholder="Cardholder name"
-                            className="elements-style"
+                            className="elements-style mt-2"
                             type="Text"
                             name="cardholderName"
                             onChange={handleInputChange}
                             required
                         />
                     ) : null}
-                    <div className="FormRow elements-style">
+                    <div className="FormRow elements-style my-3">
                         <PaymentElement
                             onChange={(e) => {
                                 setPaymentType(e.value.type)
@@ -147,16 +152,18 @@ const StripeForm = () => {
                         />
                     </div>
                 </fieldset>
-                <button
-                    className="elements-style-background"
-                    type="submit"
-                    disabled={
-                        !['initial', 'succeeded', 'error'].includes(payment.status) ||
-                        !stripe
-                    }
-                >
-                    Donate {formatAmountForDisplay(input.customDonation, config.currency)}
-                </button>
+                <div className={"w-[min(560px,calc(100vw-4rem))] flex flex-row justify-end items-center"}>
+                    <Button
+                        className="elements-style-background"
+                        type="submit"
+                        disabled={
+                            !['initial', 'succeeded', 'error'].includes(payment.status) ||
+                            !stripe
+                        }
+                    >
+                        Confirm {formatAmountForDisplay(amount, config.currency)}
+                    </Button>
+                </div>
             </form>
             <PaymentStatus status={payment.status} />
         </>
@@ -168,18 +175,13 @@ export const CheckoutForm = ({ amount }: { amount: number }) => {
         <Elements
             stripe={getStripe()}
             options={{
-                appearance: {
-                    variables: {
-                        colorIcon: '#6772e5',
-                        fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
-                    },
-                },
+                appearance: stripeElementsAppearance,
                 currency: config.currency,
                 mode: 'payment',
-                amount: amount * 100
+                amount: Math.floor(amount * 100)
             }}
         >
-            <StripeForm />
+            <StripeForm amount={amount} />
         </Elements>
     )
 }

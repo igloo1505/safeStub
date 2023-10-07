@@ -29,14 +29,14 @@ const EventSpecificTicketList = ({ tickets }: EventSpecificTicketListProps) => {
     }, [sliderStep])
 
     return (
-        <div className={"w-full h-full flex flex-col justify-start items-center gap-6"}>
+        <div className={"w-full h-full flex flex-col justify-start items-center gap-6 md:w-1/3 self-baseline"}>
             <TicketQuantitySlider sliderStep={sliderStep} setSliderStep={setSliderStep} />
-            <div className={"w-full h-full max-h-[300px] overflow-y-auto"}>
-                <ul>
+            <div className={"w-[min(400px,90vw)] h-full max-h-[300px] overflow-y-auto"}>
+                {filteredTickets.length > 0 ? <ul>
                     {filteredTickets.map((t) => {
                         return <EventTicketListItem key={`ticket-${t.id}`} item={t} />
                     })}
-                </ul>
+                </ul> : <div className={"w-full h-fit text-center"}>No tickets were found.</div>}
             </div>
         </div>
     )

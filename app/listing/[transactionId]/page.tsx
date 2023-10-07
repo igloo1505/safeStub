@@ -4,8 +4,6 @@ import { serverClient } from '#/trpc/serverClient'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
-
-
 interface ListingDetailsPageProps {
     params: {
         transactionId: string

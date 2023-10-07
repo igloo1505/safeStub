@@ -378,7 +378,7 @@ export const appRouter = router({
         transactionId: z.number().int(),
         ticketIds: z.number().array()
     })).query(async (opts) => {
-        return await prisma.transaction.findFirst({
+        let data = await prisma.transaction.findFirst({
             where: {
                 id: opts.input.transactionId
             },
@@ -396,6 +396,11 @@ export const appRouter = router({
                 }
             }
         })
+
+        return {
+            transaction: data,
+            averagedTotal: data ? data.listedPrice * data.ticketGroups.map((t) => t.tickets.length).reduce((a, b) => a + b) / opts.input.ticketIds.length : 0
+        }
     }),
     searchEvents: publicProcedure.input(searchEventsParams).query(async (opts) => await getEventsSearchResult(opts.input)),
     findGreatDeals: publicProcedure.input(paginateParamsZod).query(async (opts) => await findGreatDeals(opts.input)),

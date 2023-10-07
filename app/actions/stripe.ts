@@ -38,12 +38,12 @@ export async function createCheckoutSession(data: FormData): Promise<void> {
 }
 
 export async function createPaymentIntent(
-    data: FormData
+    amount: number
 ): Promise<{ client_secret: string }> {
     const paymentIntent: Stripe.PaymentIntent =
         await stripe.paymentIntents.create({
             amount: formatAmountForStripe(
-                Number(data.get('customDonation') as string),
+                amount,
                 CURRENCY
             ),
             automatic_payment_methods: { enabled: true },

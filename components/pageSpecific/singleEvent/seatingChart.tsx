@@ -17,7 +17,7 @@ const SeatingChart = () => {
 
 const EventSpecificSeatingChart = ({ arena }: EventSpecificSeatingChartProps) => {
     return (
-        <div className={"h-[40vh] w-full flex flex-col justify-center items-center min-w-0 min-h-[40vh]"}>
+        <div className={"h-[40vh] w-full flex flex-col justify-center items-center min-w-0 min-h-[40vh] md:w-2/3"}>
             {arena ? <EventSpecificSeatingChartImage arena={arena?.name} /> : <div className={"text-foreground text-lg text-center"}>No seating chart is available for this event.</div>}
         </div>
     )

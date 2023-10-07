@@ -1,4 +1,5 @@
 import PageContentWrapper from '#/components/layout/pageContentWrapper'
+import { CheckoutForm } from '#/components/payment/checkoutForm'
 import { serverClient } from '#/trpc/serverClient'
 import React from 'react'
 
@@ -21,7 +22,7 @@ const CheckoutPage = async ({ params: { transactionId }, searchParams: { tickets
     return (
         <PageContentWrapper>
             <div className={"w-5/6"}>
-                {JSON.stringify(data, null, 4)}
+                <CheckoutForm amount={data.averagedTotal} />
             </div>
         </PageContentWrapper>
     )
