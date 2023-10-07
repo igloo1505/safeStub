@@ -29,7 +29,7 @@ const EventSpecificTicketList = ({ tickets }: EventSpecificTicketListProps) => {
     }, [sliderStep])
 
     return (
-        <div className={"w-full flex flex-col justify-start items-center gap-6"}>
+        <div className={"w-full h-full flex flex-col justify-start items-center gap-6"}>
             <TicketQuantitySlider sliderStep={sliderStep} setSliderStep={setSliderStep} />
             <div className={"w-full h-full max-h-[300px] overflow-y-auto"}>
                 <ul>

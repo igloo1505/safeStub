@@ -3,7 +3,6 @@ import { PaymentHistoryItem, payoutMethodLabelMap, transactionStatusLabelMap } f
 import { TRANSACTIONSTATUS } from "@prisma/client"
 import { formatUSD } from "./currency"
 import { day } from "./dates"
-import { getFlattenedTickets } from "./util"
 
 
 const dFormat = "MM/D/YY"
@@ -11,7 +10,6 @@ const dFormat = "MM/D/YY"
 export const formatPaymentHistoryForTable = (history?: NonNullable<UserProfileDetails>['purchaseHistory']): PaymentHistoryItem[] => {
     console.log("history: ", history)
     let d: (PaymentHistoryItem & { nDate: number })[] = []
-    /* let bought = history?.bought.map((t) => t.tickets)auto_1fr */
     if (history?.bought) {
         for (const p of history.bought) {
             d.push({
@@ -37,8 +35,7 @@ export const formatPaymentHistoryForTable = (history?: NonNullable<UserProfileDe
                 event: _loc,
                 nDate: new Date(p.purchasedOn || p.postedOn).valueOf(),
                 listingId: p.id,
-                /// @ts-ignore
-                seatData: getFlattenedTickets<typeof p>(p).length,
+                seatData: p.tickets.length + p.ticketGroups.map(t => t.tickets.length).reduce((a, b) => a + b),
                 ticketNumber: <div>{p.tickets.map((t) => <div key={t.ticketNumber}>{t.ticketNumber}</div>)}</div> || "--",
                 total: formatUSD(p.listedPrice) || "--",
                 payoutMethod: p.payoutMethod ? payoutMethodLabelMap[p.payoutMethod] : "--",

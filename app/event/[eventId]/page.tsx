@@ -28,7 +28,7 @@ const EventSpecificPage = async ({ params: { eventId } }: EventSpecificPageProps
                 <SingleEventTitleBar event={event} />
                 {event && <SingleEventTeamLogoBox teams={event?.participants} />}
             </div>
-            <div className={"w-full md:w-5/6 max-w-screen-xl flex flex-col justify-center items-center gap-12 md:gap-4 md:grid md:grid-cols-[2fr_1fr] min-h-[40vh] my-8"}>
+            <div className={"w-full h-fit md:w-5/6 max-w-screen-xl flex flex-col justify-start items-center gap-12 md:gap-4 md:grid md:grid-cols-[2fr_1fr] min-h-[40vh] my-8"}>
                 <EventSpecificSeatingChart arena={event?.arena} />
                 <EventSpecificTicketList
                     tickets={tickets}

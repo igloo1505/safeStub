@@ -11,10 +11,10 @@ interface FlatTicketItem {
 }
 
 
-export const getFlattenedTickets = <T extends FlatTicketItem>(a: FlatTicketItem, transactionId?: number) => {
+export const getFlattenedTickets = <T extends FlatTicketItem>(a: FlatTicketItem) => {
     let t: ((T['ticketGroups'][number]['tickets'][number]) & { transactionAvereragedCost: number, transactionNTickets: number })[] = []
     for (const k of a.ticketGroups) {
-        t = t.concat(k.tickets.map((_t) => ({ ..._t, transactionAvereragedCost: k.transaction.listedPrice ? k.transaction.listedPrice / k.tickets.length : -1, transactionNTickets: k.tickets.length, transactionId: k.transaction.id })))
+        t = t.concat(k.tickets.map((_t) => ({ ..._t, transactionAvereragedCost: k?.transaction?.listedPrice ? k.transaction.listedPrice / k.tickets.length : -1, transactionNTickets: k.tickets.length, transactionId: k.transaction.id })))
     }
     return t
 }
