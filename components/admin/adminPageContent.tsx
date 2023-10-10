@@ -2,6 +2,7 @@ import React from 'react'
 import ExpenseForm from './expenseForm'
 import UserAccessTable from './userAccess'
 import { serverClient } from '#/trpc/serverClient'
+import AdminLinks from './adminLinks'
 
 
 
@@ -10,7 +11,6 @@ import { serverClient } from '#/trpc/serverClient'
 
 const AdminPageContent = async () => {
     const users = await serverClient.getUsers({ skip: 0, take: 100 })
-    console.log("users: ", users)
     return (
         <div className={"w-full flex flex-col justify-center items-center"}>
             <div className={"text-foreground w-5/6 max-w-screen-md"}>
@@ -25,6 +25,7 @@ const AdminPageContent = async () => {
                 User Access
                 {users && <UserAccessTable users={users} />}
             </div>
+            <AdminLinks />
         </div>
     )
 }

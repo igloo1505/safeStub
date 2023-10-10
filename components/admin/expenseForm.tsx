@@ -29,7 +29,6 @@ const ExpenseForm = (props: ExpenseFormProps) => {
             expense_priority: ""
         },
     })
-    console.log("form: ", form)
 
     const handleSave = () => {
 

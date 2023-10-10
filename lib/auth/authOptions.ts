@@ -13,7 +13,8 @@ export const authOptions: AuthOptions = {
     callbacks: {
         session({ session, token, user }) {
             if (session.user) {
-                session.user.role = user?.role
+                session.user.role = token?.role
+                session.user.idVerified = token?.idVerified
                 session.user.id = token?.id as string
                 session.user.idVerified = token?.idVerified
             }

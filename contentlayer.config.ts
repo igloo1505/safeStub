@@ -14,6 +14,18 @@ export const PrivacyPolicy = defineDocumentType(() => ({
 }))
 
 
+export const AdminLinks = defineDocumentType(() => ({
+    name: 'AdminLinks',
+    filePathPattern: `adminLinks.md`,
+    fields: {
+        title: { type: 'string', required: false },
+        lastUpdated: { type: 'date', required: false },
+    },
+    computedFields: {
+        // url: { type: 'string', resolve: (post) => `/posts/${post._raw.flattenedPath}` },
+    },
+}))
+
 export const Tos = defineDocumentType(() => ({
     name: 'TermsOfService',
     filePathPattern: `termsOfService.md`,
@@ -89,7 +101,8 @@ export default makeSource({
         Tos,
         HelpTopic,
         RefundPolicy,
-        BlogPost
+        BlogPost,
+        AdminLinks
     ],
     markdown: {
         remarkPlugins: [remarkGfm]

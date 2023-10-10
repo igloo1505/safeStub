@@ -1,5 +1,4 @@
 "use client"
-
 import * as React from "react"
 import {
     CellContext,
@@ -58,8 +57,10 @@ const ActionsEm = ({ row, table }: CellContext<UsersType, "actions">) => {
     const { toast } = useToast()
     const setUserAccess = async (role: ROLE) => {
         let email = row?.getValue("email") as string
-        console.log("email: ", email)
-        if (email.toLowerCase() === appConfig.app.adminEmail) {
+        let _role = row?.getValue("role") as ROLE
+        const isAdminEmail = email.toLowerCase() === appConfig.app.adminEmail
+        const roleIsAdmin = _role === ROLE.ADMIN
+        if (isAdminEmail && roleIsAdmin) {
             toast({
                 title: "Ah shit...",
                 description: "You're the boss. Don't lock yourself out",
@@ -68,7 +69,7 @@ const ActionsEm = ({ row, table }: CellContext<UsersType, "actions">) => {
             return
         }
         let userId = row.getValue("id") as string
-        let user = await client.setUserAccess.mutate({ userId, role })
+        let user = await client.setUserAccess.mutate({ userId, role: isAdminEmail ? ROLE.ADMIN : role })
         if (user) {
             row.renderValue("role")
             table.options.meta?.updateData(row.index, "role", user.role)
@@ -263,7 +264,6 @@ const UserAccessTable = ({ users = [] }: { users: UsersType[] }) => {
         },
     })
 
-    console.log("table: ", table.getRowModel())
 
     return (
         <div className="w-full">
