@@ -12,7 +12,7 @@ import EmailTicketTable from '../../components/sales/ticketTable';
 import { formatDateLong } from '../../../../lib/formatting/dates';
 import { MailOptions } from 'nodemailer/lib/smtp-transport';
 import { universalMailOptions } from '../../nodeMailer';
-import { ticketListSuccessDummyData } from '../../../../app/api/engagement/email/test/route';
+import { ticketListSuccessDummyData } from '../../testData/ticketListingSuccess';
 
 
 interface TicketsListedSuccessfullyEmailProps {
@@ -23,6 +23,7 @@ interface TicketsListedSuccessfullyEmailProps {
         date: Date | string
     }
 }
+
 
 const TicketsListedSuccessfullyEmail = (props: TicketsListedSuccessfullyEmailProps) => {
     const { username, event, tickets } = ticketListSuccessDummyData
