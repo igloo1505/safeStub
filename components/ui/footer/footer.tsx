@@ -36,7 +36,7 @@ const getQuickLinks = () => {
         {
             category: "user",
             label: "My Items",
-            href: "/profile?myItems"
+            href: "/profile?t=listings"
         },
         {
             category: "user",

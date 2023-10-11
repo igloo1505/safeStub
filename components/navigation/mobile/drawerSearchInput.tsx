@@ -20,7 +20,7 @@ const DrawerSearchInput = ({ closeDrawer }: { closeDrawer: () => void }) => {
             value={value}
             onChange={(e) => setValue(e.target.value)}
             onKeyDown={(e) => onEnter(e, search)}
-            className={"w-[calc(100%-2rem)] mt-4"}
+            className={"w-[calc(100%-2rem)] mt-4 mb-2"}
         />
     )
 }
