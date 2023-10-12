@@ -25,3 +25,7 @@ lastUpdated: 10-9-23
 - [Resend](https://resend.com/pricing)
   - Free up to 3,000 emails per month or 100 emails per day
 - Alternatively, setup Google account to be used directly from the server with [this](https://miracleio.me/snippets/use-gmail-with-nodemailer) and [this](https://stackoverflow.com/questions/71477637/nodemailer-and-gmail-after-may-30-2022/72477193#72477193).
+
+## Documentation Links
+
+- [Tech Stack](/admin/techStack)
