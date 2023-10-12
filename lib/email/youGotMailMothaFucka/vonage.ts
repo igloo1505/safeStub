@@ -1,6 +1,7 @@
 import { Vonage } from '@vonage/server-sdk'
 
 
+/// @ts-ignore
 const vonage = new Vonage({
     apiKey: process.env.VONAGE_API_KEY!,
     apiSecret: process.env.VONAGE_API_SECRET!
