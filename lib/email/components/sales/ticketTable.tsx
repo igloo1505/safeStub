@@ -10,27 +10,22 @@ import { Column } from '@react-email/column';
 import { Container } from '@react-email/container';
 import { Img } from '@react-email/img';
 import EmailTicketItem from './ticketItem';
+import { tableContainer, tableRow, tableColumn, tableText } from '../../templates/emailStyles';
 
 
 interface TicketTableProps {
     tickets: { seat: string, section: string, row: string, [k: string]: any }[]
+    eventDescription: string
+    eventDate: string | Date
 }
 
-const EmailTicketTable = ({ tickets }: TicketTableProps) => {
+const EmailTicketTable = ({ tickets, eventDescription, eventDate }: TicketTableProps) => {
     return (
-        <Container className={"w-full"}>
-            <Row className={"w-full"}>
-                <Column className={"p-3"}>
-                    <Text className={"m-0"}>Section</Text>
-                </Column>
-                <Column className={"p-3"}>
-                    <Text className={"m-0"}>Row</Text>
-                </Column>
-                <Column className={"p-3"}>
-                    <Text className={"m-0"}>Seat</Text>
-                </Column>
-            </Row>
-            {tickets.map((t, i) => <EmailTicketItem key={`ticket-${i}`} {...t} />)}
+        <Container style={tableContainer}>
+            {tickets.map((t, i) => <EmailTicketItem key={`ticket-${i}`}
+                eventDescription={eventDescription}
+                eventDate={eventDate}
+                {...t} />)}
         </Container>
     )
 }

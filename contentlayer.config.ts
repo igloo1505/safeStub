@@ -1,6 +1,21 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 import remarkGfm from 'remark-gfm'
 const contentRoot = "./data/content"
+
+
+export const TechStack = defineDocumentType(() => ({
+    name: 'TechStack',
+    filePathPattern: `techStackDesc.md`,
+    fields: {
+        title: { type: 'string', required: false },
+        lastUpdated: { type: 'date', required: false },
+    },
+    computedFields: {
+        // url: { type: 'string', resolve: (post) => `/posts/${post._raw.flattenedPath}` },
+    },
+}))
+
+
 export const PrivacyPolicy = defineDocumentType(() => ({
     name: 'PrivacyPolicy',
     filePathPattern: `privacyPolicy.md`,
@@ -102,7 +117,8 @@ export default makeSource({
         HelpTopic,
         RefundPolicy,
         BlogPost,
-        AdminLinks
+        AdminLinks,
+        TechStack
     ],
     markdown: {
         remarkPlugins: [remarkGfm]

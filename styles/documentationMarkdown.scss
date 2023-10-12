@@ -1,0 +1,15 @@
+.documentation {
+  h2 {
+    margin: 0.75rem 0;
+  }
+  h3 {
+    margin-top: 0.5rem;
+  }
+  hr {
+    margin-top: 0.5rem;
+    border-color: hsl(var(--primary));
+  }
+  em {
+    color: hsl(var(--primary));
+  }
+}

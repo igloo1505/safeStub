@@ -20,11 +20,13 @@ interface TicketSaleConfirmationPageProps {
 const TicketSaleConfirmationPage = async (props: TicketSaleConfirmationPageProps) => {
     const session = await getServerSession()
     if (!session?.user.id) return redirect("/auth/signin")
+    console.log("props: ", props)
     const event = await serverClient.getEvent({ eventId: parseInt(props.params.eventId) })
     const transaction = await serverClient.getTransactionDetails({
         userId: session.user.id,
         transactionId: parseInt(props.params.transactionId)
     })
+    console.log("transaction: ", transaction)
     if (!event || !transaction) return redirect("/")
     return (
         <PageContentWrapper>

@@ -5,19 +5,21 @@ import { Text } from "@react-email/text";
 import { Link } from '@react-email/link';
 import { Container } from '@react-email/container';
 import { Section } from '@react-email/section';
-import { Img } from '@react-email/img';
 import EmailTemplateWrapper from '../../components/emailTemplateWrapper';
-import logo from "../../../../assets/icons/logoTransparentBg.png"
 import EmailTicketTable from '../../components/sales/ticketTable';
 import { formatDateLong } from '../../../../lib/formatting/dates';
 import { MailOptions } from 'nodemailer/lib/smtp-transport';
 import { universalMailOptions } from '../../nodeMailer';
+import { hr, link, paragraph } from '../emailStyles';
+import EmailLogoBanner from '../../components/logoBanner';
+import { getBaseUrl } from '../../../../utils/getBaseUrl';
 import { ticketListSuccessDummyData } from '../../testData/ticketListingSuccess';
 
 
-interface TicketsListedSuccessfullyEmailProps {
+export interface TicketsListedSuccessfullyEmailProps {
     username: string
     tickets: { seat: string, row: string, section: string }[]
+    confirmationId: string
     event: {
         description: string
         date: Date | string
@@ -29,20 +31,35 @@ const TicketsListedSuccessfullyEmail = (props: TicketsListedSuccessfullyEmailPro
     const { username, event, tickets } = ticketListSuccessDummyData
     return (
         <EmailTemplateWrapper preview="Your tickets were listed successfully.">
-            <Section className={"w-full flex flex-row justify-center items-center gap-3"}>
-                <Img src={logo.src} className={"h-[5rem] w-auto inline-block"}
-                    width="200"
-                    height="200"
-                />
-                <Container className={"w-fit h-full inline-flex justify-center items-center"}>
-                    <Heading as="h1" className={"inline-block text-4xl"}>SafeStub</Heading>
-                </Container>
+            <EmailLogoBanner />
+            <Section style={{
+                width: "100%",
+                padding: "0 40px"
+            }}>
+                <Hr style={hr} />
             </Section>
-            <Hr />
-            <Heading as="h2">{`Congratulations! ${username}`}</Heading>
-            <Text>{`The following items have been listed successfully for the ${event.description} on ${formatDateLong(event.date)}`}</Text>
-            <EmailTicketTable tickets={tickets} />
-            <Text>You can view your active listings by clicking <Link href={`${process.env.NEXTAUTH_URL}/profile?t=listings`}>here</Link>.</Text>
+            <Section style={{
+                padding: "0rem 1rem"
+            }}>
+                <Heading
+                    style={{
+                        width: "100%",
+                        textAlign: "center"
+                    }}
+                    as="h4">{`Congratulations ${username}!`}</Heading>
+                <Container>
+                    <Text style={paragraph}>{`The following items have been listed successfully for the ${event.description} on ${formatDateLong(event.date)}`}</Text>
+                </Container>
+                <EmailTicketTable
+                    eventDescription={event.description}
+                    eventDate={event.date}
+                    tickets={tickets} />
+                <Text style={paragraph}>You can view your active listings by clicking <Link
+                    style={link}
+                    href={`${getBaseUrl()}/profile?t=listings`}
+                    className={"bg-primary text-primary-foreground"}
+                >here</Link>.</Text>
+            </Section>
         </EmailTemplateWrapper>
     )
 }

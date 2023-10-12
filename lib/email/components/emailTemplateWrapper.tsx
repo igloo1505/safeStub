@@ -3,8 +3,10 @@ import React from 'react'
 import { mailTailwindConfig } from '../mailOptions';
 import EmailTemplateHead from './head';
 import { Html } from '@react-email/html';
+import { Container } from '@react-email/container';
 import { Preview } from '@react-email/preview';
-
+import { Body } from "@react-email/components"
+import { container, main } from '../templates/emailStyles';
 
 
 interface EmailTemplateWrapperProps {
@@ -14,20 +16,15 @@ interface EmailTemplateWrapperProps {
 
 const EmailTemplateWrapper = ({ children, preview }: EmailTemplateWrapperProps) => {
     return (
-        <Tailwind
-            config={mailTailwindConfig}
-        >
+        <Html>
             <EmailTemplateHead />
             {preview && <Preview>{preview}</Preview>}
-            <Html className={"bg-black text-white px-4 md:px-6 py-6 w-full flex flex-col justify-start items-center"}
-                style={{
-                    backgroundColor: "black",
-                    color: "#fff"
-                }}
-            >
-                {children}
-            </Html>
-        </Tailwind>
+            <Body style={main}>
+                <Container style={container}>
+                    {children}
+                </Container>
+            </Body>
+        </Html>
     )
 }
 

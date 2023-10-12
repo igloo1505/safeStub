@@ -2,7 +2,7 @@ import { Separator } from '#/components/ui/separator'
 import CopyText from '#/components/utility/copyText'
 import { formatUSD } from '#/lib/formatting/currency'
 import { formatDateLong, formatDateLongNoYear } from '#/lib/formatting/dates'
-import { getFlattenedTickets } from '#/lib/formatting/util'
+import { getFlattenedTickets, getFlattenedTicketsFromTransaction } from '#/lib/formatting/util'
 import type { serverClient } from '#/trpc/serverClient'
 import { payoutMethodLabelMap } from '#/types/profile'
 import { getTransactionUniqueId } from '#/utils/dataParsing/transactionDataUtils'
@@ -30,8 +30,7 @@ const ConfirmationCard = ({ event, transaction }: ConfirmationCardProps) => {
     if (typeof transactionUniqueId === "number") {
         transactionUniqueId = `${transactionUniqueId}`
     }
-    /// @ts-ignore
-    const flatTickets = getFlattenedTickets<typeof transaction>(transaction)
+    const flatTickets = getFlattenedTicketsFromTransaction<typeof transaction>(transaction)
     let sections: string[] = []
     let rows: string[] = []
     let seats: string[] = []

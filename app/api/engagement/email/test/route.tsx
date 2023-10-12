@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { createEdgeRouter } from "next-connect";
-import { sendTestEmail, testEmailTargets } from "../../../../../lib/email/nodeMailer";
+import { sendMail, testEmailTargets } from "../../../../../lib/email/nodeMailer";
 import TicketsListedSuccessfullyEmail, { ticketListingSuccessOptions } from "../../../../../lib/email/templates/tsx/ticketsListedSuccessfully";
 import { render } from "@react-email/render";
 import { ticketListSuccessDummyData } from "#/lib/email/testData/ticketListingSuccess";
@@ -23,12 +23,12 @@ router
             let info: any = []
             if (!justMe) {
                 for (const k in testEmailTargets) {
-                    let _info = await sendTestEmail({ ...options, to: k })
+                    let _info = await sendMail({ ...options, to: k })
                     console.log("info: ", _info)
                     info.push(_info)
                 }
             } else {
-                let _info = await sendTestEmail(options)
+                let _info = await sendMail(options)
                 info.push(_info)
             }
             return new NextResponse(JSON.stringify({ success: true, info }));

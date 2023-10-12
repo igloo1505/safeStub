@@ -5,7 +5,7 @@ const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'admin@safestub.com',
-        pass: 'ygnn slqz smbw knsa'
+        pass: process.env.EMAIL_SMTP_APP_PASSWORD
     }
 });
 
@@ -18,7 +18,8 @@ export const universalMailOptions: MailOptions = {
     from: 'admin@safestub.com',
 };
 
-export const sendTestEmail = async (options: Partial<MailOptions> = {}) => {
+export const sendMail = async (options: Partial<MailOptions> = {}) => {
+    console.log("options: ", options)
     return await new Promise((resolve, reject) => {
         transporter.sendMail({ ...universalMailOptions, ...options }, function(error, info) {
             if (error) {

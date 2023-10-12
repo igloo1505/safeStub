@@ -11,6 +11,7 @@ import { getEventsSearchResult, searchEventsParams } from "#/utils/server/search
 import { findGreatDeals } from "#/utils/server/findEventDeals";
 import { paginateParamsZod } from "#/utils/server/getPaginationData";
 import { createTicketgroupTransaction } from "#/lib/formatting/ticketGroupCreate";
+import { sendTicketListingSuccessEmail } from "#/lib/email/youGotMailMothaFucka/ticketListingSuccess";
 
 
 
@@ -348,20 +349,26 @@ export const appRouter = router({
     }),
     createTransaction: publicProcedure.input(saleFormSchema).mutation(async (opts) => {
         const formattedData = createTicketgroupTransaction(opts.input)
-        // const purchaseHistory = await prisma.purchaseHistory.findFirst({
-        //     where: {
-        //         userId: opts.input.sellerId
-        //     },
-        //     select: {
-        //         id: true
-        //     }
-        // })
-        return await prisma.transaction.create({
+        let data = await prisma.transaction.create({
             data: formattedData,
             select: {
                 id: true,
+                ticketGroups: {
+                    select: {
+                        confirmationId: true
+                    }
+                },
             }
         })
+        if (data) {
+            await sendTicketListingSuccessEmail({
+                confirmationId: data.ticketGroups[0].confirmationId,
+                username: opts.input.sellerId,
+                tickets: opts.input.tickets,
+                eventId: opts.input.eventId
+            })
+        }
+        return data
     }),
     getTicketGroup: publicProcedure.input(z.number().int()).query(async (opts) => {
         return await prisma.ticketGroup.findFirst({

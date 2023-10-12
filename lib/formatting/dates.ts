@@ -53,7 +53,7 @@ export const dayOfMonth = (dateString: string | Date | undefined) => {
 export const dateAndTime = (dateString: string | Date) => {
     let d = dayjs(dateString)
     return {
-        day: d.format("MMM D"),
+        day: d.format("MMM Do"),
         dow: d.format("dddd"),
         time: d.format("h:mm A")
     }
