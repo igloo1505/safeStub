@@ -37,6 +37,14 @@ const Schema: z.ZodType<Prisma.UserScalarWhereInput> = z
       .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
       .optional()
       .nullable(),
+    firstName: z
+      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
+      .optional()
+      .nullable(),
+    lastName: z
+      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
+      .optional()
+      .nullable(),
     role: z
       .union([
         z.lazy(() => EnumROLEFilterObjectSchema),
@@ -55,6 +63,10 @@ const Schema: z.ZodType<Prisma.UserScalarWhereInput> = z
         z.lazy(() => DateTimeNullableFilterObjectSchema),
         z.coerce.date(),
       ])
+      .optional()
+      .nullable(),
+    phone: z
+      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
       .optional()
       .nullable(),
     image: z

@@ -7,7 +7,7 @@ import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.share
 
 
 export interface ProfilePageContainerProps {
-    user: UserProfileDetails
+    user: NonNullable<UserProfileDetails>
     type: ProfileActiveType
 }
 

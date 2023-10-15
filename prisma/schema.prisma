@@ -278,10 +278,13 @@ model Location {
 model User {
     id                      String                 @id @default(cuid())
     name                    String?
+    firstName               String?
+    lastName                String?
     role                    ROLE                   @default(USER)
     createdAt               DateTime               @default(now())
     email                   String?                @unique
     emailVerified           DateTime?              @map("email_verified")
+    phone                   String?
     image                   String?
     paymentAccount          PaymentAccountDetails? @relation(fields: [paymentAccountDetailsId], references: [id])
     paymentAccountDetailsId Int?
@@ -336,10 +339,9 @@ model Ticket {
     sellerId      String
     buyer         User?        @relation(fields: [buyerId], references: [id], name: "buyer")
     buyerId       String?
-    transaction   Transaction?  @relation(fields: [transactionId], references: [id])
+    transaction   Transaction? @relation(fields: [transactionId], references: [id])
     transactionId Int?
     ticketNumber  String?
-
 }
 
 model ArenaAmenities {

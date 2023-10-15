@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { createEdgeRouter } from "next-connect";
-import { sendSMS } from "#/lib/email/youGotMailMothaFucka/vonage";
+import { sendSMS } from "#/lib/engagement/sendSms";
 
 interface RequestContext {
 }

@@ -12,7 +12,8 @@ import { findGreatDeals } from "#/utils/server/findEventDeals";
 import { paginateParamsZod } from "#/utils/server/getPaginationData";
 import { createTicketgroupTransaction } from "#/lib/formatting/ticketGroupCreate";
 import { sendTicketListingSuccessEmail } from "#/lib/email/youGotMailMothaFucka/ticketListingSuccess";
-
+import { sendSellerNotification } from "#/lib/engagement/sendSellerNotification";
+import { contactInformationSchema } from "#/types/contactInformationSchema";
 
 
 
@@ -31,6 +32,27 @@ export const appRouter = router({
             },
             include: {
                 settings: true
+            }
+        })
+    }),
+    updateUser: publicProcedure.input(contactInformationSchema).mutation(async (opts) => {
+        return await prisma.user.update({
+            where: {
+                id: opts.input.id
+            },
+            data: {
+                ...(opts.input.firstName && opts.input.firstName !== "" && {
+                    firstName: opts.input.firstName
+                }),
+                ...(opts.input.lastName && opts.input.lastName !== "" && {
+                    lastName: opts.input.lastName
+                }),
+                ...(opts.input.email && opts.input.email !== "" && {
+                    email: opts.input.email
+                }),
+                ...(opts.input.phone !== undefined && {
+                    phone: opts.input.phone
+                }),
             }
         })
     }),
@@ -300,6 +322,11 @@ export const appRouter = router({
                 tickets: {
                     take: opts.input.take,
                     skip: opts.input.skip,
+                    where: {
+                        buyerId: {
+                            equals: null
+                        }
+                    }
                 },
                 ticketGroups: {
                     take: opts.input.take,
@@ -435,6 +462,39 @@ export const appRouter = router({
             take: opts.input.take
         })
     }),
+    setTicketsPurchased: publicProcedure.input(z.object({
+        ticketIds: z.number().int().array(),
+        purchaserId: z.string(),
+        purchaseAmount: z.number()
+    })).mutation(async (opts) => {
+        await prisma.ticket.updateMany({
+            where: {
+                id: {
+                    in: opts.input.ticketIds
+                }
+            },
+            data: {
+                buyerId: opts.input.purchaserId
+            }
+        })
+        return sendSellerNotification({ ticketIds: opts.input.ticketIds })
+    }),
+    sendTextNotificationToSeller: publicProcedure.input(z.object({
+        ticketIds: z.number().int().array()
+    })).mutation(async (opts) => {
+        return await sendSellerNotification({ ticketIds: opts.input.ticketIds })
+    }),
+    getUserPhone: publicProcedure.input(z.string()).query(async (opts) => {
+        let data = await prisma.user.findFirst({
+            where: {
+                id: opts.input
+            },
+            select: {
+                phone: true
+            }
+        })
+        return data?.phone
+    })
 })
 
 

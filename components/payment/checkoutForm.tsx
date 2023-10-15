@@ -16,6 +16,9 @@ import getStripe from '#/utils/money/stripe/getStripe'
 import { Input } from '../ui/input'
 import { stripeElementsAppearance } from '#/styles/stripeElementsAppearance'
 import { Button } from '../ui/button'
+import { useRouter } from 'next/navigation'
+import { client } from '#/trpc/client'
+import { getSession, useSession } from 'next-auth/react'
 const configData = getAppConfig()
 
 const config = configData.payments
@@ -26,7 +29,7 @@ const config = configData.payments
 /* PRIORITY: Integrate the webhook api route with Stripe to respond to the status's appropriately without requiring future user input. */
 
 
-const StripeForm = ({ amount }: { amount: number }) => {
+const StripeForm = ({ amount, ticketIds }: { amount: number, ticketIds: number[] }) => {
     const [input, setInput] = React.useState<{
         cardholderName: string
     }>({
@@ -39,6 +42,7 @@ const StripeForm = ({ amount }: { amount: number }) => {
     const [errorMessage, setErrorMessage] = React.useState<string>('')
 
     const stripe = useStripe()
+    const router = useRouter()
     const elements = useElements()
 
     const PaymentStatus = ({ status }: { status: string }) => {
@@ -80,9 +84,12 @@ const StripeForm = ({ amount }: { amount: number }) => {
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
         try {
             e.preventDefault()
+            let session = await getSession()
+            if (!session?.user.id) {
+                return router.push("/auth/signin")
+            }
             // Abort if form isn't valid
-            if (!e.currentTarget.reportValidity()) return
-            if (!elements || !stripe) return
+            if (!e.currentTarget.reportValidity() || !elements || !stripe) return
 
             setPayment({ status: 'processing' })
 
@@ -99,13 +106,13 @@ const StripeForm = ({ amount }: { amount: number }) => {
             const { client_secret: clientSecret } = await createPaymentIntent(
                 amount
             )
-
             // Use your card Element with other Stripe.js APIs
-            const { error: confirmError } = await stripe!.confirmPayment({
+            const { error: confirmError } = await stripe.confirmPayment({
                 elements,
                 clientSecret,
+                redirect: "if_required",
                 confirmParams: {
-                    return_url: `${window.location.origin}/checkout/success`,
+                    /* return_url: `${window.location.origin}/checkout/success`, */
                     payment_method_data: {
                         billing_details: {
                             name: input.cardholderName,
@@ -114,9 +121,16 @@ const StripeForm = ({ amount }: { amount: number }) => {
                 },
             })
 
+
             if (confirmError) {
                 setPayment({ status: 'error' })
                 setErrorMessage(confirmError.message ?? 'An unknown error occurred')
+            } else {
+                client.setTicketsPurchased.mutate({
+                    ticketIds,
+                    purchaserId: session.user.id,
+                    purchaseAmount: amount
+                })
             }
         } catch (err) {
             const { message } = err as StripeError
@@ -170,7 +184,7 @@ const StripeForm = ({ amount }: { amount: number }) => {
     )
 }
 
-export const CheckoutForm = ({ amount }: { amount: number }) => {
+export const CheckoutForm = ({ amount, ticketIds }: { amount: number, ticketIds: number[] }) => {
     return (
         <Elements
             stripe={getStripe()}
@@ -181,7 +195,10 @@ export const CheckoutForm = ({ amount }: { amount: number }) => {
                 amount: Math.floor(amount * 100)
             }}
         >
-            <StripeForm amount={amount} />
+            <StripeForm
+                ticketIds={ticketIds}
+                amount={amount}
+            />
         </Elements>
     )
 }

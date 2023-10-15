@@ -15,14 +15,18 @@ interface CheckoutPageProps {
 }
 
 const CheckoutPage = async ({ params: { transactionId }, searchParams: { tickets } }: CheckoutPageProps) => {
+    const ticketIds = tickets.map((t) => parseInt(t))
     const data = await serverClient.getCheckoutData({
         transactionId: parseInt(transactionId),
-        ticketIds: tickets.map((t) => parseInt(t))
+        ticketIds: ticketIds
     })
     return (
         <PageContentWrapper>
             <div className={"w-5/6"}>
-                <CheckoutForm amount={data.averagedTotal} />
+                <CheckoutForm
+                    ticketIds={ticketIds}
+                    amount={data.averagedTotal}
+                />
             </div>
         </PageContentWrapper>
     )

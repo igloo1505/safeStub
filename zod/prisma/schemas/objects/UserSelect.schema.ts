@@ -13,10 +13,13 @@ const Schema: z.ZodType<Prisma.UserSelect> = z
   .object({
     id: z.boolean().optional(),
     name: z.boolean().optional(),
+    firstName: z.boolean().optional(),
+    lastName: z.boolean().optional(),
     role: z.boolean().optional(),
     createdAt: z.boolean().optional(),
     email: z.boolean().optional(),
     emailVerified: z.boolean().optional(),
+    phone: z.boolean().optional(),
     image: z.boolean().optional(),
     paymentAccount: z
       .union([z.boolean(), z.lazy(() => PaymentAccountDetailsArgsObjectSchema)])

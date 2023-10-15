@@ -21,6 +21,18 @@ const Schema: z.ZodType<Prisma.UserOrderByWithRelationAndSearchRelevanceInput> =
           z.lazy(() => SortOrderInputObjectSchema),
         ])
         .optional(),
+      firstName: z
+        .union([
+          z.lazy(() => SortOrderSchema),
+          z.lazy(() => SortOrderInputObjectSchema),
+        ])
+        .optional(),
+      lastName: z
+        .union([
+          z.lazy(() => SortOrderSchema),
+          z.lazy(() => SortOrderInputObjectSchema),
+        ])
+        .optional(),
       role: z.lazy(() => SortOrderSchema).optional(),
       createdAt: z.lazy(() => SortOrderSchema).optional(),
       email: z
@@ -30,6 +42,12 @@ const Schema: z.ZodType<Prisma.UserOrderByWithRelationAndSearchRelevanceInput> =
         ])
         .optional(),
       emailVerified: z
+        .union([
+          z.lazy(() => SortOrderSchema),
+          z.lazy(() => SortOrderInputObjectSchema),
+        ])
+        .optional(),
+      phone: z
         .union([
           z.lazy(() => SortOrderSchema),
           z.lazy(() => SortOrderInputObjectSchema),

@@ -9,7 +9,7 @@ import clsx from 'clsx';
 
 
 interface ProfileContentProps {
-    user: UserProfileDetails
+    user: NonNullable<UserProfileDetails>
     show: boolean
 }
 
@@ -18,6 +18,7 @@ const ProfileContent = ({ user, show }: ProfileContentProps) => {
         <div className={clsx("w-full min-h-full", show ? "grid" : "hidden")}>
             <div className={"grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-4 place-items-center h-fit w-full"}>
                 <ContactInformationProfileCard
+                    user={user}
                     delay={50}
                     show={show}
                     className={clsx("group-[.content-profile]/profileContainer:opacity-100  group-[.content-profile]/profileContainer:scale-100 group-[.content-profile]/profileContainer:delay-500 preBounceIn")}

@@ -23,10 +23,13 @@ const Schema: z.ZodType<Prisma.UserUncheckedCreateWithoutSettingsInput> = z
   .object({
     id: z.string().optional(),
     name: z.string().optional().nullable(),
+    firstName: z.string().optional().nullable(),
+    lastName: z.string().optional().nullable(),
     role: z.lazy(() => ROLESchema).optional(),
     createdAt: z.coerce.date().optional(),
     email: z.string().optional().nullable(),
     emailVerified: z.coerce.date().optional().nullable(),
+    phone: z.string().optional().nullable(),
     image: z.string().optional().nullable(),
     paymentAccountDetailsId: z.number().optional().nullable(),
     idVerified: z.lazy(() => VERIFICATIONSTATUSSchema).optional(),

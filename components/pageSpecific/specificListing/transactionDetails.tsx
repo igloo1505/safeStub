@@ -43,6 +43,7 @@ const TransactionDetails = ({ transaction }: TransactionDetailsProps) => {
                 open={checkoutOpen}
                 close={() => setCheckoutOpen(false)}
                 amount={total}
+                ticketIds={_tickets.map((t) => t.id)}
             />
             <div className={"w-fit h-fit"}>
                 <TicketListDataTable

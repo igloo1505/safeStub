@@ -8,6 +8,8 @@ import { calculatePayout } from '#/lib/business/calculatePayout'
 import { useRouter } from 'next/navigation'
 import { Route } from 'next'
 import { client } from '#/trpc/client'
+import store from '#/state/store'
+import { showNotification } from '#/state/slices/notifications'
 
 
 
@@ -72,6 +74,11 @@ const PostForSaleConfirmation = ({ form, userId, event }: PostForSaleConfirmatio
     ]
     const submitTicket = async () => {
         let data = form.getValues()
+        let phone = await client.getUserPhone.query(userId)
+        console.log("phone: ", phone)
+        if (!phone) {
+            return store.dispatch(showNotification("phoneInput"))
+        }
         const transaction = await client.createTransaction.mutate({ ...data, sellerId: userId, eventId: event.id, quantity: data.tickets.length })
         if (transaction.id) {
             router.push(`/sell/confirmation/${event.id}/${transaction.id}` as Route)

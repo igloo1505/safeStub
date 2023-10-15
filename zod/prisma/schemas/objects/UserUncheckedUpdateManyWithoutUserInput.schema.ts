@@ -35,6 +35,20 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateManyWithoutUserInput> = z
       ])
       .optional()
       .nullable(),
+    firstName: z
+      .union([
+        z.string(),
+        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional()
+      .nullable(),
+    lastName: z
+      .union([
+        z.string(),
+        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional()
+      .nullable(),
     role: z
       .union([
         z.lazy(() => ROLESchema),
@@ -58,6 +72,13 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateManyWithoutUserInput> = z
       .union([
         z.coerce.date(),
         z.lazy(() => NullableDateTimeFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional()
+      .nullable(),
+    phone: z
+      .union([
+        z.string(),
+        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional()
       .nullable(),
