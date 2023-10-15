@@ -3,6 +3,8 @@ import { IntFilterObjectSchema } from './IntFilter.schema';
 import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
 import { StringFilterObjectSchema } from './StringFilter.schema';
 import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema';
+import { EnumTicketStatusFilterObjectSchema } from './EnumTicketStatusFilter.schema';
+import { TicketStatusSchema } from '../enums/TicketStatus.schema';
 import { EventRelationFilterObjectSchema } from './EventRelationFilter.schema';
 import { EventWhereInputObjectSchema } from './EventWhereInput.schema';
 import { TicketGroupRelationFilterObjectSchema } from './TicketGroupRelationFilter.schema';
@@ -65,6 +67,12 @@ const Schema: z.ZodType<Prisma.TicketWhereInput> = z
       .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
       .optional()
       .nullable(),
+    status: z
+      .union([
+        z.lazy(() => EnumTicketStatusFilterObjectSchema),
+        z.lazy(() => TicketStatusSchema),
+      ])
+      .optional(),
     Event: z
       .union([
         z.lazy(() => EventRelationFilterObjectSchema),

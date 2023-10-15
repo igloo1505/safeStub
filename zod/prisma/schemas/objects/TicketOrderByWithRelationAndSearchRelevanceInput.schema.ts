@@ -47,6 +47,7 @@ const Schema: z.ZodType<Prisma.TicketOrderByWithRelationAndSearchRelevanceInput>
           z.lazy(() => SortOrderInputObjectSchema),
         ])
         .optional(),
+      status: z.lazy(() => SortOrderSchema).optional(),
       Event: z
         .lazy(() => EventOrderByWithRelationAndSearchRelevanceInputObjectSchema)
         .optional(),

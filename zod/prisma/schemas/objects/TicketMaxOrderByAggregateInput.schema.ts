@@ -15,6 +15,7 @@ const Schema: z.ZodType<Prisma.TicketMaxOrderByAggregateInput> = z
     buyerId: z.lazy(() => SortOrderSchema).optional(),
     transactionId: z.lazy(() => SortOrderSchema).optional(),
     ticketNumber: z.lazy(() => SortOrderSchema).optional(),
+    status: z.lazy(() => SortOrderSchema).optional(),
   })
   .strict();
 

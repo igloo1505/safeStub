@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
+import { TicketStatusSchema } from '../enums/TicketStatus.schema';
+import { EnumTicketStatusFieldUpdateOperationsInputObjectSchema } from './EnumTicketStatusFieldUpdateOperationsInput.schema';
 import { TicketGroupUpdateOneWithoutTicketsNestedInputObjectSchema } from './TicketGroupUpdateOneWithoutTicketsNestedInput.schema';
 import { UserUpdateOneRequiredWithoutTicketsSoldNestedInputObjectSchema } from './UserUpdateOneRequiredWithoutTicketsSoldNestedInput.schema';
 import { UserUpdateOneWithoutTicketsPurchasedNestedInputObjectSchema } from './UserUpdateOneWithoutTicketsPurchasedNestedInput.schema';
@@ -35,6 +37,12 @@ const Schema: z.ZodType<Prisma.TicketUpdateWithoutEventInput> = z
       ])
       .optional()
       .nullable(),
+    status: z
+      .union([
+        z.lazy(() => TicketStatusSchema),
+        z.lazy(() => EnumTicketStatusFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
     TicketGroup: z
       .lazy(() => TicketGroupUpdateOneWithoutTicketsNestedInputObjectSchema)
       .optional(),

@@ -323,16 +323,25 @@ export const appRouter = router({
                     take: opts.input.take,
                     skip: opts.input.skip,
                     where: {
-                        buyerId: {
-                            equals: null
-                        }
+                        status: "forSale",
                     }
                 },
                 ticketGroups: {
                     take: opts.input.take,
                     skip: opts.input.skip,
+                    where: {
+                        tickets: {
+                            some: {
+                                status: "forSale"
+                            }
+                        }
+                    },
                     include: {
-                        tickets: true,
+                        tickets: {
+                            where: {
+                                status: "forSale"
+                            }
+                        },
                         transaction: true
                     }
                 },
@@ -408,6 +417,15 @@ export const appRouter = router({
             }
         })
     }),
+    getTicketsById: publicProcedure.input(z.number().int().array()).query(async (opts) => {
+        return await prisma.ticket.findMany({
+            where: {
+                id: {
+                    in: opts.input
+                }
+            }
+        })
+    }),
     getCheckoutData: publicProcedure.input(z.object({
         transactionId: z.number().int(),
         ticketIds: z.number().array()
@@ -474,7 +492,8 @@ export const appRouter = router({
                 }
             },
             data: {
-                buyerId: opts.input.purchaserId
+                buyerId: opts.input.purchaserId,
+                status: "awaitingTransferFromSellerToSafeStub"
             }
         })
         return sendSellerNotification({ ticketIds: opts.input.ticketIds })

@@ -84,13 +84,13 @@ const StripeForm = ({ amount, ticketIds }: { amount: number, ticketIds: number[]
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
         try {
             e.preventDefault()
+            // Abort if form isn't valid
+            if (!e.currentTarget.reportValidity() || !elements || !stripe) return
+
             let session = await getSession()
             if (!session?.user.id) {
                 return router.push("/auth/signin")
             }
-            // Abort if form isn't valid
-            if (!e.currentTarget.reportValidity() || !elements || !stripe) return
-
             setPayment({ status: 'processing' })
 
             const { error: submitError } = await elements.submit()
@@ -112,7 +112,7 @@ const StripeForm = ({ amount, ticketIds }: { amount: number, ticketIds: number[]
                 clientSecret,
                 redirect: "if_required",
                 confirmParams: {
-                    /* return_url: `${window.location.origin}/checkout/success`, */
+                    return_url: `${window.location.origin}/checkout/success`,
                     payment_method_data: {
                         billing_details: {
                             name: input.cardholderName,
@@ -120,17 +120,20 @@ const StripeForm = ({ amount, ticketIds }: { amount: number, ticketIds: number[]
                     },
                 },
             })
-
-
             if (confirmError) {
                 setPayment({ status: 'error' })
                 setErrorMessage(confirmError.message ?? 'An unknown error occurred')
             } else {
-                client.setTicketsPurchased.mutate({
+                await client.setTicketsPurchased.mutate({
                     ticketIds,
                     purchaserId: session.user.id,
                     purchaseAmount: amount
                 })
+                let p = new URLSearchParams()
+                for (const _id of ticketIds) {
+                    p.append("ticketIds", `${_id}`)
+                }
+                router.push(`/checkout/success?${p.toString()}`)
             }
         } catch (err) {
             const { message } = err as StripeError

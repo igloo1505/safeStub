@@ -3,6 +3,8 @@ import { IntWithAggregatesFilterObjectSchema } from './IntWithAggregatesFilter.s
 import { IntNullableWithAggregatesFilterObjectSchema } from './IntNullableWithAggregatesFilter.schema';
 import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema';
 import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema';
+import { EnumTicketStatusWithAggregatesFilterObjectSchema } from './EnumTicketStatusWithAggregatesFilter.schema';
+import { TicketStatusSchema } from '../enums/TicketStatus.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -74,6 +76,12 @@ const Schema: z.ZodType<Prisma.TicketScalarWhereWithAggregatesInput> = z
       ])
       .optional()
       .nullable(),
+    status: z
+      .union([
+        z.lazy(() => EnumTicketStatusWithAggregatesFilterObjectSchema),
+        z.lazy(() => TicketStatusSchema),
+      ])
+      .optional(),
   })
   .strict();
 

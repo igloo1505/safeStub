@@ -3,6 +3,8 @@ import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOpera
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
+import { TicketStatusSchema } from '../enums/TicketStatus.schema';
+import { EnumTicketStatusFieldUpdateOperationsInputObjectSchema } from './EnumTicketStatusFieldUpdateOperationsInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -73,6 +75,12 @@ const Schema: z.ZodType<Prisma.TicketUncheckedUpdateManyInput> = z
       ])
       .optional()
       .nullable(),
+    status: z
+      .union([
+        z.lazy(() => TicketStatusSchema),
+        z.lazy(() => EnumTicketStatusFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
   })
   .strict();
 

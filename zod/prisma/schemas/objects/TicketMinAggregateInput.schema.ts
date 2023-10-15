@@ -14,6 +14,7 @@ const Schema: z.ZodType<Prisma.TicketMinAggregateInputType> = z
     buyerId: z.literal(true).optional(),
     transactionId: z.literal(true).optional(),
     ticketNumber: z.literal(true).optional(),
+    status: z.literal(true).optional(),
   })
   .strict();
 

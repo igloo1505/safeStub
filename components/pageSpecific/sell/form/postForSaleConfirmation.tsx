@@ -75,7 +75,6 @@ const PostForSaleConfirmation = ({ form, userId, event }: PostForSaleConfirmatio
     const submitTicket = async () => {
         let data = form.getValues()
         let phone = await client.getUserPhone.query(userId)
-        console.log("phone: ", phone)
         if (!phone) {
             return store.dispatch(showNotification("phoneInput"))
         }

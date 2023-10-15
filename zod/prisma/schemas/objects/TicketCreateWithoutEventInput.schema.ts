@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { TicketStatusSchema } from '../enums/TicketStatus.schema';
 import { TicketGroupCreateNestedOneWithoutTicketsInputObjectSchema } from './TicketGroupCreateNestedOneWithoutTicketsInput.schema';
 import { UserCreateNestedOneWithoutTicketsSoldInputObjectSchema } from './UserCreateNestedOneWithoutTicketsSoldInput.schema';
 import { UserCreateNestedOneWithoutTicketsPurchasedInputObjectSchema } from './UserCreateNestedOneWithoutTicketsPurchasedInput.schema';
@@ -12,6 +13,7 @@ const Schema: z.ZodType<Prisma.TicketCreateWithoutEventInput> = z
     row: z.string(),
     seat: z.string(),
     ticketNumber: z.string().optional().nullable(),
+    status: z.lazy(() => TicketStatusSchema).optional(),
     TicketGroup: z
       .lazy(() => TicketGroupCreateNestedOneWithoutTicketsInputObjectSchema)
       .optional(),

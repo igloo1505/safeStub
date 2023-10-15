@@ -18,8 +18,10 @@ export const sendSellerNotification = async ({ ticketIds }: { ticketIds: number[
         },
         distinct: "sellerId"
     })
+    let previousPhones: string[] = []
     for (const k of sellers.map((s) => s.seller.phone)) {
-        if (k) {
+        if (k && !previousPhones.includes(k)) {
+            previousPhones.push(k)
             await sendSMS({
                 to: `${k}`,
                 message: `You have a buyer for ${nTickets} ${nTickets > 1 ? 'tickets' : 'ticket'} you've listed on SafeStub. Please login to complete the transaction.`

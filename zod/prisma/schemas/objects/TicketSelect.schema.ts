@@ -33,6 +33,7 @@ const Schema: z.ZodType<Prisma.TicketSelect> = z
       .optional(),
     transactionId: z.boolean().optional(),
     ticketNumber: z.boolean().optional(),
+    status: z.boolean().optional(),
   })
   .strict();
 
