@@ -13,6 +13,8 @@ interface PaymentSuccessPageProps {
     }
 }
 
+
+/* TODO: Create a card specific event description component and use it here as well as wherever applicable. */
 const PaymentSuccessPage = async ({ searchParams }: PaymentSuccessPageProps) => {
     const tickets = searchParams.ticketIds ? await serverClient.getTicketsById(searchParams.ticketIds.map((t) => parseInt(t))) : []
     return (

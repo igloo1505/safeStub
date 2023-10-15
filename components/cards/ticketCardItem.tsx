@@ -2,10 +2,14 @@ import { Ticket } from '@prisma/client'
 import React from 'react'
 import { Label } from '../ui/label'
 
-
+interface SatisfiesTicket {
+    section: string
+    seat: string
+    row: string
+}
 
 interface TicketCardItemProps {
-    ticket: Ticket
+    ticket: Ticket | SatisfiesTicket
 }
 
 const TicketCardItem = ({ ticket }: TicketCardItemProps) => {

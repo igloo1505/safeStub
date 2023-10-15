@@ -10,6 +10,7 @@ import { Route } from 'next'
 import { client } from '#/trpc/client'
 import store from '#/state/store'
 import { showNotification } from '#/state/slices/notifications'
+import TicketCardItem from '#/components/cards/ticketCardItem'
 
 
 
@@ -95,9 +96,11 @@ const PostForSaleConfirmation = ({ form, userId, event }: PostForSaleConfirmatio
                     {...item}
                     key={item.label} />)
                 }
+            </div>
+            <div className={"@container flex flex-col justify-start items-center gap-1 w-full"}>
                 {tickets.map((t, i) => {
                     return (
-                        <TicketConfirmationItem index={i} ticket={t} key={`${t.section}-${t.row}-${t.seat}`} />
+                        <TicketCardItem ticket={t} key={`${t.section}-${t.row}-${t.seat}`} />
                     )
                 })}
             </div>
