@@ -96,12 +96,15 @@ const ActiveListingProfileCard = ({ item, show, delay }: ActiveListingProfileCar
         }
     }
 
+    const eventDescription = item.ticketGroups?.[0]?.Event?.description || item.tickets?.[0]?.Event?.description
+
     return (
         <Card className={clsx("w-full h-full shadow-md hover:shadow-sm dark:shadow-none preBounceIn", shouldShow && "bounceIn")} ref={ref}>
             <CardHeader className={"relative"}>
                 <CardTitle className={"pr-8"}>{`Order ${item.id}`}</CardTitle>
                 {item?.tickets[0]?.Event?.description && <div>{item.tickets[0].Event.description}</div>}
                 <CardDescription>
+                    {eventDescription && <div >{eventDescription}</div>}
                     <div>{locationString.date}</div>
                     <div>{locationString.location}</div>
                 </CardDescription>

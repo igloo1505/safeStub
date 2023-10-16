@@ -20,6 +20,7 @@ const CheckoutPage = async ({ params: { transactionId }, searchParams: { tickets
         transactionId: parseInt(transactionId),
         ticketIds: ticketIds
     })
+
     return (
         <PageContentWrapper>
             <div className={"w-5/6"}>
