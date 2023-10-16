@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import SlidingFormCard, { maxStepSale } from './slidingFormCard';
-import { SingleEventReturned } from '#/types/query';
+import { PendingTicketList, SingleEventReturned } from '#/types/query';
 import { formatLocation } from '#/lib/formatting/teamNames';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat'
@@ -8,6 +8,7 @@ import { SaleFormType } from './saleFormContext';
 import { FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from '#/components/ui/form';
 import { Input } from '#/components/ui/input';
 import { Separator } from '#/components/ui/separator';
+import clsx from 'clsx';
 dayjs.extend(advancedFormat)
 
 
@@ -22,16 +23,16 @@ export const SaleCardTitle = ({ children }: { children: string }) => {
 
 
 interface SaleFormStepOneProps {
-    event: NonNullable<SingleEventReturned>
+    event: NonNullable<SingleEventReturned> | NonNullable<NonNullable<PendingTicketList>[number]["Event"]>
     form: SaleFormType
     containerId: string
 }
 
 
-export const SaleCardEventInfo = ({ event }: { event: SaleFormStepOneProps['event'] }) => {
+export const SaleCardEventInfo = ({ event, className }: { event: SaleFormStepOneProps['event'], className?: string }) => {
     return (
         <>
-            <div className={"w-full flex flex-col-reverse md:flex-row md:gap-4"}>
+            <div className={clsx("w-full flex flex-col-reverse md:flex-row md:gap-4", className && className)}>
                 <div className={"w-full flex flex-col justify-start items-start whitespace-nowrap"}>
                     <div className={"font-semibold"}>{event.title}</div>
                     <div className={"text-sm text-foreground/80"}>{dayjs(event.date).format("MMM Do")}</div>

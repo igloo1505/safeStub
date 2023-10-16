@@ -27,14 +27,12 @@ const PaymentHistoryProfileCard = ({ user, className, delay, show }: PaymentHist
     const perPage = 10
 
     const setCurrentData = (_data: typeof allData) => {
-        console.log("data: ", _data)
         setDataLength(_data.length)
         const newMin = perPage * (page - 1)
         setData(_data.slice(newMin, Math.min(_data.length, newMin + perPage)).sort((a, b) => new Date(b.date).valueOf() - new Date(a.date.valueOf()).valueOf()))
     }
 
     const applyActiveFilter = (d: typeof allData, filter: typeof currentFilter) => {
-        console.log("filter: ", filter)
         if (filter === null) {
             return setCurrentData(d)
         }

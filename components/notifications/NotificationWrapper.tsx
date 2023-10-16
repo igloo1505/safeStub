@@ -4,6 +4,7 @@ import LogoutModal from './logoutModal'
 import { Provider } from 'react-redux'
 import store from '#/state/store'
 import PhoneNumberModal from './phoneNumberModal'
+import TicketDetailModal from './ticketDetailModal'
 
 
 
@@ -13,6 +14,7 @@ const Notifications = () => {
         <Provider store={store}>
             <LogoutModal />
             <PhoneNumberModal />
+            <TicketDetailModal />
         </Provider>
     )
 }

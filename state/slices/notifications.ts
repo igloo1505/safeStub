@@ -6,7 +6,7 @@ const slice = createSlice({
     name: "UI",
     initialState: initialState.notifications as typeof initialState['notifications'],
     reducers: {
-        showNotification(state, action: PayloadAction<keyof typeof initialState.notifications.modals>) {
+        showNotification(state, action: PayloadAction<keyof Omit<typeof initialState.notifications.modals, "ticketDetail">>) {
             state.modals[action.payload] = true
         },
         closeNotification(state, action: PayloadAction<keyof typeof initialState.notifications.modals>) {
@@ -15,8 +15,11 @@ const slice = createSlice({
         closeAllNotifications(state, action: PayloadAction<keyof typeof initialState.notifications.modals>) {
             state.modals = initialNotificationState.modals
         },
+        showTicketDetailModal(state, action: PayloadAction<typeof initialState.notifications.modals.ticketDetail>) {
+            state.modals.ticketDetail = action.payload
+        }
     }
 })
 
-export const { showNotification, closeNotification, closeAllNotifications } = slice.actions
+export const { showNotification, showTicketDetailModal, closeNotification, closeAllNotifications } = slice.actions
 export default slice.reducer

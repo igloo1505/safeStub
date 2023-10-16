@@ -14,11 +14,6 @@ interface AwaitingTransferCardProps extends WithClassName {
     userId: string
 }
 
-const PendingTicketsTable = ({ tickets }: { tickets: PendingTicketList }) => {
-    return (
-        <TicketTable tickets={tickets} />
-    )
-}
 
 
 const AwaitingTransferCard = async ({ className, show, delay, userId }: AwaitingTransferCardProps) => {
@@ -30,7 +25,7 @@ const AwaitingTransferCard = async ({ className, show, delay, userId }: Awaiting
             show={show}
             title="Sales Pending Transfer"
         >
-            {tickets.length > 0 ? <PendingTicketsTable tickets={tickets} /> : <div className={"text-center w-full"}>No tickets pending transfer</div>}
+            {tickets.length > 0 ? <TicketTable tickets={tickets} /> : <div className={"text-center w-full"}>No tickets pending transfer</div>}
         </ProfileItemCard>
     )
 

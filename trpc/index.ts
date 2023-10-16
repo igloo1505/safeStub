@@ -521,6 +521,17 @@ export const appRouter = router({
                     { sellerId: opts.input },
                     { status: "awaitingTransferFromSellerToSafeStub" }
                 ]
+            },
+            include: {
+                Event: {
+                    include: {
+                        arena: {
+                            include: {
+                                location: true
+                            }
+                        }
+                    }
+                }
             }
         })
     })
