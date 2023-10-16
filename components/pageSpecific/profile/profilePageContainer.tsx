@@ -35,7 +35,6 @@ const ProfilePageContainer = async ({ user, type }: ProfilePageContainerProps) =
                     />
                     <OrdersProfileContent show={type === "orders"} />
                     <SalesProfileContent
-                        userId={user.id}
                         show={type === "sales"}
                         sales={user?.purchaseHistory?.sold || []}
                         pendingTickets={pendingTickets}
