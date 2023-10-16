@@ -26,7 +26,6 @@ interface PaymentHistoryTableProps {
 
 
 const PaymentHistoryTable = ({ perPage, allDataLength, data, previousPage, nextPage, page, maxPage }: PaymentHistoryTableProps) => {
-
     return (
         <>
             <div className="w-full h-fit flex flex-col justify-center items-end">

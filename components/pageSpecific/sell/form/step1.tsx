@@ -24,6 +24,7 @@ export const SaleCardTitle = ({ children }: { children: string }) => {
 interface SaleFormStepOneProps {
     event: NonNullable<SingleEventReturned>
     form: SaleFormType
+    containerId: string
 }
 
 
@@ -46,7 +47,7 @@ export const SaleCardEventInfo = ({ event }: { event: SaleFormStepOneProps['even
     )
 }
 
-const SaleFormStepOne = ({ event, form }: SaleFormStepOneProps) => {
+const SaleFormStepOne = ({ event, form, containerId }: SaleFormStepOneProps) => {
     let quant = form.watch("quantity")
     useEffect(() => {
         if (quant < 1) {
@@ -55,7 +56,11 @@ const SaleFormStepOne = ({ event, form }: SaleFormStepOneProps) => {
     }, [quant])
 
     return (
-        <SlidingFormCard step={1} anchor>
+        <SlidingFormCard
+            containerId={containerId}
+            step={1}
+            anchor
+        >
             <SaleCardTitle>Tell Us About Your Tickets</SaleCardTitle>
             <SaleCardEventInfo event={event} />
             <div className={"w-full flex flex-row justify-start items-start"}>

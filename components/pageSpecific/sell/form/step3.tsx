@@ -12,12 +12,16 @@ import { SingleEventReturned } from '#/types/query'
 
 interface SalesFormStepThreeProps {
     event: NonNullable<SingleEventReturned>
+    containerId: string
     form: SaleFormType
 }
 
-const SalesFormStepThree = ({ form, event }: SalesFormStepThreeProps) => {
+const SalesFormStepThree = ({ form, event, containerId }: SalesFormStepThreeProps) => {
     return (
-        <SlidingFormCard step={3} >
+        <SlidingFormCard
+            containerId={containerId}
+            step={3}
+        >
             <SaleCardTitle>Set Your Price</SaleCardTitle>
             <SaleCardEventInfo event={event} />
             <div className={"flex flex-col gap-4 justify-center items-start md:grid md:grid-cols-[200px_300px] md:gap-8"}>

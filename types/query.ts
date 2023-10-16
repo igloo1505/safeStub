@@ -11,3 +11,6 @@ export interface QuickLinkType {
 
 
 export type SingleEventReturned = Awaited<ReturnType<typeof serverClient.getEvent>>
+
+
+export type PendingTicketList = NonNullable<Awaited<ReturnType<typeof serverClient.getTicketsPendingTransferToSafeStub>>>

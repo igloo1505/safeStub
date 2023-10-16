@@ -25,7 +25,6 @@ const Navbar = ({ session, container, mobileContainer }: { session?: Session | n
     const checkViewport = () => {
         if (typeof window === "undefined") return;
         let vw = window.innerWidth
-        console.log("isMobile: ", vw <= appConfig.app.navbarBreakpoint || Boolean(session?.user.id))
         setIsMobile(vw <= appConfig.app.navbarBreakpoint || Boolean(session?.user.id))
     }
     useEffect(() => {
@@ -35,7 +34,6 @@ const Navbar = ({ session, container, mobileContainer }: { session?: Session | n
     useEffect(() => {
         checkViewport()
     }, [session])
-    /* const data = useGCMSubscription(session?.user?.id) */
     return (
         <>
             {isMobileVp === false ? (<div className={clsx("px-8 w-full hidden md:grid md:grid-cols-[220px_1fr_220px] gap-x-3 py-4 grid-cols-[1fr_auto_1fr]  z-10 relative dark", container && container)}>

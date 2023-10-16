@@ -12,7 +12,7 @@ export const transactionStatusLabelMap: { [k in TRANSACTIONSTATUS]: string } = {
     forSale: "For Sale",
     awaitingIdVerification: "Awaiting Verification",
     idVerificationFailed: "Verification Failed",
-    inProgress: "In Progress",
+    inProgress: "Awaiting Transfer",
     complete: "Complete"
 }
 

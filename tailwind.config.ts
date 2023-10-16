@@ -18,7 +18,6 @@ export default {
         },
         extend: {
             fontFamily: {
-                // 👇 Add CSS variables
                 lexand: ["var(--font-lexand)"],
                 // mono: ["var(--font-roboto-mono)"],
             },
@@ -88,6 +87,10 @@ export default {
             },
             height: {
                 innerScreen: "calc(100vh-80px)"
+            },
+            screens: {
+                "xxs": "250px",
+                "xs": "560px",
             }
         },
     },

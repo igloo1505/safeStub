@@ -8,7 +8,7 @@ import SalesFormStepThree from '#/components/pageSpecific/sell/form/step3';
 import { Form } from '#/components/ui/form';
 import { SingleEventReturned } from '#/types/query';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react'
+import React, { useId } from 'react'
 import { useForm } from 'react-hook-form';
 
 
@@ -19,6 +19,7 @@ interface SellPageContainerProps {
 
 
 const SellPageContainer = ({ event, userId }: SellPageContainerProps) => {
+    const id = useId()
     const saleForm = useForm<SaleFormObjectType>({
         resolver: zodResolver(saleFormSchema),
         defaultValues: {
@@ -34,13 +35,13 @@ const SellPageContainer = ({ event, userId }: SellPageContainerProps) => {
     })
 
     return (
-        <div className={"min-h-[calc(100vh-var(--nav-height))] w-5/6 max-w-screen-lg flex flex-col justify-start items-center"}>
+        <div className={"min-h-[calc(100vh-var(--nav-height))] w-5/6 max-w-screen-lg flex flex-col justify-start items-center"} id={id}>
             <SlidingFormContainer maxStep={4}>
                 <Form {...saleForm}>
-                    <SaleFormStepOne event={event} form={saleForm} />
-                    <SalesFormStepTwo form={saleForm} />
-                    <SalesFormStepThree form={saleForm} event={event} />
-                    <PostForSaleConfirmation form={saleForm} event={event} userId={userId} />
+                    <SaleFormStepOne event={event} form={saleForm} containerId={id} />
+                    <SalesFormStepTwo form={saleForm} containerId={id} />
+                    <SalesFormStepThree form={saleForm} event={event} containerId={id} />
+                    <PostForSaleConfirmation form={saleForm} event={event} userId={userId} containerId={id} />
                 </Form>
             </SlidingFormContainer>
         </div>

@@ -11,6 +11,7 @@ import clsx from 'clsx';
 interface SalesFormStepTwoProps {
     /* event: NonNullable<SingleEventReturned> */
     form: SaleFormType
+    containerId: string
 }
 
 
@@ -81,10 +82,10 @@ const TicketFormItem = ({ form, index, isLast }: { form: SaleFormType, index: nu
 }
 
 
-const SalesFormStepTwo = ({ form }: SalesFormStepTwoProps) => {
+const SalesFormStepTwo = ({ form, containerId }: SalesFormStepTwoProps) => {
     const tickets = form.watch("tickets") || []
     return (
-        <SlidingFormCard step={2} >
+        <SlidingFormCard step={2} containerId={containerId} >
             <SaleCardTitle>Tell Us About Your Tickets</SaleCardTitle>
             {tickets.map((t, i) => {
                 return <TicketFormItem key={`ticket-form-item-${i}`} form={form} index={i} isLast={i === tickets.length - 1} />

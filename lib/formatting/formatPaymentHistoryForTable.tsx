@@ -12,6 +12,14 @@ export const formatPaymentHistoryForTable = (history?: NonNullable<UserProfileDe
     let d: (PaymentHistoryItem & { nDate: number })[] = []
     if (history?.bought) {
         for (const p of history.bought) {
+            let isPending = false
+            p.ticketGroups.forEach((tg) => {
+                tg.tickets.forEach((t) => {
+                    if (t.status === "awaitingTransferFromSellerToSafeStub" || t.status === "awaitingTransferFromSafeStubToBuyer") {
+                        isPending = true
+                    }
+                })
+            })
             d.push({
                 type: "bought",
                 date: p?.purchasedOn ? day(p.purchasedOn).format(dFormat) : "--",
@@ -22,13 +30,21 @@ export const formatPaymentHistoryForTable = (history?: NonNullable<UserProfileDe
                 ticketNumber: <div>{p.tickets.map((t) => <div key={t.ticketNumber}>{t.ticketNumber}</div>)}</div> || "--",
                 total: p.payout ? formatUSD(p.payout) : "--",
                 payoutMethod: p.payoutMethod ? payoutMethodLabelMap[p.payoutMethod] : "--",
-                transactionStatus: p.status ? transactionStatusLabelMap[p.status] : "--"
+                transactionStatus: isPending ? transactionStatusLabelMap.inProgress : p.status ? transactionStatusLabelMap[p.status] : "--"
             })
         }
     }
     if (history?.sold) {
         for (const p of history.sold) {
             let _loc = p.ticketGroups[0]?.eventId || p.tickets[0]?.eventId
+            let isPending = false
+            p.ticketGroups.forEach((tg) => {
+                tg.tickets.forEach((t) => {
+                    if (t.status === "awaitingTransferFromSellerToSafeStub" || t.status === "awaitingTransferFromSafeStubToBuyer") {
+                        isPending = true
+                    }
+                })
+            })
             d.push({
                 type: "sold",
                 date: day(p.postedOn).format(dFormat),
@@ -39,7 +55,7 @@ export const formatPaymentHistoryForTable = (history?: NonNullable<UserProfileDe
                 ticketNumber: <div>{p.tickets.map((t) => <div key={t.ticketNumber}>{t.ticketNumber}</div>)}</div> || "--",
                 total: formatUSD(p.listedPrice) || "--",
                 payoutMethod: p.payoutMethod ? payoutMethodLabelMap[p.payoutMethod] : "--",
-                transactionStatus: p.status ? transactionStatusLabelMap[p.status] : "--"
+                transactionStatus: isPending ? transactionStatusLabelMap.inProgress : p.status ? transactionStatusLabelMap[p.status] : "--"
             })
         }
     }

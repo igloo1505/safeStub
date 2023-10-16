@@ -5,6 +5,7 @@ import { UserProfileDetails } from '../profilePageContainer';
 import { VERIFICATIONSTATUS } from '@prisma/client';
 import PlaceHolderCard from './components/placeHolderCard';
 import clsx from 'clsx';
+import AwaitingTransferCard from './components/awaitingTransferCard';
 
 
 
@@ -29,11 +30,12 @@ const ProfileContent = ({ user, show }: ProfileContentProps) => {
                         show={show}
                         className="group-[.content-profile]/profileContainer:opacity-100 group-[.content-profile]/profileContainer:scale-100"
                         verified={user?.idVerified as VERIFICATIONSTATUS} />
-                    <PlaceHolderCard
+                    <AwaitingTransferCard
                         delay={150}
                         show={show}
+                        userId={user.id}
                         className="group-[.content-profile]/profileContainer:opacity-100 group-[.content-profile]/profileContainer:scale-100"
-                        title="Some small status card" />
+                    />
                 </div>
             </div>
         </div>

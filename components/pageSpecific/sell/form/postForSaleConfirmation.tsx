@@ -18,44 +18,22 @@ interface PostForSaleConfirmationProps {
     event: NonNullable<SingleEventReturned>
     form: SaleFormType
     userId: string
+    containerId: string
 }
 
 
 const SaleConfirmationItem = ({ label, value }: { label: string, value: string }) => {
     return (
-        <div className={"flex flex-col justify-start items-start mb-4"}>
-            <h3 className={"text-lg font-bold"}>{label}</h3>
-            <p className={"pl-4"}>{value}</p>
+        <div className={"flex flex-col justify-start items-start mb-4 w-full xs:w-fit"}>
+            <h3 className={"text-lg font-bold whitespace-nowrap"}>{label}</h3>
+            <p className={"pl-4 whitespace-nowrap"}>{value}</p>
         </div>
     )
 }
 
 
-const TicketLabelItem = ({ label, value }: { label: string, value: string }) => {
-    return (
-        <div className={"w-full flex flex-col justify-center items-start"}>
-            <div className={"text-sm font-semibold"}>{label}</div>
-            <div className={""}>{value}</div>
-        </div>
-    )
-}
 
-
-const TicketConfirmationItem = ({ ticket, index }: { ticket: SaleFormObjectType['tickets'][number], index: number }) => {
-    return (
-        <div className={""}>
-            <h3>{`Ticket #${index + 1}`}</h3>
-            <div className={"w-full gap-4 grid grid-cols-3"}>
-                <TicketLabelItem {...{ label: "Section", value: ticket.section }} />
-                <TicketLabelItem {...{ label: "Row", value: ticket.row }} />
-                <TicketLabelItem {...{ label: "Seat", value: ticket.seat }} />
-            </div>
-        </div>
-    )
-}
-
-
-const PostForSaleConfirmation = ({ form, userId, event }: PostForSaleConfirmationProps) => {
+const PostForSaleConfirmation = ({ form, userId, event, containerId }: PostForSaleConfirmationProps) => {
     const router = useRouter()
     const quant = form.watch("quantity")
     const tickets = form.watch("tickets")
@@ -88,19 +66,23 @@ const PostForSaleConfirmation = ({ form, userId, event }: PostForSaleConfirmatio
     }
 
     return (
-        <SlidingFormCard step={4} handleSubmit={submitTicket}>
+        <SlidingFormCard
+            containerId={containerId}
+            step={4}
+            handleSubmit={submitTicket}
+        >
             <SaleCardTitle>Review Listing Details</SaleCardTitle>
             <SaleCardEventInfo event={event} />
-            <div className={"w-full h-fit flex flex-col justify-center items-center md:grid md:grid-cols-2"}>
+            <div className={"w-full h-fit flex flex-col justify-center items-center xs:flex-row xs:items-start xs:gap-8"}>
                 {items.map((item) => <SaleConfirmationItem
                     {...item}
                     key={item.label} />)
                 }
             </div>
-            <div className={"@container flex flex-col justify-start items-center gap-1 w-full"}>
+            <div className={"flex flex-col justify-start items-center gap-1 w-fit min-w-fit"}>
                 {tickets.map((t, i) => {
                     return (
-                        <TicketCardItem ticket={t} key={`${t.section}-${t.row}-${t.seat}`} />
+                        <TicketCardItem useScreen ticket={t} key={`${t.section}-${t.row}-${t.seat}`} />
                     )
                 })}
             </div>

@@ -513,6 +513,16 @@ export const appRouter = router({
             }
         })
         return data?.phone
+    }),
+    getTicketsPendingTransferToSafeStub: publicProcedure.input(z.string()).query(async (opts) => {
+        return await prisma.ticket.findMany({
+            where: {
+                AND: [
+                    { sellerId: opts.input },
+                    { status: "awaitingTransferFromSellerToSafeStub" }
+                ]
+            }
+        })
     })
 })
 

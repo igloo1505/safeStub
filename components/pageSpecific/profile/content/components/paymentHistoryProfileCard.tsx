@@ -22,15 +22,38 @@ const PaymentHistoryProfileCard = ({ user, className, delay, show }: PaymentHist
     const [allData, setAllData] = useState<PaymentHistoryItem[]>([])
     const [page, setPage] = useState(1)
     const [maxPage, setMaxPage] = useState(1)
+    const [currentFilter, setCurrentFilter] = useState<TRANSACTIONSTATUS | "all" | "sold" | "bought" | null>("all")
+    const [dataLength, setDataLength] = useState(0)
     const perPage = 10
 
-    const setCurrentData = (data: typeof allData) => {
+    const setCurrentData = (_data: typeof allData) => {
+        console.log("data: ", _data)
+        setDataLength(_data.length)
         const newMin = perPage * (page - 1)
-        setData(allData.slice(newMin, Math.min(data.length, newMin + perPage)).sort((a, b) => new Date(b.date).valueOf() - new Date(a.date.valueOf()).valueOf()))
+        setData(_data.slice(newMin, Math.min(_data.length, newMin + perPage)).sort((a, b) => new Date(b.date).valueOf() - new Date(a.date.valueOf()).valueOf()))
     }
+
+    const applyActiveFilter = (d: typeof allData, filter: typeof currentFilter) => {
+        console.log("filter: ", filter)
+        if (filter === null) {
+            return setCurrentData(d)
+        }
+        if (filter === "bought") {
+            return setCurrentData(d.filter((d) => d.type === "bought"))
+        }
+        if (filter === "sold") {
+            return setCurrentData(d.filter((d) => d.type === "sold"))
+        }
+
+        if (filter === "inProgress") {
+            return setCurrentData(d.filter((d) => d.transactionStatus === "Awaiting Transfer"))
+        }
+        setCurrentData(d.filter((f) => f.transactionStatus === transactionStatusLabelMap[filter as keyof typeof transactionStatusLabelMap]))
+    }
+
     useEffect(() => {
-        setCurrentData(allData)
-    }, [page])
+        applyActiveFilter(allData, currentFilter)
+    }, [page, currentFilter])
 
     useEffect(() => {
         const d = formatPaymentHistoryForTable(user?.purchaseHistory)
@@ -52,18 +75,6 @@ const PaymentHistoryProfileCard = ({ user, className, delay, show }: PaymentHist
         }
     }
 
-    const setActiveFilter = (val: TRANSACTIONSTATUS | "all" | "sold" | "bought" | null) => {
-        if (val === null) {
-            return setCurrentData(allData)
-        }
-        if (val === "bought") {
-            return setCurrentData(allData.filter((d) => d.type === "bought"))
-        }
-        if (val === "sold") {
-            return setCurrentData(allData.filter((d) => d.type === "sold"))
-        }
-        setCurrentData(allData.filter((f) => f.transactionStatus === transactionStatusLabelMap[val as keyof typeof transactionStatusLabelMap]))
-    }
     return (
         <ProfileItemCard
             title="Payment History"
@@ -72,7 +83,10 @@ const PaymentHistoryProfileCard = ({ user, className, delay, show }: PaymentHist
             show={show}
             titleClasses={"pr-16"}
             titleRight={<SelectActiveListingFilter
-                setActiveFilter={setActiveFilter}
+                setActiveFilter={(value) => {
+                    setPage(1)
+                    setCurrentFilter(value)
+                }}
                 className={""}
                 extraItems={[
                     {
@@ -93,7 +107,7 @@ const PaymentHistoryProfileCard = ({ user, className, delay, show }: PaymentHist
                 maxPage={maxPage}
                 nextPage={nextPage}
                 previousPage={previousPage}
-                allDataLength={allData.length}
+                allDataLength={dataLength}
             />
         </ProfileItemCard>
     )
