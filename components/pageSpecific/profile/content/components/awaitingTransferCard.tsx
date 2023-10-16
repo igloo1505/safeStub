@@ -1,7 +1,6 @@
 import { WithClassName } from '#/types/utility'
 import React from 'react'
 import ProfileItemCard from './cardContainer'
-import { serverClient } from '#/trpc/serverClient'
 import { PendingTicketList } from '#/types/query'
 import TicketTable from '#/components/utility/tables/ticketTable'
 
@@ -11,13 +10,14 @@ interface AwaitingTransferCardProps extends WithClassName {
     title?: string
     delay: number
     show: boolean
-    userId: string
+    pendingTickets: Promise<PendingTicketList>
 }
 
 
 
-const AwaitingTransferCard = async ({ className, show, delay, userId }: AwaitingTransferCardProps) => {
-    const tickets = await serverClient.getTicketsPendingTransferToSafeStub(userId)
+const AwaitingTransferCard = async ({ className, show, delay, pendingTickets }: AwaitingTransferCardProps) => {
+    const _pendingTickets = await pendingTickets
+    if (!_pendingTickets || _pendingTickets.length === 0) return null
     return (
         <ProfileItemCard
             className={className}
@@ -25,7 +25,7 @@ const AwaitingTransferCard = async ({ className, show, delay, userId }: Awaiting
             show={show}
             title="Sales Pending Transfer"
         >
-            {tickets.length > 0 ? <TicketTable tickets={tickets} /> : <div className={"text-center w-full"}>No tickets pending transfer</div>}
+            {_pendingTickets && _pendingTickets.length > 0 ? <TicketTable tickets={_pendingTickets || []} /> : <div className={"text-center w-full"}>No tickets pending transfer</div>}
         </ProfileItemCard>
     )
 

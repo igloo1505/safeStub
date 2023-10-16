@@ -3,18 +3,18 @@ import ContactInformationProfileCard from './components/contactInformationCard';
 import IdentityVerificationStatusCard from './components/identifyVerificationStatusCard';
 import { UserProfileDetails } from '../profilePageContainer';
 import { VERIFICATIONSTATUS } from '@prisma/client';
-import PlaceHolderCard from './components/placeHolderCard';
 import clsx from 'clsx';
-import AwaitingTransferCard from './components/awaitingTransferCard';
-
+import ProfileNotificationsCard from './components/profileNotifcationCard';
+import { PendingTicketList } from '#/types/query';
 
 
 interface ProfileContentProps {
     user: NonNullable<UserProfileDetails>
     show: boolean
+    pendingTickets: Promise<PendingTicketList>
 }
 
-const ProfileContent = ({ user, show }: ProfileContentProps) => {
+const ProfileContent = async ({ user, show, pendingTickets }: ProfileContentProps) => {
     return (
         <div className={clsx("w-full min-h-full", show ? "grid" : "hidden")}>
             <div className={"grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-4 place-items-center h-fit w-full"}>
@@ -30,10 +30,10 @@ const ProfileContent = ({ user, show }: ProfileContentProps) => {
                         show={show}
                         className="group-[.content-profile]/profileContainer:opacity-100 group-[.content-profile]/profileContainer:scale-100"
                         verified={user?.idVerified as VERIFICATIONSTATUS} />
-                    <AwaitingTransferCard
+                    <ProfileNotificationsCard
+                        pendingTickets={pendingTickets}
                         delay={150}
                         show={show}
-                        userId={user.id}
                         className="group-[.content-profile]/profileContainer:opacity-100 group-[.content-profile]/profileContainer:scale-100"
                     />
                 </div>

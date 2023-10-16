@@ -34,7 +34,7 @@ const IdentityVerificationStatusCard = ({ verified, show, className, delay }: Id
         <ProfileItemCard
             title="Identity Verification"
             description="StubHub utilizes Authenticate to verify our members."
-            footer={<div className={"pb-0"}>Click <Link href="/verifyIdentity" className={"text-blue-500 dark:text-blue-400 px-1"}>here</Link> to become verified.</div>
+            footer={<div className={"pb-0"}>{`Click `}<Link href="/verifyIdentity" className={"text-sky-500 dark:text-sky-400"}>here</Link>{` to become verified.`}</div>
             }
             className={className}
             delay={delay}
