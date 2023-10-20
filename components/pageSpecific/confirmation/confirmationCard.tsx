@@ -30,7 +30,10 @@ const ConfirmationCard = ({ event, transaction }: ConfirmationCardProps) => {
     if (typeof transactionUniqueId === "number") {
         transactionUniqueId = `${transactionUniqueId}`
     }
-    const flatTickets = getFlattenedTicketsFromTransaction<typeof transaction>(transaction)
+    const flatTickets = getFlattenedTicketsFromTransaction<(typeof transaction) & { ticketGroups: any[] }>({
+        ...transaction,
+        ticketGroups: transaction.ticketGroups || []
+    })
     let sections: string[] = []
     let rows: string[] = []
     let seats: string[] = []
@@ -74,7 +77,7 @@ const ConfirmationCard = ({ event, transaction }: ConfirmationCardProps) => {
             />
             <CardDetailItem
                 label="Payout Method"
-                content={payoutMethodLabelMap[transaction.payoutMethod]}
+                content={transaction.payoutMethod ? payoutMethodLabelMap[transaction.payoutMethod] : "Undetermined"}
             />
         </div>
     )

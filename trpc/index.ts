@@ -5,7 +5,7 @@ import { gcmSubscriptionChangeSchema, settingsChangeSchema } from "#/zod/local/s
 import { validateGetUpcomingEvents } from "#/lib/events/getUpcomingEvents";
 import { paginateSchema } from "#/types/utility";
 import { UserAccessInput } from "#/types/auth";
-import { NFLTeamName } from "@prisma/client";
+import { NFLTeamName, TRANSACTIONSTATUS, TicketStatus } from "@prisma/client";
 import { saleFormSchema } from "#/components/pageSpecific/sell/form/saleFormContext";
 import { getEventsSearchResult, searchEventsParams } from "#/utils/server/searchEvents";
 import { findGreatDeals } from "#/utils/server/findEventDeals";
@@ -362,7 +362,7 @@ export const appRouter = router({
         userId: z.string().optional(),
         transactionId: z.coerce.number().int(),
     })).query(async (opts) => {
-        return await prisma.transaction.findFirst({
+        let data = await prisma.transaction.findFirst({
             where: {
                 id: opts.input.transactionId,
                 ...(opts.input.userId && {
@@ -382,6 +382,39 @@ export const appRouter = router({
                 tickets: true
             }
         })
+        let eventIds: number[] = []
+        if (data?.tickets?.length && data?.tickets?.length > 0) {
+            for (const k of data?.tickets) {
+                if (k.eventId && !eventIds.includes(k.eventId)) {
+                    eventIds.push(k.eventId)
+                }
+            }
+        }
+        if (data?.ticketGroups?.length && data?.ticketGroups?.length > 0) {
+            for (const k of data?.ticketGroups) {
+                if (k.eventId && !eventIds.includes(k.eventId)) {
+                    eventIds.push(k.eventId)
+                }
+            }
+        }
+        let events = eventIds.length > 0 ? await prisma.event.findMany({
+            where: {
+                id: {
+                    in: eventIds
+                }
+            },
+            include: {
+                arena: {
+                    include: {
+                        location: true
+                    }
+                }
+            }
+        }) : []
+        return {
+            ...data,
+            events
+        }
     }),
     createTransaction: publicProcedure.input(saleFormSchema).mutation(async (opts) => {
         const formattedData = createTicketgroupTransaction(opts.input)
@@ -514,11 +547,68 @@ export const appRouter = router({
         })
         return data?.phone
     }),
+    setTicketStatus: publicProcedure.input(z.object({
+        ids: z.number().int().array(),
+        status: z.nativeEnum(TicketStatus)
+    })).mutation(async (opts) => {
+        return await prisma.ticket.updateMany({
+            where: {
+                id: {
+                    in: opts.input.ids
+                }
+            },
+            data: {
+                status: opts.input.status
+            }
+        })
+    }),
+    getAllPendingTickets: publicProcedure.query(async (opts) => {
+        return await prisma.ticket.findMany({
+            select: {
+                id: true,
+                seat: true,
+                row: true,
+                section: true,
+                transaction: {
+                    select: {
+                        id: true
+                    }
+                },
+                TicketGroup: {
+                    select: {
+                        id: true,
+                        transaction: {
+                            select: {
+                                id: true
+                            }
+                        }
+                    }
+                },
+                seller: {
+                    select: {
+                        email: true,
+                        id: true
+                    }
+                },
+                Event: {
+                    select: {
+                        id: true,
+                        description: true,
+                        arena: {
+                            select: {
+                                location: true
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }),
     getTicketsPendingTransferToSafeStub: publicProcedure.input(z.string()).query(async (opts) => {
         return await prisma.ticket.findMany({
             where: {
                 AND: [
-                    { sellerId: opts.input },
+                    { sellerId: opts.input === "all" ? undefined : opts.input },
                     { status: "awaitingTransferFromSellerToSafeStub" }
                 ]
             },

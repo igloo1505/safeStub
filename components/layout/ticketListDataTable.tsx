@@ -55,7 +55,6 @@ const TicketListDataTable = <T extends Ticket>({ tickets, rowSelection, setRowSe
     const [columnVisibility, setColumnVisibility] =
         useState<VisibilityState>({})
 
-
     const columns: ColumnDef<T>[] = [
         {
             id: "select",

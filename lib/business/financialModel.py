@@ -150,7 +150,7 @@ df["Other OPEX: Variable Exp % of Rev"] = 0.025
 
 
 # Total Other OPEX
-# df["Total Other Opex: Avdertising Spend"] =
+# df["Total Other Opex: Advertising Spend"] =
 df["Total Other Opex: Other Marketing"] = df["Other OPEX: Other Marketing"]
 df["Total Other Opex: Technology"] = df["Other OPEX: Technology"]
 df["Total Other Opex: Misc Fixed Exp"] = df["Other OPEX: Misc Fixed Exp"]
@@ -162,7 +162,7 @@ df["Other OPEX"] = (
     + df["Total Other Opex: Technology"]
     + df["Total Other Opex: Misc Fixed Exp"]
     + df["Total Other Opex: Variable Exp % of Rev"]
-    # + df["Total Other Opex: Avdertising Spend"]
+    # + df["Total Other Opex: Advertising Spend"]
 )
 
 df["Total OPEX"] = df["Total Personnel Exp"] + df["Other OPEX"]

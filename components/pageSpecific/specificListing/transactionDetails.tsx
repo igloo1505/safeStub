@@ -16,7 +16,10 @@ interface TransactionDetailsProps {
 
 const TransactionDetails = ({ transaction }: TransactionDetailsProps) => {
     console.log("transaction: ", transaction)
-    const _tickets = getFlattenedTicketsFromTransaction<typeof transaction>(transaction)
+    const _tickets = getFlattenedTicketsFromTransaction<(typeof transaction) & { ticketGroups: any[] }>({
+        ...transaction,
+        ticketGroups: transaction.ticketGroups || []
+    })
     const [rowSelection, setRowSelection] = useState<{ [k: string]: boolean }>({})
     const [searchParamString, setSearchParamString] = useState("")
     const [total, setTotal] = useState(0)
@@ -30,7 +33,10 @@ const TransactionDetails = ({ transaction }: TransactionDetailsProps) => {
     useEffect(() => {
         let params = new URLSearchParams()
         for (const k in rowSelection) {
-            params.append("tickets", `${_tickets[parseInt(k)].id}`)
+            let t = _tickets[parseInt(k)]?.id
+            if (t) {
+                params.append("tickets", `${t}`)
+            }
         }
         setSearchParamString(params.toString())
         setTotal(getAveragedTotal())

@@ -8,7 +8,7 @@ import { copyToClipboard } from '#/utils/copyStringToClipboard'
 
 interface CopyTextProps {
     children: React.ReactNode
-    copyText: string
+    copyText?: string
     notificationText?: string
     notifcationTitle?: string
     className?: string
@@ -17,6 +17,7 @@ interface CopyTextProps {
 const CopyText = ({ children, notifcationTitle, notificationText, copyText, className }: CopyTextProps) => {
     const { toast } = useToast()
     const copy = async () => {
+        if (!copyText) return
         let success = await copyToClipboard(copyText)
         if (success && Boolean(notificationText || notifcationTitle)) {
             toast({

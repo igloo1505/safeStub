@@ -21,10 +21,10 @@ export const getFlattenedTickets = <T extends FlatTicketItem>(a: FlatTicketItem)
 
 
 interface FlatTicketItemFromTransaction {
-    [k: string]: any
+    listedPrice?: number
+    id?: number
     ticketGroups:
     {
-        [k: string]: any
         tickets: any[]
     }[]
 }

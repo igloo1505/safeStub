@@ -1,4 +1,4 @@
-import { Event, PAYOUTMETHODS, TRANSACTIONSTATUS } from "@prisma/client"
+import { PAYOUTMETHODS, TRANSACTIONSTATUS } from "@prisma/client"
 
 export type ProfileActiveType = "profile" | "orders" | "sales" | "listings" | "payments" | "settings"
 
@@ -13,7 +13,8 @@ export const transactionStatusLabelMap: { [k in TRANSACTIONSTATUS]: string } = {
     awaitingIdVerification: "Awaiting Verification",
     idVerificationFailed: "Verification Failed",
     inProgress: "Awaiting Transfer",
-    complete: "Complete"
+    complete: "Complete",
+    receivedAndTransferInProgress: "Received"
 }
 
 export interface PaymentHistoryItem {

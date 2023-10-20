@@ -21,7 +21,7 @@ interface EditListingFormProps {
 
 const EditListingForm = ({ item }: EditListingFormProps) => {
 
-    const tickets = item?.ticketGroups.map((t) => t.tickets).flat(2).map(t => ({
+    const tickets = item?.ticketGroups?.map((t) => t.tickets).flat(2).map(t => ({
         seat: t.seat,
         row: t.row,
         section: t.section
@@ -30,7 +30,7 @@ const EditListingForm = ({ item }: EditListingFormProps) => {
         resolver: zodResolver(editTransactionForm),
         defaultValues: {
             quantity: 1,
-            pricePerTicket: parseFloat((item.listedPrice / tickets.length).toFixed(2)),
+            pricePerTicket: typeof item.listedPrice === "undefined" ? 0 : Boolean(typeof item?.listedPrice !== "undefined" && tickets?.length) ? parseFloat((item?.listedPrice / (tickets?.length || 0)).toFixed(2)) : 0,
             payoutMethod: PayoutMethodEnum.paypal,
             tickets
         },

@@ -14,3 +14,5 @@ export type SingleEventReturned = Awaited<ReturnType<typeof serverClient.getEven
 
 
 export type PendingTicketList = NonNullable<Awaited<ReturnType<typeof serverClient.getTicketsPendingTransferToSafeStub>>>
+
+export type AdminPendingTicketList = Awaited<ReturnType<typeof serverClient.getAllPendingTickets>>
