@@ -5,6 +5,7 @@ import { TicketGroupFindManySchema } from '../findManyTicketGroup.schema';
 import { ArenaAmenitiesArgsObjectSchema } from './ArenaAmenitiesArgs.schema';
 import { TagFindManySchema } from '../findManyTag.schema';
 import { TeamFindManySchema } from '../findManyTeam.schema';
+import { ExternalTicketDataFindManySchema } from '../findManyExternalTicketData.schema';
 import { EventCountOutputTypeArgsObjectSchema } from './EventCountOutputTypeArgs.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -26,6 +27,9 @@ const Schema: z.ZodType<Prisma.EventInclude> = z
     tags: z.union([z.boolean(), z.lazy(() => TagFindManySchema)]).optional(),
     participants: z
       .union([z.boolean(), z.lazy(() => TeamFindManySchema)])
+      .optional(),
+    cxternalTicketSource: z
+      .union([z.boolean(), z.lazy(() => ExternalTicketDataFindManySchema)])
       .optional(),
     _count: z
       .union([z.boolean(), z.lazy(() => EventCountOutputTypeArgsObjectSchema)])

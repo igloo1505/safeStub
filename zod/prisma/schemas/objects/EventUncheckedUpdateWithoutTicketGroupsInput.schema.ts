@@ -7,6 +7,7 @@ import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdat
 import { TicketUncheckedUpdateManyWithoutEventNestedInputObjectSchema } from './TicketUncheckedUpdateManyWithoutEventNestedInput.schema';
 import { TagUncheckedUpdateManyWithoutEventNestedInputObjectSchema } from './TagUncheckedUpdateManyWithoutEventNestedInput.schema';
 import { TeamUncheckedUpdateManyWithoutEventNestedInputObjectSchema } from './TeamUncheckedUpdateManyWithoutEventNestedInput.schema';
+import { ExternalTicketDataUncheckedUpdateManyWithoutEventNestedInputObjectSchema } from './ExternalTicketDataUncheckedUpdateManyWithoutEventNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -62,6 +63,12 @@ const Schema: z.ZodType<Prisma.EventUncheckedUpdateWithoutTicketGroupsInput> = z
       .optional(),
     participants: z
       .lazy(() => TeamUncheckedUpdateManyWithoutEventNestedInputObjectSchema)
+      .optional(),
+    cxternalTicketSource: z
+      .lazy(
+        () =>
+          ExternalTicketDataUncheckedUpdateManyWithoutEventNestedInputObjectSchema,
+      )
       .optional(),
   })
   .strict();

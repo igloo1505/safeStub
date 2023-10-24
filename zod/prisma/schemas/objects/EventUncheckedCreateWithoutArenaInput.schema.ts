@@ -4,6 +4,7 @@ import { TicketUncheckedCreateNestedManyWithoutEventInputObjectSchema } from './
 import { TicketGroupUncheckedCreateNestedManyWithoutEventInputObjectSchema } from './TicketGroupUncheckedCreateNestedManyWithoutEventInput.schema';
 import { TagUncheckedCreateNestedManyWithoutEventInputObjectSchema } from './TagUncheckedCreateNestedManyWithoutEventInput.schema';
 import { TeamUncheckedCreateNestedManyWithoutEventInputObjectSchema } from './TeamUncheckedCreateNestedManyWithoutEventInput.schema';
+import { ExternalTicketDataUncheckedCreateNestedManyWithoutEventInputObjectSchema } from './ExternalTicketDataUncheckedCreateNestedManyWithoutEventInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -28,6 +29,12 @@ const Schema: z.ZodType<Prisma.EventUncheckedCreateWithoutArenaInput> = z
       .optional(),
     participants: z
       .lazy(() => TeamUncheckedCreateNestedManyWithoutEventInputObjectSchema)
+      .optional(),
+    cxternalTicketSource: z
+      .lazy(
+        () =>
+          ExternalTicketDataUncheckedCreateNestedManyWithoutEventInputObjectSchema,
+      )
       .optional(),
   })
   .strict();

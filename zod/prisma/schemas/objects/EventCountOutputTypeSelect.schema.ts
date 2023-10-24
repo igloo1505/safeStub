@@ -8,6 +8,7 @@ const Schema: z.ZodType<Prisma.EventCountOutputTypeSelect> = z
     ticketGroups: z.boolean().optional(),
     tags: z.boolean().optional(),
     participants: z.boolean().optional(),
+    cxternalTicketSource: z.boolean().optional(),
   })
   .strict();
 

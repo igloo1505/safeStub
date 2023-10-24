@@ -12,6 +12,7 @@ import { ArenaAmenitiesRelationFilterObjectSchema } from './ArenaAmenitiesRelati
 import { ArenaAmenitiesWhereInputObjectSchema } from './ArenaAmenitiesWhereInput.schema';
 import { TagListRelationFilterObjectSchema } from './TagListRelationFilter.schema';
 import { TeamListRelationFilterObjectSchema } from './TeamListRelationFilter.schema';
+import { ExternalTicketDataListRelationFilterObjectSchema } from './ExternalTicketDataListRelationFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -73,6 +74,9 @@ const Schema: z.ZodType<Prisma.EventWhereInput> = z
       .optional(),
     tags: z.lazy(() => TagListRelationFilterObjectSchema).optional(),
     participants: z.lazy(() => TeamListRelationFilterObjectSchema).optional(),
+    cxternalTicketSource: z
+      .lazy(() => ExternalTicketDataListRelationFilterObjectSchema)
+      .optional(),
   })
   .strict();
 

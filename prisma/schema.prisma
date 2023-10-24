@@ -311,19 +311,20 @@ model User {
 }
 
 model Event {
-    id           Int            @id @default(autoincrement())
-    category     CATEGORY
-    arena        Arena          @relation(fields: [arenaId], references: [id])
-    arenaId      Int
-    tickets      Ticket[]
-    ticketGroups TicketGroup[]
-    amenities    ArenaAmenities @relation(fields: [amenitiesId], references: [id])
-    amenitiesId  Int
-    tags         Tag[]
-    date         DateTime
-    title        String
-    description  String
-    participants Team[]
+    id                   Int                    @id @default(autoincrement())
+    category             CATEGORY
+    arena                Arena                  @relation(fields: [arenaId], references: [id])
+    arenaId              Int
+    tickets              Ticket[]
+    ticketGroups         TicketGroup[]
+    amenities            ArenaAmenities         @relation(fields: [amenitiesId], references: [id])
+    amenitiesId          Int
+    tags                 Tag[]
+    date                 DateTime
+    title                String
+    description          String
+    participants         Team[]
+    cxternalTicketSource ExternalTicketData[]
 }
 
 model TicketGroup {
@@ -482,4 +483,24 @@ model VerificationToken {
 
     @@unique([identifier, token])
     @@map("verificationtokens")
+}
+
+enum EXTERNALSOURCE {
+    ticketMaster
+    vividSeats
+    seatGeek
+    tickPick
+    gameTime
+}
+
+model ExternalTicketData {
+    id            Int            @id @default(autoincrement())
+    source        EXTERNALSOURCE
+    event         Event          @relation(fields: [eventId], references: [id])
+    eventId       Int            @unique
+    price         Float
+    seat          String?
+    section       String?
+    row           String?
+    lastRetrieved DateTime       @default(now())
 }

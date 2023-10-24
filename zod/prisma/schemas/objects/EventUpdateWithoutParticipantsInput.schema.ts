@@ -8,6 +8,7 @@ import { TicketUpdateManyWithoutEventNestedInputObjectSchema } from './TicketUpd
 import { TicketGroupUpdateManyWithoutEventNestedInputObjectSchema } from './TicketGroupUpdateManyWithoutEventNestedInput.schema';
 import { ArenaAmenitiesUpdateOneRequiredWithoutEventNestedInputObjectSchema } from './ArenaAmenitiesUpdateOneRequiredWithoutEventNestedInput.schema';
 import { TagUpdateManyWithoutEventNestedInputObjectSchema } from './TagUpdateManyWithoutEventNestedInput.schema';
+import { ExternalTicketDataUpdateManyWithoutEventNestedInputObjectSchema } from './ExternalTicketDataUpdateManyWithoutEventNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -54,6 +55,11 @@ const Schema: z.ZodType<Prisma.EventUpdateWithoutParticipantsInput> = z
       .optional(),
     tags: z
       .lazy(() => TagUpdateManyWithoutEventNestedInputObjectSchema)
+      .optional(),
+    cxternalTicketSource: z
+      .lazy(
+        () => ExternalTicketDataUpdateManyWithoutEventNestedInputObjectSchema,
+      )
       .optional(),
   })
   .strict();

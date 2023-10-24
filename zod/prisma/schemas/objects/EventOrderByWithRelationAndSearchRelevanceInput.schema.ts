@@ -6,6 +6,7 @@ import { TicketGroupOrderByRelationAggregateInputObjectSchema } from './TicketGr
 import { ArenaAmenitiesOrderByWithRelationAndSearchRelevanceInputObjectSchema } from './ArenaAmenitiesOrderByWithRelationAndSearchRelevanceInput.schema';
 import { TagOrderByRelationAggregateInputObjectSchema } from './TagOrderByRelationAggregateInput.schema';
 import { TeamOrderByRelationAggregateInputObjectSchema } from './TeamOrderByRelationAggregateInput.schema';
+import { ExternalTicketDataOrderByRelationAggregateInputObjectSchema } from './ExternalTicketDataOrderByRelationAggregateInput.schema';
 import { EventOrderByRelevanceInputObjectSchema } from './EventOrderByRelevanceInput.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -40,6 +41,9 @@ const Schema: z.ZodType<Prisma.EventOrderByWithRelationAndSearchRelevanceInput> 
         .optional(),
       participants: z
         .lazy(() => TeamOrderByRelationAggregateInputObjectSchema)
+        .optional(),
+      cxternalTicketSource: z
+        .lazy(() => ExternalTicketDataOrderByRelationAggregateInputObjectSchema)
         .optional(),
       _relevance: z
         .lazy(() => EventOrderByRelevanceInputObjectSchema)
