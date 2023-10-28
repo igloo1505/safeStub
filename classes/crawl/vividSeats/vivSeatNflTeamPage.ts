@@ -97,15 +97,19 @@ export class VividSeatNflTeamPage {
     async crawlPage(index: number) {
         return await this.eventPages[index].gatherListings()
     }
-    async crawlEventPages(idx: number = 0) {
+    async crawlEventPages(idx: number = 0, _resolve?: () => void) {
         return new Promise<void>(async (resolve) => {
             if (idx === this.eventPages.length - 1) {
-                return resolve()
+                if (_resolve) {
+                    return _resolve()
+                } else {
+                    resolve()
+                }
             }
             setTimeout(async () => {
                 await this.crawlPage(idx)
                 // TODO: Turn this back on when done debugging
-                // await this.crawlEventPages(idx + 1)
+                // await this.crawlEventPages(idx + 1, resolve)
             }, this.crawlTimeout)
         })
     }

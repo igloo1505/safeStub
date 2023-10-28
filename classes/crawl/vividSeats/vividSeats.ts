@@ -71,11 +71,12 @@ teams: ${team.join(",")}`)
             }
         }
     }
+
     async crawl() {
         await this.toNflTeamsList()
         await this.gatherTeamLinkItems()
         console.log("this.teamHrefs: ", this.teamHrefs)
-        // TODO: Obviously remove this when done debugging
+        // TODO: Obviously remove this slice when done debugging
         for await (const k of this.teamHrefs.slice(0, 1)) {
             await k.getListingDivs()
             await k.crawlEventPages()

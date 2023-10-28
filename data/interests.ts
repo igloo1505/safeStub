@@ -32,3 +32,5 @@ _initialInterests = [..._initialInterests, ...sportsCategories.map(s => ({ label
 _initialInterests = [..._initialInterests, ...musicCategories.map(s => ({ label: s, category: "Music" } as InterestType))]
 
 export const initialInterests = _initialInterests
+
+

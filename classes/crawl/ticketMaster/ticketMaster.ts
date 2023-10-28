@@ -1,6 +1,7 @@
 import { EXTERNALSOURCE } from "@prisma/client";
-import { CrawlSource } from "./abstractCrawlSource";
-import { ExternalTicketData } from "./externalTicketData";
+import { CrawlSource } from "../abstractCrawlSource";
+import { ExternalTicketData } from "../externalTicketData";
+
 
 export class TicketMaster extends CrawlSource {
     baseUrl: string = "https://www.ticketmaster.com"

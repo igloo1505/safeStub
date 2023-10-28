@@ -39,6 +39,10 @@ export class ExternalTicketData {
         this.seat = props.seat
         this.section = props.section
         this.row = props.row
+        console.log(`------------
+New External Ticket Data:
+price: ${this.price}
+`)
     }
     onSameDay(d1: Date, d2: Date): boolean {
         return [d1.getDate() === d2.getDate(), d1.getMonth() === d2.getMonth(), d1.getFullYear() === d2.getFullYear()].every((l) => l)

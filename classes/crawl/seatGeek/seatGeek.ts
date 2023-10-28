@@ -1,6 +1,6 @@
 import { EXTERNALSOURCE } from "@prisma/client";
-import { CrawlSource } from "./abstractCrawlSource";
-import { ExternalTicketData } from "./externalTicketData";
+import { CrawlSource } from "../abstractCrawlSource";
+import { ExternalTicketData } from "../externalTicketData";
 
 export class SeatGeek extends CrawlSource {
     baseUrl: string = "https://www.seatgeek.com"
