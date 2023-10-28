@@ -1,16 +1,14 @@
-import { getMatchingTeamsFromString } from "#/lib/queryAndSorting/nflTeamRegex";
-import { Browser, Page } from "puppeteer";
-import { ExternalDataProps, ExternalTicketData } from "../externalTicketData";
+import { ExternalTicketData, NFLTeamName } from "@prisma/client"
+import { SeatGeekEventsPage } from "./seatGeekEventPage"
+import { Page, Browser } from "puppeteer"
+import { ExternalDataProps } from "../externalTicketData"
 
-export class VividSeatsEventsPage {
-    baseUrl: string = "https://www.vividseats.com"
-    ticketData: ExternalTicketData[] = []
+export class SeatGeekNflTeamPage {
     page: Page | null = null
-    constructor(public href: string, public browser: Browser) {
-        if (!this.href.includes(this.baseUrl) && this.href.startsWith("/")) {
-            this.href = `${this.baseUrl}${this.href}`
-        }
-        console.log(`Creating new event page at: ${this.href}`)
+    eventPages: SeatGeekEventsPage[] = []
+    crawlTimeout: number = 5000
+    constructor(public href: string, public team: NFLTeamName, public browser: Browser) {
+        console.log(`Created crawl class for ${team} at ${href}`)
     }
     async open() {
         this.page = await this.browser.newPage()
@@ -19,7 +17,7 @@ export class VividSeatsEventsPage {
     async close() {
         await this.page?.close()
     }
-    async getListingContainerQuery() {
+    async getListingItems() {
         const NFLTeamName = {
             Cardinals: 'Cardinals',
             Falcons: 'Falcons',
@@ -522,90 +520,88 @@ export class VividSeatsEventsPage {
         }
 
         const getMatchingTeamsFromString = (s: string, level: "every" | "some" = "some") => {
-            return getNflTeamRegexList().filter((t) => t.testString(s)).map((t) => t.team)
+            return getNflTeamRegexList().filter((t) => t.testString(s)).map((t) => t.team) as NFLTeamName[]
         }
-        const _query = 'div[data-testid]'
+        const ems: Element[] = [];
+        const _query = 'li'
         const findAllElements = function(nodes: ReturnType<typeof document.querySelectorAll>) {
-            const ems: Element[] = [];
             for (let i = 0, el; el = nodes[i]; ++i) {
                 ems.push(el)
                 if (el.shadowRoot) {
                     findAllElements(el.shadowRoot.querySelectorAll(_query));
                 }
             }
-            return ems
         };
-        let ems = findAllElements(document.querySelectorAll(_query));
-        let titleEms = findAllElements(document.querySelectorAll("h1")).filter((h) => h.classList.toString().includes("styles_title"))
-        let teams: string[] = []
-        if (titleEms.length === 1) {
-            teams = getMatchingTeamsFromString(titleEms[0].innerHTML)
-        }
-        const parseRowEm = (el: HTMLDivElement): ExternalDataProps => {
-            let _data: ExternalDataProps = {
-                source: "vividSeats",
-                price: -1,
-                event: {
-                    participants: teams as any[]
+        findAllElements(document.querySelectorAll(_query));
+        let aTags = ems.filter((el) => el.classList.toString().includes("EventItem__EventItemWrapper")).map((el) => el.querySelectorAll("a")).flat(3)
+        let hrefs: { href: string, event: ExternalDataProps["event"] }[] = []
+        for (const k of aTags) {
+            for (var i = 0; i < k.length; i++) {
+                const aTag = k.item(i)
+                let href = aTag.getAttribute("href")
+                let _description = aTag.querySelectorAll("p[data-testid='event-item-title']")
+                let teams: NFLTeamName[] = []
+                let description: string | undefined = undefined
+                if (_description.length === 1) {
+                    let d = _description.item(0)
+                    description = d.innerHTML
+                    teams = getMatchingTeamsFromString(d.innerHTML)
                 }
-            }
-            let divs = el.querySelectorAll("span")
-            for (var i = 0; i < divs.length; i++) {
-                const item = divs.item(i)
-                if (item.classList.toString().includes("styles_priceAmount")) {
-                    _data.price = parseFloat(item.innerHTML.replace("$", "").replace(",", ""))
+                let date: Date | string | undefined = undefined
+                let d = aTag.querySelectorAll("p[data-testid='date']")
+                let a = aTag.querySelectorAll("p[data-testid='time']")
+                let _arena: string | undefined = undefined
+                let _location: string | undefined = undefined
+                if (d.length === 1 && a.length === 1) {
+                    let dt = a.item(0).innerHTML.split("·")
+                    date = `${dt[0].trim} ${d.item(0).innerHTML} ${dt[1].trim || ""}`
                 }
-            }
-            let ps = el.querySelectorAll("p")
-            for (var i = 0; i < ps.length; i++) {
-                const item = ps.item(i)
-                let content = item.innerHTML.split("•")
-                let sr: { seat?: string, section?: string, row?: string } = {}
-                content.forEach((l, i) => {
-                    let line = l.toLowerCase()
-                    if (Boolean(line.includes("sr") && i === 0) || line.includes("section")) {
-                        sr.section = line.replace("sr", "").replace("section", "").trim()
-                    } else if (line.includes("row")) {
-                        sr.row = line.replace("row", "").replace("sr", "").trim()
+                let locData = aTag.querySelectorAll("div[data-testid='description']")
+                if (locData.length === 1) {
+                    let s = locData.item(0).innerHTML.replace(/<span.*span>/gi, "SPLIT").split("SPLIT")
+                    if (s.length === 2) {
+                        _arena = s[0]
+                        _location = s[1]
                     }
-                })
-                if (sr.section && sr.row) {
-                    _data = { ..._data, ...sr }
                 }
-            }
-            return _data
-        }
-        const classListToArray = (c: Element["classList"]) => {
-            let cs: string[] = []
-            for (var i = 0; i < c.length; i++) {
-                let s = c.item(i)
-                s && cs.push(s)
-            }
-            return cs
-        }
-
-        let items: HTMLDivElement[] = []
-        let filtered = ems.filter((el) => el.getAttribute("data-testid") === "listings-container")
-        for (const k of filtered) {
-            let c = k.querySelectorAll("div")
-            for (var i = 0; i < c.length; i++) {
-                const item = c.item(i)
-                if (item.classList.toString().includes("listingRowContainer")) {
-                    items.push(item)
+                if (href) {
+                    hrefs.push({
+                        href: href,
+                        event: {
+                            participants: teams || [],
+                            date: date,
+                            description: description,
+                            arena: _arena,
+                            location: _location
+                        }
+                    })
                 }
             }
         }
-        let data = items.map((l) => parseRowEm(l))
-        return data
+        return hrefs
     }
-    async gatherListings() {
-        await this.open()
-        let itemData = await this.page?.evaluate(this.getListingContainerQuery)
-        if (itemData) {
-            this.ticketData = itemData.map((t) => new ExternalTicketData(t))
-            for (const k of itemData) {
-                console.log(JSON.stringify(k, null, 4))
+    crawlEventPage(idx: number, _resolve: () => void) {
+        let p = this.eventPages[idx]
+        setTimeout(async () => {
+            await p.gatherItems()
+            if (p.index === this.eventPages.length - 1) {
+                return _resolve()
+            } else {
+                return this.crawlEventPage(idx + 1, _resolve)
             }
         }
+            , this.crawlTimeout)
+    }
+    async gatherEvents() {
+        await this.open()
+        let hrefs = await this.page?.evaluate(this.getListingItems)
+        if (hrefs) {
+            for (const h of hrefs) {
+                this.eventPages.push(new SeatGeekEventsPage(h.href, this.href.indexOf(h.href), h.event, this.browser))
+            }
+        }
+        return new Promise<void>(async (resolve) => {
+            this.crawlEventPage(0, resolve)
+        })
     }
 }
