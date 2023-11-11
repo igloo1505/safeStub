@@ -99,6 +99,7 @@ const MobileNavbar = ({ session, container }: MobileNavbarProps) => {
         document.addEventListener("scroll", handleScroll)
         return () => document.removeEventListener("scroll", handleScroll)
     }, [])
+
     return (
         <div className={clsx("w-full h-[64px] top-0 left-0 z-[9999] px-8 grid grid-cols-[2rem_1fr] md:grid-cols-[2rem_1fr_2rem] lg:grid-cols-[70px_1fr_70px] gap-x-3 justify-between items-center group/mobileNav transition-transform duration-150 [&_.scrolling]:translate-y-[-100%]", container && container)} id="mobile-navbar" ref={ref}>
             <div className={"flex flex-row justify-center items-center w-fit"}>
@@ -108,7 +109,7 @@ const MobileNavbar = ({ session, container }: MobileNavbarProps) => {
             <div className={"w-full h-full flex justify-center items-center"}>
                 <NavbarSearchInput />
             </div>
-            <nav className={clsx("w-fit justify-center items-center gap-4 hidden lg:flex flex-row", pathname === "/" && "dark")}>
+            <nav className={clsx("w-fit justify-center items-center gap-4 hidden lg:flex flex-row")}>
                 <NavbarButton session={session} pathname={pathname} item={{
                     href: "/auth/signin",
                     label: "Sign In",

@@ -36,7 +36,7 @@ const Navbar = ({ session, container, mobileContainer }: { session?: Session | n
     }, [session])
     return (
         <>
-            {isMobileVp === false ? (<div className={clsx("px-8 w-full hidden md:grid md:grid-cols-[220px_1fr_220px] gap-x-3 py-4 grid-cols-[1fr_auto_1fr]  z-10 relative dark", container && container)}>
+            {isMobileVp === false ? (<div className={clsx("px-8 w-full hidden md:grid md:grid-cols-[220px_1fr_220px] gap-x-3 py-4 grid-cols-[1fr_auto_1fr]  z-10 relative", container && container)}>
                 <div className={"flex flex-row justify-center items-center w-fit"}>
                     <Link href="/" className="mr-6 flex items-center space-x-2">
                         <LogoWithName />

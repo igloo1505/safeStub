@@ -1,6 +1,6 @@
 import Email from "next-auth/providers/email";
 import FacebookProvider from "next-auth/providers/facebook";
-import GoogleProvider from "next-auth/providers/google";
+import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 // import AppleProvider from "next-auth/providers/apple";
 import { prisma } from "#/db/db"
 import { PrismaAdapter } from "@auth/prisma-adapter";

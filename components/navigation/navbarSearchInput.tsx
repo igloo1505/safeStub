@@ -19,12 +19,12 @@ const NavbarSearchInput = () => {
         router.push(`/events?${params.toString()}`)
     }
     return (
-        <div className={clsx("w-full md:w-5/6 max-w-lg h-fit flex flex-row justify-center items-center relative", pathname === "/" && "dark")}>
+        <div className={clsx("w-full md:w-5/6 max-w-lg h-fit flex flex-row justify-center items-center relative")}>
             <Input
                 type="search"
                 id="searchNavInput"
                 placeholder="Search"
-                className={clsx("text-black dark:text-white bg-gray-200 bg-opacity-30 dark:bg-gray-900 dark:bg-opacity-70 border-none focus-visible:ring-offset-0 placeholder:text-gray-400 pr-8", pathname === "/" && "dark:bg-opacity-30")}
+                className={clsx("text-black dark:text-white bg-gray-200 bg-opacity-30 dark:bg-gray-900 dark:bg-opacity-70 border-none focus-visible:ring-offset-0 placeholder:text-gray-400 pr-8")}
                 value={value}
                 onKeyDown={(e) => onEnter(e, submitQuery)}
                 onChange={(e) => setValue(e.target.value)}
