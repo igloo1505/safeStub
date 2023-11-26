@@ -15,6 +15,7 @@ const crawlVividSeats = async (headless: boolean) => {
     await vividSeats.init({ headless })
     await vividSeats.crawl()
     await vividSeats.close()
+    return vividSeats.ticketData
 }
 
 const crawlSeatGeek = async (headless: boolean) => {
@@ -26,7 +27,9 @@ const crawlSeatGeek = async (headless: boolean) => {
 router
     .get(async (req, ctx) => {
         try {
-            let seatGeek = await crawlSeatGeek(false)
+            let vivid = await crawlVividSeats(false)
+            console.log("vivid: ", vivid)
+            // let seatGeek = await crawlSeatGeek(false)
             return new NextResponse(JSON.stringify({ success: true }));
         } catch (err) {
             console.error(err)

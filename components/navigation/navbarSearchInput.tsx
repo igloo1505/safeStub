@@ -19,12 +19,12 @@ const NavbarSearchInput = () => {
         router.push(`/events?${params.toString()}`)
     }
     return (
-        <div className={clsx("w-full md:w-5/6 max-w-lg h-fit flex flex-row justify-center items-center relative")}>
+        <div className={clsx("w-full max-w-full h-fit flex flex-row justify-center items-center relative")}>
             <Input
                 type="search"
                 id="searchNavInput"
-                placeholder="Search"
-                className={clsx("text-black dark:text-white bg-gray-200 bg-opacity-30 dark:bg-gray-900 dark:bg-opacity-70 border-none focus-visible:ring-offset-0 placeholder:text-gray-400 pr-8")}
+                placeholder="Search by team, stadium or city"
+                className={clsx("text-black dark:text-white bg-gray-200 bg-opacity-30 dark:bg-gray-900 dark:bg-opacity-70 focus-visible:ring-offset-0 placeholder:text-gray-400 pr-8 focus-visible:ring-white border-2 border-primary focus-visible:border-transparent")}
                 value={value}
                 onKeyDown={(e) => onEnter(e, submitQuery)}
                 onChange={(e) => setValue(e.target.value)}

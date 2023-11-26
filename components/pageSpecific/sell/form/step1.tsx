@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import SlidingFormCard, { maxStepSale } from './slidingFormCard';
 import { PendingTicketList, SingleEventReturned } from '#/types/query';
 import { formatLocation } from '#/lib/formatting/teamNames';
@@ -9,6 +9,8 @@ import { FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessa
 import { Input } from '#/components/ui/input';
 import { Separator } from '#/components/ui/separator';
 import clsx from 'clsx';
+import { SlidingFormDispatchContext, SlidingFormContext } from './slidingFormContext';
+import { Button } from '#/components/ui/button';
 dayjs.extend(advancedFormat)
 
 
@@ -50,29 +52,43 @@ export const SaleCardEventInfo = ({ event, className }: { event: SaleFormStepOne
 
 const SaleFormStepOne = ({ event, form, containerId }: SaleFormStepOneProps) => {
     let quant = form.watch("quantity")
+
     useEffect(() => {
         if (quant < 1) {
             form.setValue("quantity", 1)
         }
     }, [quant])
 
+
+    const dispatch = useContext(SlidingFormDispatchContext)
+
+    const { step: currentStep, maxStep } = useContext(SlidingFormContext)
+
+    const stepForward = () => {
+        dispatch({ type: "increment" })
+    }
+
     return (
         <SlidingFormCard
             containerId={containerId}
             step={1}
             anchor
+            noBtns
         >
             <SaleCardTitle>Tell Us About Your Tickets</SaleCardTitle>
             <SaleCardEventInfo event={event} />
-            <div className={"w-full flex flex-row justify-start items-start"}>
+            <div className={"w-full flex flex-row justify-between items-start"}>
                 <FormField
                     control={form.control}
                     name="quantity"
                     render={({ field }) => (
-                        <FormItem>
+                        <FormItem className={"w-full"}>
                             <FormLabel>How many tickets do you have?</FormLabel>
                             <FormControl>
-                                <Input type="number" placeholder="quantity" {...field} />
+                                <div className={"w-full flex flex-row justify-between items-center"}>
+                                    <Input className={"w-[150px]"} type="number" placeholder="quantity" {...field} />
+                                    <Button onClick={stepForward}>{currentStep === maxStep ? "Submit" : "Continue"}</Button>
+                                </div>
                             </FormControl>
                             <FormMessage />
                         </FormItem>

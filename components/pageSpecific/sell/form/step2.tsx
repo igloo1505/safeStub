@@ -31,6 +31,26 @@ const TicketFormItem = ({ form, index, isLast }: { form: SaleFormType, index: nu
         }
     }
 
+    /* TODO: Come back here */
+    const adjustDescendents = () => {
+        /* let tickets = form.getValues("tickets") */
+        /* let sec = "" */
+        /* let row = "" */
+        /* let ts = tickets.map((t) => { */
+        /*     if (t.section !== "") sec = t.section */
+        /*     if (t.row !== "") row = t.row */
+        /*     return { */
+        /*         ...t, */
+        /*         ...(sec !== "" && t.section === "" && { section: sec }), */
+        /*         ...(row !== "" && t.row === "" && { row: row }), */
+        /*     } */
+
+        /* }) */
+        /* form.setValue("tickets", ts) */
+    }
+
+
+
     return (
         <div className={"w-full flex flex-col justify-between items-center gap-4 sm:grid sm:grid-rows-2 sm:grid-cols-[200px_200px] md:grid-rows-1 md:grid-cols-[200px_200px_200px_auto]"}>
             <FormField
@@ -41,7 +61,9 @@ const TicketFormItem = ({ form, index, isLast }: { form: SaleFormType, index: nu
                         <FormItem>
                             <FormLabel>Section</FormLabel>
                             <FormControl>
-                                <Input placeholder="Section" {...form.register(`tickets.${index}.section`)} />
+                                <Input placeholder="Section" {...form.register(`tickets.${index}.section`)}
+                                    onKeyUp={adjustDescendents}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -55,7 +77,7 @@ const TicketFormItem = ({ form, index, isLast }: { form: SaleFormType, index: nu
                     <FormItem>
                         <FormLabel>Row</FormLabel>
                         <FormControl>
-                            <Input placeholder="Row" {...form.register(`tickets.${index}.row`)} />
+                            <Input placeholder="Row" {...form.register(`tickets.${index}.row`)} onKeyUp={adjustDescendents} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -68,15 +90,14 @@ const TicketFormItem = ({ form, index, isLast }: { form: SaleFormType, index: nu
                     <FormItem>
                         <FormLabel>Seat Number</FormLabel>
                         <FormControl>
-                            <Input placeholder="Seat" {...form.register(`tickets.${index}.seat`)} />
+                            <Input placeholder="Seat" {...form.register(`tickets.${index}.seat`)}
+                                onKeyUp={adjustDescendents}
+                            />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
                 )}
             />
-            <div className={"relative w-12 h-full flex flex-col justify-end py-2"}>
-                <DynamicIcon onClick={handleIconClick} name={isLast ? "plus" : "minus"} className={clsx("rounded-lg", isLast ? "bg-blue-500 dark:bg-blue-400" : "bg-red-500 dark:bg-red-400")} />
-            </div>
         </div>
     )
 }

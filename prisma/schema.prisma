@@ -10,10 +10,19 @@ generator zod {
     isGenerateInclude = true
 }
 
+
+// generator erd {
+//     provider = "prisma-erd-generator"
+//     output   = "/Users/bigsexy/Desktop/notes/content/tech/work/safeStub/entityRelationship.md"
+//     erdDebug = true
+// }
+
+
 generator prismaClassGenerator {
     provider = "prisma-class-generator"
     output   = "../classes"
 }
+
 
 datasource db {
     provider  = "postgresql"
@@ -311,13 +320,13 @@ model User {
 }
 
 model Event {
-    id                   Int                    @id @default(autoincrement())
+    id                   Int                  @id @default(autoincrement())
     category             CATEGORY
-    arena                Arena                  @relation(fields: [arenaId], references: [id])
+    arena                Arena                @relation(fields: [arenaId], references: [id])
     arenaId              Int
     tickets              Ticket[]
     ticketGroups         TicketGroup[]
-    amenities            ArenaAmenities         @relation(fields: [amenitiesId], references: [id])
+    amenities            ArenaAmenities       @relation(fields: [amenitiesId], references: [id])
     amenitiesId          Int
     tags                 Tag[]
     date                 DateTime

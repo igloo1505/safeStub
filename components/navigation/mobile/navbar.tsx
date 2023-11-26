@@ -12,7 +12,7 @@ import NavbarSearchInput from '../navbarSearchInput';
 import { Session } from 'next-auth';
 import { AuthRole, validateRole } from '#/lib/auth/authValidators';
 import { Route } from 'next';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 
 
@@ -58,7 +58,7 @@ const validationMap: { [k in NavbuttonType['authStatus']]: (s?: Session | null) 
 
 
 
-export const NavbarButton = ({ item, pathname, session }: { session?: Session | null, item: NavbuttonType, pathname: string }) => {
+export const NavbarButton = ({ item, pathname, session, className }: { session?: Session | null, item: NavbuttonType, pathname: string, className?: string }) => {
 
     if (!validationMap[item.authStatus](session)) {
         return null
@@ -70,7 +70,8 @@ export const NavbarButton = ({ item, pathname, session }: { session?: Session | 
                 "transition-colors hover:text-foreground/80",
                 pathname?.startsWith(item.href)
                     ? "text-foreground"
-                    : "text-foreground/60"
+                    : "text-foreground/60",
+                className && className
             )}
         >
             {item.label}
@@ -81,6 +82,7 @@ export const NavbarButton = ({ item, pathname, session }: { session?: Session | 
 const MobileNavbar = ({ session, container }: MobileNavbarProps) => {
     const [locked, setLocked] = useLockedBody(false, 'root')
     const pathname = usePathname()
+    const router = useRouter()
     let ref = useRef<HTMLDivElement>(null!)
     let prevScroll = 0
     const handleScroll = (e: Event) => {
@@ -101,26 +103,37 @@ const MobileNavbar = ({ session, container }: MobileNavbarProps) => {
     }, [])
 
     return (
-        <div className={clsx("w-full h-[64px] top-0 left-0 z-[9999] px-8 grid grid-cols-[2rem_1fr] md:grid-cols-[2rem_1fr_2rem] lg:grid-cols-[70px_1fr_70px] gap-x-3 justify-between items-center group/mobileNav transition-transform duration-150 [&_.scrolling]:translate-y-[-100%]", container && container)} id="mobile-navbar" ref={ref}>
+        <div className={clsx("w-full h-[64px] top-0 left-0 z-[9999] px-8 flex flex-row gap-x-3 justify-between items-center group/mobileNav transition-transform duration-150 [&_.scrolling]:translate-y-[-100%]", container && container)} id="mobile-navbar" ref={ref}>
             <div className={"flex flex-row justify-center items-center w-fit"}>
                 <MobileDrawer session={session} setLocked={setLocked} />
                 <HamburgerIcon setLocked={setLocked} />
             </div>
-            <div className={"w-full h-full flex justify-center items-center"}>
+            <div className={"w-5/6 max-w-screen-sm h-full flex justify-center items-center"}>
                 <NavbarSearchInput />
             </div>
             <nav className={clsx("w-fit justify-center items-center gap-4 hidden lg:flex flex-row")}>
-                <NavbarButton session={session} pathname={pathname} item={{
-                    href: "/auth/signin",
-                    label: "Sign In",
-                    authStatus: "unauthenticated"
-                }} />
+                <NavbarButton
+                    session={session}
+                    pathname={pathname}
+                    item={{
+                        href: "/auth/signin",
+                        label: "Sign In",
+                        authStatus: "unauthenticated"
+                    }}
+
+                    className={clsx(session?.user.id ? "hidden" : "inline-block")}
+                />
                 <a
                     role="button"
-                    onClick={() => signOut()}
+                    onClick={() => {
+                        signOut({
+                            redirect: false
+                        })
+                        router.push("/")
+                    }}
                     className={cn(
-                        "transition-colors hover:text-foreground/80 text-foreground/60 hidden lg:inline-block",
-                        !session && "hidden"
+                        "transition-colors hover:text-foreground/80 text-foreground/60 hidden whitespace-nowrap break-keep",
+                        session?.user?.id ? "lg:inline-block" : "hidden"
                     )}
                 >
                     Sign Out

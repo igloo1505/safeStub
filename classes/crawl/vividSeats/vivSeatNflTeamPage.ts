@@ -109,7 +109,7 @@ export class VividSeatNflTeamPage {
             setTimeout(async () => {
                 await this.crawlPage(idx)
                 // TODO: Turn this back on when done debugging
-                // await this.crawlEventPages(idx + 1, resolve)
+                await this.crawlEventPages(idx + 1, resolve)
             }, this.crawlTimeout)
         })
     }

@@ -48,15 +48,10 @@ const FeaturedEventCard = ({ className, event, ...props }: CardProps) => {
                     </div>
                 </div>
             </CardHeader>
-            <CardContent className="grid gap-4">
-                <div className={"text-center @[400px]:text-start"}>
-                    Vitae vel posuere, orci rhoncus tincidunt, ut amet malesuada molestie imperdiet id sed eleifend nullam curabitur arcu porttitor quam sed molestie neque semper cras ex dui
-                </div>
-            </CardContent>
             <CardFooter className={"h-fit w-full @[400px]:w-fit flex flex-col justify-center items-center"}>
                 <Link href={`/event/${event.id}` as Route} className={"w-full @[400px]:w-fit"}>
                     <Button className="w-full @[400px]:w-fit">
-                        <TicketIcon className="mr-2 h-4 w-4" /> Find my tickets
+                        <TicketIcon className="mr-2 h-4 w-4" /> Find tickets
                     </Button>
                 </Link>
             </CardFooter>

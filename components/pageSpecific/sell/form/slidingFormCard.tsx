@@ -13,12 +13,13 @@ interface SlidingFormContainerProps {
     anchor?: boolean
     handleSubmit?: () => void
     containerId: string
+    noBtns?: boolean
 }
 
 
 export const maxStepSale = 3
 
-const SlidingFormCard = ({ children, handleSubmit, step, anchor, containerId }: SlidingFormContainerProps) => {
+const SlidingFormCard = ({ children, noBtns, handleSubmit, step, anchor, containerId }: SlidingFormContainerProps) => {
     const ref = useRef<HTMLDivElement>(null!)
     const dispatch = useContext(SlidingFormDispatchContext)
     const { step: currentStep, maxStep } = useContext(SlidingFormContext)
@@ -53,12 +54,12 @@ const SlidingFormCard = ({ children, handleSubmit, step, anchor, containerId }: 
             ref={ref}
         >
             {children}
-            <div className={"w-full h-fit flex flex-row gap-4 justify-end items-center"}>
+            {!noBtns && <div className={"w-full h-fit flex flex-row gap-4 justify-end items-center"}>
                 <Button onClick={stepBack} className={"group-[.step-1]/slidingFormStepContainer:hidden"}>
                     Back
                 </Button>
                 <Button onClick={stepForward}>{currentStep === maxStep ? "Submit" : "Continue"}</Button>
-            </div>
+            </div>}
         </div>
     )
 }

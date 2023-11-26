@@ -8,7 +8,7 @@ import SalesFormStepThree from '#/components/pageSpecific/sell/form/step3';
 import { Form } from '#/components/ui/form';
 import { SingleEventReturned } from '#/types/query';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useId } from 'react'
+import React, { useEffect, useId } from 'react'
 import { useForm } from 'react-hook-form';
 
 
@@ -18,6 +18,12 @@ interface SellPageContainerProps {
 }
 
 
+const defaultTicket = {
+    row: "",
+    section: "",
+    seat: ""
+}
+
 const SellPageContainer = ({ event, userId }: SellPageContainerProps) => {
     const id = useId()
     const saleForm = useForm<SaleFormObjectType>({
@@ -26,13 +32,21 @@ const SellPageContainer = ({ event, userId }: SellPageContainerProps) => {
             quantity: 1,
             pricePerTicket: 100,
             payoutMethod: PayoutMethodEnum.paypal,
-            tickets: [{
-                row: "",
-                section: "",
-                seat: ""
-            }]
+            tickets: [defaultTicket]
         },
     })
+
+    const n = saleForm.watch("quantity")
+
+
+    useEffect(() => {
+        let ts: (typeof defaultTicket)[] = []
+        for (var i = 0; i < n; i++) {
+            ts.push(defaultTicket)
+        }
+        saleForm.setValue("tickets", ts)
+    }, [n])
+
 
     return (
         <div className={"min-h-[calc(100vh-var(--nav-height))] w-5/6 max-w-screen-lg flex flex-col justify-start items-center"} id={id}>

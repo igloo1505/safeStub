@@ -1,0 +1,524 @@
+erDiagram
+
+        VERIFICATIONSTATUS {
+            Verified Verified
+Pending Pending
+Unverified Unverified
+        }
+    
+
+
+        TRANSACTIONSTATUS {
+            forSale forSale
+awaitingIdVerification awaitingIdVerification
+idVerificationFailed idVerificationFailed
+inProgress inProgress
+receivedAndTransferInProgress receivedAndTransferInProgress
+complete complete
+        }
+    
+
+
+        PAYOUTMETHODS {
+            paypal paypal
+credits credits
+        }
+    
+
+
+        USSTATE {
+            AL AL
+AK AK
+AS AS
+AZ AZ
+AR AR
+UM_81 UM_81
+CA CA
+CO CO
+CT CT
+DE DE
+DC DC
+FL FL
+GA GA
+GU GU
+HI HI
+UM_84 UM_84
+ID ID
+IL IL
+IN IN
+IA IA
+UM_86 UM_86
+UM_67 UM_67
+KS KS
+KY KY
+UM_89 UM_89
+LA LA
+ME ME
+MD MD
+MA MA
+MI MI
+UM_71 UM_71
+MN MN
+MS MS
+MO MO
+MT MT
+UM_76 UM_76
+NE NE
+NV NV
+NH NH
+NJ NJ
+NM NM
+NY NY
+NC NC
+ND ND
+MP MP
+OH OH
+OK OK
+OR OR
+UM_95 UM_95
+PA PA
+PR PR
+RI RI
+SC SC
+SD SD
+TN TN
+TX TX
+UM UM
+VI VI
+UT UT
+VT VT
+VA VA
+UM_79 UM_79
+WA WA
+WI WI
+WV WV
+WY WY
+        }
+    
+
+
+        ROLE {
+            USER USER
+ADMIN ADMIN
+BANNED BANNED
+EMPLOYEE EMPLOYEE
+        }
+    
+
+
+        AMENITIY {
+            total total
+partial partial
+none none
+        }
+    
+
+
+        PARKING {
+            limited limited
+valet valet
+withTicket withTicket
+offstreet offstreet
+        }
+    
+
+
+        CATEGORY {
+            Music Music
+Sports Sports
+Comedy Comedy
+        }
+    
+
+
+        Leagues {
+            NFL NFL
+NCAA NCAA
+        }
+    
+
+
+        NFLTeamName {
+            Cardinals Cardinals
+Falcons Falcons
+Ravens Ravens
+Bills Bills
+Panthers Panthers
+Bengals Bengals
+Bears Bears
+Browns Browns
+Cowboys Cowboys
+Broncos Broncos
+Lions Lions
+Texans Texans
+Packers Packers
+Colts Colts
+Rams Rams
+Jaguars Jaguars
+Vikings Vikings
+Chiefs Chiefs
+Saints Saints
+Raiders Raiders
+Giants Giants
+Chargers Chargers
+Eagles Eagles
+Dolphins Dolphins
+FourtyNiners FourtyNiners
+Patriots Patriots
+Seahawks Seahawks
+Jets Jets
+Buccaneers Buccaneers
+Steelers Steelers
+Commanders Commanders
+Titans Titans
+TBD TBD
+        }
+    
+
+
+        Country {
+            US US
+GER GER
+UK UK
+        }
+    
+
+
+        TicketStatus {
+            forSale forSale
+awaitingTransferFromSellerToSafeStub awaitingTransferFromSellerToSafeStub
+awaitingTransferFromSafeStubToBuyer awaitingTransferFromSafeStubToBuyer
+eventPassedWithoutSale eventPassedWithoutSale
+retractedBySellerWithoutSale retractedBySellerWithoutSale
+sold sold
+        }
+    
+
+
+        NFL_Conference {
+            NFC NFC
+AFC AFC
+        }
+    
+
+
+        NFL_Division {
+            North North
+West West
+East East
+South South
+        }
+    
+
+
+        Sports {
+            Basketball Basketball
+Football Football
+Soccer Soccer
+MMA MMA
+Motorsports Motorsports
+        }
+    
+
+
+        FaqCategory {
+            general general
+billing billing
+services services
+trustAndSaftey trustAndSaftey
+        }
+    
+
+
+        EXTERNALSOURCE {
+            ticketMaster ticketMaster
+vividSeats vividSeats
+seatGeek seatGeek
+tickPick tickPick
+gameTime gameTime
+        }
+    
+  "Faq" {
+    Int id "🗝️"
+    String title 
+    String subtitle 
+    String body 
+    FaqCategory category 
+    DateTime createdAt 
+    DateTime updatedAt 
+    Int priority 
+    }
+  
+
+  "Colors" {
+    Int id "🗝️"
+    String primary 
+    String secondary "❓"
+    }
+  
+
+  "Logo" {
+    Int id "🗝️"
+    String path 
+    Int width 
+    Int height 
+    String rel 
+    String url "❓"
+    }
+  
+
+  "Team" {
+    Int id "🗝️"
+    String uniqueKey "❓"
+    NFLTeamName name 
+    String abbreviation "❓"
+    String displayName "❓"
+    String displayName_short "❓"
+    String nickname "❓"
+    Leagues league 
+    Sports sport 
+    NFL_Conference conference "❓"
+    NFL_Division division "❓"
+    }
+  
+
+  "Location" {
+    Int id "🗝️"
+    String uniqueKey "❓"
+    String street "❓"
+    Int zip "❓"
+    String city 
+    Int cityId "❓"
+    USSTATE state "❓"
+    Float lat "❓"
+    Float long "❓"
+    Country country 
+    Int userId "❓"
+    }
+  
+
+  "users" {
+    String id "🗝️"
+    String name "❓"
+    String firstName "❓"
+    String lastName "❓"
+    ROLE role 
+    DateTime createdAt 
+    String email "❓"
+    DateTime email_verified "❓"
+    String phone "❓"
+    String image "❓"
+    VERIFICATIONSTATUS idVerified 
+    Json gcmSubscription "❓"
+    }
+  
+
+  "Event" {
+    Int id "🗝️"
+    CATEGORY category 
+    DateTime date 
+    String title 
+    String description 
+    }
+  
+
+  "TicketGroup" {
+    Int id "🗝️"
+    String confirmationId 
+    }
+  
+
+  "Ticket" {
+    Int id "🗝️"
+    String section 
+    String row 
+    String seat 
+    String ticketNumber "❓"
+    TicketStatus status 
+    }
+  
+
+  "ArenaAmenities" {
+    Int id "🗝️"
+    AMENITIY indoor 
+    AMENITIY covered 
+    AMENITIY outdoor 
+    Boolean food 
+    Boolean alcohol 
+    PARKING parking 
+    Boolean shuttleAvailable 
+    }
+  
+
+  "Tag" {
+    Int id "🗝️"
+    String value 
+    }
+  
+
+  "Image" {
+    Int id "🗝️"
+    String publicUrl "❓"
+    DateTime createdAt 
+    DateTime updatedAt 
+    }
+  
+
+  "Arena" {
+    Int id "🗝️"
+    String uniqueKey "❓"
+    String name 
+    }
+  
+
+  "PaymentAccountDetails" {
+    Int id "🗝️"
+    String nameOnAccount 
+    PAYOUTMETHODS paymentMethodType 
+    }
+  
+
+  "Transaction" {
+    Int id "🗝️"
+    Float listedPrice 
+    TRANSACTIONSTATUS status 
+    Float total 
+    Float payout 
+    PAYOUTMETHODS payoutMethod 
+    DateTime postedOn 
+    DateTime purchasedOn "❓"
+    }
+  
+
+  "TransactionUnbound" {
+    Int id "🗝️"
+    Float price 
+    String paymentId 
+    Int sellerId 
+    Int buyerId 
+    DateTime date 
+    }
+  
+
+  "PurchaseHistory" {
+    Int id "🗝️"
+    }
+  
+
+  "Settings" {
+    Int id "🗝️"
+    Boolean darkmode 
+    }
+  
+
+  "sessions" {
+    String id "🗝️"
+    String session_token 
+    String user_id 
+    DateTime expires 
+    }
+  
+
+  "accounts" {
+    String id "🗝️"
+    String user_id 
+    String type 
+    String provider 
+    String provider_account_id 
+    String refresh_token "❓"
+    String access_token "❓"
+    Int expires_at "❓"
+    String token_type "❓"
+    String scope "❓"
+    String id_token "❓"
+    String session_state "❓"
+    }
+  
+
+  "verificationtokens" {
+    String identifier 
+    String token 
+    DateTime expires 
+    }
+  
+
+  "ExternalTicketData" {
+    Int id "🗝️"
+    EXTERNALSOURCE source 
+    Float price 
+    String seat "❓"
+    String section "❓"
+    String row "❓"
+    DateTime lastRetrieved 
+    }
+  
+    "Faq" o|--|| "FaqCategory" : "enum:category"
+    "Colors" o{--}o "Team" : "Team"
+    "Logo" o|--|o "Team" : "Team"
+    "Team" o|--|| "NFLTeamName" : "enum:name"
+    "Team" o|--|| "Leagues" : "enum:league"
+    "Team" o|--|| "Sports" : "enum:sport"
+    "Team" o|--|o "NFL_Conference" : "enum:conference"
+    "Team" o|--|o "NFL_Division" : "enum:division"
+    "Team" o|--|o "Colors" : "colors"
+    "Team" o|--|o "Arena" : "homeArena"
+    "Team" o{--}o "Event" : "Event"
+    "Team" o{--}o "Logo" : "logos"
+    "Location" o|--|o "USSTATE" : "enum:state"
+    "Location" o|--|| "Country" : "enum:country"
+    "Location" o{--}o "Arena" : "arena"
+    "users" o|--|| "ROLE" : "enum:role"
+    "users" o|--|o "PaymentAccountDetails" : "paymentAccount"
+    "users" o{--}o "PurchaseHistory" : "purchaseHistory"
+    "users" o|--|| "VERIFICATIONSTATUS" : "enum:idVerified"
+    "users" o{--}o "Settings" : "settings"
+    "users" o{--}o "accounts" : "accounts"
+    "users" o{--}o "sessions" : "sessions"
+    "users" o{--}o "Ticket" : "ticketsPurchased"
+    "users" o{--}o "Ticket" : "ticketsSold"
+    "Event" o|--|| "CATEGORY" : "enum:category"
+    "Event" o|--|| "Arena" : "arena"
+    "Event" o{--}o "Ticket" : "tickets"
+    "Event" o{--}o "TicketGroup" : "ticketGroups"
+    "Event" o|--|| "ArenaAmenities" : "amenities"
+    "Event" o{--}o "Tag" : "tags"
+    "Event" o{--}o "Team" : "participants"
+    "Event" o{--}o "ExternalTicketData" : "cxternalTicketSource"
+    "TicketGroup" o|--|o "Event" : "Event"
+    "TicketGroup" o{--}o "Ticket" : "tickets"
+    "TicketGroup" o|--|o "Transaction" : "transaction"
+    "Ticket" o|--|o "Event" : "Event"
+    "Ticket" o|--|o "TicketGroup" : "TicketGroup"
+    "Ticket" o|--|| "users" : "seller"
+    "Ticket" o|--|o "users" : "buyer"
+    "Ticket" o|--|o "Transaction" : "transaction"
+    "Ticket" o|--|| "TicketStatus" : "enum:status"
+    "ArenaAmenities" o{--}o "Arena" : "Arena"
+    "ArenaAmenities" o|--|| "AMENITIY" : "enum:indoor"
+    "ArenaAmenities" o|--|| "AMENITIY" : "enum:covered"
+    "ArenaAmenities" o|--|| "AMENITIY" : "enum:outdoor"
+    "ArenaAmenities" o|--|| "PARKING" : "enum:parking"
+    "ArenaAmenities" o{--}o "Event" : "Event"
+    "Tag" o{--}o "Event" : "Event"
+    "Image" o{--}o "Arena" : "Arena"
+    "Arena" o{--}o "Event" : "events"
+    "Arena" o|--|| "Location" : "location"
+    "Arena" o|--|| "ArenaAmenities" : "amenities"
+    "Arena" o|--|o "Image" : "sectionImage"
+    "Arena" o{--}o "Team" : "homeTeams"
+    "PaymentAccountDetails" o{--}o "users" : "User"
+    "PaymentAccountDetails" o|--|| "PAYOUTMETHODS" : "enum:paymentMethodType"
+    "Transaction" o|--|| "PurchaseHistory" : "seller"
+    "Transaction" o|--|o "PurchaseHistory" : "buyer"
+    "Transaction" o{--}o "Ticket" : "tickets"
+    "Transaction" o{--}o "TicketGroup" : "ticketGroups"
+    "Transaction" o|--|| "TRANSACTIONSTATUS" : "enum:status"
+    "Transaction" o|--|| "PAYOUTMETHODS" : "enum:payoutMethod"
+    "PurchaseHistory" o{--}o "Transaction" : "bought"
+    "PurchaseHistory" o{--}o "Transaction" : "sold"
+    "PurchaseHistory" o|--|| "users" : "user"
+    "Settings" o|--|| "users" : "user"
+    "sessions" o|--|| "users" : "user"
+    "accounts" o|--|| "users" : "user"
+    "ExternalTicketData" o|--|| "EXTERNALSOURCE" : "enum:source"
+    "ExternalTicketData" o|--|| "Event" : "event"

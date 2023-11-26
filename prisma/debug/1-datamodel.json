@@ -1,0 +1,3932 @@
+{
+    "enums": [
+      {
+        "name": "VERIFICATIONSTATUS",
+        "values": [
+          {
+            "name": "Verified",
+            "dbName": null
+          },
+          {
+            "name": "Pending",
+            "dbName": null
+          },
+          {
+            "name": "Unverified",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "TRANSACTIONSTATUS",
+        "values": [
+          {
+            "name": "forSale",
+            "dbName": null
+          },
+          {
+            "name": "awaitingIdVerification",
+            "dbName": null
+          },
+          {
+            "name": "idVerificationFailed",
+            "dbName": null
+          },
+          {
+            "name": "inProgress",
+            "dbName": null
+          },
+          {
+            "name": "receivedAndTransferInProgress",
+            "dbName": null
+          },
+          {
+            "name": "complete",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "PAYOUTMETHODS",
+        "values": [
+          {
+            "name": "paypal",
+            "dbName": null
+          },
+          {
+            "name": "credits",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "USSTATE",
+        "values": [
+          {
+            "name": "AL",
+            "dbName": null
+          },
+          {
+            "name": "AK",
+            "dbName": null
+          },
+          {
+            "name": "AS",
+            "dbName": null
+          },
+          {
+            "name": "AZ",
+            "dbName": null
+          },
+          {
+            "name": "AR",
+            "dbName": null
+          },
+          {
+            "name": "UM_81",
+            "dbName": null
+          },
+          {
+            "name": "CA",
+            "dbName": null
+          },
+          {
+            "name": "CO",
+            "dbName": null
+          },
+          {
+            "name": "CT",
+            "dbName": null
+          },
+          {
+            "name": "DE",
+            "dbName": null
+          },
+          {
+            "name": "DC",
+            "dbName": null
+          },
+          {
+            "name": "FL",
+            "dbName": null
+          },
+          {
+            "name": "GA",
+            "dbName": null
+          },
+          {
+            "name": "GU",
+            "dbName": null
+          },
+          {
+            "name": "HI",
+            "dbName": null
+          },
+          {
+            "name": "UM_84",
+            "dbName": null
+          },
+          {
+            "name": "ID",
+            "dbName": null
+          },
+          {
+            "name": "IL",
+            "dbName": null
+          },
+          {
+            "name": "IN",
+            "dbName": null
+          },
+          {
+            "name": "IA",
+            "dbName": null
+          },
+          {
+            "name": "UM_86",
+            "dbName": null
+          },
+          {
+            "name": "UM_67",
+            "dbName": null
+          },
+          {
+            "name": "KS",
+            "dbName": null
+          },
+          {
+            "name": "KY",
+            "dbName": null
+          },
+          {
+            "name": "UM_89",
+            "dbName": null
+          },
+          {
+            "name": "LA",
+            "dbName": null
+          },
+          {
+            "name": "ME",
+            "dbName": null
+          },
+          {
+            "name": "MD",
+            "dbName": null
+          },
+          {
+            "name": "MA",
+            "dbName": null
+          },
+          {
+            "name": "MI",
+            "dbName": null
+          },
+          {
+            "name": "UM_71",
+            "dbName": null
+          },
+          {
+            "name": "MN",
+            "dbName": null
+          },
+          {
+            "name": "MS",
+            "dbName": null
+          },
+          {
+            "name": "MO",
+            "dbName": null
+          },
+          {
+            "name": "MT",
+            "dbName": null
+          },
+          {
+            "name": "UM_76",
+            "dbName": null
+          },
+          {
+            "name": "NE",
+            "dbName": null
+          },
+          {
+            "name": "NV",
+            "dbName": null
+          },
+          {
+            "name": "NH",
+            "dbName": null
+          },
+          {
+            "name": "NJ",
+            "dbName": null
+          },
+          {
+            "name": "NM",
+            "dbName": null
+          },
+          {
+            "name": "NY",
+            "dbName": null
+          },
+          {
+            "name": "NC",
+            "dbName": null
+          },
+          {
+            "name": "ND",
+            "dbName": null
+          },
+          {
+            "name": "MP",
+            "dbName": null
+          },
+          {
+            "name": "OH",
+            "dbName": null
+          },
+          {
+            "name": "OK",
+            "dbName": null
+          },
+          {
+            "name": "OR",
+            "dbName": null
+          },
+          {
+            "name": "UM_95",
+            "dbName": null
+          },
+          {
+            "name": "PA",
+            "dbName": null
+          },
+          {
+            "name": "PR",
+            "dbName": null
+          },
+          {
+            "name": "RI",
+            "dbName": null
+          },
+          {
+            "name": "SC",
+            "dbName": null
+          },
+          {
+            "name": "SD",
+            "dbName": null
+          },
+          {
+            "name": "TN",
+            "dbName": null
+          },
+          {
+            "name": "TX",
+            "dbName": null
+          },
+          {
+            "name": "UM",
+            "dbName": null
+          },
+          {
+            "name": "VI",
+            "dbName": null
+          },
+          {
+            "name": "UT",
+            "dbName": null
+          },
+          {
+            "name": "VT",
+            "dbName": null
+          },
+          {
+            "name": "VA",
+            "dbName": null
+          },
+          {
+            "name": "UM_79",
+            "dbName": null
+          },
+          {
+            "name": "WA",
+            "dbName": null
+          },
+          {
+            "name": "WI",
+            "dbName": null
+          },
+          {
+            "name": "WV",
+            "dbName": null
+          },
+          {
+            "name": "WY",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "ROLE",
+        "values": [
+          {
+            "name": "USER",
+            "dbName": null
+          },
+          {
+            "name": "ADMIN",
+            "dbName": null
+          },
+          {
+            "name": "BANNED",
+            "dbName": null
+          },
+          {
+            "name": "EMPLOYEE",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "AMENITIY",
+        "values": [
+          {
+            "name": "total",
+            "dbName": null
+          },
+          {
+            "name": "partial",
+            "dbName": null
+          },
+          {
+            "name": "none",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "PARKING",
+        "values": [
+          {
+            "name": "limited",
+            "dbName": null
+          },
+          {
+            "name": "valet",
+            "dbName": null
+          },
+          {
+            "name": "withTicket",
+            "dbName": null
+          },
+          {
+            "name": "offstreet",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "CATEGORY",
+        "values": [
+          {
+            "name": "Music",
+            "dbName": null
+          },
+          {
+            "name": "Sports",
+            "dbName": null
+          },
+          {
+            "name": "Comedy",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "Leagues",
+        "values": [
+          {
+            "name": "NFL",
+            "dbName": null
+          },
+          {
+            "name": "NCAA",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "NFLTeamName",
+        "values": [
+          {
+            "name": "Cardinals",
+            "dbName": null
+          },
+          {
+            "name": "Falcons",
+            "dbName": null
+          },
+          {
+            "name": "Ravens",
+            "dbName": null
+          },
+          {
+            "name": "Bills",
+            "dbName": null
+          },
+          {
+            "name": "Panthers",
+            "dbName": null
+          },
+          {
+            "name": "Bengals",
+            "dbName": null
+          },
+          {
+            "name": "Bears",
+            "dbName": null
+          },
+          {
+            "name": "Browns",
+            "dbName": null
+          },
+          {
+            "name": "Cowboys",
+            "dbName": null
+          },
+          {
+            "name": "Broncos",
+            "dbName": null
+          },
+          {
+            "name": "Lions",
+            "dbName": null
+          },
+          {
+            "name": "Texans",
+            "dbName": null
+          },
+          {
+            "name": "Packers",
+            "dbName": null
+          },
+          {
+            "name": "Colts",
+            "dbName": null
+          },
+          {
+            "name": "Rams",
+            "dbName": null
+          },
+          {
+            "name": "Jaguars",
+            "dbName": null
+          },
+          {
+            "name": "Vikings",
+            "dbName": null
+          },
+          {
+            "name": "Chiefs",
+            "dbName": null
+          },
+          {
+            "name": "Saints",
+            "dbName": null
+          },
+          {
+            "name": "Raiders",
+            "dbName": null
+          },
+          {
+            "name": "Giants",
+            "dbName": null
+          },
+          {
+            "name": "Chargers",
+            "dbName": null
+          },
+          {
+            "name": "Eagles",
+            "dbName": null
+          },
+          {
+            "name": "Dolphins",
+            "dbName": null
+          },
+          {
+            "name": "FourtyNiners",
+            "dbName": null
+          },
+          {
+            "name": "Patriots",
+            "dbName": null
+          },
+          {
+            "name": "Seahawks",
+            "dbName": null
+          },
+          {
+            "name": "Jets",
+            "dbName": null
+          },
+          {
+            "name": "Buccaneers",
+            "dbName": null
+          },
+          {
+            "name": "Steelers",
+            "dbName": null
+          },
+          {
+            "name": "Commanders",
+            "dbName": null
+          },
+          {
+            "name": "Titans",
+            "dbName": null
+          },
+          {
+            "name": "TBD",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "Country",
+        "values": [
+          {
+            "name": "US",
+            "dbName": null
+          },
+          {
+            "name": "GER",
+            "dbName": null
+          },
+          {
+            "name": "UK",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "TicketStatus",
+        "values": [
+          {
+            "name": "forSale",
+            "dbName": null
+          },
+          {
+            "name": "awaitingTransferFromSellerToSafeStub",
+            "dbName": null
+          },
+          {
+            "name": "awaitingTransferFromSafeStubToBuyer",
+            "dbName": null
+          },
+          {
+            "name": "eventPassedWithoutSale",
+            "dbName": null
+          },
+          {
+            "name": "retractedBySellerWithoutSale",
+            "dbName": null
+          },
+          {
+            "name": "sold",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "NFL_Conference",
+        "values": [
+          {
+            "name": "NFC",
+            "dbName": null
+          },
+          {
+            "name": "AFC",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "NFL_Division",
+        "values": [
+          {
+            "name": "North",
+            "dbName": null
+          },
+          {
+            "name": "West",
+            "dbName": null
+          },
+          {
+            "name": "East",
+            "dbName": null
+          },
+          {
+            "name": "South",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "Sports",
+        "values": [
+          {
+            "name": "Basketball",
+            "dbName": null
+          },
+          {
+            "name": "Football",
+            "dbName": null
+          },
+          {
+            "name": "Soccer",
+            "dbName": null
+          },
+          {
+            "name": "MMA",
+            "dbName": null
+          },
+          {
+            "name": "Motorsports",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "FaqCategory",
+        "values": [
+          {
+            "name": "general",
+            "dbName": null
+          },
+          {
+            "name": "billing",
+            "dbName": null
+          },
+          {
+            "name": "services",
+            "dbName": null
+          },
+          {
+            "name": "trustAndSaftey",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      },
+      {
+        "name": "EXTERNALSOURCE",
+        "values": [
+          {
+            "name": "ticketMaster",
+            "dbName": null
+          },
+          {
+            "name": "vividSeats",
+            "dbName": null
+          },
+          {
+            "name": "seatGeek",
+            "dbName": null
+          },
+          {
+            "name": "tickPick",
+            "dbName": null
+          },
+          {
+            "name": "gameTime",
+            "dbName": null
+          }
+        ],
+        "dbName": null
+      }
+    ],
+    "models": [
+      {
+        "name": "Faq",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "title",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "subtitle",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "body",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "category",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "FaqCategory",
+            "default": "general",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "createdAt",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "DateTime",
+            "default": {
+              "name": "now",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "updatedAt",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "DateTime",
+            "default": {
+              "name": "now",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "priority",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": 1.0,
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "Colors",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "primary",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "secondary",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "Team",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Team",
+            "relationName": "ColorsToTeam",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "Logo",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "path",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "width",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "height",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "rel",
+            "kind": "scalar",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "url",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "Team",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Team",
+            "relationName": "LogoToTeam",
+            "relationFromFields": [
+              "teamId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "teamId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "Team",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "uniqueKey",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": true,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "name",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "NFLTeamName",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "abbreviation",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "displayName",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "displayName_short",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "nickname",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "league",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Leagues",
+            "default": "NFL",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "sport",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Sports",
+            "default": "Football",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "conference",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "NFL_Conference",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "division",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "NFL_Division",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "colors",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Colors",
+            "relationName": "ColorsToTeam",
+            "relationFromFields": [
+              "colorsId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "homeArena",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Arena",
+            "relationName": "ArenaToTeam",
+            "relationFromFields": [
+              "homeArenaId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "homeArenaId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "Event",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Event",
+            "relationName": "EventToTeam",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "colorsId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "logos",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Logo",
+            "relationName": "LogoToTeam",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "Location",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "uniqueKey",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": true,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "street",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "zip",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "city",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "cityId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "state",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "USSTATE",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "lat",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Float",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "long",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Float",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "country",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Country",
+            "default": "US",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "arena",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Arena",
+            "relationName": "ArenaToLocation",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "userId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": true,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "User",
+        "dbName": "users",
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "String",
+            "default": {
+              "name": "cuid",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "name",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "firstName",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "lastName",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "role",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "ROLE",
+            "default": "USER",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "createdAt",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "DateTime",
+            "default": {
+              "name": "now",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "email",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": true,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "emailVerified",
+            "dbName": "email_verified",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "DateTime",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "phone",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "image",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "paymentAccount",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "PaymentAccountDetails",
+            "relationName": "PaymentAccountDetailsToUser",
+            "relationFromFields": [
+              "paymentAccountDetailsId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "paymentAccountDetailsId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "purchaseHistory",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "PurchaseHistory",
+            "relationName": "PurchaseHistoryToUser",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "idVerified",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "VERIFICATIONSTATUS",
+            "default": "Unverified",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "settings",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Settings",
+            "relationName": "SettingsToUser",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "accounts",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Account",
+            "relationName": "AccountToUser",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "sessions",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Session",
+            "relationName": "SessionToUser",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "gcmSubscription",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Json",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "ticketsPurchased",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Ticket",
+            "relationName": "buyer",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "ticketsSold",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Ticket",
+            "relationName": "seller",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "Event",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "category",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "CATEGORY",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "arena",
+            "kind": "object",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Arena",
+            "relationName": "ArenaToEvent",
+            "relationFromFields": [
+              "arenaId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "arenaId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "tickets",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Ticket",
+            "relationName": "EventToTicket",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "ticketGroups",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "TicketGroup",
+            "relationName": "EventToTicketGroup",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "amenities",
+            "kind": "object",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "ArenaAmenities",
+            "relationName": "ArenaAmenitiesToEvent",
+            "relationFromFields": [
+              "amenitiesId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "amenitiesId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "tags",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Tag",
+            "relationName": "EventToTag",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "date",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "DateTime",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "title",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "description",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "participants",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Team",
+            "relationName": "EventToTeam",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "cxternalTicketSource",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "ExternalTicketData",
+            "relationName": "EventToExternalTicketData",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "TicketGroup",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "Event",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Event",
+            "relationName": "EventToTicketGroup",
+            "relationFromFields": [
+              "eventId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "eventId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "tickets",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Ticket",
+            "relationName": "TicketToTicketGroup",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "transaction",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Transaction",
+            "relationName": "TicketGroupToTransaction",
+            "relationFromFields": [
+              "transactionId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "transactionId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "confirmationId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": true,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "Ticket",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "Event",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Event",
+            "relationName": "EventToTicket",
+            "relationFromFields": [
+              "eventId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "eventId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "TicketGroup",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "TicketGroup",
+            "relationName": "TicketToTicketGroup",
+            "relationFromFields": [
+              "ticketGroupId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "ticketGroupId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "section",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "row",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "seat",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "seller",
+            "kind": "object",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "User",
+            "relationName": "seller",
+            "relationFromFields": [
+              "sellerId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "sellerId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "buyer",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "User",
+            "relationName": "buyer",
+            "relationFromFields": [
+              "buyerId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "buyerId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "transaction",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Transaction",
+            "relationName": "TicketToTransaction",
+            "relationFromFields": [
+              "transactionId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "transactionId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "ticketNumber",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "status",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "TicketStatus",
+            "default": "forSale",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "ArenaAmenities",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "Arena",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Arena",
+            "relationName": "ArenaToArenaAmenities",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "indoor",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "AMENITIY",
+            "default": "partial",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "covered",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "AMENITIY",
+            "default": "partial",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "outdoor",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "AMENITIY",
+            "default": "partial",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "food",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Boolean",
+            "default": true,
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "alcohol",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Boolean",
+            "default": true,
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "parking",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "PARKING",
+            "default": "limited",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "shuttleAvailable",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Boolean",
+            "default": false,
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "Event",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Event",
+            "relationName": "ArenaAmenitiesToEvent",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "Tag",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "value",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": true,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "Event",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Event",
+            "relationName": "EventToTag",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "Image",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "publicUrl",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "Arena",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Arena",
+            "relationName": "ArenaToImage",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "createdAt",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "DateTime",
+            "default": {
+              "name": "now",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "updatedAt",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "DateTime",
+            "default": {
+              "name": "now",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "Arena",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "uniqueKey",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": true,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "name",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": true,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "events",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Event",
+            "relationName": "ArenaToEvent",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "location",
+            "kind": "object",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Location",
+            "relationName": "ArenaToLocation",
+            "relationFromFields": [
+              "locationId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "amenities",
+            "kind": "object",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "ArenaAmenities",
+            "relationName": "ArenaToArenaAmenities",
+            "relationFromFields": [
+              "arenaAmenitiesId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "sectionImage",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Image",
+            "relationName": "ArenaToImage",
+            "relationFromFields": [
+              "sectionImageId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "arenaAmenitiesId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "locationId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "sectionImageId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "homeTeams",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Team",
+            "relationName": "ArenaToTeam",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "PaymentAccountDetails",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "nameOnAccount",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "User",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "User",
+            "relationName": "PaymentAccountDetailsToUser",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "paymentMethodType",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "PAYOUTMETHODS",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "Transaction",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "listedPrice",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Float",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "sellerId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "buyerId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "seller",
+            "kind": "object",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "PurchaseHistory",
+            "relationName": "seller",
+            "relationFromFields": [
+              "sellerId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "buyer",
+            "kind": "object",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "PurchaseHistory",
+            "relationName": "buyer",
+            "relationFromFields": [
+              "buyerId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "tickets",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Ticket",
+            "relationName": "TicketToTransaction",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "ticketGroups",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "TicketGroup",
+            "relationName": "TicketGroupToTransaction",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "status",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "TRANSACTIONSTATUS",
+            "default": "forSale",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "total",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Float",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "payout",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Float",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "payoutMethod",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "PAYOUTMETHODS",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "postedOn",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "DateTime",
+            "default": {
+              "name": "now",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "purchasedOn",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "DateTime",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "TransactionUnbound",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "price",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Float",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "paymentId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "sellerId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "buyerId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "date",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "DateTime",
+            "default": {
+              "name": "now",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "PurchaseHistory",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "bought",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Transaction",
+            "relationName": "buyer",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "sold",
+            "kind": "object",
+            "isList": true,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Transaction",
+            "relationName": "seller",
+            "relationFromFields": [],
+            "relationToFields": [],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "user",
+            "kind": "object",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "User",
+            "relationName": "PurchaseHistoryToUser",
+            "relationFromFields": [
+              "userId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "userId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": true,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "Settings",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "darkmode",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Boolean",
+            "default": true,
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "user",
+            "kind": "object",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "User",
+            "relationName": "SettingsToUser",
+            "relationFromFields": [
+              "userId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "userId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": true,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      },
+      {
+        "name": "Session",
+        "dbName": "sessions",
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "String",
+            "default": {
+              "name": "cuid",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "sessionToken",
+            "dbName": "session_token",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": true,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "userId",
+            "dbName": "user_id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "expires",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "DateTime",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "user",
+            "kind": "object",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "User",
+            "relationName": "SessionToUser",
+            "relationFromFields": [
+              "userId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "relationOnDelete": "Cascade",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false,
+        "documentation": "Auth stuff"
+      },
+      {
+        "name": "Account",
+        "dbName": "accounts",
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "String",
+            "default": {
+              "name": "cuid",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "userId",
+            "dbName": "user_id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "type",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "provider",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "providerAccountId",
+            "dbName": "provider_account_id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "refresh_token",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "access_token",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "expires_at",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "token_type",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "scope",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "id_token",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "session_state",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "user",
+            "kind": "object",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "User",
+            "relationName": "AccountToUser",
+            "relationFromFields": [
+              "userId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "relationOnDelete": "Cascade",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [
+          [
+            "provider",
+            "providerAccountId"
+          ]
+        ],
+        "uniqueIndexes": [
+          {
+            "name": null,
+            "fields": [
+              "provider",
+              "providerAccountId"
+            ]
+          }
+        ],
+        "isGenerated": false
+      },
+      {
+        "name": "VerificationToken",
+        "dbName": "verificationtokens",
+        "fields": [
+          {
+            "name": "identifier",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "token",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": true,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "expires",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "DateTime",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [
+          [
+            "identifier",
+            "token"
+          ]
+        ],
+        "uniqueIndexes": [
+          {
+            "name": null,
+            "fields": [
+              "identifier",
+              "token"
+            ]
+          }
+        ],
+        "isGenerated": false
+      },
+      {
+        "name": "ExternalTicketData",
+        "dbName": null,
+        "fields": [
+          {
+            "name": "id",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": true,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "Int",
+            "default": {
+              "name": "autoincrement",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "source",
+            "kind": "enum",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "EXTERNALSOURCE",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "event",
+            "kind": "object",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Event",
+            "relationName": "EventToExternalTicketData",
+            "relationFromFields": [
+              "eventId"
+            ],
+            "relationToFields": [
+              "id"
+            ],
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "eventId",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": true,
+            "isId": false,
+            "isReadOnly": true,
+            "hasDefaultValue": false,
+            "type": "Int",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "price",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "Float",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "seat",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "section",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "row",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": false,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": false,
+            "type": "String",
+            "isGenerated": false,
+            "isUpdatedAt": false
+          },
+          {
+            "name": "lastRetrieved",
+            "kind": "scalar",
+            "isList": false,
+            "isRequired": true,
+            "isUnique": false,
+            "isId": false,
+            "isReadOnly": false,
+            "hasDefaultValue": true,
+            "type": "DateTime",
+            "default": {
+              "name": "now",
+              "args": []
+            },
+            "isGenerated": false,
+            "isUpdatedAt": false
+          }
+        ],
+        "primaryKey": null,
+        "uniqueFields": [],
+        "uniqueIndexes": [],
+        "isGenerated": false
+      }
+    ],
+    "types": []
+  }

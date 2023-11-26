@@ -12,7 +12,7 @@ interface GetStartedButtonProps {
 const GetStartedButton = ({ userId }: GetStartedButtonProps) => {
     return (
         <Link href={userId ? "/events" : "/auth/signin"}>
-            <Button className={"bg-primary text-primary-foreground"}>Get Started</Button>
+            <Button className={"bg-primary text-primary-foreground"}>{userId ? "Search Events" : "Create Account"}</Button>
         </Link>
     )
 }

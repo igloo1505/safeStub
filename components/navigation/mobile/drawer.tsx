@@ -8,7 +8,7 @@ import Logo from '#/components/brand/logo';
 import { Button } from '#/components/ui/button';
 import { signIn, signOut } from 'next-auth/react';
 import { SessionType } from '#/types/auth';
-import { toggleDarkmode } from '#/actions/client/ui';
+/* import { toggleDarkmode } from '#/actions/client/ui'; */
 import DrawerSearchInput from './drawerSearchInput';
 import SeedTicketsButton from '#/DEVONLY/seedTickets';
 
@@ -76,19 +76,6 @@ const MobileDrawer = ({ session, setLocked }: { session: SessionType, setLocked:
                     <div className={"hidden md:block md:my-2"} />
                     <MobileDrawerDivider />
                     <div className={"hidden md:block md:my-2"} />
-                    <div className={"w-full flex flex-col px-6"}>
-                        <a role="button" onClick={() => {
-                            closeDrawer()
-                            toggleDarkmode()
-                        }}>
-                            <div
-                                className="p-2.5 mt-3 md:mt-1 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-accent text-foreground/60 dark:text-foreground/80"
-                            >
-                                <MoonIcon className={"w-8 h-8 md:w-6 md:h-6"} />
-                                <div className={"text-[15px] ml-4 font-bold"}>Dark Mode</div>
-                            </div>
-                        </a>
-                    </div>
                 </div>
                 <div className={"w-full flex flex-col justify-center items-center px-6"}>
                     {isAuthenticated ? <Button onClick={handleAuth}>Log out</Button> : <Link href="/auth/signin" onClick={closeDrawer}><Button>Sign in</Button></Link>}

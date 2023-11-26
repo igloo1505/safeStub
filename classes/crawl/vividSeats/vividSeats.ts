@@ -77,10 +77,10 @@ teams: ${team.join(",")}`)
         await this.gatherTeamLinkItems()
         console.log("this.teamHrefs: ", this.teamHrefs)
         // TODO: Obviously remove this slice when done debugging
-        for await (const k of this.teamHrefs.slice(0, 1)) {
+        for await (const k of this.teamHrefs) {
             await k.getListingDivs()
             await k.crawlEventPages()
-            // await k.close()
+            await k.close()
         }
     }
 }

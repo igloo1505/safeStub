@@ -3,9 +3,10 @@ import '#/styles/global.css'
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { Toaster } from '#/components/ui/toaster'
-import { Lexend_Giga } from 'next/font/google'
 import appConfig from "#/data/appConfig.json"
 import Notifications from '#/components/notifications/NotificationWrapper'
+import { Lexend_Giga } from 'next/font/google'
+
 const lexand = Lexend_Giga({
     subsets: ['latin'],
     variable: "--font-lexand"
@@ -24,9 +25,10 @@ const RootLayout = async ({
 }) => {
     const cookieJar = cookies()
     const darkMode = cookieJar.has("darkMode")
+
     return (
         <html lang="en"
-            className={clsx("group/html overscroll-y-none", darkMode && "dark", lexand.variable)}
+            className={clsx("group/html overscroll-y-none dark", lexand.variable)}
             suppressHydrationWarning
         >
             <head>
