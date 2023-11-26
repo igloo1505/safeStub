@@ -3,12 +3,12 @@ generator client {
     previewFeatures = ["fullTextSearch"]
 }
 
-generator zod {
-    provider          = "prisma-zod-generator"
-    output            = "../zod/prisma"
-    isGenerateSelect  = true
-    isGenerateInclude = true
-}
+// generator zod {
+//     provider          = "prisma-zod-generator"
+//     output            = "../zod/prisma"
+//     isGenerateSelect  = true
+//     isGenerateInclude = true
+// }
 
 
 // generator erd {
@@ -18,10 +18,10 @@ generator zod {
 // }
 
 
-generator prismaClassGenerator {
-    provider = "prisma-class-generator"
-    output   = "../classes"
-}
+// generator prismaClassGenerator {
+//     provider = "prisma-class-generator"
+//     output   = "../classes"
+// }
 
 
 datasource db {
