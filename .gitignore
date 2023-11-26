@@ -46,3 +46,5 @@ next-env.d.ts
 .contentlayer
 .react-email
 /data/notebooks/demo.ipynb
+
+/app/api/webhooks/crawlTicketData/
